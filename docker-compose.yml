@@ -1,0 +1,15 @@
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST=paris-districts.beautiful-apps.com
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_HOST=paris-districts.beautiful-apps.com
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL:-daniel@beautiful-apps.com}
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
