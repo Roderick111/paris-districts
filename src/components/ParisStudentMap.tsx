@@ -386,20 +386,36 @@ export default function ParisStudentMap() {
     <main className="shell">
       <section className="mapArea" aria-label="Student city quality map">
         <div ref={mapNode} className="map" />
-        <button
-          className="settingsButton"
-          type="button"
-          onClick={() => setSettingsOpen(true)}
-          aria-label="Open settings and data"
-        >
-          Settings / Data
-        </button>
+        <div className="mapTopBar">
+          <label className="citySelect">
+            <span className="citySelectLabel">City</span>
+            <select
+              value={cityId}
+              onChange={(event) => handleCityChange(event.target.value as CityId)}
+              aria-label="Select city"
+            >
+              {CITY_OPTIONS.map(({ id, label }) => (
+                <option key={id} value={id}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <button
+            className="settingsButton"
+            type="button"
+            onClick={() => setSettingsOpen(true)}
+            aria-label="Open settings and data"
+          >
+            Settings / Data
+          </button>
+        </div>
         <div className="legend" aria-label="Score color legend">
           <div className="legendBar" />
           <div className="legendLabels">
             <span>0 poor</span>
-            <span>6 compromised</span>
-            <span>8+ earned</span>
+            <span>6 medium</span>
+            <span>8+ great</span>
           </div>
         </div>
         {hoverInfo ? (
@@ -423,20 +439,6 @@ export default function ParisStudentMap() {
           {usingCustomSettings ? (
             <p className="customNote compactNote">Using custom weights and/or place ratings.</p>
           ) : null}
-        </div>
-
-        <div className="cityControl" aria-label="City selection">
-          {CITY_OPTIONS.map(({ id, label }) => (
-            <button
-              key={id}
-              type="button"
-              className={cityId === id ? "activeCity" : ""}
-              aria-pressed={cityId === id}
-              onClick={() => handleCityChange(id)}
-            >
-              {label}
-            </button>
-          ))}
         </div>
 
         <div className="modeControl" aria-label="Map color mode">

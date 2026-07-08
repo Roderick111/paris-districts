@@ -92,9 +92,10 @@ p {
 }
 
 h1 {
+  max-width: 100%;
   font-size: 30px;
   line-height: 1.1;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 h2 {
@@ -109,41 +110,6 @@ h2 {
   color: var(--muted);
   font-size: 14px;
   line-height: 1.45;
-}
-
-.cityControl {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 4px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #f2eee5;
-  padding: 4px;
-}
-
-.cityControl button {
-  min-height: 44px;
-  border: 0;
-  border-radius: 6px;
-  background: transparent;
-  color: #475467;
-  cursor: pointer;
-  font-weight: 700;
-}
-
-.cityControl button:hover,
-.cityControl button:focus-visible {
-  background: #fffaf0;
-  outline: 2px solid #172033;
-  outline-offset: 1px;
-}
-
-.cityControl .activeCity,
-.cityControl .activeCity:hover,
-.cityControl .activeCity:focus-visible {
-  background: #172033;
-  color: #ffffff;
-  outline: 2px solid #172033;
 }
 
 .modeControl {
@@ -268,11 +234,51 @@ h2 {
   font-size: 14px;
 }
 
-.settingsButton {
+.mapTopBar {
   position: absolute;
   top: 18px;
   right: 18px;
   z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.citySelect {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  border: 1px solid rgba(23, 32, 51, 0.22);
+  border-radius: 8px;
+  background: #fffdf7;
+  padding: 0 12px;
+  box-shadow: 0 10px 28px rgba(23, 32, 51, 0.2);
+}
+
+.citySelectLabel {
+  color: #475467;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.citySelect select {
+  min-width: 108px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.citySelect select:focus-visible {
+  outline: 2px solid #172033;
+  outline-offset: 2px;
+}
+
+.settingsButton {
   min-height: 38px;
   border: 1px solid rgba(23, 32, 51, 0.22);
   border-radius: 8px;
@@ -647,11 +653,10 @@ tbody tr:hover,
   }
 
   h1 {
-    white-space: normal;
     font-size: 28px;
   }
 
-  .settingsButton {
+  .mapTopBar {
     top: 12px;
     right: 12px;
   }
@@ -662,10 +667,23 @@ tbody tr:hover,
     padding: 14px;
   }
 
-  .cityControl button,
   .modeControl button {
     min-height: 44px;
     font-size: 13px;
+  }
+
+  .mapTopBar {
+    gap: 6px;
+  }
+
+  .citySelect {
+    min-height: 44px;
+    padding: 0 10px;
+  }
+
+  .citySelect select {
+    min-width: 92px;
+    font-size: 12px;
   }
 
   .settingsButton {
