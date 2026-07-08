@@ -2,42 +2,47 @@
 
 import { useEffect, useRef } from "react";
 import {
-  districts,
   SCORE_KEYS,
-  sources,
-  type DistrictScore,
+  type PlaceScore,
   type ScoreKey,
+  type Source,
   type Weights
-} from "@/data/districtScores";
+} from "@/data/cities";
 import {
   clampScore,
   clampWeight,
   hasCustomSettings,
   metricLabel,
-  type ScoreOverridesByDistrict
+  type ScoreOverridesByPlace
 } from "@/lib/userSettings";
 
 export type SettingsTab = "criteria" | "rankings" | "sources";
 
 type RankRow = {
-  district: DistrictScore;
+  place: PlaceScore;
   total: number;
 };
 
 type SettingsDrawerProps = {
   open: boolean;
   tab: SettingsTab;
+  places: PlaceScore[];
+  sources: Source[];
+  areaOptions: string[];
+  parentFilterOptions?: string[];
   activeWeights: Weights;
-  scoreOverrides: ScoreOverridesByDistrict;
+  scoreOverrides: ScoreOverridesByPlace;
   selectedCode: string;
-  filter: "all" | DistrictScore["area"];
+  filter: "all" | string;
+  parentFilter: "all" | string;
   rankRows: RankRow[];
   onClose: () => void;
   onTabChange: (tab: SettingsTab) => void;
   onWeightChange: (key: ScoreKey, value: number) => void;
   onSelectedCodeChange: (code: string) => void;
   onScoreOverrideChange: (code: string, key: ScoreKey, value: number) => void;
-  onFilterChange: (filter: "all" | DistrictScore["area"]) => void;
+  onFilterChange: (filter: "all" | string) => void;
+  onParentFilterChange: (filter: "all" | string) => void;
   onResetSelectedRatings: () => void;
   onResetAllRatings: () => void;
   onResetWeights: () => void;
@@ -48,10 +53,15 @@ type SettingsDrawerProps = {
 export default function SettingsDrawer({
   open,
   tab,
+  places,
+  sources,
+  areaOptions,
+  parentFilterOptions,
   activeWeights,
   scoreOverrides,
   selectedCode,
   filter,
+  parentFilter,
   rankRows,
   onClose,
   onTabChange,
@@ -59,6 +69,7 @@ export default function SettingsDrawer({
   onSelectedCodeChange,
   onScoreOverrideChange,
   onFilterChange,
+  onParentFilterChange,
   onResetSelectedRatings,
   onResetAllRatings,
   onResetWeights,
@@ -66,10 +77,20 @@ export default function SettingsDrawer({
   formatScore
 }: SettingsDrawerProps) {
   const drawerRef = useRef<HTMLElement | null>(null);
-  const selectedDistrict = districts.find((district) => district.code === selectedCode) ?? districts[0];
+  const selectedPlace = places.find((place) => place.code === selectedCode) ?? places[0];
   const selectedOverrides = scoreOverrides[selectedCode] ?? {};
   const usingCustomSettings = hasCustomSettings(activeWeights, scoreOverrides);
-  const visibleRows = rankRows.filter(({ district }) => filter === "all" || district.area === filter);
+  const visibleRows = rankRows.filter(({ place }) => {
+    if (filter !== "all" && place.area !== filter) {
+      return false;
+    }
+
+    if (parentFilter !== "all" && place.parentName !== parentFilter) {
+      return false;
+    }
+
+    return true;
+  });
 
   useEffect(() => {
     if (!open) {
@@ -175,21 +196,21 @@ export default function SettingsDrawer({
               </section>
 
               <section className="drawerSection">
-                <h3>District ratings</h3>
-                <p className="drawerHint">Override researched defaults for a specific district.</p>
+                <h3>Place ratings</h3>
+                <p className="drawerHint">Override researched defaults for a specific place.</p>
                 <label className="fieldLabel">
-                  District
+                  Place
                   <select value={selectedCode} onChange={(event) => onSelectedCodeChange(event.target.value)}>
-                    {districts.map((district) => (
-                      <option key={district.code} value={district.code}>
-                        {district.name}
+                    {places.map((place) => (
+                      <option key={place.code} value={place.code}>
+                        {place.name}
                       </option>
                     ))}
                   </select>
                 </label>
                 <div className="controlList">
                   {SCORE_KEYS.map((key) => {
-                    const defaultScore = selectedDistrict.scores[key];
+                    const defaultScore = selectedPlace.scores[key];
                     const currentScore = selectedOverrides[key] ?? defaultScore;
                     const isOverridden = selectedOverrides[key] !== undefined;
 
@@ -232,7 +253,7 @@ export default function SettingsDrawer({
                 <h3>Reset</h3>
                 <div className="resetActions">
                   <button type="button" onClick={onResetSelectedRatings}>
-                    Reset selected district
+                    Reset selected place
                   </button>
                   <button type="button" onClick={onResetAllRatings}>
                     Reset all ratings
@@ -252,41 +273,59 @@ export default function SettingsDrawer({
             <section className="drawerSection rankingsSection">
               <div className="rankHeader">
                 <h3>Ranked table</h3>
-                <select
-                  value={filter}
-                  onChange={(event) => onFilterChange(event.target.value as typeof filter)}
-                  aria-label="Filter district area"
-                >
-                  <option value="all">All areas</option>
-                  <option value="Paris">Paris</option>
-                  <option value="Inner suburb">Inner suburb</option>
-                  <option value="Versailles corridor">Versailles corridor</option>
-                </select>
+                <div className="rankFilters">
+                  <select
+                    value={filter}
+                    onChange={(event) => onFilterChange(event.target.value)}
+                    aria-label="Filter place area"
+                  >
+                    <option value="all">All areas</option>
+                    {areaOptions.map((area) => (
+                      <option key={area} value={area}>
+                        {area}
+                      </option>
+                    ))}
+                  </select>
+                  {parentFilterOptions?.length ? (
+                    <select
+                      value={parentFilter}
+                      onChange={(event) => onParentFilterChange(event.target.value)}
+                      aria-label="Filter parent district"
+                    >
+                      <option value="all">All parents</option>
+                      {parentFilterOptions.map((parent) => (
+                        <option key={parent} value={parent}>
+                          {parent}
+                        </option>
+                      ))}
+                    </select>
+                  ) : null}
+                </div>
               </div>
               {usingCustomSettings ? (
-                <p className="customNote">Using custom settings: weights and/or district ratings differ from defaults.</p>
+                <p className="customNote">Using custom settings: weights and/or place ratings differ from defaults.</p>
               ) : null}
               <div className="tableWrap">
                 <table>
                   <thead>
                     <tr>
-                      <th>District</th>
+                      <th>Place</th>
                       <th>Total</th>
                       <th>Safety</th>
                       <th>Rent</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {visibleRows.map(({ district, total }) => (
+                    {visibleRows.map(({ place, total }) => (
                       <tr
-                        key={district.id}
-                        className={district.code === selectedCode ? "activeRow" : ""}
-                        onClick={() => onSelectedCodeChange(district.code)}
+                        key={place.id}
+                        className={place.code === selectedCode ? "activeRow" : ""}
+                        onClick={() => onSelectedCodeChange(place.code)}
                       >
-                        <td>{district.name}</td>
+                        <td>{place.name}</td>
                         <td>{formatScore(total)}</td>
-                        <td>{formatScore(getEffectiveScore(district, scoreOverrides, "security"))}</td>
-                        <td>{district.rentLevel}</td>
+                        <td>{formatScore(getEffectiveScore(place, scoreOverrides, "security"))}</td>
+                        <td>{place.rentLevel}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -314,9 +353,9 @@ export default function SettingsDrawer({
 }
 
 function getEffectiveScore(
-  district: DistrictScore,
-  overrides: ScoreOverridesByDistrict,
+  place: PlaceScore,
+  overrides: ScoreOverridesByPlace,
   key: ScoreKey
 ) {
-  return overrides[district.code]?.[key] ?? district.scores[key];
+  return overrides[place.code]?.[key] ?? place.scores[key];
 }

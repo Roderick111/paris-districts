@@ -1,5 +1,5 @@
-import ParisStudentMap from "@/components/ParisStudentMap";
+import MapPageClient from "@/components/MapPageClient";
 
 export default function Home() {
-  return <ParisStudentMap />;
+  return <MapPageClient />;
 }

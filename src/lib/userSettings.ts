@@ -1,16 +1,22 @@
 import {
   defaultWeights,
   SCORE_KEYS,
-  type DistrictScore,
-  type DistrictScoreOverrides,
+  type PlaceScore,
+  type PlaceScoreOverrides,
   type ScoreKey,
   type Weights
-} from "@/data/districtScores";
+} from "@/data/cities";
 
-export const WEIGHTS_STORAGE_KEY = "paris-student-map:weights:v1";
-export const OVERRIDES_STORAGE_KEY = "paris-student-map:score-overrides:v1";
+export const WEIGHTS_STORAGE_KEY = "student-city-map:weights:v1";
+export const OVERRIDES_STORAGE_KEY = "student-city-map:score-overrides:v1";
 
-export type ScoreOverridesByDistrict = Record<string, DistrictScoreOverrides>;
+const LEGACY_WEIGHTS_STORAGE_KEY = "paris-student-map:weights:v1";
+const LEGACY_OVERRIDES_STORAGE_KEY = "paris-student-map:score-overrides:v1";
+
+export type ScoreOverridesByPlace = Record<string, PlaceScoreOverrides>;
+
+/** @deprecated Use ScoreOverridesByPlace */
+export type ScoreOverridesByDistrict = ScoreOverridesByPlace;
 
 export function metricLabel(key: ScoreKey | string) {
   const labels: Record<string, string> = {
@@ -41,12 +47,12 @@ function isValidWeights(value: unknown): value is Weights {
   });
 }
 
-function isValidScoreOverrides(value: unknown): value is ScoreOverridesByDistrict {
+function isValidScoreOverrides(value: unknown): value is ScoreOverridesByPlace {
   if (!value || typeof value !== "object") {
     return false;
   }
 
-  return Object.entries(value as ScoreOverridesByDistrict).every(([code, overrides]) => {
+  return Object.entries(value as ScoreOverridesByPlace).every(([code, overrides]) => {
     if (typeof code !== "string" || !overrides || typeof overrides !== "object") {
       return false;
     }
@@ -57,10 +63,36 @@ function isValidScoreOverrides(value: unknown): value is ScoreOverridesByDistric
   });
 }
 
+function migrateLegacyStorage() {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  try {
+    if (!localStorage.getItem(WEIGHTS_STORAGE_KEY)) {
+      const legacyWeights = localStorage.getItem(LEGACY_WEIGHTS_STORAGE_KEY);
+      if (legacyWeights) {
+        localStorage.setItem(WEIGHTS_STORAGE_KEY, legacyWeights);
+      }
+    }
+
+    if (!localStorage.getItem(OVERRIDES_STORAGE_KEY)) {
+      const legacyOverrides = localStorage.getItem(LEGACY_OVERRIDES_STORAGE_KEY);
+      if (legacyOverrides) {
+        localStorage.setItem(OVERRIDES_STORAGE_KEY, legacyOverrides);
+      }
+    }
+  } catch {
+    // Ignore storage errors during migration.
+  }
+}
+
 export function loadWeights(): Weights {
   if (typeof window === "undefined") {
     return { ...defaultWeights };
   }
+
+  migrateLegacyStorage();
 
   try {
     const raw = localStorage.getItem(WEIGHTS_STORAGE_KEY);
@@ -83,10 +115,12 @@ export function saveWeights(weights: Weights) {
   localStorage.setItem(WEIGHTS_STORAGE_KEY, JSON.stringify(weights));
 }
 
-export function loadScoreOverrides(): ScoreOverridesByDistrict {
+export function loadScoreOverrides(): ScoreOverridesByPlace {
   if (typeof window === "undefined") {
     return {};
   }
+
+  migrateLegacyStorage();
 
   try {
     const raw = localStorage.getItem(OVERRIDES_STORAGE_KEY);
@@ -101,7 +135,7 @@ export function loadScoreOverrides(): ScoreOverridesByDistrict {
   }
 }
 
-export function saveScoreOverrides(overrides: ScoreOverridesByDistrict) {
+export function saveScoreOverrides(overrides: ScoreOverridesByPlace) {
   if (typeof window === "undefined") {
     return;
   }
@@ -109,30 +143,38 @@ export function saveScoreOverrides(overrides: ScoreOverridesByDistrict) {
   localStorage.setItem(OVERRIDES_STORAGE_KEY, JSON.stringify(overrides));
 }
 
-export function getDistrictOverrides(
-  overrides: ScoreOverridesByDistrict,
+export function getPlaceOverrides(
+  overrides: ScoreOverridesByPlace,
   code: string
-): DistrictScoreOverrides | undefined {
-  const districtOverrides = overrides[code];
-  return districtOverrides && Object.keys(districtOverrides).length > 0 ? districtOverrides : undefined;
+): PlaceScoreOverrides | undefined {
+  const placeOverrides = overrides[code];
+  return placeOverrides && Object.keys(placeOverrides).length > 0 ? placeOverrides : undefined;
+}
+
+/** @deprecated Use getPlaceOverrides */
+export function getDistrictOverrides(
+  overrides: ScoreOverridesByPlace,
+  code: string
+): PlaceScoreOverrides | undefined {
+  return getPlaceOverrides(overrides, code);
 }
 
 export function getEffectiveScores(
-  district: DistrictScore,
-  overrides: ScoreOverridesByDistrict
-): DistrictScore["scores"] {
-  return { ...district.scores, ...overrides[district.code] };
+  place: PlaceScore,
+  overrides: ScoreOverridesByPlace
+): PlaceScore["scores"] {
+  return { ...place.scores, ...overrides[place.code] };
 }
 
 export function weightsDifferFromDefaults(activeWeights: Weights) {
   return SCORE_KEYS.some((key) => activeWeights[key] !== defaultWeights[key]);
 }
 
-export function hasScoreOverrides(overrides: ScoreOverridesByDistrict) {
-  return Object.values(overrides).some((districtOverrides) => Object.keys(districtOverrides).length > 0);
+export function hasScoreOverrides(overrides: ScoreOverridesByPlace) {
+  return Object.values(overrides).some((placeOverrides) => Object.keys(placeOverrides).length > 0);
 }
 
-export function hasCustomSettings(activeWeights: Weights, overrides: ScoreOverridesByDistrict) {
+export function hasCustomSettings(activeWeights: Weights, overrides: ScoreOverridesByPlace) {
   return weightsDifferFromDefaults(activeWeights) || hasScoreOverrides(overrides);
 }
 

@@ -51,6 +51,14 @@ select {
   inset: 0;
 }
 
+.mapLoading {
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-size: 14px;
+  background: #f6f1e8;
+}
+
 .panel {
   z-index: 5;
   display: flex;
@@ -101,6 +109,41 @@ h2 {
   color: var(--muted);
   font-size: 14px;
   line-height: 1.45;
+}
+
+.cityControl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f2eee5;
+  padding: 4px;
+}
+
+.cityControl button {
+  min-height: 44px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #475467;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.cityControl button:hover,
+.cityControl button:focus-visible {
+  background: #fffaf0;
+  outline: 2px solid #172033;
+  outline-offset: 1px;
+}
+
+.cityControl .activeCity,
+.cityControl .activeCity:hover,
+.cityControl .activeCity:focus-visible {
+  background: #172033;
+  color: #ffffff;
+  outline: 2px solid #172033;
 }
 
 .modeControl {
@@ -190,11 +233,30 @@ h2 {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+  width: 100%;
   min-height: 36px;
   border: 1px solid #e8e2d7;
   border-radius: 6px;
   padding: 8px 10px;
   background: #fffaf0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.metric:hover,
+.metric:focus-visible {
+  border-color: #cfc6b8;
+  background: #ffffff;
+  outline: 2px solid transparent;
+}
+
+.metricActive,
+.metricActive:hover,
+.metricActive:focus-visible {
+  border-color: #172033;
+  background: #edf7ed;
 }
 
 .metric span {
@@ -212,15 +274,15 @@ h2 {
   right: 18px;
   z-index: 6;
   min-height: 38px;
-  border: 1px solid rgba(23, 32, 51, 0.18);
+  border: 1px solid rgba(23, 32, 51, 0.22);
   border-radius: 8px;
-  background: rgba(255, 253, 247, 0.96);
+  background: #fffdf7;
   color: var(--ink);
   cursor: pointer;
   font-size: 13px;
   font-weight: 700;
   padding: 0 14px;
-  box-shadow: 0 8px 24px rgba(23, 32, 51, 0.14);
+  box-shadow: 0 10px 28px rgba(23, 32, 51, 0.2);
 }
 
 .settingsButton:hover,
@@ -443,6 +505,12 @@ h2 {
   padding: 14px;
 }
 
+.rankFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 select {
   min-height: 36px;
   border: 1px solid #cfc6b8;
@@ -513,12 +581,13 @@ tbody tr:hover,
   position: absolute;
   left: 18px;
   bottom: 18px;
+  z-index: 6;
   width: min(320px, calc(100% - 36px));
-  border: 1px solid rgba(23, 32, 51, 0.18);
+  border: 1px solid rgba(23, 32, 51, 0.22);
   border-radius: 8px;
-  background: rgba(255, 253, 247, 0.94);
+  background: #fffdf7;
   padding: 12px;
-  box-shadow: 0 8px 24px rgba(23, 32, 51, 0.18);
+  box-shadow: 0 10px 28px rgba(23, 32, 51, 0.2);
 }
 
 .legendBar {
@@ -542,11 +611,11 @@ tbody tr:hover,
   gap: 2px;
   max-width: 220px;
   pointer-events: none;
-  border: 1px solid rgba(23, 32, 51, 0.18);
+  border: 1px solid rgba(23, 32, 51, 0.22);
   border-radius: 6px;
-  background: rgba(255, 253, 247, 0.96);
+  background: #ffffff;
   padding: 8px 10px;
-  box-shadow: 0 8px 24px rgba(23, 32, 51, 0.18);
+  box-shadow: 0 10px 28px rgba(23, 32, 51, 0.2);
   font-size: 13px;
 }
 
@@ -591,6 +660,18 @@ tbody tr:hover,
 @media (max-width: 560px) {
   .panel {
     padding: 14px;
+  }
+
+  .cityControl button,
+  .modeControl button {
+    min-height: 44px;
+    font-size: 13px;
+  }
+
+  .settingsButton {
+    min-height: 44px;
+    font-size: 12px;
+    padding: 0 10px;
   }
 
   .scoreGrid {
