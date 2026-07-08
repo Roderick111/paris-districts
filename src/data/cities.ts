@@ -1,7 +1,20 @@
 import { bordeauxMacroPlaces, bordeauxMicroPlaces } from "@/data/bordeauxPlaces";
+import { lilleMicroPlaces } from "@/data/lillePlaces";
 import { lyonMacroPlaces, lyonMicroPlaces } from "@/data/lyonPlaces";
+import { marseilleMicroPlaces } from "@/data/marseillePlaces";
+import { nantesMicroPlaces } from "@/data/nantesPlaces";
+import { niceMicroPlaces } from "@/data/nicePlaces";
+import { toulouseMicroPlaces } from "@/data/toulousePlaces";
 
-export type CityId = "paris" | "bordeaux" | "lyon";
+export type CityId =
+  | "paris"
+  | "bordeaux"
+  | "lyon"
+  | "toulouse"
+  | "lille"
+  | "marseille"
+  | "nice"
+  | "nantes";
 export type PlaceKind = "arrondissement" | "quartier" | "commune";
 export type RentLevel = "lower" | "medium" | "high" | "very high";
 export type StudentFit = "excellent" | "good" | "mixed" | "weak";
@@ -213,6 +226,137 @@ const bordeauxSources: Source[] = [
   }
 ];
 
+const toulouseSources: Source[] = [
+  {
+    label: "SSMSI / data.gouv.fr crime indicators, 2025 geography",
+    url: "https://www.data.gouv.fr/fr/datasets/bases-statistiques-communale-departementale-et-regionale-de-la-delinquance-enregistree-par-la-police-et-la-gendarmerie-nationales/"
+  },
+  {
+    label: "Toulouse Metropole quartiers de democratie locale",
+    url: "https://data.toulouse-metropole.fr/explore/dataset/quartiers-de-democratie-locale/"
+  },
+  {
+    label: "geo.api.gouv.fr commune contours",
+    url: "https://geo.api.gouv.fr/decoupage-administratif/communes"
+  },
+  {
+    label: "Wikipedia: Quartiers de Toulouse",
+    url: "https://fr.wikipedia.org/wiki/Quartiers_de_Toulouse"
+  },
+  {
+    label: "Wikipedia: University of Toulouse",
+    url: "https://en.wikipedia.org/wiki/University_of_Toulouse"
+  },
+  {
+    label: "Tisseo transport network",
+    url: "https://www.tisseo.fr/en"
+  }
+];
+
+const lilleSources: Source[] = [
+  {
+    label: "SSMSI / data.gouv.fr crime indicators, 2025 geography",
+    url: "https://www.data.gouv.fr/fr/datasets/bases-statistiques-communale-departementale-et-regionale-de-la-delinquance-enregistree-par-la-police-et-la-gendarmerie-nationales/"
+  },
+  {
+    label: "Lille city geoserver quartier limits",
+    url: "https://data.lillemetropole.fr/geoserver/wfs?service=WFS&request=GetCapabilities"
+  },
+  {
+    label: "geo.api.gouv.fr commune contours",
+    url: "https://geo.api.gouv.fr/decoupage-administratif/communes"
+  },
+  {
+    label: "Wikipedia: Quartiers de Lille",
+    url: "https://fr.wikipedia.org/wiki/Quartiers_de_Lille"
+  },
+  {
+    label: "Wikipedia: University of Lille",
+    url: "https://en.wikipedia.org/wiki/University_of_Lille"
+  },
+  {
+    label: "Wikipedia: Ilévia transport network",
+    url: "https://en.wikipedia.org/wiki/Il%C3%A9via"
+  }
+];
+
+const marseilleSources: Source[] = [
+  {
+    label: "SSMSI / data.gouv.fr crime indicators, 2025 geography",
+    url: "https://www.data.gouv.fr/fr/datasets/bases-statistiques-communale-departementale-et-regionale-de-la-delinquance-enregistree-par-la-police-et-la-gendarmerie-nationales/"
+  },
+  {
+    label: "Aix-Marseille Metropole official quartiers",
+    url: "https://data.ampmetropole.fr/explore/dataset/a7104f3c-e487-4af3-82ad-6197cedfaeb1/"
+  },
+  {
+    label: "geo.api.gouv.fr commune contours",
+    url: "https://geo.api.gouv.fr/decoupage-administratif/communes"
+  },
+  {
+    label: "Wikipedia: Quartiers de Marseille",
+    url: "https://fr.wikipedia.org/wiki/Quartiers_de_Marseille"
+  },
+  {
+    label: "Wikipedia: Aix-Marseille University",
+    url: "https://en.wikipedia.org/wiki/Aix-Marseille_University"
+  },
+  {
+    label: "Wikipedia: Luminy campus",
+    url: "https://fr.wikipedia.org/wiki/Luminy"
+  }
+];
+
+const niceSources: Source[] = [
+  {
+    label: "SSMSI / data.gouv.fr crime indicators, 2025 geography",
+    url: "https://www.data.gouv.fr/fr/datasets/bases-statistiques-communale-departementale-et-regionale-de-la-delinquance-enregistree-par-la-police-et-la-gendarmerie-nationales/"
+  },
+  {
+    label: "Nice Cote d'Azur official quartier limits (ArcGIS)",
+    url: "https://cartes.nicecotedazur.org/heberge/rest/services/Limites_administratives/MapServer/10"
+  },
+  {
+    label: "geo.api.gouv.fr commune contours",
+    url: "https://geo.api.gouv.fr/decoupage-administratif/communes"
+  },
+  {
+    label: "Wikipedia: Liste des quartiers de Nice",
+    url: "https://fr.wikipedia.org/wiki/Liste_des_quartiers_de_Nice"
+  },
+  {
+    label: "Wikipedia: Universite Cote d'Azur",
+    url: "https://en.wikipedia.org/wiki/C%C3%B4te_d%27Azur_University"
+  }
+];
+
+const nantesSources: Source[] = [
+  {
+    label: "SSMSI / data.gouv.fr crime indicators, 2025 geography",
+    url: "https://www.data.gouv.fr/fr/datasets/bases-statistiques-communale-departementale-et-regionale-de-la-delinquance-enregistree-par-la-police-et-la-gendarmerie-nationales/"
+  },
+  {
+    label: "Nantes Metropole administrative quartiers",
+    url: "https://data.nantesmetropole.fr/explore/dataset/244400404_quartiers-communes-nantes-metropole/"
+  },
+  {
+    label: "geo.api.gouv.fr commune contours",
+    url: "https://geo.api.gouv.fr/decoupage-administratif/communes"
+  },
+  {
+    label: "Wikipedia: Liste des quartiers de Nantes",
+    url: "https://fr.wikipedia.org/wiki/Liste_des_quartiers_de_Nantes"
+  },
+  {
+    label: "Wikipedia: Nantes Universite",
+    url: "https://fr.wikipedia.org/wiki/Nantes_Universit%C3%A9"
+  },
+  {
+    label: "Wikipedia: Nantes tramway",
+    url: "https://en.wikipedia.org/wiki/Nantes_tramway"
+  }
+];
+
 const lyonSources: Source[] = [
   {
     label: "SSMSI / data.gouv.fr crime indicators, 2025 geography",
@@ -329,6 +473,150 @@ export const cities: CityConfig[] = [
       "Écully"
     ],
     sources: lyonSources
+  },
+  {
+    id: "toulouse",
+    name: "Toulouse",
+    title: "Toulouse micro-areas + campus belts",
+    geojsonUrl: "/data/toulouse.geojson",
+    center: [1.444, 43.604],
+    zoom: 12,
+    minZoom: 10.5,
+    maxZoom: 15,
+    defaultSelectedCode: "toulouse-rangueil-sauzelong",
+    areaOptions: ["Centre", "Rive gauche", "Centre south", "South-east campus", "South-west campus", "North"],
+    parentFilterOptions: [
+      "Centre",
+      "Rive gauche",
+      "Centre south",
+      "South-east campus",
+      "South-west campus",
+      "North"
+    ],
+    sources: toulouseSources
+  },
+  {
+    id: "lille",
+    name: "Lille",
+    title: "Lille micro-areas + Villeneuve-d'Ascq campus",
+    geojsonUrl: "/data/lille.geojson",
+    center: [3.058, 50.632],
+    zoom: 12,
+    minZoom: 10.5,
+    maxZoom: 15,
+    defaultSelectedCode: "lille-vauban-esquermes",
+    areaOptions: ["Lille Centre", "Vauban-Esquermes", "Vieux-Lille", "Wazemmes", "Moulins", "Fives", "Bois-Blancs", "Lille-Sud", "Villeneuve-d'Ascq"],
+    parentFilterOptions: [
+      "Lille Centre",
+      "Vauban-Esquermes",
+      "Vieux-Lille",
+      "Wazemmes",
+      "Moulins",
+      "Fives",
+      "Bois-Blancs",
+      "Lille-Sud",
+      "Villeneuve-d'Ascq"
+    ],
+    sources: lilleSources
+  },
+  {
+    id: "marseille",
+    name: "Marseille",
+    title: "Marseille grouped student micro-areas",
+    geojsonUrl: "/data/marseille.geojson",
+    center: [5.369, 43.296],
+    zoom: 11.6,
+    minZoom: 10.5,
+    maxZoom: 15,
+    defaultSelectedCode: "marseille-baille-timone",
+    areaOptions: [
+      "Marseille 1",
+      "Marseille 1/2",
+      "Marseille 1/3",
+      "Marseille 5",
+      "Marseille 5/6",
+      "Marseille 6",
+      "Marseille 7",
+      "Marseille 8",
+      "Marseille 9",
+      "Marseille 13",
+      "Marseille 15"
+    ],
+    parentFilterOptions: [
+      "Marseille 1",
+      "Marseille 1/2",
+      "Marseille 1/3",
+      "Marseille 5",
+      "Marseille 5/6",
+      "Marseille 6",
+      "Marseille 7",
+      "Marseille 8",
+      "Marseille 9",
+      "Marseille 13",
+      "Marseille 15"
+    ],
+    sources: marseilleSources
+  },
+  {
+    id: "nice",
+    name: "Nice",
+    title: "Nice micro-areas + campus belts",
+    geojsonUrl: "/data/nice.geojson",
+    center: [7.262, 43.71],
+    zoom: 12,
+    minZoom: 10.5,
+    maxZoom: 15,
+    defaultSelectedCode: "nice-liberation-valrose",
+    areaOptions: ["Centre", "Centre east", "North centre", "Centre west", "East inner city", "West campus", "North-east hills", "East", "North-east edge", "West airport"],
+    parentFilterOptions: [
+      "Centre",
+      "Centre east",
+      "North centre",
+      "Centre west",
+      "East inner city",
+      "West campus",
+      "North-east hills",
+      "East",
+      "North-east edge",
+      "West airport"
+    ],
+    sources: niceSources
+  },
+  {
+    id: "nantes",
+    name: "Nantes",
+    title: "Nantes administrative quartiers + campus belts",
+    geojsonUrl: "/data/nantes.geojson",
+    center: [-1.553, 47.218],
+    zoom: 12,
+    minZoom: 10.5,
+    maxZoom: 15,
+    defaultSelectedCode: "nantes-hauts-paves-saint-felix",
+    areaOptions: [
+      "Centre-ville",
+      "Hauts-Pavés - Saint-Félix",
+      "Nantes Nord",
+      "Île de Nantes",
+      "Malakoff - Saint-Donatien",
+      "Dervallières - Zola",
+      "Bellevue - Chantenay - Sainte-Anne",
+      "Breil - Barberie",
+      "Nantes Erdre",
+      "Doulon - Bottière"
+    ],
+    parentFilterOptions: [
+      "Centre-ville",
+      "Hauts-Pavés - Saint-Félix",
+      "Nantes Nord",
+      "Île de Nantes",
+      "Malakoff - Saint-Donatien",
+      "Dervallières - Zola",
+      "Bellevue - Chantenay - Sainte-Anne",
+      "Breil - Barberie",
+      "Nantes Erdre",
+      "Doulon - Bottière"
+    ],
+    sources: nantesSources
   }
 ];
 
@@ -965,7 +1253,12 @@ const parisPlaces: PlaceScore[] = [
 export const placesByCity: Record<CityId, PlaceScore[]> = {
   paris: parisPlaces,
   bordeaux: bordeauxMicroPlaces,
-  lyon: lyonMicroPlaces
+  lyon: lyonMicroPlaces,
+  toulouse: toulouseMicroPlaces,
+  lille: lilleMicroPlaces,
+  marseille: marseilleMicroPlaces,
+  nice: niceMicroPlaces,
+  nantes: nantesMicroPlaces
 };
 
 export function isMapPlace(place: PlaceScore) {
@@ -993,6 +1286,11 @@ const allPlaces = [
   ...bordeauxMicroPlaces,
   ...bordeauxMacroPlaces,
   ...lyonMicroPlaces,
-  ...lyonMacroPlaces
+  ...lyonMacroPlaces,
+  ...toulouseMicroPlaces,
+  ...lilleMicroPlaces,
+  ...marseilleMicroPlaces,
+  ...niceMicroPlaces,
+  ...nantesMicroPlaces
 ];
 export const placeByCode = new Map<string, PlaceScore>(allPlaces.map((place) => [place.code, place]));

@@ -8,6 +8,7 @@ import type { FeatureCollection, GeoJsonProperties, Geometry } from "geojson";
 import { dissolveGeometry } from "@/lib/geometryOutline";
 import SettingsDrawer, { type SettingsTab } from "@/components/SettingsDrawer";
 import {
+  cities,
   cityById,
   defaultWeights,
   getPlacesForCity,
@@ -44,12 +45,6 @@ type MapMode = "overall" | ScoreKey;
 
 const BASE_LINE_COLOR: [number, number, number, number] = [255, 255, 255, 230];
 const SELECTION_LINE_COLOR: [number, number, number, number] = [15, 23, 42, 255];
-
-const CITY_OPTIONS: { id: CityId; label: string }[] = [
-  { id: "paris", label: "Paris" },
-  { id: "bordeaux", label: "Bordeaux" },
-  { id: "lyon", label: "Lyon" }
-];
 
 function colorForScore(score: number, alpha = 185): [number, number, number, number] {
   const clamped = Math.max(0, Math.min(10, score));
@@ -394,9 +389,9 @@ export default function ParisStudentMap() {
               onChange={(event) => handleCityChange(event.target.value as CityId)}
               aria-label="Select city"
             >
-              {CITY_OPTIONS.map(({ id, label }) => (
-                <option key={id} value={id}>
-                  {label}
+              {cities.map((city) => (
+                <option key={city.id} value={city.id}>
+                  {city.name}
                 </option>
               ))}
             </select>
