@@ -270,6 +270,7 @@ def load_lille() -> tuple[dict[str, dict[str, Any]], dict[str, dict[str, Any]]]:
                 "request": "GetFeature",
                 "typeName": layer,
                 "outputFormat": "application/json",
+                "srsName": "EPSG:4326",
                 "count": 100,
             }
         )
@@ -301,6 +302,13 @@ def geometry_for_spec(
     raise ValueError(f"Spec {spec['code']} has no geometry source")
 
 
+def iter_geometry_points(geometry: dict[str, Any]) -> Any:
+    for polygon in polygon_parts(geometry):
+        for ring in polygon:
+            for point in ring:
+                yield point
+
+
 def audit_output(features: list[dict[str, Any]], score_codes: set[str]) -> None:
     codes = [feature["properties"]["code"] for feature in features]
     duplicates = sorted({code for code in codes if codes.count(code) > 1})
@@ -313,6 +321,10 @@ def audit_output(features: list[dict[str, Any]], score_codes: set[str]) -> None:
         geometry = feature["geometry"]
         if geometry.get("type") not in {"Polygon", "MultiPolygon"} or not polygon_parts(geometry):
             raise SystemExit(f"Invalid or empty geometry for {code}")
+        for point in iter_geometry_points(geometry):
+            lon, lat = point[:2]
+            if lon < -180 or lon > 180 or lat < -90 or lat > 90:
+                raise SystemExit(f"Invalid lon/lat coordinate for {code}: {point[:2]}")
         digest = geometry_hash(geometry)
         hash_map.setdefault(digest, []).append(code)
 
