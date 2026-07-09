@@ -1,12 +1,12 @@
-# Montpellier student life scoring (granularity upgrade)
+# Montpellier student life scoring (district-first revision)
 
 ## Method
 
 Same seven criteria, same weights, same security cap as the app.
 
-Upgrade target: implement **21 student-relevant micro-areas**. Use IRIS-backed groups around centre, north campus, Richter/Port Marianne, west cap zones, and south-west commute zones.
+Upgrade target: implement **14 readable zones**. Use Montpellier's official quarter structure as the base, then split the major student belts only where the map would otherwise flatten real choices. No IRIS shredding.
 
-Boundary confidence: **medium/high** after IRIS mapping, **medium** for lived-neighbourhood labels.
+Boundary confidence: **high** for quarter-based groupings, **medium** for the campus and east-side splits.
 
 ## Source Notes
 
@@ -14,55 +14,50 @@ Primary:
 
 - [SSMSI crime dataset](https://www.data.gouv.fr/datasets/bases-statistiques-communale-departementale-et-regionale-de-la-delinquance-enregistree-par-la-police-et-la-gendarmerie-nationales)
 - [INSEE IRIS definition](https://www.insee.fr/fr/metadonnees/definition/c1523)
+- [Montpellier](https://fr.wikipedia.org/wiki/Montpellier)
 - [Universite de Montpellier](https://www.umontpellier.fr/)
 - [Universite Paul-Valery Montpellier 3](https://www.univ-montp3.fr/)
-- [TAM tram/bus network](https://www.tam-voyages.com/)
-- [Montpellier quartier context](https://fr.wikipedia.org/wiki/Montpellier)
+- [TAM network](https://www.tam-voyages.com/)
 
 ## Upgrade Rationale
 
-Current 10-area draft hides the strongest student geography:
+Current draft over-sliced the city. Montpellier works better when the map follows the real student spine:
 
-- Ecusson, Comedie, Gare, Antigone, and Figuerolles/Gambetta need separate centre profiles.
-- Beaux-Arts and Boutonnet are both strong but not identical.
-- Hôpitaux-Facultés must split into Triolet/Fac des Sciences, Paul-Valery/Route de Mende, Occitanie, and Aiguelongue.
-- Richter, Port Marianne, and Millenaire/Odysseum are different east-side choices.
-- Mosson, Paillade, Celleneuve, Croix d'Argent, and Pres d'Arenes need distinct caps.
+- Ecusson, Comedie, and Gare should read as distinct centre choices.
+- Beaux-Arts / Boutonnet is a separate north-centre pocket, not just a generic inner ring.
+- Hôpitaux-Facultés needs campus splits for Triolet and Paul-Valery / Route de Mende.
+- Richter, Port Marianne, and Millenaire / Odysseum are different east-side bets.
+- Mosson / Paillade and Croix d'Argent / Prés d'Arènes need honest caps, not rounded-up optimism.
 
-## Micro Score Table
+## Suggested Zone Set
 
 Order: security / affordability / transport / studentEnergy / services / campusAccess / greenCalm -> total
 
-| Micro-area | Parent | Geometry target | Scores | Total |
-|------------|--------|-----------------|--------|-------|
-| Ecusson core | Centre | IRIS group | 5.3 / 2.7 / 9.5 / 9.2 / 9.3 / 8.8 / 3.6 | 6.2 |
-| Comedie / Polygone | Centre east | IRIS group | 5.4 / 2.8 / 9.7 / 8.6 / 9.2 / 8.6 / 3.8 | 6.2 |
-| Gare Saint-Roch | Station core | IRIS group | 5.0 / 3.8 / 9.8 / 8.2 / 8.8 / 8.4 / 3.6 | 5.2 |
-| Antigone | Centre east | IRIS group | 6.0 / 3.4 / 9.4 / 7.8 / 9.0 / 8.6 / 4.8 | 6.5 |
-| Beaux-Arts | North centre | IRIS group | 7.0 / 4.4 / 8.8 / 9.3 / 8.5 / 9.2 / 6.3 | 7.4 |
-| Boutonnet | North centre | IRIS group | 7.1 / 4.3 / 8.7 / 8.8 / 8.3 / 9.1 / 6.7 | 7.3 |
-| Les Aubes / Pompignane | East inner | IRIS group | 6.6 / 4.8 / 8.2 / 7.0 / 7.8 / 8.0 / 6.4 | 6.8 |
-| Triolet / Fac des Sciences | North campus | IRIS group | 6.7 / 5.0 / 8.9 / 9.0 / 8.0 / 10.0 / 7.0 | 7.0 |
-| Paul-Valery / Route de Mende | North campus | IRIS group | 6.6 / 5.2 / 8.8 / 8.8 / 7.8 / 10.0 / 7.0 | 7.0 |
-| Occitanie / Hopitaux | North campus | IRIS group | 6.8 / 5.0 / 8.8 / 8.3 / 8.0 / 9.6 / 7.0 | 7.0 |
-| Aiguelongue | North-east | IRIS group | 7.6 / 4.0 / 7.8 / 6.4 / 7.4 / 8.4 / 8.6 | 7.0 |
-| Richter | East campus | IRIS group | 7.0 / 4.2 / 9.0 / 7.8 / 8.2 / 9.4 / 6.6 | 7.3 |
-| Port Marianne | East | IRIS group | 7.2 / 3.7 / 8.8 / 7.1 / 8.3 / 8.8 / 6.8 | 7.0 |
-| Millenaire / Odysseum | East edge | IRIS group | 6.4 / 4.6 / 8.2 / 6.8 / 8.0 / 8.0 / 6.2 | 6.6 |
-| Figuerolles | West centre | IRIS group | 4.8 / 5.8 / 8.7 / 8.8 / 7.8 / 8.0 / 3.8 | 5.2 |
-| Gambetta / Clemenceau | West centre | IRIS group | 5.2 / 5.4 / 9.0 / 8.6 / 8.2 / 8.2 / 4.0 | 6.2 |
-| Celleneuve | West | IRIS group | 5.2 / 6.8 / 8.0 / 6.2 / 7.0 / 6.8 / 6.0 | 6.2 |
-| Mosson | North-west | IRIS group | 3.6 / 7.6 / 8.4 / 6.0 / 6.8 / 6.8 / 5.6 | 4.4 |
-| Paillade | North-west | IRIS group | 3.4 / 7.8 / 8.2 / 5.6 / 6.4 / 6.4 / 5.4 | 4.4 |
-| Croix d'Argent | South-west | IRIS group | 5.5 / 6.1 / 8.1 / 6.5 / 7.5 / 7.4 / 5.5 | 6.2 |
-| Pres d'Arenes | South | IRIS group | 5.1 / 6.5 / 8.5 / 6.4 / 7.2 / 7.3 / 5.0 | 6.2 |
+| Zone | Parent | Geometry target | Scores | Total |
+|------|--------|-----------------|--------|-------|
+| Ecusson core | Montpellier Centre | official quartier | 5.4 / 2.8 / 9.6 / 9.2 / 9.2 / 8.8 / 3.6 | 6.2 |
+| Comedie / Gare | Montpellier Centre | official quartier group | 5.2 / 3.2 / 9.8 / 8.8 / 9.0 / 8.6 / 3.8 | 6.2 |
+| Beaux-Arts / Boutonnet | North centre | official quartier group | 7.0 / 4.2 / 8.8 / 9.0 / 8.4 / 9.2 / 6.4 | 7.3 |
+| Arceaux / Gambetta / Figuerolles | West centre | official quartier group | 5.3 / 5.2 / 8.8 / 8.4 / 8.2 / 8.0 / 4.0 | 6.2 |
+| Antigone | East centre | official quartier | 6.0 / 3.6 / 9.4 / 7.8 / 9.0 / 8.6 / 4.8 | 6.5 |
+| Richter / Jacques-Coeur | East campus | official quartier group | 7.0 / 4.2 / 9.0 / 7.8 / 8.2 / 9.4 / 6.6 | 7.0 |
+| Port Marianne / Millenaire / Odysseum | East | official quartier group | 7.0 / 4.0 / 8.8 / 7.0 / 8.4 / 8.8 / 6.6 | 7.0 |
+| Hôpitaux-Facultés / Triolet | North campus | official quartier group | 6.8 / 5.0 / 8.8 / 8.8 / 8.0 / 10.0 / 7.0 | 7.0 |
+| Paul-Valery / Route de Mende | North campus | official quartier group | 6.6 / 5.2 / 8.6 / 8.4 / 7.8 / 10.0 / 7.0 | 7.0 |
+| Aiguelongue / Malbosc | North-east | official quartier group | 7.4 / 4.4 / 7.8 / 6.4 / 7.4 / 8.4 / 8.4 | 7.0 |
+| Croix d'Argent / Ovalie | South-west | official quartier group | 5.4 / 6.0 / 8.0 / 6.4 / 7.4 / 7.4 / 5.4 | 6.2 |
+| Les Cévennes / Celleneuve | West | official quartier group | 5.2 / 6.6 / 8.0 / 6.2 / 7.0 / 6.8 / 6.0 | 6.2 |
+| Mosson / Paillade | North-west cap | official quartier group | 3.6 / 7.6 / 8.2 / 5.8 / 6.6 / 6.4 / 5.4 | 4.4 |
+| Prés d'Arènes / Gare Sud | South | official quartier group | 5.0 / 6.2 / 8.4 / 6.4 / 7.2 / 7.2 / 5.0 | 6.2 |
 
 ## Geometry Instructions
 
-- Use IRIS groups for all 21 rows.
-- Keep Mosson and Paillade separate.
-- Keep Beaux-Arts, Boutonnet, Triolet, Paul-Valery, and Occitanie separate; one north-campus blob is not acceptable.
+- Use official quartier groupings first.
+- Keep Ecusson, Comedie / Gare, and Antigone distinct.
+- Keep Triolet and Paul-Valery split under Hôpitaux-Facultés.
+- Keep Mosson / Paillade separate from the west-centre and south zones.
+- If a small pocket has weak evidence, fall back to whole-district reputation instead of inventing a micro-zone.
 
 ## Verdict
 
-Montpellier should show a strong north-campus arc, a split centre, and explicit west/north-west caps. Beaux-Arts, Boutonnet, Triolet, Paul-Valery, Richter, and Port Marianne lead. Mosson/Paillade and station/west-centre friction remain capped.
+Montpellier should read as a clean centre plus clear campus belts, not a shredded IRIS map. Beaux-Arts / Boutonnet, Richter, Port Marianne, Hôpitaux-Facultés / Triolet, and Paul-Valery lead. Mosson / Paillade and the station / south caps stay honest.

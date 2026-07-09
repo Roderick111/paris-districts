@@ -1,0 +1,332 @@
+{
+  "nantes-decre-bouffay": {
+    "scores": {
+      "security": 5.8,
+      "affordability": 3.1,
+      "transport": 9.7,
+      "studentEnergy": 9.4,
+      "services": 9.2,
+      "campusAccess": 8.4,
+      "greenCalm": 3.8
+    },
+    "rentLevel": "high",
+    "studentFit": "good",
+    "summary": "High-energy centre-ville streets with strong student social life.",
+    "caveat": "Social life is real; comfort and safety are not automatic."
+  },
+  "nantes-commerce-graslin": {
+    "scores": {
+      "security": 6.4,
+      "affordability": 2.7,
+      "transport": 9.7,
+      "studentEnergy": 9.0,
+      "services": 9.4,
+      "campusAccess": 8.3,
+      "greenCalm": 4.2
+    },
+    "rentLevel": "very high",
+    "studentFit": "good",
+    "summary": "Balanced centre-ville micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nantes-talensac-viarme": {
+    "scores": {
+      "security": 6.7,
+      "affordability": 3.8,
+      "transport": 9.0,
+      "studentEnergy": 8.4,
+      "services": 8.7,
+      "campusAccess": 8.6,
+      "greenCalm": 5.6
+    },
+    "rentLevel": "high",
+    "studentFit": "excellent",
+    "summary": "Balanced centre north micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nantes-hauts-paves": {
+    "scores": {
+      "security": 7.1,
+      "affordability": 4.2,
+      "transport": 8.6,
+      "studentEnergy": 8.1,
+      "services": 8.1,
+      "campusAccess": 9.0,
+      "greenCalm": 6.6
+    },
+    "rentLevel": "high",
+    "studentFit": "excellent",
+    "summary": "Balanced hauts-paves - saint-felix micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nantes-saint-felix-michelet": {
+    "scores": {
+      "security": 7.3,
+      "affordability": 4.4,
+      "transport": 8.6,
+      "studentEnergy": 8.6,
+      "services": 8.2,
+      "campusAccess": 9.6,
+      "greenCalm": 7.0
+    },
+    "rentLevel": "high",
+    "studentFit": "excellent",
+    "summary": "Campus-first hauts-paves - saint-felix pick with structural university access.",
+    "caveat": "Best for campus-first students, not for a historic-centre lifestyle."
+  },
+  "nantes-facultes-petit-port": {
+    "scores": {
+      "security": 6.5,
+      "affordability": 5.6,
+      "transport": 8.6,
+      "studentEnergy": 8.8,
+      "services": 7.8,
+      "campusAccess": 10.0,
+      "greenCalm": 7.6
+    },
+    "rentLevel": "medium",
+    "studentFit": "excellent",
+    "summary": "Campus-first nantes nord pick with structural university access.",
+    "caveat": "Best for campus-first students, not for a historic-centre lifestyle."
+  },
+  "nantes-joneliere": {
+    "scores": {
+      "security": 6.8,
+      "affordability": 5.8,
+      "transport": 8.2,
+      "studentEnergy": 8.2,
+      "services": 7.4,
+      "campusAccess": 9.8,
+      "greenCalm": 8.2
+    },
+    "rentLevel": "medium",
+    "studentFit": "excellent",
+    "summary": "Campus-first nantes nord pick with structural university access.",
+    "caveat": "Best for campus-first students, not for a historic-centre lifestyle."
+  },
+  "nantes-bout-des-landes-boissiere": {
+    "scores": {
+      "security": 5.2,
+      "affordability": 6.7,
+      "transport": 7.8,
+      "studentEnergy": 6.2,
+      "services": 6.8,
+      "campusAccess": 8.2,
+      "greenCalm": 6.8
+    },
+    "rentLevel": "lower",
+    "studentFit": "good",
+    "summary": "Practical nantes nord belt with tolerable value and metro access.",
+    "caveat": "Useful compromise, not a headline comfort pick."
+  },
+  "nantes-chantrerie-gachet": {
+    "scores": {
+      "security": 7.2,
+      "affordability": 5.2,
+      "transport": 7.2,
+      "studentEnergy": 7.3,
+      "services": 7.3,
+      "campusAccess": 9.5,
+      "greenCalm": 8.8
+    },
+    "rentLevel": "medium",
+    "studentFit": "excellent",
+    "summary": "Campus-first nantes erdre pick with structural university access.",
+    "caveat": "Best for campus-first students, not for a historic-centre lifestyle."
+  },
+  "nantes-saint-joseph-porterie": {
+    "scores": {
+      "security": 7.0,
+      "affordability": 5.6,
+      "transport": 7.4,
+      "studentEnergy": 6.6,
+      "services": 7.2,
+      "campusAccess": 8.2,
+      "greenCalm": 8.0
+    },
+    "rentLevel": "medium",
+    "studentFit": "excellent",
+    "summary": "Balanced nantes erdre micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nantes-ile-de-nantes-west": {
+    "scores": {
+      "security": 6.8,
+      "affordability": 4.0,
+      "transport": 8.7,
+      "studentEnergy": 8.1,
+      "services": 8.1,
+      "campusAccess": 8.2,
+      "greenCalm": 6.7
+    },
+    "rentLevel": "high",
+    "studentFit": "excellent",
+    "summary": "Balanced ile de nantes micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nantes-ile-de-nantes-east": {
+    "scores": {
+      "security": 6.4,
+      "affordability": 4.5,
+      "transport": 8.5,
+      "studentEnergy": 7.5,
+      "services": 7.8,
+      "campusAccess": 7.8,
+      "greenCalm": 6.6
+    },
+    "rentLevel": "high",
+    "studentFit": "good",
+    "summary": "Balanced ile de nantes micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nantes-malakoff": {
+    "scores": {
+      "security": 4.8,
+      "affordability": 6.4,
+      "transport": 8.8,
+      "studentEnergy": 6.8,
+      "services": 7.4,
+      "campusAccess": 8.0,
+      "greenCalm": 5.4
+    },
+    "rentLevel": "medium",
+    "studentFit": "mixed",
+    "summary": "Balanced malakoff - saint-donatien micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nantes-saint-donatien": {
+    "scores": {
+      "security": 6.8,
+      "affordability": 4.8,
+      "transport": 8.6,
+      "studentEnergy": 7.2,
+      "services": 8.2,
+      "campusAccess": 7.8,
+      "greenCalm": 6.2
+    },
+    "rentLevel": "high",
+    "studentFit": "excellent",
+    "summary": "Balanced malakoff - saint-donatien micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nantes-dervallieres": {
+    "scores": {
+      "security": 4.8,
+      "affordability": 6.6,
+      "transport": 7.8,
+      "studentEnergy": 6.0,
+      "services": 7.0,
+      "campusAccess": 6.8,
+      "greenCalm": 6.2
+    },
+    "rentLevel": "lower",
+    "studentFit": "mixed",
+    "summary": "Balanced dervallieres - zola micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nantes-zola": {
+    "scores": {
+      "security": 6.0,
+      "affordability": 5.2,
+      "transport": 8.2,
+      "studentEnergy": 7.2,
+      "services": 8.0,
+      "campusAccess": 7.2,
+      "greenCalm": 6.6
+    },
+    "rentLevel": "medium",
+    "studentFit": "good",
+    "summary": "Balanced dervallieres - zola micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nantes-chantenay-sainte-anne": {
+    "scores": {
+      "security": 6.0,
+      "affordability": 5.4,
+      "transport": 8.0,
+      "studentEnergy": 7.1,
+      "services": 7.7,
+      "campusAccess": 7.0,
+      "greenCalm": 7.2
+    },
+    "rentLevel": "medium",
+    "studentFit": "good",
+    "summary": "Balanced bellevue - chantenay - sainte-anne micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nantes-bellevue": {
+    "scores": {
+      "security": 4.3,
+      "affordability": 7.0,
+      "transport": 8.1,
+      "studentEnergy": 6.3,
+      "services": 7.0,
+      "campusAccess": 7.1,
+      "greenCalm": 6.0
+    },
+    "rentLevel": "lower",
+    "studentFit": "mixed",
+    "summary": "Balanced bellevue - chantenay - sainte-anne micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nantes-breil": {
+    "scores": {
+      "security": 4.9,
+      "affordability": 6.3,
+      "transport": 7.6,
+      "studentEnergy": 5.8,
+      "services": 7.0,
+      "campusAccess": 6.6,
+      "greenCalm": 6.8
+    },
+    "rentLevel": "medium",
+    "studentFit": "mixed",
+    "summary": "Balanced breil - barberie micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nantes-barberie": {
+    "scores": {
+      "security": 6.2,
+      "affordability": 5.4,
+      "transport": 7.7,
+      "studentEnergy": 6.4,
+      "services": 7.4,
+      "campusAccess": 6.8,
+      "greenCalm": 7.0
+    },
+    "rentLevel": "medium",
+    "studentFit": "good",
+    "summary": "Balanced breil - barberie micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nantes-doulon": {
+    "scores": {
+      "security": 6.0,
+      "affordability": 5.8,
+      "transport": 8.0,
+      "studentEnergy": 6.6,
+      "services": 7.5,
+      "campusAccess": 7.0,
+      "greenCalm": 6.8
+    },
+    "rentLevel": "medium",
+    "studentFit": "good",
+    "summary": "Balanced doulon - bottiere micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nantes-bottiere": {
+    "scores": {
+      "security": 5.2,
+      "affordability": 6.6,
+      "transport": 8.3,
+      "studentEnergy": 6.2,
+      "services": 7.1,
+      "campusAccess": 7.0,
+      "greenCalm": 6.4
+    },
+    "rentLevel": "lower",
+    "studentFit": "good",
+    "summary": "Practical doulon - bottiere belt with tolerable value and metro access.",
+    "caveat": "Useful compromise, not a headline comfort pick."
+  }
+}

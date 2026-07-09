@@ -2,360 +2,223 @@ import type { PlaceScore } from "@/data/cities";
 
 export const toulouseMicroPlaces: PlaceScore[] = [
   {
-    id: "toulouse-capitole", cityId: "toulouse", name: "Capitole", code: "toulouse-capitole", kind: "quartier",
+    id: "toulouse-capitole-carmes", cityId: "toulouse", name: "Capitole / Carmes / Esquirol", code: "toulouse-capitole-carmes", kind: "quartier",
     area: "Centre", granularity: "micro", parentName: "Centre",
-    confidence: "medium",
-    evidenceNote: "IRIS group geometry from toulouse-student-life.md (medium confidence).",
-    scores: {
-      security: 5.7,
-      affordability: 2.2,
-      transport: 9.8,
-      studentEnergy: 9.0,
-      services: 9.5,
-      campusAccess: 8.7,
-      greenCalm: 3.8
-    },
+    confidence: "medium", coverageRole: "primary", geometryBasis: "iris_district_partition",
+    evidenceNote: "Official district group from toulouse-student-life.md; merged from 2 micro rows.",
+    scores: { security: 5.9, affordability: 2.2, transport: 9.7, studentEnergy: 8.9, services: 9.4, campusAccess: 8.7, greenCalm: 4.0 },
     rentLevel: "very high", studentFit: "good",
-    summary: "High-energy centre streets with strong student social life.", caveat: "Social life is real; comfort and safety are not automatic."
+    summary: "Expensive historic centre with strongest services and transit.",
+    caveat: "Premium central rent; comfort varies block to block."
   },
   {
-    id: "toulouse-carmes-esquirol", cityId: "toulouse", name: "Carmes / Esquirol", code: "toulouse-carmes-esquirol", kind: "quartier",
+    id: "toulouse-arnaud-bernard-saint-sernin", cityId: "toulouse", name: "Arnaud-Bernard / Saint-Sernin", code: "toulouse-arnaud-bernard-saint-sernin", kind: "quartier",
     area: "Centre", granularity: "micro", parentName: "Centre",
-    confidence: "medium",
-    evidenceNote: "IRIS group geometry from toulouse-student-life.md (medium confidence).",
-    scores: {
-      security: 6.1,
-      affordability: 2.3,
-      transport: 9.6,
-      studentEnergy: 8.8,
-      services: 9.4,
-      campusAccess: 8.7,
-      greenCalm: 4.2
-    },
-    rentLevel: "very high", studentFit: "good",
-    summary: "Balanced centre micro-area with mixed student trade-offs.", caveat: "Block choice inside the polygon still matters."
-  },
-  {
-    id: "toulouse-arnaud-bernard", cityId: "toulouse", name: "Arnaud-Bernard", code: "toulouse-arnaud-bernard", kind: "quartier",
-    area: "Centre", granularity: "micro", parentName: "Centre",
-    confidence: "medium",
-    evidenceNote: "IRIS group geometry from toulouse-student-life.md (medium confidence).",
-    scores: {
-      security: 4.7,
-      affordability: 4.3,
-      transport: 9.1,
-      studentEnergy: 9.5,
-      services: 8.4,
-      campusAccess: 9.1,
-      greenCalm: 3.6
-    },
+    confidence: "high", coverageRole: "risk_cap", geometryBasis: "iris_district_partition",
+    evidenceNote: "Official district group from toulouse-student-life.md; merged from 2 micro rows.",
+    scores: { security: 5.1, affordability: 4.0, transport: 9.0, studentEnergy: 9.2, services: 8.5, campusAccess: 9.1, greenCalm: 3.8 },
     rentLevel: "high", studentFit: "mixed",
-    summary: "High-energy centre streets with strong student social life.", caveat: "Social life is real; comfort and safety are not automatic."
+    summary: "Central student energy with a visible safety cap.",
+    caveat: "Social life is real; safety cap still applies."
   },
   {
-    id: "toulouse-saint-sernin", cityId: "toulouse", name: "Saint-Sernin", code: "toulouse-saint-sernin", kind: "quartier",
-    area: "Centre", granularity: "micro", parentName: "Centre",
-    confidence: "medium",
-    evidenceNote: "IRIS group geometry from toulouse-student-life.md (medium confidence).",
-    scores: {
-      security: 5.4,
-      affordability: 3.8,
-      transport: 8.9,
-      studentEnergy: 8.8,
-      services: 8.6,
-      campusAccess: 9.0,
-      greenCalm: 4.0
-    },
-    rentLevel: "high", studentFit: "good",
-    summary: "Balanced centre micro-area with mixed student trade-offs.", caveat: "Block choice inside the polygon still matters."
-  },
-  {
-    id: "toulouse-compans-caffarelli", cityId: "toulouse", name: "Compans-Caffarelli", code: "toulouse-compans-caffarelli", kind: "quartier",
+    id: "toulouse-amidonniers-compans", cityId: "toulouse", name: "Amidonniers / Compans-Caffarelli", code: "toulouse-amidonniers-compans", kind: "quartier",
     area: "Centre north", granularity: "micro", parentName: "Centre north",
-    confidence: "medium",
-    evidenceNote: "IRIS group geometry from toulouse-student-life.md (medium confidence).",
-    scores: {
-      security: 6.7,
-      affordability: 3.6,
-      transport: 9.0,
-      studentEnergy: 7.6,
-      services: 8.6,
-      campusAccess: 8.2,
-      greenCalm: 6.4
-    },
+    confidence: "medium", coverageRole: "primary", geometryBasis: "official_quartier",
+    evidenceNote: "Official district group from toulouse-student-life.md; merged from 2 micro rows.",
+    scores: { security: 6.8, affordability: 3.8, transport: 8.6, studentEnergy: 7.2, services: 8.2, campusAccess: 7.9, greenCalm: 7.0 },
     rentLevel: "high", studentFit: "good",
-    summary: "Balanced centre north micro-area with mixed student trade-offs.", caveat: "Block choice inside the polygon still matters."
+    summary: "Balanced centre north micro-area with mixed student trade-offs.",
+    caveat: "Block choice inside the polygon still matters."
   },
   {
-    id: "toulouse-amidonniers", cityId: "toulouse", name: "Amidonniers", code: "toulouse-amidonniers", kind: "quartier",
-    area: "Centre north", granularity: "micro", parentName: "Centre north",
-    confidence: "medium",
-    evidenceNote: "IRIS group geometry from toulouse-student-life.md (medium confidence).",
-    scores: {
-      security: 7.0,
-      affordability: 4.1,
-      transport: 8.2,
-      studentEnergy: 6.8,
-      services: 7.8,
-      campusAccess: 7.7,
-      greenCalm: 7.6
-    },
-    rentLevel: "high", studentFit: "good",
-    summary: "Balanced centre north micro-area with mixed student trade-offs.", caveat: "Block choice inside the polygon still matters."
-  },
-  {
-    id: "toulouse-chalets", cityId: "toulouse", name: "Chalets", code: "toulouse-chalets", kind: "quartier",
-    area: "Centre north-east", granularity: "micro", parentName: "Centre north-east",
-    confidence: "medium",
-    evidenceNote: "IRIS group geometry from toulouse-student-life.md (medium confidence).",
-    scores: {
-      security: 6.6,
-      affordability: 3.5,
-      transport: 8.9,
-      studentEnergy: 8.0,
-      services: 8.3,
-      campusAccess: 8.1,
-      greenCalm: 5.4
-    },
-    rentLevel: "high", studentFit: "good",
-    summary: "Balanced centre north-east micro-area with mixed student trade-offs.", caveat: "Block choice inside the polygon still matters."
-  },
-  {
-    id: "toulouse-bayard-matabiau", cityId: "toulouse", name: "Bayard / Matabiau edge", code: "toulouse-bayard-matabiau", kind: "quartier",
-    area: "Station edge", granularity: "micro", parentName: "Station edge",
-    confidence: "medium",
-    evidenceNote: "IRIS group geometry from toulouse-student-life.md (medium confidence).",
-    scores: {
-      security: 5.0,
-      affordability: 4.4,
-      transport: 9.4,
-      studentEnergy: 8.0,
-      services: 8.2,
-      campusAccess: 8.4,
-      greenCalm: 3.6
-    },
-    rentLevel: "high", studentFit: "good",
-    summary: "Balanced station edge micro-area with mixed student trade-offs.", caveat: "Block choice inside the polygon still matters."
-  },
-  {
-    id: "toulouse-saint-aubin-dupuy", cityId: "toulouse", name: "Saint-Aubin / Dupuy", code: "toulouse-saint-aubin-dupuy", kind: "quartier",
+    id: "toulouse-chalets-bayard-saint-aubin", cityId: "toulouse", name: "Chalets / Bayard / Saint-Aubin / Dupuy", code: "toulouse-chalets-bayard-saint-aubin", kind: "quartier",
     area: "Centre east", granularity: "micro", parentName: "Centre east",
-    confidence: "medium",
-    evidenceNote: "IRIS group geometry from toulouse-student-life.md (medium confidence).",
-    scores: {
-      security: 6.0,
-      affordability: 3.7,
-      transport: 9.0,
-      studentEnergy: 8.6,
-      services: 8.7,
-      campusAccess: 8.2,
-      greenCalm: 4.8
-    },
+    confidence: "medium", coverageRole: "primary", geometryBasis: "official_quartier",
+    evidenceNote: "Official district group from toulouse-student-life.md; merged from 3 micro rows.",
+    scores: { security: 5.9, affordability: 3.9, transport: 9.1, studentEnergy: 8.2, services: 8.4, campusAccess: 8.2, greenCalm: 4.6 },
     rentLevel: "high", studentFit: "good",
-    summary: "Balanced centre east micro-area with mixed student trade-offs.", caveat: "Block choice inside the polygon still matters."
+    summary: "Balanced centre north-east micro-area with mixed student trade-offs.",
+    caveat: "Block choice inside the polygon still matters."
+  },
+  {
+    id: "toulouse-bonnefoy-marengo", cityId: "toulouse", name: "Bonnefoy / Marengo / Lapujade", code: "toulouse-bonnefoy-marengo", kind: "quartier",
+    area: "Station east", granularity: "micro", parentName: "Station east",
+    confidence: "medium", coverageRole: "context", geometryBasis: "official_quartier",
+    evidenceNote: "Official Toulouse quartier; broad district context score.",
+    scores: { security: 6.0, affordability: 5.8, transport: 8.2, studentEnergy: 5.8, services: 6.8, campusAccess: 6.2, greenCalm: 6.2 },
+    rentLevel: "medium", studentFit: "mixed",
+    summary: "Practical station-east belt with tolerable value and metro access.",
+    caveat: "Useful connector, not a headline student hub."
   },
   {
     id: "toulouse-saint-cyprien", cityId: "toulouse", name: "Saint-Cyprien", code: "toulouse-saint-cyprien", kind: "quartier",
     area: "Rive gauche", granularity: "micro", parentName: "Rive gauche",
-    confidence: "medium",
-    evidenceNote: "IRIS group geometry from toulouse-student-life.md (medium confidence).",
-    scores: {
-      security: 6.8,
-      affordability: 4.8,
-      transport: 8.9,
-      studentEnergy: 8.7,
-      services: 8.4,
-      campusAccess: 8.1,
-      greenCalm: 6.1
-    },
+    confidence: "high", coverageRole: "primary", geometryBasis: "official_quartier",
+    evidenceNote: "Official district group from toulouse-student-life.md; merged from 1 micro rows.",
+    scores: { security: 6.8, affordability: 4.8, transport: 8.9, studentEnergy: 8.7, services: 8.4, campusAccess: 8.1, greenCalm: 6.1 },
     rentLevel: "high", studentFit: "excellent",
-    summary: "Balanced rive gauche micro-area with mixed student trade-offs.", caveat: "Block choice inside the polygon still matters."
+    summary: "Balanced rive gauche micro-area with mixed student trade-offs.",
+    caveat: "Block choice inside the polygon still matters."
   },
   {
-    id: "toulouse-patte-doie", cityId: "toulouse", name: "Patte-d'Oie", code: "toulouse-patte-doie", kind: "quartier",
-    area: "Rive gauche", granularity: "micro", parentName: "Rive gauche",
-    confidence: "medium",
-    evidenceNote: "IRIS group geometry from toulouse-student-life.md (medium confidence).",
-    scores: {
-      security: 6.4,
-      affordability: 5.2,
-      transport: 8.7,
-      studentEnergy: 7.6,
-      services: 7.8,
-      campusAccess: 7.8,
-      greenCalm: 6.0
-    },
+    id: "toulouse-croix-pierre-route-espagne", cityId: "toulouse", name: "Croix-de-Pierre / Route d'Espagne", code: "toulouse-croix-pierre-route-espagne", kind: "quartier",
+    area: "South-west", granularity: "micro", parentName: "South-west",
+    confidence: "medium", coverageRole: "context", geometryBasis: "official_quartier",
+    evidenceNote: "Official Toulouse quartier; aligned with south-west value corridor.",
+    scores: { security: 6.4, affordability: 5.2, transport: 8.7, studentEnergy: 7.6, services: 7.8, campusAccess: 7.8, greenCalm: 6.0 },
     rentLevel: "medium", studentFit: "good",
-    summary: "Balanced rive gauche micro-area with mixed student trade-offs.", caveat: "Block choice inside the polygon still matters."
+    summary: "South-west value corridor with metro access.",
+    caveat: "Residential belt, less central social energy."
   },
   {
-    id: "toulouse-saint-michel", cityId: "toulouse", name: "Saint-Michel", code: "toulouse-saint-michel", kind: "quartier",
-    area: "Centre south", granularity: "micro", parentName: "Centre south",
-    confidence: "medium",
-    evidenceNote: "IRIS group geometry from toulouse-student-life.md (medium confidence).",
-    scores: {
-      security: 5.2,
-      affordability: 5.4,
-      transport: 8.9,
-      studentEnergy: 8.6,
-      services: 8.1,
-      campusAccess: 8.7,
-      greenCalm: 4.3
-    },
-    rentLevel: "medium", studentFit: "good",
-    summary: "Balanced centre south micro-area with mixed student trade-offs.", caveat: "Block choice inside the polygon still matters."
-  },
-  {
-    id: "toulouse-saint-agne", cityId: "toulouse", name: "Saint-Agne", code: "toulouse-saint-agne", kind: "quartier",
-    area: "Centre south", granularity: "micro", parentName: "Centre south",
-    confidence: "medium",
-    evidenceNote: "IRIS group geometry from toulouse-student-life.md (medium confidence).",
-    scores: {
-      security: 6.0,
-      affordability: 5.5,
-      transport: 8.6,
-      studentEnergy: 7.6,
-      services: 7.8,
-      campusAccess: 8.8,
-      greenCalm: 5.6
-    },
-    rentLevel: "medium", studentFit: "good",
-    summary: "Balanced centre south micro-area with mixed student trade-offs.", caveat: "Block choice inside the polygon still matters."
-  },
-  {
-    id: "toulouse-empalot", cityId: "toulouse", name: "Empalot", code: "toulouse-empalot", kind: "quartier",
-    area: "South", granularity: "micro", parentName: "South",
-    confidence: "medium",
-    evidenceNote: "IRIS group geometry from toulouse-student-life.md (medium confidence).",
-    scores: {
-      security: 4.3,
-      affordability: 7.0,
-      transport: 8.1,
-      studentEnergy: 6.0,
-      services: 6.8,
-      campusAccess: 8.0,
-      greenCalm: 5.0
-    },
+    id: "toulouse-arenes-bagatelle-papus", cityId: "toulouse", name: "Arènes / Bagatelle / Papus / Fontaine-Lestang", code: "toulouse-arenes-bagatelle-papus", kind: "quartier",
+    area: "South-west", granularity: "micro", parentName: "South-west",
+    confidence: "high", coverageRole: "risk_cap", geometryBasis: "official_quartier",
+    evidenceNote: "Official Toulouse quartier; south-west value with cap.",
+    scores: { security: 4.0, affordability: 6.8, transport: 8.0, studentEnergy: 6.5, services: 6.8, campusAccess: 7.8, greenCalm: 5.4 },
     rentLevel: "lower", studentFit: "mixed",
-    summary: "Balanced south micro-area with mixed student trade-offs.", caveat: "Block choice inside the polygon still matters."
+    summary: "Value belt with metro access and a visible safety cap.",
+    caveat: "Cheap rent cannot offset reputation pockets."
   },
   {
-    id: "toulouse-rangueil-campus", cityId: "toulouse", name: "Rangueil campus", code: "toulouse-rangueil-campus", kind: "quartier",
-    area: "South-east campus", granularity: "micro", parentName: "South-east campus",
-    confidence: "medium",
-    evidenceNote: "IRIS group geometry from toulouse-student-life.md (medium confidence).",
-    scores: {
-      security: 7.1,
-      affordability: 5.5,
-      transport: 8.5,
-      studentEnergy: 8.7,
-      services: 7.7,
-      campusAccess: 10.0,
-      greenCalm: 7.2
-    },
-    rentLevel: "medium", studentFit: "excellent",
-    summary: "Campus-first south-east campus pick with structural university access.", caveat: "Best for campus-first students, not for a historic-centre lifestyle."
+    id: "toulouse-casselardit-cartoucherie", cityId: "toulouse", name: "Casselardit / Cartoucherie", code: "toulouse-casselardit-cartoucherie", kind: "quartier",
+    area: "West", granularity: "micro", parentName: "West",
+    confidence: "medium", coverageRole: "context", geometryBasis: "official_quartier",
+    evidenceNote: "Official Toulouse quartier; west redevelopment context.",
+    scores: { security: 6.0, affordability: 5.8, transport: 7.8, studentEnergy: 5.8, services: 6.8, campusAccess: 6.2, greenCalm: 6.2 },
+    rentLevel: "medium", studentFit: "mixed",
+    summary: "Redeveloping west belt with mixed student utility.",
+    caveat: "Changing area; block choice still matters."
   },
   {
-    id: "toulouse-sauzelong-jules-julien", cityId: "toulouse", name: "Sauzelong / Jules-Julien", code: "toulouse-sauzelong-jules-julien", kind: "quartier",
+    id: "toulouse-minimes-barriere-paris", cityId: "toulouse", name: "Minimes / Barrière de Paris / Ponts-Jumeaux", code: "toulouse-minimes-barriere-paris", kind: "quartier",
+    area: "North", granularity: "micro", parentName: "North",
+    confidence: "medium", coverageRole: "primary", geometryBasis: "official_quartier",
+    evidenceNote: "Official district group from toulouse-student-life.md; merged from 2 micro rows.",
+    scores: { security: 5.8, affordability: 5.8, transport: 8.6, studentEnergy: 6.9, services: 7.6, campusAccess: 7.2, greenCalm: 5.8 },
+    rentLevel: "medium", studentFit: "good",
+    summary: "Balanced north micro-area with mixed student trade-offs.",
+    caveat: "Block choice inside the polygon still matters."
+  },
+  {
+    id: "toulouse-sept-deniers-lalande", cityId: "toulouse", name: "Sept-Deniers / Lalande", code: "toulouse-sept-deniers-lalande", kind: "quartier",
+    area: "North", granularity: "micro", parentName: "North",
+    confidence: "low", coverageRole: "context", geometryBasis: "official_quartier",
+    evidenceNote: "Official Toulouse quartier; northern residential context.",
+    scores: { security: 6.0, affordability: 5.8, transport: 7.5, studentEnergy: 5.8, services: 6.8, campusAccess: 6.2, greenCalm: 6.2 },
+    rentLevel: "medium", studentFit: "mixed",
+    summary: "Northern residential edge with moderate tram value.",
+    caveat: "Peripheral comfort, weaker student scene."
+  },
+  {
+    id: "toulouse-borderouge-croix-daurade", cityId: "toulouse", name: "Borderouge / Croix-Daurade / Trois Cocus", code: "toulouse-borderouge-croix-daurade", kind: "quartier",
+    area: "North-east", granularity: "micro", parentName: "North-east",
+    confidence: "medium", coverageRole: "context", geometryBasis: "official_quartier",
+    evidenceNote: "Official Toulouse quartier; north-east context.",
+    scores: { security: 6.0, affordability: 5.8, transport: 7.8, studentEnergy: 5.8, services: 6.8, campusAccess: 6.2, greenCalm: 6.2 },
+    rentLevel: "medium", studentFit: "mixed",
+    summary: "North-east residential belt with metro access.",
+    caveat: "Family-oriented edge, not a nightlife hub."
+  },
+  {
+    id: "toulouse-jolimont-roseraie-soupetard", cityId: "toulouse", name: "Jolimont / Roseraie / Soupetard / Gramont", code: "toulouse-jolimont-roseraie-soupetard", kind: "quartier",
+    area: "East", granularity: "micro", parentName: "East",
+    confidence: "medium", coverageRole: "context", geometryBasis: "official_quartier",
+    evidenceNote: "Official Toulouse quartier; east metro belt context.",
+    scores: { security: 6.0, affordability: 5.8, transport: 8.0, studentEnergy: 5.8, services: 6.8, campusAccess: 6.2, greenCalm: 6.2 },
+    rentLevel: "medium", studentFit: "mixed",
+    summary: "East metro/value belt with practical daily life.",
+    caveat: "Useful compromise, not central lifestyle."
+  },
+  {
+    id: "toulouse-guilhemery-cote-pavee", cityId: "toulouse", name: "Guilheméry / Côte Pavée / Château de l'Hers", code: "toulouse-guilhemery-cote-pavee", kind: "quartier",
+    area: "East", granularity: "micro", parentName: "East",
+    confidence: "medium", coverageRole: "context", geometryBasis: "official_quartier",
+    evidenceNote: "Official Toulouse quartier; calmer east residential context.",
+    scores: { security: 6.8, affordability: 4.8, transport: 7.8, studentEnergy: 6.0, services: 7.4, campusAccess: 7.0, greenCalm: 7.2 },
+    rentLevel: "medium", studentFit: "mixed",
+    summary: "Calmer east-side belt with higher comfort, weaker student energy.",
+    caveat: "Residential quality over student nightlife."
+  },
+  {
+    id: "toulouse-demoiselles-montaudran", cityId: "toulouse", name: "Pont des Demoiselles / Montaudran", code: "toulouse-demoiselles-montaudran", kind: "quartier",
     area: "South-east", granularity: "micro", parentName: "South-east",
-    confidence: "medium",
-    evidenceNote: "IRIS group geometry from toulouse-student-life.md (medium confidence).",
-    scores: {
-      security: 6.8,
-      affordability: 5.8,
-      transport: 8.6,
-      studentEnergy: 7.8,
-      services: 7.8,
-      campusAccess: 9.2,
-      greenCalm: 6.7
-    },
+    confidence: "low", coverageRole: "context", geometryBasis: "official_quartier",
+    evidenceNote: "Official Toulouse quartier; south-east connector context.",
+    scores: { security: 6.0, affordability: 5.8, transport: 7.6, studentEnergy: 5.8, services: 6.8, campusAccess: 6.2, greenCalm: 6.2 },
+    rentLevel: "medium", studentFit: "mixed",
+    summary: "South-east connector with aerospace/work edge character.",
+    caveat: "Useful for links, not a student social hub."
+  },
+  {
+    id: "toulouse-rangueil-sauzelong", cityId: "toulouse", name: "Rangueil / Sauzelong / Pech-David / Pouvourville", code: "toulouse-rangueil-sauzelong", kind: "quartier",
+    area: "South-east campus", granularity: "micro", parentName: "South-east campus",
+    confidence: "high", coverageRole: "campus", geometryBasis: "official_quartier",
+    evidenceNote: "Official district group from toulouse-student-life.md; merged from 2 micro rows.",
+    scores: { security: 6.9, affordability: 5.7, transport: 8.6, studentEnergy: 8.2, services: 7.8, campusAccess: 9.6, greenCalm: 7.0 },
     rentLevel: "medium", studentFit: "excellent",
-    summary: "Balanced south-east micro-area with mixed student trade-offs.", caveat: "Block choice inside the polygon still matters."
+    summary: "Main Paul-Sabatier campus axis with strong university access.",
+    caveat: "Best for campus-first students, not historic-centre lifestyle."
   },
   {
-    id: "toulouse-mirail-universite", cityId: "toulouse", name: "Mirail Universite", code: "toulouse-mirail-universite", kind: "quartier",
+    id: "toulouse-saint-michel-saint-agne", cityId: "toulouse", name: "Saint-Michel / Saint-Agne / Busca", code: "toulouse-saint-michel-saint-agne", kind: "quartier",
+    area: "Centre south", granularity: "micro", parentName: "Centre south",
+    confidence: "medium", coverageRole: "primary", geometryBasis: "iris_district_partition",
+    evidenceNote: "Official district group from toulouse-student-life.md; merged from 2 micro rows.",
+    scores: { security: 5.6, affordability: 5.5, transport: 8.8, studentEnergy: 8.1, services: 7.9, campusAccess: 8.8, greenCalm: 4.9 },
+    rentLevel: "medium", studentFit: "good",
+    summary: "Balanced centre south micro-area with mixed student trade-offs.",
+    caveat: "Block choice inside the polygon still matters."
+  },
+  {
+    id: "toulouse-empalot-ramier", cityId: "toulouse", name: "Empalot / Ile du Ramier", code: "toulouse-empalot-ramier", kind: "quartier",
+    area: "Centre south", granularity: "micro", parentName: "Centre south",
+    confidence: "medium", coverageRole: "risk_cap", geometryBasis: "iris_district_partition",
+    evidenceNote: "Official district group from toulouse-student-life.md; merged from 1 micro rows.",
+    scores: { security: 4.3, affordability: 7.0, transport: 8.1, studentEnergy: 6.0, services: 6.8, campusAccess: 8.0, greenCalm: 5.0 },
+    rentLevel: "lower", studentFit: "mixed",
+    summary: "South value pocket with a visible safety cap.",
+    caveat: "Cheap rent cannot offset the risk profile."
+  },
+  {
+    id: "toulouse-purpan-saint-martin", cityId: "toulouse", name: "Purpan / Saint-Martin-du-Touch", code: "toulouse-purpan-saint-martin", kind: "quartier",
+    area: "North-west campus", granularity: "micro", parentName: "North-west campus",
+    confidence: "high", coverageRole: "campus", geometryBasis: "official_quartier",
+    evidenceNote: "Official Toulouse quartier; Purpan campus belt.",
+    scores: { security: 6.5, affordability: 5.6, transport: 7.8, studentEnergy: 6.8, services: 7.2, campusAccess: 9.0, greenCalm: 6.4 },
+    rentLevel: "medium", studentFit: "good",
+    summary: "Purpan and aerospace campus-work belt west of centre.",
+    caveat: "Campus access is real; social life is quieter than centre."
+  },
+  {
+    id: "toulouse-lardenne-pradettes-basso-cambo", cityId: "toulouse", name: "Lardenne / Pradettes / Basso-Cambo", code: "toulouse-lardenne-pradettes-basso-cambo", kind: "quartier",
+    area: "West", granularity: "micro", parentName: "West",
+    confidence: "medium", coverageRole: "context", geometryBasis: "official_quartier",
+    evidenceNote: "Official Toulouse quartier; west residential context.",
+    scores: { security: 6.0, affordability: 5.8, transport: 7.4, studentEnergy: 5.8, services: 6.8, campusAccess: 6.2, greenCalm: 6.2 },
+    rentLevel: "medium", studentFit: "mixed",
+    summary: "West residential belt toward metro terminus.",
+    caveat: "Peripheral west comfort, weaker student scene."
+  },
+  {
+    id: "toulouse-mirail-reynerie-bellefontaine", cityId: "toulouse", name: "Mirail-Université / Reynerie / Bellefontaine", code: "toulouse-mirail-reynerie-bellefontaine", kind: "quartier",
     area: "South-west campus", granularity: "micro", parentName: "South-west campus",
-    confidence: "medium",
-    evidenceNote: "IRIS group geometry from toulouse-student-life.md (medium confidence).",
-    scores: {
-      security: 4.2,
-      affordability: 7.2,
-      transport: 8.2,
-      studentEnergy: 7.0,
-      services: 6.9,
-      campusAccess: 9.0,
-      greenCalm: 5.8
-    },
+    confidence: "high", coverageRole: "risk_cap", geometryBasis: "official_quartier",
+    evidenceNote: "Official district group from toulouse-student-life.md; merged from 3 micro rows.",
+    scores: { security: 3.8, affordability: 7.4, transport: 8.0, studentEnergy: 6.4, services: 6.6, campusAccess: 8.5, greenCalm: 5.6 },
     rentLevel: "lower", studentFit: "mixed",
-    summary: "Balanced south-west campus micro-area with mixed student trade-offs.", caveat: "Block choice inside the polygon still matters."
+    summary: "University access with a hard safety cap across the belt.",
+    caveat: "Campus links cannot offset the risk profile."
   },
   {
-    id: "toulouse-reynerie", cityId: "toulouse", name: "Reynerie", code: "toulouse-reynerie", kind: "quartier",
-    area: "South-west", granularity: "micro", parentName: "South-west",
-    confidence: "medium",
-    evidenceNote: "IRIS group geometry from toulouse-student-life.md (medium confidence).",
-    scores: {
-      security: 3.5,
-      affordability: 7.6,
-      transport: 8.0,
-      studentEnergy: 6.2,
-      services: 6.4,
-      campusAccess: 8.4,
-      greenCalm: 5.5
-    },
-    rentLevel: "lower", studentFit: "mixed",
-    summary: "Reynerie stays hard-capped on safety despite useful south-west links.", caveat: "Cheap rent and transport cannot offset the risk profile."
-  },
-  {
-    id: "toulouse-bellefontaine", cityId: "toulouse", name: "Bellefontaine", code: "toulouse-bellefontaine", kind: "quartier",
-    area: "South-west", granularity: "micro", parentName: "South-west",
-    confidence: "medium",
-    evidenceNote: "IRIS group geometry from toulouse-student-life.md (medium confidence).",
-    scores: {
-      security: 3.7,
-      affordability: 7.4,
-      transport: 7.8,
-      studentEnergy: 6.0,
-      services: 6.5,
-      campusAccess: 8.0,
-      greenCalm: 5.4
-    },
-    rentLevel: "lower", studentFit: "mixed",
-    summary: "Bellefontaine stays hard-capped on safety despite useful south-west links.", caveat: "Cheap rent and transport cannot offset the risk profile."
-  },
-  {
-    id: "toulouse-minimes", cityId: "toulouse", name: "Minimes", code: "toulouse-minimes", kind: "quartier",
-    area: "North", granularity: "micro", parentName: "North",
-    confidence: "medium",
-    evidenceNote: "IRIS group geometry from toulouse-student-life.md (medium confidence).",
-    scores: {
-      security: 6.1,
-      affordability: 5.5,
-      transport: 8.5,
-      studentEnergy: 7.1,
-      services: 7.8,
-      campusAccess: 7.2,
-      greenCalm: 5.9
-    },
-    rentLevel: "medium", studentFit: "good",
-    summary: "Balanced north micro-area with mixed student trade-offs.", caveat: "Block choice inside the polygon still matters."
-  },
-  {
-    id: "toulouse-barriere-paris-la-vache", cityId: "toulouse", name: "Barriere de Paris / La Vache", code: "toulouse-barriere-paris-la-vache", kind: "quartier",
-    area: "North", granularity: "micro", parentName: "North",
-    confidence: "medium",
-    evidenceNote: "IRIS group geometry from toulouse-student-life.md (medium confidence).",
-    scores: {
-      security: 5.5,
-      affordability: 6.0,
-      transport: 8.7,
-      studentEnergy: 6.8,
-      services: 7.4,
-      campusAccess: 7.1,
-      greenCalm: 5.7
-    },
-    rentLevel: "medium", studentFit: "good",
-    summary: "Practical north belt with tolerable value and metro access.", caveat: "Useful compromise, not a headline comfort pick."
+    id: "toulouse-saint-simon-lafourguette-oncopole", cityId: "toulouse", name: "Saint-Simon / Lafourguette / Oncopole", code: "toulouse-saint-simon-lafourguette-oncopole", kind: "quartier",
+    area: "South-west periphery", granularity: "micro", parentName: "South-west periphery",
+    confidence: "low", coverageRole: "low_relevance", geometryBasis: "official_quartier",
+    evidenceNote: "Official Toulouse quartier; peripheral low-relevance context.",
+    scores: { security: 6.2, affordability: 5.6, transport: 6.5, studentEnergy: 4.5, services: 6.2, campusAccess: 5.8, greenCalm: 6.8 },
+    rentLevel: "medium", studentFit: "weak",
+    summary: "Peripheral south-west context with weak student relevance.",
+    caveat: "Coverage filler, not a student housing target."
   },
 ];

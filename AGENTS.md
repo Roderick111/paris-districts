@@ -45,11 +45,22 @@ Short version:
 2. Contiguous geometry specs → `scripts/granularity_geometry.json` (or `scripts/build_<city>_geometry_specs.py`)
 3. Scores → `src/data/<city>Places.ts` + register in `src/data/cities.ts`
 4. Build + validate GeoJSON (contiguity audits are mandatory)
-5. `bun run build` + browser check
+5. Build outlines when merged/multipart zones exist: `~/.bun/bin/bun run geo:outlines -- <city>`
+6. `bun run build` + browser/screenshot check
 
 **Never:** hand-drawn polygons, lat/lon rectangle splits, merge without adjacency check.
 
 Reference builders: `scripts/build_bordeaux_micro_geojson.py`, `scripts/build_nantes_geometry_specs.py`, `scripts/geometry_audit.py`.
+
+## Geometry gotchas
+
+- Final user-facing geometry should use official quartiers/arrondissements/sectors where available. IRIS is fallback or split source, not default display geometry.
+- If IRIS is the only source, start with 2-4 broad zones per commune. Collapse zones if selection outlines show strips, claws, islands, or random fragments.
+- Validation passing is not enough. Screenshot review can fail a city when contiguity passes but the map looks fake or unreadable.
+- `allowMultipart` is rare; do not use it to hide broken geography. Split primary/campus/risk zones instead.
+- Same-score context floods mean weak modeling/data. Research broader district reputation or collapse zones.
+- Fix existing city geometry before adding new batches. Batch 3-5 cities max.
+- Dirty tree is normal here. Inspect before editing; never revert unrelated generated/data changes from other agents.
 
 ## Key paths
 

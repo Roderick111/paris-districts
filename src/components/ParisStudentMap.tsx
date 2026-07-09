@@ -88,12 +88,49 @@ function mapModeLabel(mode: MapMode) {
   return mode === "overall" ? "risk-adjusted overall" : metricLabel(mode).toLowerCase();
 }
 
+function boundsFromGeojson(geojson: PlaceFeatureCollection): [[number, number], [number, number]] {
+  let minLon = Infinity;
+  let minLat = Infinity;
+  let maxLon = -Infinity;
+  let maxLat = -Infinity;
+
+  const walk = (coords: unknown): void => {
+    if (!Array.isArray(coords) || coords.length === 0) {
+      return;
+    }
+
+    if (typeof coords[0] === "number" && typeof coords[1] === "number") {
+      const [lon, lat] = coords as [number, number];
+      minLon = Math.min(minLon, lon);
+      maxLon = Math.max(maxLon, lon);
+      minLat = Math.min(minLat, lat);
+      maxLat = Math.max(maxLat, lat);
+      return;
+    }
+
+    for (const part of coords) {
+      walk(part);
+    }
+  };
+
+  for (const feature of geojson.features) {
+    const { geometry } = feature;
+    if ("coordinates" in geometry) {
+      walk(geometry.coordinates);
+    }
+  }
+
+  return [[minLon, minLat], [maxLon, maxLat]];
+}
+
 export default function ParisStudentMap() {
   const mapNode = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
   const overlayRef = useRef<MapboxOverlay | null>(null);
   const [cityId, setCityId] = useState<CityId>("paris");
   const [geojson, setGeojson] = useState<PlaceFeatureCollection | null>(null);
+  const [outlineGeojson, setOutlineGeojson] = useState<PlaceFeatureCollection | null>(null);
+  const lastHoverRef = useRef<{ code: string; x: number; y: number } | null>(null);
   const [selectedCode, setSelectedCode] = useState("75101");
   const [hoverInfo, setHoverInfo] = useState<HoverInfo | null>(null);
   const [filter, setFilter] = useState<"all" | string>("all");
@@ -113,41 +150,36 @@ export default function ParisStudentMap() {
     [places]
   );
 
-  const displayOutlineGeojson = useMemo<PlaceFeatureCollection | null>(() => {
-    if (!geojson) {
-      return null;
-    }
-
-    return {
-      type: "FeatureCollection",
-      features: geojson.features.map((feature) => ({
-        ...feature,
-        geometry: dissolveGeometry(feature.geometry)
-      }))
-    };
-  }, [geojson]);
+  const displayOutlineGeojson = useMemo(
+    () => outlineGeojson ?? geojson,
+    [outlineGeojson, geojson]
+  );
 
   const selectionOutline = useMemo<FeatureCollection | null>(() => {
     if (!geojson) {
       return null;
     }
 
-    const match = geojson.features.find((feature) => feature.properties?.code === selectedCode);
+    const precomputed = outlineGeojson?.features.find((feature) => feature.properties?.code === selectedCode);
+    const raw = geojson.features.find((feature) => feature.properties?.code === selectedCode);
+    const match = precomputed ?? raw;
     if (!match?.geometry) {
       return null;
     }
+
+    const geometry = precomputed ? precomputed.geometry : dissolveGeometry(match.geometry);
 
     return {
       type: "FeatureCollection",
       features: [
         {
           type: "Feature",
-          geometry: dissolveGeometry(match.geometry),
+          geometry,
           properties: { code: selectedCode }
         }
       ]
     };
-  }, [geojson, selectedCode]);
+  }, [geojson, outlineGeojson, selectedCode]);
 
   const selected = activePlaceByCode.get(selectedCode) ?? places[0];
   const selectedOverrides = getPlaceOverrides(scoreOverrides, selected.code);
@@ -188,14 +220,59 @@ export default function ParisStudentMap() {
   }, [scoreOverrides, settingsHydrated]);
 
   useEffect(() => {
+    const url = city.outlineGeojsonUrl;
+    if (!url) {
+      setOutlineGeojson(null);
+      return;
+    }
+
+    let cancelled = false;
+    setOutlineGeojson(null);
+
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Failed to load ${url}: ${response.status}`);
+        }
+        return response.json() as Promise<PlaceFeatureCollection>;
+      })
+      .then((data) => {
+        if (!cancelled) {
+          setOutlineGeojson(data);
+        }
+      })
+      .catch((error: unknown) => {
+        console.error(error);
+        if (!cancelled) {
+          setOutlineGeojson(null);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [city.outlineGeojsonUrl]);
+
+  useEffect(() => {
     let cancelled = false;
     setGeojson(null);
 
     fetch(city.geojsonUrl)
-      .then((response) => response.json())
-      .then((data: PlaceFeatureCollection) => {
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Failed to load ${city.geojsonUrl}: ${response.status}`);
+        }
+        return response.json() as Promise<PlaceFeatureCollection>;
+      })
+      .then((data) => {
         if (!cancelled) {
           setGeojson(data);
+        }
+      })
+      .catch((error: unknown) => {
+        console.error(error);
+        if (!cancelled) {
+          setGeojson(null);
         }
       });
 
@@ -210,10 +287,29 @@ export default function ParisStudentMap() {
       return;
     }
 
-    map.flyTo({ center: city.center, zoom: city.zoom, essential: true });
     map.setMinZoom(city.minZoom);
     map.setMaxZoom(city.maxZoom);
-  }, [cityId, city.center, city.zoom, city.minZoom, city.maxZoom]);
+
+    if (geojson?.features.length) {
+      const [[minLon, minLat], [maxLon, maxLat]] = boundsFromGeojson(geojson);
+      if (Number.isFinite(minLon) && Number.isFinite(minLat) && Number.isFinite(maxLon) && Number.isFinite(maxLat)) {
+        map.fitBounds(
+          [
+            [minLon, minLat],
+            [maxLon, maxLat]
+          ],
+          {
+            padding: 48,
+            duration: 700,
+            maxZoom: city.zoom
+          }
+        );
+        return;
+      }
+    }
+
+    map.flyTo({ center: city.center, zoom: city.zoom, essential: true });
+  }, [cityId, city.center, city.zoom, city.minZoom, city.maxZoom, geojson]);
 
   const handleCityChange = (nextCityId: CityId) => {
     const nextCity = cityById.get(nextCityId);
@@ -224,6 +320,7 @@ export default function ParisStudentMap() {
     setCityId(nextCityId);
     setSelectedCode(nextCity.defaultSelectedCode);
     setHoverInfo(null);
+    lastHoverRef.current = null;
     setFilter("all");
     setParentFilter("all");
   };
@@ -257,14 +354,32 @@ export default function ParisStudentMap() {
 
   useEffect(() => {
     const map = mapRef.current;
-    if (!map || !geojson) {
+    if (!map) {
+      return;
+    }
+
+    if (!geojson) {
+      overlayRef.current?.setProps({ layers: [] });
       return;
     }
 
     const onHover = (info: { object?: { properties?: { code?: string } }; x?: number; y?: number }) => {
       const code = info.object?.properties?.code;
       const place = code ? activePlaceByCode.get(code) : null;
-      setHoverInfo(place && typeof info.x === "number" && typeof info.y === "number" ? { x: info.x, y: info.y, place } : null);
+
+      if (place && code && typeof info.x === "number" && typeof info.y === "number") {
+        const roundedX = Math.round(info.x);
+        const roundedY = Math.round(info.y);
+        const last = lastHoverRef.current;
+        if (!last || last.code !== code || last.x !== roundedX || last.y !== roundedY) {
+          lastHoverRef.current = { code, x: roundedX, y: roundedY };
+          setHoverInfo({ x: info.x, y: info.y, place });
+        }
+      } else if (lastHoverRef.current !== null) {
+        lastHoverRef.current = null;
+        setHoverInfo(null);
+      }
+
       if (map.getCanvas()) {
         map.getCanvas().style.cursor = place ? "pointer" : "";
       }

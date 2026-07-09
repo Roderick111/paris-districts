@@ -1,0 +1,452 @@
+{
+  "nice-jean-medecin-core": {
+    "scores": {
+      "security": 5.6,
+      "affordability": 2.3,
+      "transport": 9.6,
+      "studentEnergy": 8.0,
+      "services": 9.4,
+      "campusAccess": 8.0,
+      "greenCalm": 3.4
+    },
+    "rentLevel": "very high",
+    "studentFit": "good",
+    "summary": "Balanced centre micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nice-carabacel": {
+    "scores": {
+      "security": 6.2,
+      "affordability": 2.6,
+      "transport": 9.1,
+      "studentEnergy": 7.4,
+      "services": 8.8,
+      "campusAccess": 8.0,
+      "greenCalm": 4.4
+    },
+    "rentLevel": "very high",
+    "studentFit": "good",
+    "summary": "Balanced centre east micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nice-thiers-station-edge": {
+    "scores": {
+      "security": 5.1,
+      "affordability": 3.5,
+      "transport": 9.3,
+      "studentEnergy": 7.2,
+      "services": 8.5,
+      "campusAccess": 8.0,
+      "greenCalm": 4.0
+    },
+    "rentLevel": "high",
+    "studentFit": "good",
+    "summary": "Balanced centre west micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nice-musiciens": {
+    "scores": {
+      "security": 6.1,
+      "affordability": 3.0,
+      "transport": 8.9,
+      "studentEnergy": 6.8,
+      "services": 8.7,
+      "campusAccess": 7.8,
+      "greenCalm": 4.8
+    },
+    "rentLevel": "high",
+    "studentFit": "good",
+    "summary": "Balanced centre west micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nice-vernier": {
+    "scores": {
+      "security": 5.7,
+      "affordability": 4.3,
+      "transport": 8.8,
+      "studentEnergy": 7.6,
+      "services": 8.0,
+      "campusAccess": 8.6,
+      "greenCalm": 4.7
+    },
+    "rentLevel": "high",
+    "studentFit": "good",
+    "summary": "Balanced north centre micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nice-liberation": {
+    "scores": {
+      "security": 6.6,
+      "affordability": 4.6,
+      "transport": 8.9,
+      "studentEnergy": 8.3,
+      "services": 8.5,
+      "campusAccess": 9.3,
+      "greenCalm": 5.8
+    },
+    "rentLevel": "high",
+    "studentFit": "excellent",
+    "summary": "Balanced north centre micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nice-borriglione-valrose": {
+    "scores": {
+      "security": 6.8,
+      "affordability": 4.7,
+      "transport": 8.8,
+      "studentEnergy": 8.3,
+      "services": 8.3,
+      "campusAccess": 9.6,
+      "greenCalm": 6.0
+    },
+    "rentLevel": "high",
+    "studentFit": "excellent",
+    "summary": "Campus-first north centre campus pick with structural university access.",
+    "caveat": "Best for campus-first students, not for a historic-centre lifestyle."
+  },
+  "nice-saint-maurice": {
+    "scores": {
+      "security": 6.5,
+      "affordability": 4.8,
+      "transport": 8.0,
+      "studentEnergy": 7.0,
+      "services": 7.6,
+      "campusAccess": 8.6,
+      "greenCalm": 6.0
+    },
+    "rentLevel": "high",
+    "studentFit": "good",
+    "summary": "Balanced north centre micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nice-cimiez": {
+    "scores": {
+      "security": 8.1,
+      "affordability": 2.6,
+      "transport": 7.0,
+      "studentEnergy": 4.8,
+      "services": 7.9,
+      "campusAccess": 7.3,
+      "greenCalm": 8.2
+    },
+    "rentLevel": "very high",
+    "studentFit": "good",
+    "summary": "Safer north-east hills pocket with premium rent and calmer daily life.",
+    "caveat": "Quality-of-life pick, not a value student default."
+  },
+  "nice-rimiez": {
+    "scores": {
+      "security": 8.3,
+      "affordability": 2.7,
+      "transport": 6.2,
+      "studentEnergy": 4.2,
+      "services": 7.4,
+      "campusAccess": 6.8,
+      "greenCalm": 8.8
+    },
+    "rentLevel": "very high",
+    "studentFit": "good",
+    "summary": "Safer north-east hills pocket with premium rent and calmer daily life.",
+    "caveat": "Quality-of-life pick, not a value student default."
+  },
+  "nice-vieux-nice": {
+    "scores": {
+      "security": 5.4,
+      "affordability": 2.8,
+      "transport": 8.9,
+      "studentEnergy": 9.0,
+      "services": 9.1,
+      "campusAccess": 7.5,
+      "greenCalm": 4.0
+    },
+    "rentLevel": "very high",
+    "studentFit": "good",
+    "summary": "High-energy historic centre streets with strong student social life.",
+    "caveat": "Social life is real; comfort and safety are not automatic."
+  },
+  "nice-port": {
+    "scores": {
+      "security": 5.9,
+      "affordability": 3.0,
+      "transport": 8.7,
+      "studentEnergy": 8.4,
+      "services": 8.9,
+      "campusAccess": 7.6,
+      "greenCalm": 5.2
+    },
+    "rentLevel": "high",
+    "studentFit": "good",
+    "summary": "Balanced east centre micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nice-riquier": {
+    "scores": {
+      "security": 5.8,
+      "affordability": 5.3,
+      "transport": 8.6,
+      "studentEnergy": 7.2,
+      "services": 8.1,
+      "campusAccess": 7.6,
+      "greenCalm": 5.0
+    },
+    "rentLevel": "medium",
+    "studentFit": "good",
+    "summary": "Balanced east inner city micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nice-saint-roch": {
+    "scores": {
+      "security": 5.7,
+      "affordability": 5.8,
+      "transport": 8.3,
+      "studentEnergy": 6.8,
+      "services": 7.7,
+      "campusAccess": 7.6,
+      "greenCalm": 5.2
+    },
+    "rentLevel": "medium",
+    "studentFit": "good",
+    "summary": "Balanced east micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nice-saint-jean-d-angely": {
+    "scores": {
+      "security": 5.8,
+      "affordability": 5.2,
+      "transport": 8.6,
+      "studentEnergy": 7.6,
+      "services": 7.8,
+      "campusAccess": 9.0,
+      "greenCalm": 5.2
+    },
+    "rentLevel": "medium",
+    "studentFit": "good",
+    "summary": "Balanced east campus micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nice-pasteur": {
+    "scores": {
+      "security": 4.5,
+      "affordability": 6.7,
+      "transport": 7.6,
+      "studentEnergy": 5.8,
+      "services": 7.0,
+      "campusAccess": 8.1,
+      "greenCalm": 5.0
+    },
+    "rentLevel": "lower",
+    "studentFit": "mixed",
+    "summary": "Balanced east micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nice-ariane": {
+    "scores": {
+      "security": 3.2,
+      "affordability": 7.4,
+      "transport": 6.8,
+      "studentEnergy": 4.8,
+      "services": 6.2,
+      "campusAccess": 5.6,
+      "greenCalm": 5.6
+    },
+    "rentLevel": "lower",
+    "studentFit": "weak",
+    "summary": "Ariane stays hard-capped on safety despite useful north-east edge links.",
+    "caveat": "Cheap rent and transport cannot offset the risk profile."
+  },
+  "nice-rue-de-france-promenade-edge": {
+    "scores": {
+      "security": 6.1,
+      "affordability": 2.8,
+      "transport": 8.7,
+      "studentEnergy": 7.2,
+      "services": 8.8,
+      "campusAccess": 7.4,
+      "greenCalm": 4.8
+    },
+    "rentLevel": "very high",
+    "studentFit": "good",
+    "summary": "Balanced centre west coast micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nice-baumettes-magnan": {
+    "scores": {
+      "security": 6.2,
+      "affordability": 4.2,
+      "transport": 8.0,
+      "studentEnergy": 6.8,
+      "services": 7.8,
+      "campusAccess": 8.2,
+      "greenCalm": 5.8
+    },
+    "rentLevel": "high",
+    "studentFit": "good",
+    "summary": "Balanced west coast micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nice-carlone-campus": {
+    "scores": {
+      "security": 6.5,
+      "affordability": 4.8,
+      "transport": 7.6,
+      "studentEnergy": 7.3,
+      "services": 7.4,
+      "campusAccess": 9.2,
+      "greenCalm": 6.3
+    },
+    "rentLevel": "high",
+    "studentFit": "good",
+    "summary": "Balanced west campus micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nice-madeleine": {
+    "scores": {
+      "security": 6.1,
+      "affordability": 5.1,
+      "transport": 7.4,
+      "studentEnergy": 6.5,
+      "services": 7.2,
+      "campusAccess": 8.5,
+      "greenCalm": 6.2
+    },
+    "rentLevel": "medium",
+    "studentFit": "good",
+    "summary": "Balanced west valley micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nice-arenas-saint-augustin-edhec": {
+    "scores": {
+      "security": 5.0,
+      "affordability": 5.4,
+      "transport": 8.4,
+      "studentEnergy": 6.2,
+      "services": 7.4,
+      "campusAccess": 8.2,
+      "greenCalm": 5.2
+    },
+    "rentLevel": "medium",
+    "studentFit": "good",
+    "summary": "Balanced west airport micro-area with mixed student trade-offs.",
+    "caveat": "Block choice inside the polygon still matters."
+  },
+  "nice-context-north-west-hills": {
+    "scores": {
+      "security": 6.0,
+      "affordability": 5.5,
+      "transport": 7.0,
+      "studentEnergy": 5.5,
+      "services": 6.5,
+      "campusAccess": 5.5,
+      "greenCalm": 6.5
+    },
+    "rentLevel": "medium",
+    "studentFit": "mixed",
+    "summary": "Full-coverage context zone; useful for map continuity, not a primary student pick.",
+    "caveat": "Broad official geometry; block-level choice still matters."
+  },
+  "nice-context-saint-sylvestre-las-planas": {
+    "scores": {
+      "security": 6.0,
+      "affordability": 5.5,
+      "transport": 7.0,
+      "studentEnergy": 5.5,
+      "services": 6.5,
+      "campusAccess": 5.5,
+      "greenCalm": 6.5
+    },
+    "rentLevel": "medium",
+    "studentFit": "mixed",
+    "summary": "Full-coverage context zone; useful for map continuity, not a primary student pick.",
+    "caveat": "Broad official geometry; block-level choice still matters."
+  },
+  "nice-context-rimiez-gairaut-east": {
+    "scores": {
+      "security": 6.0,
+      "affordability": 5.5,
+      "transport": 7.0,
+      "studentEnergy": 5.5,
+      "services": 6.5,
+      "campusAccess": 5.5,
+      "greenCalm": 6.5
+    },
+    "rentLevel": "medium",
+    "studentFit": "mixed",
+    "summary": "Full-coverage context zone; useful for map continuity, not a primary student pick.",
+    "caveat": "Broad official geometry; block-level choice still matters."
+  },
+  "nice-context-east-hills": {
+    "scores": {
+      "security": 6.0,
+      "affordability": 5.5,
+      "transport": 7.0,
+      "studentEnergy": 5.5,
+      "services": 6.5,
+      "campusAccess": 5.5,
+      "greenCalm": 6.5
+    },
+    "rentLevel": "medium",
+    "studentFit": "mixed",
+    "summary": "Full-coverage context zone; useful for map continuity, not a primary student pick.",
+    "caveat": "Broad official geometry; block-level choice still matters."
+  },
+  "nice-context-west-hills": {
+    "scores": {
+      "security": 6.0,
+      "affordability": 5.5,
+      "transport": 7.0,
+      "studentEnergy": 5.5,
+      "services": 6.5,
+      "campusAccess": 5.5,
+      "greenCalm": 6.5
+    },
+    "rentLevel": "medium",
+    "studentFit": "mixed",
+    "summary": "Full-coverage context zone; useful for map continuity, not a primary student pick.",
+    "caveat": "Broad official geometry; block-level choice still matters."
+  },
+  "nice-context-airport-var": {
+    "scores": {
+      "security": 6.0,
+      "affordability": 5.5,
+      "transport": 7.0,
+      "studentEnergy": 5.5,
+      "services": 6.5,
+      "campusAccess": 5.5,
+      "greenCalm": 6.5
+    },
+    "rentLevel": "medium",
+    "studentFit": "mixed",
+    "summary": "Full-coverage context zone; useful for map continuity, not a primary student pick.",
+    "caveat": "Broad official geometry; block-level choice still matters."
+  },
+  "nice-context-north-centre-fill": {
+    "scores": {
+      "security": 6.0,
+      "affordability": 5.5,
+      "transport": 7.0,
+      "studentEnergy": 5.5,
+      "services": 6.5,
+      "campusAccess": 5.5,
+      "greenCalm": 6.5
+    },
+    "rentLevel": "medium",
+    "studentFit": "mixed",
+    "summary": "Full-coverage context zone; useful for map continuity, not a primary student pick.",
+    "caveat": "Broad official geometry; block-level choice still matters."
+  },
+  "nice-context-peripheral": {
+    "scores": {
+      "security": 6.0,
+      "affordability": 5.5,
+      "transport": 7.0,
+      "studentEnergy": 4.5,
+      "services": 6.5,
+      "campusAccess": 5.5,
+      "greenCalm": 6.5
+    },
+    "rentLevel": "medium",
+    "studentFit": "weak",
+    "summary": "Full-coverage context zone; useful for map continuity, not a primary student pick.",
+    "caveat": "Broad official geometry; block-level choice still matters."
+  }
+}

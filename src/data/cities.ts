@@ -27,13 +27,14 @@ export type Source = {
 export type PlaceGranularity = "micro" | "macro";
 export type PlaceConfidence = "high" | "medium" | "low";
 export type CoverageRole = "primary" | "context" | "campus" | "risk_cap" | "low_relevance";
-export type GeometryBasis = "iris_partition" | "iris_district_partition" | "iris_fallback_major_zone" | "official_quartier" | "arrondissement" | "commune" | "commune_context";
+export type GeometryBasis = "iris_partition" | "iris_district_partition" | "iris_fallback_major_zone" | "official_quartier" | "official_quartier_group" | "arrondissement" | "commune" | "commune_context";
 
 export type CityConfig = {
   id: CityId;
   name: string;
   title: string;
   geojsonUrl: string;
+  outlineGeojsonUrl?: string;
   center: [number, number];
   zoom: number;
   minZoom: number;
@@ -497,42 +498,49 @@ export const cities: CityConfig[] = [
   {
     id: "toulouse",
     name: "Toulouse",
-    title: "Toulouse micro-areas + campus belts",
+    title: "Toulouse official quartiers + campus belts",
     geojsonUrl: "/data/toulouse.geojson",
+    outlineGeojsonUrl: "/data/toulouse-outlines.geojson",
     center: [1.444, 43.604],
     zoom: 12,
     minZoom: 10.5,
     maxZoom: 15,
-    defaultSelectedCode: "toulouse-rangueil-campus",
+    defaultSelectedCode: "toulouse-rangueil-sauzelong",
     areaOptions: [
       "Centre",
       "Centre north",
-      "Centre north-east",
-      "Station edge",
       "Centre east",
+      "Station east",
       "Rive gauche",
-      "Centre south",
-      "South",
-      "South-east campus",
-      "South-east",
-      "South-west campus",
       "South-west",
-      "North"
+      "West",
+      "North",
+      "North-east",
+      "East",
+      "South-east",
+      "South-east campus",
+      "Centre south",
+      "North-west campus",
+      "South-west campus",
+      "South-west periphery"
     ],
     parentFilterOptions: [
       "Centre",
       "Centre north",
-      "Centre north-east",
-      "Station edge",
       "Centre east",
+      "Station east",
       "Rive gauche",
-      "Centre south",
-      "South",
-      "South-east campus",
-      "South-east",
-      "South-west campus",
       "South-west",
-      "North"
+      "West",
+      "North",
+      "North-east",
+      "East",
+      "South-east",
+      "South-east campus",
+      "Centre south",
+      "North-west campus",
+      "South-west campus",
+      "South-west periphery"
     ],
     sources: toulouseSources
   },
@@ -541,6 +549,7 @@ export const cities: CityConfig[] = [
     name: "Lille",
     title: "Lille + Roubaix-Tourcoing student quality map",
     geojsonUrl: "/data/lille.geojson",
+    outlineGeojsonUrl: "/data/lille-outlines.geojson",
     center: [3.12, 50.64],
     zoom: 12,
     minZoom: 10.5,
@@ -591,72 +600,79 @@ export const cities: CityConfig[] = [
   {
     id: "marseille",
     name: "Marseille",
-    title: "Marseille grouped student micro-areas",
+    title: "Marseille student quality districts",
     geojsonUrl: "/data/marseille.geojson",
+    outlineGeojsonUrl: "/data/marseille-outlines.geojson",
     center: [5.369, 43.296],
     zoom: 11.6,
     minZoom: 10.5,
     maxZoom: 15,
-    defaultSelectedCode: "marseille-baille",
-    areaOptions: ["1e", "2e", "3e", "5e", "6e", "6e/5e", "7e", "8e", "8e/9e", "9e", "13e", "15e"],
-    parentFilterOptions: ["1e", "2e", "3e", "5e", "6e", "6e/5e", "7e", "8e", "8e/9e", "9e", "13e", "15e"],
+    defaultSelectedCode: "marseille-baille-timone-conception",
+    areaOptions: ["1e", "2e", "3e", "4e", "5e", "6e", "6e/7e", "7e", "8e", "8e/9e", "9e", "10e", "11e", "12e", "13e", "14e", "15e", "16e"],
+    parentFilterOptions: ["1e", "2e", "3e", "4e", "5e", "6e", "6e/7e", "7e", "8e", "8e/9e", "9e", "10e", "11e", "12e", "13e", "14e", "15e", "16e"],
     sources: marseilleSources
   },
   {
     id: "nice",
     name: "Nice",
-    title: "Nice micro-areas + campus belts",
+    title: "Nice quartier corridors + campus belts",
     geojsonUrl: "/data/nice.geojson",
+    outlineGeojsonUrl: "/data/nice-outlines.geojson",
     center: [7.262, 43.71],
     zoom: 12,
     minZoom: 10.5,
     maxZoom: 15,
-    defaultSelectedCode: "nice-borriglione-valrose",
+    defaultSelectedCode: "nice-liberation-valrose",
     areaOptions: [
-      "Centre",
-      "Centre east",
-      "Centre west",
-      "Centre west coast",
-      "North centre",
-      "North centre campus",
       "Historic centre",
-      "East centre",
-      "East inner city",
-      "East",
-      "East campus",
+      "Centre",
+      "Centre west",
+      "North centre campus",
+      "North centre",
       "North-east hills",
+      "East inner city",
+      "East campus",
+      "East",
       "North-east edge",
+      "Centre west coast",
       "West coast",
       "West campus",
       "West valley",
-      "West airport"
+      "West hills",
+      "West airport",
+      "West",
+      "Far west",
+      "East hills"
     ],
     parentFilterOptions: [
-      "Centre",
-      "Centre east",
-      "Centre west",
-      "Centre west coast",
-      "North centre",
-      "North centre campus",
       "Historic centre",
-      "East centre",
-      "East inner city",
-      "East",
-      "East campus",
+      "Centre",
+      "Centre west",
+      "North centre campus",
+      "North centre",
       "North-east hills",
+      "East inner city",
+      "East campus",
+      "East",
       "North-east edge",
+      "Centre west coast",
       "West coast",
       "West campus",
       "West valley",
-      "West airport"
+      "West hills",
+      "West airport",
+      "West",
+      "Far west",
+      "East hills"
     ],
     sources: niceSources
   },
   {
     id: "nantes",
     name: "Nantes",
-    title: "Nantes administrative quartiers + campus belts",
+    title: "Nantes official quartiers + campus belts",
     geojsonUrl: "/data/nantes.geojson",
+    outlineGeojsonUrl: "/data/nantes-outlines.geojson",
     center: [-1.553, 47.218],
     zoom: 12,
     minZoom: 10.5,
@@ -664,29 +680,29 @@ export const cities: CityConfig[] = [
     defaultSelectedCode: "nantes-saint-felix-michelet",
     areaOptions: [
       "Centre-ville",
-      "Centre north",
-      "Hauts-Paves - Saint-Felix",
+      "Hauts-Pavés - Saint-Félix",
       "Nantes Nord",
       "Nantes Erdre",
       "Ile de Nantes",
       "Malakoff - Saint-Donatien",
-      "Dervallieres - Zola",
+      "Dervallières - Zola",
       "Bellevue - Chantenay - Sainte-Anne",
       "Breil - Barberie",
-      "Doulon - Bottiere"
+      "Doulon - Bottière",
+      "Nantes Sud"
     ],
     parentFilterOptions: [
       "Centre-ville",
-      "Centre north",
-      "Hauts-Paves - Saint-Felix",
+      "Hauts-Pavés - Saint-Félix",
       "Nantes Nord",
       "Nantes Erdre",
       "Ile de Nantes",
       "Malakoff - Saint-Donatien",
-      "Dervallieres - Zola",
+      "Dervallières - Zola",
       "Bellevue - Chantenay - Sainte-Anne",
       "Breil - Barberie",
-      "Doulon - Bottiere"
+      "Doulon - Bottière",
+      "Nantes Sud"
     ],
     sources: nantesSources
   }

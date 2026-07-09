@@ -64,7 +64,7 @@ Pick the broadest official source that gives readable, truthful zones.
 4. IRIS watershed only inside a named, explicit scope.
 5. Never use hand-drawn polygons or lat/lon rectangle splits.
 
-IRIS is a fallback, not a default. It is useful when official districts are missing, but it can create fake precision fast.
+Official display geometry beats raw IRIS whenever a usable official source exists. IRIS is a fallback, split source, or scoring aid, not the default front-end geometry. It can pass contiguity audits and still look fake.
 
 ### IRIS Readability Ceiling
 
@@ -215,6 +215,7 @@ Optional keys include `fill_scope_iris_names`, `marseille_quartiers`, `nice_quar
 
 ```bash
 python3 scripts/build_new_city_geojson.py <city>
+~/.bun/bin/bun run geo:outlines -- <city>
 ```
 
 For full-coverage partition builders:
@@ -223,6 +224,7 @@ For full-coverage partition builders:
 python3 scripts/build_full_coverage_specs.py <city>
 python3 scripts/append_context_places.py <city>
 python3 scripts/build_new_city_geojson.py <city>
+~/.bun/bin/bun run geo:outlines -- <city>
 ```
 
 Build-time audits must reject:
@@ -243,7 +245,14 @@ Build-time audits should warn on:
 - more than 5 zones sharing exact same score tuple
 - one campus zone covering most of a commune
 - merged `MultiPolygon` with many parts
+- more than 8 raw polygon parts in one user-facing zone
 - IRIS fallback commune with more than 4 front-end zones and no strong evidence
+
+Build-time audits should fail or force rework on:
+
+- avoidable `allowMultipart` on `primary`, `campus`, or `risk_cap`
+- more than 10 raw polygon parts in `primary`, `campus`, or `risk_cap`
+- raw IRIS final geometry where official quartier/sector geometry exists
 
 ### 6. Validate
 
@@ -253,6 +262,8 @@ python3 scripts/validate_city_geojson.py <city>
 ```
 
 Validation must include contiguity and code parity. Passing feature count alone is not enough.
+
+Before trusting generated specs, compare implementation against `docs/research/<city>-student-life.md`. The report is the intent; generated geometry can drift.
 
 ### 7. Browser Acceptance
 
@@ -299,13 +310,13 @@ Batch acceptance:
 | City | Model | Status |
 |------|-------|--------|
 | Paris | Districts + western suburbs | Reference for readable major coverage |
-| Bordeaux | Detailed student zones | Good detailed case, not default for every city |
-| Lille | Official quartiers + commune context + IRIS fallback | Revised model; use as metro-area pattern |
-| Lyon | Legacy mixed model | Avoid lat/lon splits; needs review before expansion |
-| Nantes | IRIS full partition | Needs major-zone cleanup before scaling |
-| Toulouse | IRIS full partition | Needs major-zone cleanup before scaling |
-| Nice | IRIS full partition | Needs major-zone cleanup before scaling |
-| Marseille | Quartier partition | Needs coverage/readability review |
+| Bordeaux | Detailed student zones, IRIS-heavy | Medium risk; add outlines and review before expanding |
+| Lille | Official quartiers + commune context + IRIS fallback | Improved; fallback suburbs still need visual audit |
+| Lyon | Official/mixed quartiers | Mostly OK; add outlines, avoid expanding lat/lon splits |
+| Nantes | IRIS final partition | High priority official-quartier rebuild |
+| Toulouse | Official quartiers + limited IRIS splits | Mostly OK; audit split-zone outlines |
+| Nice | IRIS final partition | High priority official-quartier rebuild |
+| Marseille | Official quartier groups | Source OK; outer groups still too multipart |
 | Next batches | TBD | Blocked until coverage brief exists |
 
 ## Merge Checklist
@@ -317,6 +328,7 @@ Batch acceptance:
 - [ ] No disconnected primary/campus/risk_cap zone.
 - [ ] Context rows are honest and not all same-score placeholders.
 - [ ] `python3 scripts/build_new_city_geojson.py <city>` passes.
+- [ ] `~/.bun/bin/bun run geo:outlines -- <city>` passes when outlines are configured or needed.
 - [ ] `python3 scripts/validate_city_geojson.py <city>` passes.
 - [ ] `~/.bun/bin/bun run build` passes.
 - [ ] Browser screenshot reviewed.

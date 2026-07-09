@@ -1,12 +1,12 @@
-# Nantes student life scoring (granularity upgrade)
+# Nantes student life scoring
 
 ## Method
 
-Same seven criteria, same weights, same security cap as the app.
+Same seven criteria, same weights, same security cap as app.
 
-Upgrade target: replace the current 10 broad administrative quartiers with **22 student-relevant micro-areas**. Use Nantes quartier polygons as parents and IRIS/micro-quartier groups for actual map areas.
+Recommended target: **16 readable zones**. Nantes officially has **11 administrative quartiers**, subdivided into IRIS/micro-quartiers. It has **no municipal arrondissements**.
 
-Boundary confidence: **medium/high** after IRIS mapping, **medium** for official quartier parents. Nantes has broad administrative quartiers; a student map needs centre, Hauts-Paves/Saint-Felix, university north, island, east, and west cap zones separated.
+Use official Nantes quartiers as the base. Split only broad areas where the student decision is genuinely different: centre, Hauts-Paves/Saint-Felix, Nantes Nord, Nantes Erdre, Ile de Nantes, and Malakoff/Saint-Donatien.
 
 ## Source Notes
 
@@ -15,56 +15,40 @@ Primary:
 - [SSMSI crime dataset](https://www.data.gouv.fr/datasets/bases-statistiques-communale-departementale-et-regionale-de-la-delinquance-enregistree-par-la-police-et-la-gendarmerie-nationales)
 - [INSEE IRIS definition](https://www.insee.fr/fr/metadonnees/definition/c1523)
 - [Nantes Metropole quartier polygons](https://data.nantesmetropole.fr/explore/dataset/244400404_quartiers-communes-nantes-metropole/)
+- [Liste des quartiers de Nantes](https://fr.wikipedia.org/wiki/Liste_des_quartiers_de_Nantes)
 - [Nantes Universite](https://www.univ-nantes.fr/)
 - [Naolib transport](https://naolib.fr/)
 
-## Upgrade Rationale
+## Zone Model
 
-Current map is too coarse:
-
-- Centre-ville should split Decre/Bouffay, Commerce/Graslin, and Talensac.
-- Hauts-Paves/Saint-Felix should split Saint-Felix/Michelet from Hauts-Paves/Talensac edge.
-- Nantes Nord should split Facultes/Petit-Port, Joneliere, and Bout des Landes/North cap edge.
-- Ile de Nantes west/east should be separate because student usefulness and comfort differ.
-- Bellevue, Dervallieres, Breil, Chantenay, and Sainte-Anne need separate caps/comfort profiles.
-- Chantrerie/Erdre is a specific campus-green option, not all Nantes Erdre.
-
-## Micro Score Table
-
-Order: security / affordability / transport / studentEnergy / services / campusAccess / greenCalm -> total
-
-| Micro-area | Parent | Geometry target | Scores | Total |
-|------------|--------|-----------------|--------|-------|
-| Decre / Bouffay | Centre-ville | IRIS group | 5.8 / 3.1 / 9.7 / 9.4 / 9.2 / 8.4 / 3.8 | 6.2 |
-| Commerce / Graslin | Centre-ville | IRIS group | 6.4 / 2.7 / 9.7 / 9.0 / 9.4 / 8.3 / 4.2 | 6.9 |
-| Talensac / Viarme | Centre north | IRIS group | 6.7 / 3.8 / 9.0 / 8.4 / 8.7 / 8.6 / 5.6 | 7.0 |
-| Hauts-Paves | Hauts-Paves - Saint-Felix | IRIS group | 7.1 / 4.2 / 8.6 / 8.1 / 8.1 / 9.0 / 6.6 | 7.2 |
-| Saint-Felix / Michelet | Hauts-Paves - Saint-Felix | IRIS group | 7.3 / 4.4 / 8.6 / 8.6 / 8.2 / 9.6 / 7.0 | 7.4 |
-| Facultes / Petit-Port | Nantes Nord | IRIS group | 6.5 / 5.6 / 8.6 / 8.8 / 7.8 / 10.0 / 7.6 | 7.2 |
-| Joneliere | Nantes Nord | IRIS group | 6.8 / 5.8 / 8.2 / 8.2 / 7.4 / 9.8 / 8.2 | 7.2 |
-| Bout des Landes / Boissiere | Nantes Nord | IRIS group | 5.2 / 6.7 / 7.8 / 6.2 / 6.8 / 8.2 / 6.8 | 6.2 |
-| Chantrerie / Gachet | Nantes Erdre | IRIS group | 7.2 / 5.2 / 7.2 / 7.3 / 7.3 / 9.5 / 8.8 | 7.2 |
-| Saint-Joseph de Porterie | Nantes Erdre | IRIS group | 7.0 / 5.6 / 7.4 / 6.6 / 7.2 / 8.2 / 8.0 | 6.9 |
-| Ile de Nantes west | Ile de Nantes | IRIS group | 6.8 / 4.0 / 8.7 / 8.1 / 8.1 / 8.2 / 6.7 | 7.0 |
-| Ile de Nantes east | Ile de Nantes | IRIS group | 6.4 / 4.5 / 8.5 / 7.5 / 7.8 / 7.8 / 6.6 | 6.8 |
-| Malakoff | Malakoff - Saint-Donatien | IRIS group | 4.8 / 6.4 / 8.8 / 6.8 / 7.4 / 8.0 / 5.4 | 5.2 |
-| Saint-Donatien | Malakoff - Saint-Donatien | IRIS group | 6.8 / 4.8 / 8.6 / 7.2 / 8.2 / 7.8 / 6.2 | 6.9 |
-| Dervallieres | Dervallieres - Zola | IRIS group | 4.8 / 6.6 / 7.8 / 6.0 / 7.0 / 6.8 / 6.2 | 5.2 |
-| Zola | Dervallieres - Zola | IRIS group | 6.0 / 5.2 / 8.2 / 7.2 / 8.0 / 7.2 / 6.6 | 6.5 |
-| Chantenay / Sainte-Anne | Bellevue - Chantenay - Sainte-Anne | IRIS group | 6.0 / 5.4 / 8.0 / 7.1 / 7.7 / 7.0 / 7.2 | 6.5 |
-| Bellevue | Bellevue - Chantenay - Sainte-Anne | IRIS group | 4.3 / 7.0 / 8.1 / 6.3 / 7.0 / 7.1 / 6.0 | 5.2 |
-| Breil | Breil - Barberie | IRIS group | 4.9 / 6.3 / 7.6 / 5.8 / 7.0 / 6.6 / 6.8 | 5.2 |
-| Barberie | Breil - Barberie | IRIS group | 6.2 / 5.4 / 7.7 / 6.4 / 7.4 / 6.8 / 7.0 | 6.5 |
-| Doulon | Doulon - Bottiere | IRIS group | 6.0 / 5.8 / 8.0 / 6.6 / 7.5 / 7.0 / 6.8 | 6.5 |
-| Bottiere | Doulon - Bottiere | IRIS group | 5.2 / 6.6 / 8.3 / 6.2 / 7.1 / 7.0 / 6.4 | 6.2 |
+| Code target | Label | Official basis | Role | Notes |
+|-------------|-------|----------------|------|-------|
+| `nantes-centre-bouffay-commerce` | Centre-ville / Bouffay / Commerce / Graslin | split from Centre-ville | primary | main centre, highest services and nightlife |
+| `nantes-talensac-viarme-hauts-paves` | Talensac / Viarme / Hauts-Pavés | split from Hauts-Pavés - Saint-Félix | primary | best central-north daily-life pick |
+| `nantes-saint-felix-michelet` | Saint-Félix / Michelet | split from Hauts-Pavés - Saint-Félix | campus | cleanest university-adjacent pick |
+| `nantes-facultes-petit-port` | Facultés / Petit-Port | split from Nantes Nord | campus | main north university zone |
+| `nantes-nord-context` | Nantes Nord context | remainder of Nantes Nord | context | northern residential/value context |
+| `nantes-chantrerie-gachet` | Chantrerie / Gachet | split from Nantes Erdre | campus | green campus/engineering axis |
+| `nantes-erdre-context` | Saint-Joseph / Nantes Erdre context | remainder of Nantes Erdre | context | outer north-east family/context belt |
+| `nantes-ile-west-centre` | Ile de Nantes west / centre | split from Ile de Nantes | primary | creative island, good services |
+| `nantes-ile-east` | Ile de Nantes east | split from Ile de Nantes | context | redevelopment edge, less central comfort |
+| `nantes-malakoff` | Malakoff | split from Malakoff - Saint-Donatien | risk_cap | visible cap, do not hide in Saint-Donatien |
+| `nantes-saint-donatien` | Saint-Donatien | split from Malakoff - Saint-Donatien | primary | calmer east-centre residential pick |
+| `nantes-dervallieres-zola` | Dervallières / Zola | official quartier | risk_cap | mixed west belt with cap pockets |
+| `nantes-bellevue-chantenay-sainte-anne` | Bellevue / Chantenay / Sainte-Anne | official quartier | risk_cap | west value/cap plus river edge |
+| `nantes-breil-barberie` | Breil / Barberie | official quartier | context | north-west mixed context |
+| `nantes-doulon-bottiere` | Doulon / Bottière | official quartier | context | east tram/value belt |
+| `nantes-sud` | Nantes Sud | official quartier | context | south Loire context, lower student relevance |
 
 ## Geometry Instructions
 
-- Use Nantes quartier polygons only as parent coverage, not final granularity.
-- Prefer IRIS groups for all 22 rows.
-- Keep Nantes Nord split into university-good and north-edge mixed zones.
-- Keep Bellevue, Breil, and Malakoff capped separately; do not hide them in broad parent quartiers.
+- Use 11 Nantes administrative quartiers as coverage base.
+- Final map geometry uses official `nantes_quartier` polygons for whole parents: Centre-ville, Dervallières-Zola, Bellevue-Chantenay-Sainte-Anne, Breil-Barberie, Doulon-Bottière, Nantes Sud.
+- IRIS splits only inside five broad parents: Hauts-Pavés-Saint-Félix, Nantes Nord, Nantes Erdre, Île de Nantes, Malakoff-Saint-Donatien.
+- Do not expose 22+ micro-zones again; it overfits the map and weakens readability.
+- Keep Malakoff, Bellevue, Dervallières, and Breil visually distinct enough for safety-cap interpretation.
+- Full coverage inside Nantes commune is required.
 
 ## Verdict
 
-Nantes should show a strong north/university axis plus centre and island choices. Saint-Felix/Michelet, Facultes/Petit-Port, Joneliere, Talensac, and Chantrerie should lead. Bellevue, Dervallieres, Breil, and Malakoff need visible caps.
+Nantes should be a **16-zone map**: official quartier coverage with a few student-critical splits. 22 zones is too much for this city; 11 zones is too blunt around the university and island.

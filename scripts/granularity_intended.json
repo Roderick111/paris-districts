@@ -1,198 +1,228 @@
 {
   "toulouse": [
     {
-      "code": "toulouse-capitole",
+      "code": "toulouse-capitole-carmes",
       "iris_insee": "31555",
       "iris_names": [
-        "Wilson",
-        "Sébastopol"
-      ]
-    },
-    {
-      "code": "toulouse-carmes-esquirol",
-      "iris_insee": "31555",
-      "iris_names": [
-        "Jacobins",
-        "Taur",
-        "Teinturiers",
-        "Ozenne"
-      ]
-    },
-    {
-      "code": "toulouse-arnaud-bernard",
-      "iris_insee": "31555",
-      "iris_names": [
+        "Croix Baragnon",
         "Dalbade",
-        "Chaussas",
-        "Coquille",
-        "Croix Baragnon"
-      ]
+        "Filatiers",
+        "Jacobins",
+        "Occitane",
+        "Ozenne",
+        "Saint-Rome",
+        "Taur",
+        "Valade",
+        "Wilson"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_district_partition",
+      "confidence": "medium",
+      "split_parent": "Capitole / Arnaud Bernard / Carmes"
     },
     {
-      "code": "toulouse-saint-sernin",
+      "code": "toulouse-arnaud-bernard-saint-sernin",
       "iris_insee": "31555",
       "iris_names": [
-        "Saint-Sernin",
-        "Saint-Rome"
-      ]
+        "Saint-Sernin"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "iris_district_partition",
+      "confidence": "high",
+      "split_parent": "Capitole / Arnaud Bernard / Carmes"
     },
     {
-      "code": "toulouse-compans-caffarelli",
+      "code": "toulouse-saint-michel-saint-agne",
       "iris_insee": "31555",
       "iris_names": [
+        "Branly",
         "Caserne Niel",
-        "Cartoucherie",
-        "Bonhoure",
-        "Cité Amouroux"
-      ]
+        "Daste",
+        "Hôtel de Région",
+        "Jardin des Plantes",
+        "Montplaisir",
+        "Notre-Dame",
+        "Poudrerie",
+        "Saint-Léon",
+        "École Normale"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_district_partition",
+      "confidence": "medium",
+      "split_parent": "Saint-Michel /  Saint-Agne / Empalot / Le Busca / Île du Ramier / Monplaisir"
     },
     {
-      "code": "toulouse-amidonniers",
+      "code": "toulouse-empalot-ramier",
       "iris_insee": "31555",
       "iris_names": [
-        "Embouchure",
-        "La Digue",
-        "La Grave"
-      ]
+        "Ramier"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "iris_district_partition",
+      "confidence": "medium",
+      "split_parent": "Saint-Michel /  Saint-Agne / Empalot / Le Busca / Île du Ramier / Monplaisir"
     },
     {
-      "code": "toulouse-chalets",
-      "iris_insee": "31555",
-      "iris_names": [
-        "Louis Vitet",
-        "Louis Breguet",
-        "Chapou",
-        "Tellier"
-      ]
-    },
-    {
-      "code": "toulouse-bayard-matabiau",
-      "iris_insee": "31555",
-      "iris_names": [
-        "Belfort",
-        "Bonnat",
-        "Italie"
-      ]
-    },
-    {
-      "code": "toulouse-saint-aubin-dupuy",
-      "iris_insee": "31555",
-      "iris_names": [
-        "Dupuy",
-        "Raymond IV",
-        "Valade"
-      ]
+      "code": "toulouse-amidonniers-compans",
+      "toulouse_quartier": [
+        "Amidonniers / Compans-Caffarelli / Brouardel"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier",
+      "confidence": "medium"
     },
     {
       "code": "toulouse-saint-cyprien",
-      "iris_insee": "31555",
-      "iris_names": [
-        "Saint-Léon",
-        "Fontaine Lestang",
-        "La Pointe"
-      ]
+      "toulouse_quartier": [
+        "Saint-Cyprien"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier",
+      "confidence": "high"
     },
     {
-      "code": "toulouse-patte-doie",
-      "iris_insee": "31555",
-      "iris_names": [
-        "Lestang",
-        "Bazacle"
-      ]
+      "code": "toulouse-chalets-bayard-saint-aubin",
+      "toulouse_quartier": [
+        "Les Chalets / Bayard / Belfort / Saint-Aubin / Dupuy"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier",
+      "confidence": "medium"
     },
     {
-      "code": "toulouse-saint-michel",
-      "iris_insee": "31555",
-      "iris_names": [
-        "Hippodrome",
-        "Arago",
-        "Morvan",
-        "Roguet"
-      ]
+      "code": "toulouse-bonnefoy-marengo",
+      "toulouse_quartier": [
+        "Lapujade / Bonnefoy / Périole / Marengo / La Colonne"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier",
+      "confidence": "medium"
     },
     {
-      "code": "toulouse-saint-agne",
-      "iris_insee": "31555",
-      "iris_names": [
-        "Arènes",
-        "Saint-Simon Est",
-        "Saint-Simon Ouest"
-      ]
+      "code": "toulouse-croix-pierre-route-espagne",
+      "toulouse_quartier": [
+        "Croix-de-Pierre / Route d'Espagne"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier",
+      "confidence": "medium"
     },
     {
-      "code": "toulouse-empalot",
-      "iris_insee": "31555",
-      "iris_names": [
-        "Mal Clabel",
-        "Périole",
-        "Ramelet Moundi",
-        "Marcaissonne"
-      ]
+      "code": "toulouse-arenes-bagatelle-papus",
+      "toulouse_quartier": [
+        "Fontaine-Lestang/Arènes/Bagatelle/Papus/Tabar/Bordelongue/Mermoz /La Faourette"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier",
+      "confidence": "high"
     },
     {
-      "code": "toulouse-rangueil-campus",
-      "iris_insee": "31555",
-      "iris_names": [
-        "Paul Sabatier",
-        "Coteaux de Pech David",
-        "Lespinet"
-      ]
+      "code": "toulouse-casselardit-cartoucherie",
+      "toulouse_quartier": [
+        "Casselardit / Fontaine-Bayonne / Cartoucherie"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier",
+      "confidence": "medium"
     },
     {
-      "code": "toulouse-sauzelong-jules-julien",
-      "iris_insee": "31555",
-      "iris_names": [
-        "Jules Julien",
-        "Sauvegrain",
-        "Lalande Nord",
-        "Lalande Sud"
-      ]
+      "code": "toulouse-minimes-barriere-paris",
+      "toulouse_quartier": [
+        "Minimes / Barrière de Paris / Ponts-Jumeaux / La Vache / Raisin / Fondeyre"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier",
+      "confidence": "medium"
     },
     {
-      "code": "toulouse-mirail-universite",
-      "iris_insee": "31555",
-      "iris_names": [
-        "Grand Selve",
-        "Les Fontaines",
-        "Les Capelles"
-      ]
+      "code": "toulouse-sept-deniers-lalande",
+      "toulouse_quartier": [
+        "Sept Deniers / Ginestous-Sesquières / Lalande"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier",
+      "confidence": "low"
     },
     {
-      "code": "toulouse-reynerie",
-      "iris_insee": "31555",
-      "iris_names": [
-        "Troènes",
-        "Ginestous",
-        "Biarritz"
-      ]
+      "code": "toulouse-borderouge-croix-daurade",
+      "toulouse_quartier": [
+        "Trois Cocus / Borderouge / Croix-Daurade / Paleficat / Grand Selve"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier",
+      "confidence": "medium"
     },
     {
-      "code": "toulouse-bellefontaine",
-      "iris_insee": "31555",
-      "iris_names": [
-        "Basso Cambo",
-        "Zones d'Activités Sud",
-        "Bécanne"
-      ]
+      "code": "toulouse-jolimont-roseraie-soupetard",
+      "toulouse_quartier": [
+        "Jolimont / Soupetard / Roseraie / Gloire / Gramont / Amouroux"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier",
+      "confidence": "medium"
     },
     {
-      "code": "toulouse-minimes",
-      "iris_insee": "31555",
-      "iris_names": [
-        "Les Izards",
-        "Les Maraîchers",
-        "Nègreneys",
-        "Borderouge Nord"
-      ]
+      "code": "toulouse-guilhemery-cote-pavee",
+      "toulouse_quartier": [
+        "Bonhoure / Guilheméry / Château de l'Hers / Limayrac / Côte Pavée"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier",
+      "confidence": "medium"
     },
     {
-      "code": "toulouse-barriere-paris-la-vache",
-      "iris_insee": "31555",
-      "iris_names": [
-        "Barrière de Bayonne",
-        "Ponts Jumeaux",
-        "Fondeyre"
-      ]
+      "code": "toulouse-demoiselles-montaudran",
+      "toulouse_quartier": [
+        "Pont des Demoiselles / Ormeau/ Montaudran / La Terrasse / Malepère"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier",
+      "confidence": "low"
+    },
+    {
+      "code": "toulouse-rangueil-sauzelong",
+      "toulouse_quartier": [
+        "Rangueil / Sauzelong / Jules-Julien / Pech-David / Pouvourville"
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier",
+      "confidence": "high"
+    },
+    {
+      "code": "toulouse-purpan-saint-martin",
+      "toulouse_quartier": [
+        "Arènes Romaines / Ancely / Saint-Martin du Touch / Purpan"
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier",
+      "confidence": "high"
+    },
+    {
+      "code": "toulouse-lardenne-pradettes-basso-cambo",
+      "toulouse_quartier": [
+        "Lardenne / Pradettes / Basso-Cambo"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier",
+      "confidence": "medium"
+    },
+    {
+      "code": "toulouse-mirail-reynerie-bellefontaine",
+      "toulouse_quartier": [
+        "Mirail -Université / Reynerie / Bellefontaine"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier",
+      "confidence": "high"
+    },
+    {
+      "code": "toulouse-saint-simon-lafourguette-oncopole",
+      "toulouse_quartier": [
+        "Saint-Simon / Lafourguette / Oncopole - Campus Santé du Futur"
+      ],
+      "coverageRole": "low_relevance",
+      "geometryBasis": "official_quartier",
+      "confidence": "low"
     }
   ],
   "lille": [
@@ -575,563 +605,899 @@
   ],
   "marseille": [
     {
-      "code": "marseille-saint-charles",
+      "code": "marseille-saint-charles-chapitre",
       "marseille_quartiers": [
-        "SAINT CHARLES"
-      ]
+        "SAINT CHARLES",
+        "CHAPITRE",
+        "THIERS"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high"
     },
     {
-      "code": "marseille-belle-de-mai",
+      "code": "marseille-belsunce-noailles",
       "marseille_quartiers": [
-        "BELLE DE MAI",
-        "SAINT LAZARE"
-      ]
-    },
-    {
-      "code": "marseille-noailles",
-      "marseille_quartiers": [
+        "BELSUNCE",
         "NOAILLES"
-      ]
-    },
-    {
-      "code": "marseille-belsunce",
-      "marseille_quartiers": [
-        "BELSUNCE"
-      ]
-    },
-    {
-      "code": "marseille-cours-julien",
-      "marseille_quartiers": [
-        "PALAIS DE JUSTICE"
-      ]
-    },
-    {
-      "code": "marseille-la-plaine-notre-dame-du-mont",
-      "marseille_quartiers": [
-        "NOTRE DAME DU MONT"
-      ]
-    },
-    {
-      "code": "marseille-lodi",
-      "marseille_quartiers": [
-        "LODI"
-      ]
-    },
-    {
-      "code": "marseille-baille",
-      "marseille_quartiers": [
-        "BAILLE"
-      ]
-    },
-    {
-      "code": "marseille-la-timone",
-      "marseille_quartiers": [
-        "LA TIMONE"
-      ]
-    },
-    {
-      "code": "marseille-castellane",
-      "marseille_quartiers": [
-        "CASTELLANE"
-      ]
-    },
-    {
-      "code": "marseille-prefecture",
-      "marseille_quartiers": [
-        "PREFECTURE"
-      ]
-    },
-    {
-      "code": "marseille-rouet",
-      "marseille_quartiers": [
-        "LE ROUET"
-      ]
-    },
-    {
-      "code": "marseille-perier",
-      "marseille_quartiers": [
-        "PERIER"
-      ]
-    },
-    {
-      "code": "marseille-prado-saint-giniez",
-      "marseille_quartiers": [
-        "SAINT GINIEZ",
-        "BONNEVEINE"
-      ]
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high"
     },
     {
       "code": "marseille-vieux-port-opera",
       "marseille_quartiers": [
         "OPERA"
-      ]
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
     },
     {
       "code": "marseille-panier-hotel-de-ville",
       "marseille_quartiers": [
         "HOTEL DE VILLE",
-        "GRANDS CARMES",
-        "CHAPITRE"
-      ]
-    },
-    {
-      "code": "marseille-joliette-euromed",
-      "marseille_quartiers": [
-        "LA JOLIETTE"
-      ]
-    },
-    {
-      "code": "marseille-endoume-catalans",
-      "marseille_quartiers": [
-        "ENDOUME",
-        "POINTE ROUGE"
-      ]
-    },
-    {
-      "code": "marseille-sainte-anne-mazargues",
-      "marseille_quartiers": [
-        "SAINTE ANNE",
-        "MAZARGUES"
-      ]
-    },
-    {
-      "code": "marseille-luminy-campus",
-      "marseille_quartiers": [
-        "CARPIAGNE",
-        "LE REDON"
+        "GRANDS CARMES"
       ],
-      "allowMultipart": true
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
     },
     {
-      "code": "marseille-saint-jerome",
+      "code": "marseille-joliette-arenc",
       "marseille_quartiers": [
-        "SAINT JEROME"
-      ]
+        "LA JOLIETTE",
+        "ARENC"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
     },
     {
-      "code": "marseille-chateau-gombert",
+      "code": "marseille-belle-de-mai",
       "marseille_quartiers": [
-        "CHATEAU-GOMBERT"
-      ]
+        "BELLE DE MAI"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high"
     },
     {
-      "code": "marseille-la-castellane-15e-north",
+      "code": "marseille-saint-mauront-villette",
       "marseille_quartiers": [
+        "SAINT MAURON",
+        "LA VILETTE",
+        "SAINT LAZARE"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "marseille-cinq-avenues-chartreux",
+      "marseille_quartiers": [
+        "CINQ AVENUES",
+        "LES CHARTREUX"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "marseille-blancarde-chutes-lavie",
+      "marseille_quartiers": [
+        "LA BLANCARDE",
+        "CHUTES LAVIE"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "marseille-baille-timone-conception",
+      "marseille_quartiers": [
+        "BAILLE",
+        "LA TIMONE",
+        "LA CONCEPTION"
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high"
+    },
+    {
+      "code": "marseille-camas-saint-pierre",
+      "marseille_quartiers": [
+        "LE CAMAS",
+        "SAINT PIERRE"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "marseille-cours-julien-plaine",
+      "marseille_quartiers": [
+        "NOTRE DAME DU MONT",
+        "LODI"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "marseille-castellane-prefecture",
+      "marseille_quartiers": [
+        "CASTELLANE",
+        "PREFECTURE",
+        "PALAIS DE JUSTICE"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "marseille-vauban-roucas",
+      "marseille_quartiers": [
+        "VAUBAN",
+        "ROUCAS BLANC"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "marseille-pharo-bompard-coast",
+      "marseille_quartiers": [
+        "LE PHARO",
+        "SAINT VICTOR",
+        "BOMPARD",
+        "SAINT LAMBERT"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "marseille-endoume-context",
+      "marseille_quartiers": [
+        "ENDOUME"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "low",
+      "allowMultipart": true,
+      "multipartJustification": "Official Endoume quartier tessellation is edge-separated into multiple coastal fragments."
+    },
+    {
+      "code": "marseille-rouet-perier",
+      "marseille_quartiers": [
+        "LE ROUET",
+        "PERIER"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "marseille-prado-saint-giniez",
+      "marseille_quartiers": [
+        "SAINT GINIEZ",
+        "LA PLAGE"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "marseille-bonneveine-pointe-rouge",
+      "marseille_quartiers": [
+        "BONNEVEINE",
+        "POINTE ROUGE",
+        "VIELLE CHAPELLE",
+        "MONTREDON"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "marseille-mazargues-sainte-anne",
+      "marseille_quartiers": [
+        "MAZARGUES",
+        "SAINTE ANNE",
+        "LES BAUMETTES",
+        "LE CABOT",
+        "SAINTE MARGUERITE"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "marseille-luminy-redon",
+      "marseille_quartiers": [
+        "LE REDON",
+        "LA PANOUSE"
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high"
+    },
+    {
+      "code": "marseille-carpaigne-context",
+      "marseille_quartiers": [
+        "CARPIAGNE"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "low"
+    },
+    {
+      "code": "marseille-vaufreges-low",
+      "marseille_quartiers": [
+        "VAUFREGES"
+      ],
+      "coverageRole": "low_relevance",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "low"
+    },
+    {
+      "code": "marseille-sormiou-low",
+      "marseille_quartiers": [
+        "SORMIOU"
+      ],
+      "coverageRole": "low_relevance",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "low"
+    },
+    {
+      "code": "marseille-les-goudes-low",
+      "marseille_quartiers": [
+        "LES GOUDES"
+      ],
+      "coverageRole": "low_relevance",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "low",
+      "allowMultipart": true,
+      "multipartJustification": "Official Les Goudes quartier is edge-separated along the calanques coast."
+    },
+    {
+      "code": "marseille-capelette-pont-vivaux",
+      "marseille_quartiers": [
+        "LA CAPELETTE",
+        "MENPENTI",
+        "PONT DE VIVAUX"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "low"
+    },
+    {
+      "code": "marseille-saint-loup-saint-tronc",
+      "marseille_quartiers": [
+        "SAINT LOUP",
+        "SAINT TRONC"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "low"
+    },
+    {
+      "code": "marseille-valentine-saint-marcel",
+      "marseille_quartiers": [
+        "LA VALENTINE",
+        "SAINT MARCEL",
+        "SAINT MENET",
+        "LA BARASSE",
+        "LA MILLIERE",
+        "LA POMME"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "low"
+    },
+    {
+      "code": "marseille-11e-hills-context",
+      "marseille_quartiers": [
+        "LA TREILLE",
+        "EOURES",
+        "LES ACCATES",
+        "LES CAMOINS"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "low"
+    },
+    {
+      "code": "marseille-valbarelle-low",
+      "marseille_quartiers": [
+        "LA VALBARELLE"
+      ],
+      "coverageRole": "low_relevance",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "low"
+    },
+    {
+      "code": "marseille-saint-barnabe-montolivet",
+      "marseille_quartiers": [
+        "SAINT BARNABE",
+        "MONTOLIVET",
+        "SAINT JULIEN",
+        "LES CAILLOLS",
+        "LA FOURRAGERE",
+        "LES TROIS LUCS",
+        "SAINT JEAN DU DESERT"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "low"
+    },
+    {
+      "code": "marseille-saint-jerome-la-rose",
+      "marseille_quartiers": [
+        "SAINT JEROME",
+        "LA ROSE",
+        "MALPASSE",
+        "SAINT JUST"
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "marseille-chateau-gombert-saint-mitre",
+      "marseille_quartiers": [
+        "CHATEAU-GOMBERT",
+        "SAINT MITRE",
+        "LES OLIVES",
+        "LES MEDECINS",
+        "LES MOURETS",
+        "LA CROIX ROUGE",
+        "PALAMA"
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "marseille-14e-north-risk",
+      "marseille_quartiers": [
+        "BON SECOURS",
+        "LE CANET",
+        "LE MERLAN",
+        "LES ARNAVAUX",
+        "SAINT BARTHELEMY",
+        "SAINT JOSEPH",
+        "SAINTE MARTHE"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "low"
+    },
+    {
+      "code": "marseille-15e-port-north-risk",
+      "marseille_quartiers": [
+        "LA CABUCELLE",
         "LA CALADE",
+        "LA DELORME",
         "LA VISTE",
-        "LES CROTTES",
         "LES AYGALADES",
-        "LA CABUCELLE"
-      ]
+        "LES BORELS",
+        "LES CROTTES",
+        "SAINT ANTOINE",
+        "SAINT LOUIS",
+        "VERDURON",
+        "NOTRE DAME LIMITE"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "low"
+    },
+    {
+      "code": "marseille-estaque-16e",
+      "marseille_quartiers": [
+        "L'ESTAQUE",
+        "SAINT HENRI",
+        "SAINT ANDRE",
+        "LES RIAUX"
+      ],
+      "coverageRole": "low_relevance",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "low"
     }
   ],
   "nice": [
     {
-      "code": "nice-jean-medecin-core",
-      "iris_insee": "06088",
-      "iris_names": [
-        "Jean Médecin",
-        "Carnot",
-        "Promenade du Paillon",
-        "République"
-      ]
+      "code": "nice-vieux-nice-port",
+      "nice_quartier": [
+        "Vieille Ville",
+        "Le Port"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
     },
     {
-      "code": "nice-carabacel",
+      "code": "nice-carabacel-garibaldi",
       "nice_quartier": [
         "Carabacel"
-      ]
-    },
-    {
-      "code": "nice-thiers-station-edge",
-      "iris_insee": "06088",
-      "nice_quartier": [
-        "Thiers",
-        "La Gare"
       ],
-      "iris_names": [
-        "Gare Nice-Ville",
-        "Thiers-Durante"
-      ]
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
     },
     {
-      "code": "nice-musiciens",
-      "iris_insee": "06088",
-      "iris_names": [
-        "Musiciens",
-        "Michelet",
-        "Victor Hugo-Buffa"
-      ]
+      "code": "nice-jean-medecin-massena",
+      "nice_quartier": [
+        "Centre Ville"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
     },
     {
-      "code": "nice-vernier",
-      "iris_insee": "06088",
-      "iris_names": [
-        "Vernier",
-        "Gorbella"
-      ]
+      "code": "nice-thiers-musiciens",
+      "nice_quartier": [
+        "Thiers"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
     },
     {
-      "code": "nice-liberation",
-      "iris_insee": "06088",
+      "code": "nice-gambetta-rue-france",
+      "nice_quartier": [
+        "Gambetta",
+        "Rue de France"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "nice-liberation-valrose",
       "nice_quartier": [
         "Libération"
       ],
-      "iris_names": [
-        "Liberti-Albert 1er"
-      ]
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high"
     },
     {
-      "code": "nice-borriglione-valrose",
-      "iris_insee": "06088",
-      "iris_names": [
-        "Borriglione-Saint Lambert",
-        "Cimiez-Valrose"
-      ]
-    },
-    {
-      "code": "nice-saint-maurice",
+      "code": "nice-gare-tzanck-valrose",
       "nice_quartier": [
-        "Saint Maurice"
-      ]
+        "La Gare",
+        "Jaquons - Ravet",
+        "Tzanck - Galinières - Sauvaigo",
+        "Point du Jour - Porte de France"
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high"
+    },
+    {
+      "code": "nice-vernier",
+      "nice_quartier": [
+        "Vernier"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "nice-mantega-piol",
+      "nice_quartier": [
+        "Mantega",
+        "Le Piol"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "nice-saint-maurice-ray",
+      "nice_quartier": [
+        "Saint Maurice",
+        "Le Ray"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "nice-saint-sylvestre",
+      "nice_quartier": [
+        "Saint Sylvestre"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
     },
     {
       "code": "nice-cimiez",
-      "iris_insee": "06088",
       "nice_quartier": [
         "Cimiez"
       ],
-      "iris_names": [
-        "Cimiez",
-        "Cimiez-Monastère"
-      ]
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
     },
     {
-      "code": "nice-rimiez",
-      "iris_insee": "06088",
-      "iris_names": [
-        "Rimiez"
-      ]
-    },
-    {
-      "code": "nice-vieux-nice",
+      "code": "nice-rimiez-gairaut",
       "nice_quartier": [
-        "Vieille Ville"
-      ]
-    },
-    {
-      "code": "nice-port",
-      "nice_quartier": [
-        "Le Port"
-      ]
-    },
-    {
-      "code": "nice-riquier",
-      "iris_insee": "06088",
-      "nice_quartier": [
-        "Riquier"
+        "Rimiez",
+        "Gairaut"
       ],
-      "iris_names": [
-        "Riquier",
-        "Riquier-Arson",
-        "Riquier-Fontaine de la Ville"
-      ]
+      "coverageRole": "low_relevance",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "low"
     },
     {
-      "code": "nice-saint-roch",
-      "iris_insee": "06088",
+      "code": "nice-pessicart-saint-pancrace",
       "nice_quartier": [
-        "Saint Roch"
+        "Pessicart",
+        "Saint Pancrace"
       ],
-      "iris_names": [
-        "Saint-Roch-Jean XXIII",
-        "Saint-Roch-Ricolfi"
-      ]
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
     },
     {
-      "code": "nice-saint-jean-d-angely",
-      "iris_insee": "06088",
-      "iris_names": [
-        "Saint-Jean d'Angély",
-        "Hôpital Saint-Roch"
-      ]
-    },
-    {
-      "code": "nice-pasteur",
-      "iris_insee": "06088",
+      "code": "nice-madeleine-saint-pierre",
       "nice_quartier": [
-        "Pasteur"
+        "Madeleine",
+        "Saint Pierre de Féric"
       ],
-      "iris_names": [
-        "Pasteur",
-        "Pasteur-Saint-Pons",
-        "Pasteur-Voie Romaine"
-      ]
-    },
-    {
-      "code": "nice-ariane",
-      "iris_insee": "06088",
-      "nice_quartier": [
-        "Ariane"
-      ],
-      "iris_names": [
-        "Ariane-Les Chênes",
-        "Ariane-Monzie",
-        "Ariane-Ripert",
-        "Ariane-Saramito"
-      ]
-    },
-    {
-      "code": "nice-rue-de-france-promenade-edge",
-      "iris_insee": "06088",
-      "nice_quartier": [
-        "Rue de France"
-      ],
-      "iris_names": [
-        "France-Negresco",
-        "Digue des Français"
-      ]
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
     },
     {
       "code": "nice-baumettes-magnan",
-      "iris_insee": "06088",
       "nice_quartier": [
         "Baumettes"
       ],
-      "iris_names": [
-        "Baumettes",
-        "Magnan",
-        "Bellet-Magnan"
-      ]
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
     },
     {
-      "code": "nice-carlone-campus",
-      "iris_insee": "06088",
-      "iris_names": [
-        "Carlone",
-        "Faculté de Lettres",
-        "Parc Impérial"
-      ]
-    },
-    {
-      "code": "nice-madeleine",
-      "iris_insee": "06088",
+      "code": "nice-carlone-medecin",
       "nice_quartier": [
-        "Madeleine"
+        "Médecin"
       ],
-      "iris_names": [
-        "Madeleine",
-        "Madeleine Robiony",
-        "Madeleine-Nicolaï"
-      ]
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high"
     },
     {
-      "code": "nice-arenas-saint-augustin-edhec",
-      "iris_insee": "06088",
+      "code": "nice-saint-philippe",
       "nice_quartier": [
-        "Arenas",
+        "Saint Philippe"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "nice-fabron-saint-antoine",
+      "nice_quartier": [
+        "Fabron",
+        "Saint Antoine"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "nice-caucade",
+      "nice_quartier": [
+        "Caucade"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high"
+    },
+    {
+      "code": "nice-saint-augustin-moulins",
+      "nice_quartier": [
         "Saint Augustin"
       ],
-      "iris_names": [
-        "Arenas-Cassin",
-        "Saint-Augustin"
-      ]
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high"
+    },
+    {
+      "code": "nice-arenas-sainte-marguerite",
+      "nice_quartier": [
+        "Arenas",
+        "Sainte Marguerite"
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high"
+    },
+    {
+      "code": "nice-saint-isidore-lingostiere",
+      "nice_quartier": [
+        "Saint Isidore",
+        "Lingostière",
+        "Iscles - Ste Pétronille"
+      ],
+      "coverageRole": "low_relevance",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "low"
+    },
+    {
+      "code": "nice-cremat-bellet",
+      "nice_quartier": [
+        "Cremat",
+        "Saint Roman",
+        "Ventabrun"
+      ],
+      "coverageRole": "low_relevance",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "low"
+    },
+    {
+      "code": "nice-riquier-saint-roch",
+      "nice_quartier": [
+        "Riquier",
+        "Saint Roch",
+        "Roquebillière"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "nice-pasteur",
+      "nice_quartier": [
+        "Pasteur"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high"
+    },
+    {
+      "code": "nice-ariane",
+      "nice_quartier": [
+        "Ariane"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high"
+    },
+    {
+      "code": "nice-mont-boron-vinaigrier",
+      "nice_quartier": [
+        "Mont Boron",
+        "Vinaigrier"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
+    },
+    {
+      "code": "nice-vespins-littoral",
+      "nice_quartier": [
+        "Vespins - Littoral"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "low"
+    },
+    {
+      "code": "nice-corniche-promenade",
+      "nice_quartier": [
+        "Les Pugets",
+        "Montaleigne - Corniche Sud",
+        "Plateaux Fleuris - Corniche Sud",
+        "Rascas - Rives d'or"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium"
     }
   ],
   "nantes": [
     {
-      "code": "nantes-decre-bouffay",
-      "iris_insee": "44109",
-      "iris_names": [
-        "Decré-Cathédrale",
-        "Champ de Mars",
-        "Boulevard des Poilus"
-      ]
+      "code": "nantes-centre-bouffay-commerce",
+      "nantes_quartier": [
+        "Centre-ville"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier",
+      "confidence": "medium"
     },
     {
-      "code": "nantes-commerce-graslin",
+      "code": "nantes-talensac-viarme-hauts-paves",
       "iris_insee": "44109",
       "iris_names": [
-        "Graslin-Commerce",
-        "Madeleine",
-        "Gloriette-Feydeau"
-      ]
-    },
-    {
-      "code": "nantes-talensac-viarme",
-      "iris_insee": "44109",
-      "iris_names": [
-        "Talensac-Pont Morand",
-        "Viarme",
-        "Guist'hau"
-      ]
-    },
-    {
-      "code": "nantes-hauts-paves",
-      "iris_insee": "44109",
-      "iris_names": [
+        "Bellamy-Barbin",
         "Hauts Pavés",
-        "Canclaux",
-        "Coudray"
-      ]
+        "Monselet",
+        "Procé",
+        "Rennes-Bellamy",
+        "Talensac-Pont Morand",
+        "Vannes-Saint-Pasquier",
+        "Viarme"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_district_partition",
+      "confidence": "high",
+      "split_parent": "Hauts-Pavés - Saint-Félix"
     },
     {
       "code": "nantes-saint-felix-michelet",
       "iris_insee": "44109",
       "iris_names": [
         "Saint-Félix",
-        "Université-Michelet",
-        "Mellinet"
-      ]
+        "Université-Michelet"
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "iris_district_partition",
+      "confidence": "high",
+      "split_parent": "Hauts-Pavés - Saint-Félix"
     },
     {
       "code": "nantes-facultes-petit-port",
       "iris_insee": "44109",
       "iris_names": [
+        "Boissière",
         "Bourgeonnière-Petit Port",
-        "Jonelière-Université"
-      ]
+        "Bout des Pavés-Chêne des Anglais",
+        "Chauvinière",
+        "Jonelière-Université",
+        "Pont du Cens-Côte d'Or",
+        "Santos-Dumont"
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "iris_district_partition",
+      "confidence": "high",
+      "split_parent": "Nantes Nord"
     },
     {
-      "code": "nantes-joneliere",
-      "iris_insee": "44109",
-      "iris_names": [
-        "Éraudière-Renaudière",
-        "Beaulieu-Mangin"
-      ]
-    },
-    {
-      "code": "nantes-bout-des-landes-boissiere",
+      "code": "nantes-nord-context",
       "iris_insee": "44109",
       "iris_names": [
         "Bout des Landes",
-        "Boissière",
-        "Boucardière-Mallève"
-      ]
+        "Z.A. Hauts de Gesvre"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "iris_district_partition",
+      "confidence": "medium",
+      "split_parent": "Nantes Nord"
     },
     {
       "code": "nantes-chantrerie-gachet",
       "iris_insee": "44109",
       "iris_names": [
-        "Z.A. Chantrerie-Gachet",
-        "Z.A. Hauts de Gesvre"
-      ]
+        "Z.A. Chantrerie-Gachet"
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "iris_district_partition",
+      "confidence": "high",
+      "split_parent": "Nantes Erdre"
     },
     {
-      "code": "nantes-saint-joseph-porterie",
+      "code": "nantes-erdre-context",
       "iris_insee": "44109",
       "iris_names": [
-        "Saint-Joseph-Erdre",
+        "Beaujoire-Halvêque",
+        "Plessis Tison",
+        "Port Boyer",
+        "Ranzay-Grand Clos",
         "Saint-Joseph-Bourg",
-        "Haluchère-Perray"
-      ]
+        "Saint-Joseph-Erdre",
+        "Tortière",
+        "Éraudière-Renaudière"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "iris_district_partition",
+      "confidence": "low",
+      "split_parent": "Nantes Erdre"
     },
     {
-      "code": "nantes-ile-de-nantes-west",
+      "code": "nantes-ile-west-centre",
       "iris_insee": "44109",
       "iris_names": [
-        "Gare Maritime",
-        "Salorges-Sainte-Anne",
-        "Schuman"
-      ]
+        "République-Les Ponts",
+        "Z.A. Sainte-Anne-Zone Portuaire"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_district_partition",
+      "confidence": "medium",
+      "split_parent": "Île de Nantes"
     },
     {
-      "code": "nantes-ile-de-nantes-east",
+      "code": "nantes-ile-east",
       "iris_insee": "44109",
       "iris_names": [
-        "Île Beaulieu",
-        "Santos-Dumont",
-        "Z.A. Cheviré-Zone Portuaire"
-      ]
+        "Beaulieu-Mangin",
+        "Île Beaulieu"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "iris_district_partition",
+      "confidence": "medium",
+      "split_parent": "Île de Nantes"
     },
     {
       "code": "nantes-malakoff",
       "iris_insee": "44109",
       "iris_names": [
+        "Agenêts",
+        "Caserne Mellinet",
+        "Coudray",
+        "Coulmiers-Jardin des Plantes",
+        "Dalby",
         "Malakoff",
-        "Vieux Malakoff",
-        "Caserne Mellinet"
-      ]
+        "Richebourg-Saint-Clément",
+        "Toutes Aides",
+        "Vieux Malakoff"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "iris_district_partition",
+      "confidence": "high",
+      "split_parent": "Malakoff - Saint-Donatien"
     },
     {
       "code": "nantes-saint-donatien",
       "iris_insee": "44109",
       "iris_names": [
         "Saint-Donatien",
-        "Perverie",
-        "Dervallières-Chézine"
-      ]
+        "Waldeck-Sully"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_district_partition",
+      "confidence": "medium",
+      "split_parent": "Malakoff - Saint-Donatien"
     },
     {
-      "code": "nantes-dervallieres",
-      "iris_insee": "44109",
-      "iris_names": [
-        "Waldeck-Sully",
-        "Monselet",
-        "Bouhier"
-      ]
+      "code": "nantes-dervallieres-zola",
+      "nantes_quartier": [
+        "Dervallières - Zola"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier",
+      "confidence": "high"
     },
     {
-      "code": "nantes-zola",
-      "iris_insee": "44109",
-      "iris_names": [
-        "Zola",
-        "Mendès France",
-        "Jean Macé"
-      ]
+      "code": "nantes-bellevue-chantenay-sainte-anne",
+      "nantes_quartier": [
+        "Bellevue - Chantenay - Sainte-Anne"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier",
+      "confidence": "high"
     },
     {
-      "code": "nantes-chantenay-sainte-anne",
-      "iris_insee": "44109",
-      "iris_names": [
-        "Mairie de Chantenay",
-        "Route de Sainte-Luce",
-        "Pin Sec"
-      ]
+      "code": "nantes-breil-barberie",
+      "nantes_quartier": [
+        "Breil - Barberie"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier",
+      "confidence": "medium"
     },
     {
-      "code": "nantes-bellevue",
-      "iris_insee": "44109",
-      "iris_names": [
-        "Bout des Pavés-Chêne des Anglais",
-        "Chauvinière"
-      ]
+      "code": "nantes-doulon-bottiere",
+      "nantes_quartier": [
+        "Doulon - Bottière"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier",
+      "confidence": "medium"
     },
     {
-      "code": "nantes-breil",
-      "iris_insee": "44109",
-      "iris_names": [
-        "Breil-Malville",
-        "Plessis Tison",
-        "Toutes Aides"
-      ]
-    },
-    {
-      "code": "nantes-barberie",
-      "iris_insee": "44109",
-      "iris_names": [
-        "Barberie",
-        "Beaujoire-Halvêque",
-        "Petit Bois"
-      ]
-    },
-    {
-      "code": "nantes-doulon",
-      "iris_insee": "44109",
-      "iris_names": [
-        "Mairie de Doulon",
-        "Le Vieux Doulon",
-        "Lion d'Or-Gilarderie"
-      ]
-    },
-    {
-      "code": "nantes-bottiere",
-      "iris_insee": "44109",
-      "iris_names": [
-        "La Bottière",
-        "Route de Vannes",
-        "Jules Verne"
-      ]
+      "code": "nantes-sud",
+      "nantes_quartier": [
+        "Nantes Sud"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier",
+      "confidence": "low"
     }
   ]
 }

@@ -371,8 +371,17 @@ def spec_from_assignment(
         spec["iris_insee"] = original["iris_insee"]
     spec[source_key] = assigned_names
     spec["geometry_method"] = original.get("_geometry_method", "intended_watershed")
-    if original.get("allowMultipart"):
-        spec["allowMultipart"] = True
+    for key in (
+        "coverageRole",
+        "geometryBasis",
+        "confidence",
+        "allowMultipart",
+        "multipartJustification",
+        "split_parent",
+        "area",
+    ):
+        if key in original:
+            spec[key] = original[key]
     if original.get("nice_quartier") and source_key == "iris_names":
         spec["nice_quartier"] = original["nice_quartier"]
     return spec
