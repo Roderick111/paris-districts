@@ -1,0 +1,1956 @@
+{
+  "toulouse": [
+    {
+      "code": "toulouse-capitole",
+      "name": "Capitole",
+      "parent": "Centre",
+      "area": "Centre",
+      "scores": {
+        "security": 5.7,
+        "affordability": 2.2,
+        "transport": 9.8,
+        "studentEnergy": 9.0,
+        "services": 9.5,
+        "campusAccess": 8.7,
+        "greenCalm": 3.8
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from toulouse-student-life.md (medium confidence)."
+    },
+    {
+      "code": "toulouse-carmes-esquirol",
+      "name": "Carmes / Esquirol",
+      "parent": "Centre",
+      "area": "Centre",
+      "scores": {
+        "security": 6.1,
+        "affordability": 2.3,
+        "transport": 9.6,
+        "studentEnergy": 8.8,
+        "services": 9.4,
+        "campusAccess": 8.7,
+        "greenCalm": 4.2
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from toulouse-student-life.md (medium confidence)."
+    },
+    {
+      "code": "toulouse-arnaud-bernard",
+      "name": "Arnaud-Bernard",
+      "parent": "Centre",
+      "area": "Centre",
+      "scores": {
+        "security": 4.7,
+        "affordability": 4.3,
+        "transport": 9.1,
+        "studentEnergy": 9.5,
+        "services": 8.4,
+        "campusAccess": 9.1,
+        "greenCalm": 3.6
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from toulouse-student-life.md (medium confidence)."
+    },
+    {
+      "code": "toulouse-saint-sernin",
+      "name": "Saint-Sernin",
+      "parent": "Centre",
+      "area": "Centre",
+      "scores": {
+        "security": 5.4,
+        "affordability": 3.8,
+        "transport": 8.9,
+        "studentEnergy": 8.8,
+        "services": 8.6,
+        "campusAccess": 9.0,
+        "greenCalm": 4.0
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from toulouse-student-life.md (medium confidence)."
+    },
+    {
+      "code": "toulouse-compans-caffarelli",
+      "name": "Compans-Caffarelli",
+      "parent": "Centre north",
+      "area": "Centre north",
+      "scores": {
+        "security": 6.7,
+        "affordability": 3.6,
+        "transport": 9.0,
+        "studentEnergy": 7.6,
+        "services": 8.6,
+        "campusAccess": 8.2,
+        "greenCalm": 6.4
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from toulouse-student-life.md (medium confidence)."
+    },
+    {
+      "code": "toulouse-amidonniers",
+      "name": "Amidonniers",
+      "parent": "Centre north",
+      "area": "Centre north",
+      "scores": {
+        "security": 7.0,
+        "affordability": 4.1,
+        "transport": 8.2,
+        "studentEnergy": 6.8,
+        "services": 7.8,
+        "campusAccess": 7.7,
+        "greenCalm": 7.6
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from toulouse-student-life.md (medium confidence)."
+    },
+    {
+      "code": "toulouse-chalets",
+      "name": "Chalets",
+      "parent": "Centre north-east",
+      "area": "Centre north-east",
+      "scores": {
+        "security": 6.6,
+        "affordability": 3.5,
+        "transport": 8.9,
+        "studentEnergy": 8.0,
+        "services": 8.3,
+        "campusAccess": 8.1,
+        "greenCalm": 5.4
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from toulouse-student-life.md (medium confidence)."
+    },
+    {
+      "code": "toulouse-bayard-matabiau",
+      "name": "Bayard / Matabiau edge",
+      "parent": "Station edge",
+      "area": "Station edge",
+      "scores": {
+        "security": 5.0,
+        "affordability": 4.4,
+        "transport": 9.4,
+        "studentEnergy": 8.0,
+        "services": 8.2,
+        "campusAccess": 8.4,
+        "greenCalm": 3.6
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from toulouse-student-life.md (medium confidence)."
+    },
+    {
+      "code": "toulouse-saint-aubin-dupuy",
+      "name": "Saint-Aubin / Dupuy",
+      "parent": "Centre east",
+      "area": "Centre east",
+      "scores": {
+        "security": 6.0,
+        "affordability": 3.7,
+        "transport": 9.0,
+        "studentEnergy": 8.6,
+        "services": 8.7,
+        "campusAccess": 8.2,
+        "greenCalm": 4.8
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from toulouse-student-life.md (medium confidence)."
+    },
+    {
+      "code": "toulouse-saint-cyprien",
+      "name": "Saint-Cyprien",
+      "parent": "Rive gauche",
+      "area": "Rive gauche",
+      "scores": {
+        "security": 6.8,
+        "affordability": 4.8,
+        "transport": 8.9,
+        "studentEnergy": 8.7,
+        "services": 8.4,
+        "campusAccess": 8.1,
+        "greenCalm": 6.1
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from toulouse-student-life.md (medium confidence)."
+    },
+    {
+      "code": "toulouse-patte-doie",
+      "name": "Patte-d'Oie",
+      "parent": "Rive gauche",
+      "area": "Rive gauche",
+      "scores": {
+        "security": 6.4,
+        "affordability": 5.2,
+        "transport": 8.7,
+        "studentEnergy": 7.6,
+        "services": 7.8,
+        "campusAccess": 7.8,
+        "greenCalm": 6.0
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from toulouse-student-life.md (medium confidence)."
+    },
+    {
+      "code": "toulouse-saint-michel",
+      "name": "Saint-Michel",
+      "parent": "Centre south",
+      "area": "Centre south",
+      "scores": {
+        "security": 5.2,
+        "affordability": 5.4,
+        "transport": 8.9,
+        "studentEnergy": 8.6,
+        "services": 8.1,
+        "campusAccess": 8.7,
+        "greenCalm": 4.3
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from toulouse-student-life.md (medium confidence)."
+    },
+    {
+      "code": "toulouse-saint-agne",
+      "name": "Saint-Agne",
+      "parent": "Centre south",
+      "area": "Centre south",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 8.6,
+        "studentEnergy": 7.6,
+        "services": 7.8,
+        "campusAccess": 8.8,
+        "greenCalm": 5.6
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from toulouse-student-life.md (medium confidence)."
+    },
+    {
+      "code": "toulouse-empalot",
+      "name": "Empalot",
+      "parent": "South",
+      "area": "South",
+      "scores": {
+        "security": 4.3,
+        "affordability": 7.0,
+        "transport": 8.1,
+        "studentEnergy": 6.0,
+        "services": 6.8,
+        "campusAccess": 8.0,
+        "greenCalm": 5.0
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from toulouse-student-life.md (medium confidence)."
+    },
+    {
+      "code": "toulouse-rangueil-campus",
+      "name": "Rangueil campus",
+      "parent": "South-east campus",
+      "area": "South-east campus",
+      "scores": {
+        "security": 7.1,
+        "affordability": 5.5,
+        "transport": 8.5,
+        "studentEnergy": 8.7,
+        "services": 7.7,
+        "campusAccess": 10.0,
+        "greenCalm": 7.2
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from toulouse-student-life.md (medium confidence)."
+    },
+    {
+      "code": "toulouse-sauzelong-jules-julien",
+      "name": "Sauzelong / Jules-Julien",
+      "parent": "South-east",
+      "area": "South-east",
+      "scores": {
+        "security": 6.8,
+        "affordability": 5.8,
+        "transport": 8.6,
+        "studentEnergy": 7.8,
+        "services": 7.8,
+        "campusAccess": 9.2,
+        "greenCalm": 6.7
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from toulouse-student-life.md (medium confidence)."
+    },
+    {
+      "code": "toulouse-mirail-universite",
+      "name": "Mirail Universite",
+      "parent": "South-west campus",
+      "area": "South-west campus",
+      "scores": {
+        "security": 4.2,
+        "affordability": 7.2,
+        "transport": 8.2,
+        "studentEnergy": 7.0,
+        "services": 6.9,
+        "campusAccess": 9.0,
+        "greenCalm": 5.8
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from toulouse-student-life.md (medium confidence)."
+    },
+    {
+      "code": "toulouse-reynerie",
+      "name": "Reynerie",
+      "parent": "South-west",
+      "area": "South-west",
+      "scores": {
+        "security": 3.5,
+        "affordability": 7.6,
+        "transport": 8.0,
+        "studentEnergy": 6.2,
+        "services": 6.4,
+        "campusAccess": 8.4,
+        "greenCalm": 5.5
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from toulouse-student-life.md (medium confidence)."
+    },
+    {
+      "code": "toulouse-bellefontaine",
+      "name": "Bellefontaine",
+      "parent": "South-west",
+      "area": "South-west",
+      "scores": {
+        "security": 3.7,
+        "affordability": 7.4,
+        "transport": 7.8,
+        "studentEnergy": 6.0,
+        "services": 6.5,
+        "campusAccess": 8.0,
+        "greenCalm": 5.4
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from toulouse-student-life.md (medium confidence)."
+    },
+    {
+      "code": "toulouse-minimes",
+      "name": "Minimes",
+      "parent": "North",
+      "area": "North",
+      "scores": {
+        "security": 6.1,
+        "affordability": 5.5,
+        "transport": 8.5,
+        "studentEnergy": 7.1,
+        "services": 7.8,
+        "campusAccess": 7.2,
+        "greenCalm": 5.9
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from toulouse-student-life.md (medium confidence)."
+    },
+    {
+      "code": "toulouse-barriere-paris-la-vache",
+      "name": "Barriere de Paris / La Vache",
+      "parent": "North",
+      "area": "North",
+      "scores": {
+        "security": 5.5,
+        "affordability": 6.0,
+        "transport": 8.7,
+        "studentEnergy": 6.8,
+        "services": 7.4,
+        "campusAccess": 7.1,
+        "greenCalm": 5.7
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from toulouse-student-life.md (medium confidence)."
+    }
+  ],
+  "lille": [
+    {
+      "code": "lille-centre-core",
+      "name": "Lille-Centre core",
+      "parent": "Lille-Centre",
+      "area": "Lille-Centre",
+      "scores": {
+        "security": 5.5,
+        "affordability": 2.8,
+        "transport": 9.8,
+        "studentEnergy": 8.3,
+        "services": 9.3,
+        "campusAccess": 8.3,
+        "greenCalm": 3.8
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from lille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "lille-gares-euralille",
+      "name": "Gares / Euralille",
+      "parent": "Lille-Centre",
+      "area": "Lille-Centre",
+      "scores": {
+        "security": 5.0,
+        "affordability": 2.9,
+        "transport": 10.0,
+        "studentEnergy": 7.8,
+        "services": 9.0,
+        "campusAccess": 8.2,
+        "greenCalm": 3.4
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from lille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "lille-vieux-lille",
+      "name": "Vieux-Lille",
+      "parent": "Vieux-Lille",
+      "area": "Vieux-Lille",
+      "scores": {
+        "security": 7.0,
+        "affordability": 2.0,
+        "transport": 8.2,
+        "studentEnergy": 7.2,
+        "services": 8.8,
+        "campusAccess": 7.2,
+        "greenCalm": 5.4
+      },
+      "confidence": "high",
+      "geomTarget": "official quartier",
+      "evidence": "official quartier geometry from lille-student-life.md (high confidence)."
+    },
+    {
+      "code": "lille-vauban-catho",
+      "name": "Vauban / Catho",
+      "parent": "Vauban-Esquermes",
+      "area": "Vauban-Esquermes",
+      "scores": {
+        "security": 7.3,
+        "affordability": 3.9,
+        "transport": 8.1,
+        "studentEnergy": 9.2,
+        "services": 8.2,
+        "campusAccess": 9.6,
+        "greenCalm": 7.4
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from lille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "lille-esquermes-cormontaigne",
+      "name": "Esquermes / Cormontaigne",
+      "parent": "Vauban-Esquermes",
+      "area": "Vauban-Esquermes",
+      "scores": {
+        "security": 6.9,
+        "affordability": 4.5,
+        "transport": 8.2,
+        "studentEnergy": 8.0,
+        "services": 7.8,
+        "campusAccess": 8.9,
+        "greenCalm": 7.0
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from lille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "lille-wazemmes-core",
+      "name": "Wazemmes core",
+      "parent": "Wazemmes",
+      "area": "Wazemmes",
+      "scores": {
+        "security": 4.8,
+        "affordability": 6.2,
+        "transport": 8.9,
+        "studentEnergy": 9.3,
+        "services": 8.1,
+        "campusAccess": 8.5,
+        "greenCalm": 3.8
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from lille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "lille-gambetta-solferino",
+      "name": "Gambetta / Solferino",
+      "parent": "Wazemmes edge",
+      "area": "Wazemmes edge",
+      "scores": {
+        "security": 5.8,
+        "affordability": 5.2,
+        "transport": 9.0,
+        "studentEnergy": 9.0,
+        "services": 8.5,
+        "campusAccess": 8.6,
+        "greenCalm": 4.5
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from lille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "lille-moulins-campus-edge",
+      "name": "Moulins campus edge",
+      "parent": "Moulins",
+      "area": "Moulins",
+      "scores": {
+        "security": 4.6,
+        "affordability": 6.6,
+        "transport": 8.7,
+        "studentEnergy": 8.1,
+        "services": 7.5,
+        "campusAccess": 9.0,
+        "greenCalm": 4.2
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from lille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "lille-fives",
+      "name": "Fives",
+      "parent": "Fives",
+      "area": "Fives",
+      "scores": {
+        "security": 5.2,
+        "affordability": 6.4,
+        "transport": 8.6,
+        "studentEnergy": 7.0,
+        "services": 7.2,
+        "campusAccess": 7.0,
+        "greenCalm": 4.8
+      },
+      "confidence": "high",
+      "geomTarget": "official quartier",
+      "evidence": "official quartier geometry from lille-student-life.md (high confidence)."
+    },
+    {
+      "code": "lille-hellemmes",
+      "name": "Hellemmes",
+      "parent": "Hellemmes",
+      "area": "Hellemmes",
+      "scores": {
+        "security": 5.8,
+        "affordability": 6.3,
+        "transport": 8.5,
+        "studentEnergy": 7.2,
+        "services": 7.2,
+        "campusAccess": 7.8,
+        "greenCalm": 5.4
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS/commune group",
+      "evidence": "IRIS/commune group geometry from lille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "lille-bois-blancs-euratechnologies",
+      "name": "Bois-Blancs / Euratechnologies",
+      "parent": "Bois-Blancs",
+      "area": "Bois-Blancs",
+      "scores": {
+        "security": 6.4,
+        "affordability": 5.2,
+        "transport": 7.8,
+        "studentEnergy": 6.8,
+        "services": 7.2,
+        "campusAccess": 6.4,
+        "greenCalm": 6.6
+      },
+      "confidence": "high",
+      "geomTarget": "official quartier",
+      "evidence": "official quartier geometry from lille-student-life.md (high confidence)."
+    },
+    {
+      "code": "lille-sud",
+      "name": "Lille-Sud",
+      "parent": "Lille-Sud",
+      "area": "Lille-Sud",
+      "scores": {
+        "security": 4.2,
+        "affordability": 7.0,
+        "transport": 7.6,
+        "studentEnergy": 5.8,
+        "services": 6.8,
+        "campusAccess": 7.2,
+        "greenCalm": 5.2
+      },
+      "confidence": "high",
+      "geomTarget": "official quartier",
+      "evidence": "official quartier geometry from lille-student-life.md (high confidence)."
+    },
+    {
+      "code": "lille-lomme-chr",
+      "name": "Lomme / CHR",
+      "parent": "Lomme",
+      "area": "Lomme",
+      "scores": {
+        "security": 6.1,
+        "affordability": 6.0,
+        "transport": 8.4,
+        "studentEnergy": 6.8,
+        "services": 7.6,
+        "campusAccess": 8.2,
+        "greenCalm": 6.2
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS/commune group",
+      "evidence": "IRIS/commune group geometry from lille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "lille-vda-cite-scientifique",
+      "name": "Cité Scientifique",
+      "parent": "Villeneuve-d'Ascq",
+      "area": "Villeneuve-d'Ascq",
+      "scores": {
+        "security": 6.9,
+        "affordability": 5.8,
+        "transport": 8.8,
+        "studentEnergy": 8.6,
+        "services": 7.6,
+        "campusAccess": 10.0,
+        "greenCalm": 7.8
+      },
+      "confidence": "medium",
+      "geomTarget": "official/IRIS group",
+      "evidence": "official/IRIS group geometry from lille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "lille-vda-pont-de-bois",
+      "name": "Pont-de-Bois",
+      "parent": "Villeneuve-d'Ascq",
+      "area": "Villeneuve-d'Ascq",
+      "scores": {
+        "security": 5.8,
+        "affordability": 6.2,
+        "transport": 8.8,
+        "studentEnergy": 8.8,
+        "services": 7.4,
+        "campusAccess": 9.8,
+        "greenCalm": 6.8
+      },
+      "confidence": "medium",
+      "geomTarget": "official/IRIS group",
+      "evidence": "official/IRIS group geometry from lille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "lille-vda-triolo",
+      "name": "Triolo",
+      "parent": "Villeneuve-d'Ascq",
+      "area": "Villeneuve-d'Ascq",
+      "scores": {
+        "security": 6.5,
+        "affordability": 5.8,
+        "transport": 8.7,
+        "studentEnergy": 8.0,
+        "services": 7.5,
+        "campusAccess": 9.4,
+        "greenCalm": 7.2
+      },
+      "confidence": "medium",
+      "geomTarget": "official/IRIS group",
+      "evidence": "official/IRIS group geometry from lille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "lille-vda-annappes-hotel-de-ville",
+      "name": "Annappes / Hotel de Ville",
+      "parent": "Villeneuve-d'Ascq",
+      "area": "Villeneuve-d'Ascq",
+      "scores": {
+        "security": 6.8,
+        "affordability": 5.6,
+        "transport": 8.4,
+        "studentEnergy": 7.2,
+        "services": 7.7,
+        "campusAccess": 8.8,
+        "greenCalm": 7.4
+      },
+      "confidence": "medium",
+      "geomTarget": "official/IRIS group",
+      "evidence": "official/IRIS group geometry from lille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "lille-roubaix-edhec-barbieux",
+      "name": "Roubaix EDHEC / Barbieux",
+      "parent": "Roubaix",
+      "area": "Roubaix",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.8,
+        "transport": 8.2,
+        "studentEnergy": 7.4,
+        "services": 7.4,
+        "campusAccess": 9.2,
+        "greenCalm": 7.2
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS/commune group",
+      "evidence": "IRIS/commune group geometry from lille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "lille-roubaix-centre-edge",
+      "name": "Roubaix centre edge",
+      "parent": "Roubaix",
+      "area": "Roubaix",
+      "scores": {
+        "security": 4.4,
+        "affordability": 7.2,
+        "transport": 8.4,
+        "studentEnergy": 7.0,
+        "services": 7.0,
+        "campusAccess": 8.2,
+        "greenCalm": 4.8
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS/commune group",
+      "evidence": "IRIS/commune group geometry from lille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "lille-madeleine-romarin",
+      "name": "La Madeleine / Romarin",
+      "parent": "Inner suburb",
+      "area": "Inner suburb",
+      "scores": {
+        "security": 7.2,
+        "affordability": 3.7,
+        "transport": 8.5,
+        "studentEnergy": 6.5,
+        "services": 8.0,
+        "campusAccess": 7.2,
+        "greenCalm": 6.2
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS/commune group",
+      "evidence": "IRIS/commune group geometry from lille-student-life.md (medium confidence)."
+    }
+  ],
+  "marseille": [
+    {
+      "code": "marseille-saint-charles",
+      "name": "Saint-Charles",
+      "parent": "1e",
+      "area": "1e",
+      "scores": {
+        "security": 4.1,
+        "affordability": 6.0,
+        "transport": 9.4,
+        "studentEnergy": 8.0,
+        "services": 7.6,
+        "campusAccess": 9.2,
+        "greenCalm": 3.3
+      },
+      "confidence": "high",
+      "geomTarget": "official quartier",
+      "evidence": "official quartier geometry from marseille-student-life.md (high confidence)."
+    },
+    {
+      "code": "marseille-belle-de-mai",
+      "name": "Belle de Mai",
+      "parent": "3e",
+      "area": "3e",
+      "scores": {
+        "security": 3.9,
+        "affordability": 6.8,
+        "transport": 8.0,
+        "studentEnergy": 7.4,
+        "services": 6.8,
+        "campusAccess": 8.2,
+        "greenCalm": 3.8
+      },
+      "confidence": "high",
+      "geomTarget": "official quartier",
+      "evidence": "official quartier geometry from marseille-student-life.md (high confidence)."
+    },
+    {
+      "code": "marseille-noailles",
+      "name": "Noailles",
+      "parent": "1e",
+      "area": "1e",
+      "scores": {
+        "security": 3.5,
+        "affordability": 6.6,
+        "transport": 9.5,
+        "studentEnergy": 9.0,
+        "services": 8.0,
+        "campusAccess": 8.5,
+        "greenCalm": 2.6
+      },
+      "confidence": "high",
+      "geomTarget": "official quartier",
+      "evidence": "official quartier geometry from marseille-student-life.md (high confidence)."
+    },
+    {
+      "code": "marseille-belsunce",
+      "name": "Belsunce",
+      "parent": "1e",
+      "area": "1e",
+      "scores": {
+        "security": 3.7,
+        "affordability": 6.4,
+        "transport": 9.4,
+        "studentEnergy": 8.5,
+        "services": 7.8,
+        "campusAccess": 8.4,
+        "greenCalm": 2.8
+      },
+      "confidence": "high",
+      "geomTarget": "official quartier",
+      "evidence": "official quartier geometry from marseille-student-life.md (high confidence)."
+    },
+    {
+      "code": "marseille-cours-julien",
+      "name": "Cours Julien",
+      "parent": "6e",
+      "area": "6e",
+      "scores": {
+        "security": 5.3,
+        "affordability": 5.4,
+        "transport": 8.9,
+        "studentEnergy": 9.8,
+        "services": 8.5,
+        "campusAccess": 8.2,
+        "greenCalm": 3.7
+      },
+      "confidence": "medium",
+      "geomTarget": "official/group",
+      "evidence": "official/group geometry from marseille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "marseille-la-plaine-notre-dame-du-mont",
+      "name": "La Plaine / Notre-Dame-du-Mont",
+      "parent": "6e",
+      "area": "6e",
+      "scores": {
+        "security": 5.1,
+        "affordability": 5.6,
+        "transport": 8.8,
+        "studentEnergy": 9.4,
+        "services": 8.3,
+        "campusAccess": 8.1,
+        "greenCalm": 3.8
+      },
+      "confidence": "medium",
+      "geomTarget": "official/group",
+      "evidence": "official/group geometry from marseille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "marseille-lodi",
+      "name": "Lodi",
+      "parent": "6e/5e",
+      "area": "6e/5e",
+      "scores": {
+        "security": 5.7,
+        "affordability": 5.4,
+        "transport": 8.7,
+        "studentEnergy": 8.0,
+        "services": 8.0,
+        "campusAccess": 8.4,
+        "greenCalm": 4.4
+      },
+      "confidence": "high",
+      "geomTarget": "official quartier",
+      "evidence": "official quartier geometry from marseille-student-life.md (high confidence)."
+    },
+    {
+      "code": "marseille-baille",
+      "name": "Baille",
+      "parent": "5e",
+      "area": "5e",
+      "scores": {
+        "security": 6.1,
+        "affordability": 5.4,
+        "transport": 9.1,
+        "studentEnergy": 8.1,
+        "services": 8.2,
+        "campusAccess": 9.6,
+        "greenCalm": 4.9
+      },
+      "confidence": "high",
+      "geomTarget": "official quartier",
+      "evidence": "official quartier geometry from marseille-student-life.md (high confidence)."
+    },
+    {
+      "code": "marseille-la-timone",
+      "name": "La Timone",
+      "parent": "5e",
+      "area": "5e",
+      "scores": {
+        "security": 6.3,
+        "affordability": 5.0,
+        "transport": 9.0,
+        "studentEnergy": 8.0,
+        "services": 8.1,
+        "campusAccess": 10.0,
+        "greenCalm": 5.1
+      },
+      "confidence": "high",
+      "geomTarget": "official quartier",
+      "evidence": "official quartier geometry from marseille-student-life.md (high confidence)."
+    },
+    {
+      "code": "marseille-castellane",
+      "name": "Castellane",
+      "parent": "6e",
+      "area": "6e",
+      "scores": {
+        "security": 6.7,
+        "affordability": 3.8,
+        "transport": 9.3,
+        "studentEnergy": 7.7,
+        "services": 8.9,
+        "campusAccess": 8.5,
+        "greenCalm": 4.8
+      },
+      "confidence": "high",
+      "geomTarget": "official quartier",
+      "evidence": "official quartier geometry from marseille-student-life.md (high confidence)."
+    },
+    {
+      "code": "marseille-prefecture",
+      "name": "Prefecture",
+      "parent": "6e",
+      "area": "6e",
+      "scores": {
+        "security": 6.4,
+        "affordability": 3.5,
+        "transport": 9.2,
+        "studentEnergy": 7.4,
+        "services": 8.9,
+        "campusAccess": 8.2,
+        "greenCalm": 4.5
+      },
+      "confidence": "high",
+      "geomTarget": "official quartier",
+      "evidence": "official quartier geometry from marseille-student-life.md (high confidence)."
+    },
+    {
+      "code": "marseille-rouet",
+      "name": "Rouet",
+      "parent": "8e",
+      "area": "8e",
+      "scores": {
+        "security": 6.8,
+        "affordability": 4.0,
+        "transport": 8.8,
+        "studentEnergy": 7.1,
+        "services": 8.4,
+        "campusAccess": 7.9,
+        "greenCalm": 5.6
+      },
+      "confidence": "high",
+      "geomTarget": "official quartier",
+      "evidence": "official quartier geometry from marseille-student-life.md (high confidence)."
+    },
+    {
+      "code": "marseille-perier",
+      "name": "Perier",
+      "parent": "8e",
+      "area": "8e",
+      "scores": {
+        "security": 7.5,
+        "affordability": 2.8,
+        "transport": 8.9,
+        "studentEnergy": 6.6,
+        "services": 8.8,
+        "campusAccess": 7.4,
+        "greenCalm": 6.1
+      },
+      "confidence": "high",
+      "geomTarget": "official quartier",
+      "evidence": "official quartier geometry from marseille-student-life.md (high confidence)."
+    },
+    {
+      "code": "marseille-prado-saint-giniez",
+      "name": "Prado / Saint-Giniez",
+      "parent": "8e",
+      "area": "8e",
+      "scores": {
+        "security": 7.6,
+        "affordability": 2.6,
+        "transport": 8.6,
+        "studentEnergy": 6.0,
+        "services": 8.8,
+        "campusAccess": 7.0,
+        "greenCalm": 6.6
+      },
+      "confidence": "medium",
+      "geomTarget": "official/group",
+      "evidence": "official/group geometry from marseille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "marseille-vieux-port-opera",
+      "name": "Vieux-Port / Opera",
+      "parent": "1e",
+      "area": "1e",
+      "scores": {
+        "security": 5.2,
+        "affordability": 3.2,
+        "transport": 9.5,
+        "studentEnergy": 8.6,
+        "services": 9.2,
+        "campusAccess": 7.8,
+        "greenCalm": 3.8
+      },
+      "confidence": "medium",
+      "geomTarget": "official/group",
+      "evidence": "official/group geometry from marseille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "marseille-panier-hotel-de-ville",
+      "name": "Panier / Hotel de Ville",
+      "parent": "2e",
+      "area": "2e",
+      "scores": {
+        "security": 5.1,
+        "affordability": 3.7,
+        "transport": 9.0,
+        "studentEnergy": 8.0,
+        "services": 8.6,
+        "campusAccess": 7.5,
+        "greenCalm": 4.2
+      },
+      "confidence": "medium",
+      "geomTarget": "official/group",
+      "evidence": "official/group geometry from marseille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "marseille-joliette-euromed",
+      "name": "Joliette / Euromed",
+      "parent": "2e",
+      "area": "2e",
+      "scores": {
+        "security": 5.6,
+        "affordability": 4.2,
+        "transport": 9.1,
+        "studentEnergy": 7.4,
+        "services": 8.2,
+        "campusAccess": 7.8,
+        "greenCalm": 4.6
+      },
+      "confidence": "medium",
+      "geomTarget": "official/group",
+      "evidence": "official/group geometry from marseille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "marseille-endoume-catalans",
+      "name": "Endoume / Catalans",
+      "parent": "7e",
+      "area": "7e",
+      "scores": {
+        "security": 7.2,
+        "affordability": 2.6,
+        "transport": 7.6,
+        "studentEnergy": 6.8,
+        "services": 8.0,
+        "campusAccess": 6.8,
+        "greenCalm": 7.8
+      },
+      "confidence": "medium",
+      "geomTarget": "official/group",
+      "evidence": "official/group geometry from marseille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "marseille-sainte-anne-mazargues",
+      "name": "Sainte-Anne / Mazargues",
+      "parent": "8e/9e",
+      "area": "8e/9e",
+      "scores": {
+        "security": 7.0,
+        "affordability": 4.2,
+        "transport": 7.3,
+        "studentEnergy": 6.4,
+        "services": 7.8,
+        "campusAccess": 7.2,
+        "greenCalm": 7.2
+      },
+      "confidence": "medium",
+      "geomTarget": "official/group",
+      "evidence": "official/group geometry from marseille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "marseille-luminy-campus",
+      "name": "Luminy campus",
+      "parent": "9e",
+      "area": "9e",
+      "scores": {
+        "security": 7.9,
+        "affordability": 4.4,
+        "transport": 6.3,
+        "studentEnergy": 7.7,
+        "services": 6.6,
+        "campusAccess": 10.0,
+        "greenCalm": 10.0
+      },
+      "confidence": "medium",
+      "geomTarget": "official/group",
+      "evidence": "official/group geometry from marseille-student-life.md (medium confidence)."
+    },
+    {
+      "code": "marseille-saint-jerome",
+      "name": "Saint-Jerome",
+      "parent": "13e",
+      "area": "13e",
+      "scores": {
+        "security": 5.6,
+        "affordability": 6.8,
+        "transport": 7.3,
+        "studentEnergy": 7.6,
+        "services": 7.2,
+        "campusAccess": 9.4,
+        "greenCalm": 6.2
+      },
+      "confidence": "high",
+      "geomTarget": "official quartier",
+      "evidence": "official quartier geometry from marseille-student-life.md (high confidence)."
+    },
+    {
+      "code": "marseille-chateau-gombert",
+      "name": "Chateau-Gombert",
+      "parent": "13e",
+      "area": "13e",
+      "scores": {
+        "security": 6.2,
+        "affordability": 6.2,
+        "transport": 6.8,
+        "studentEnergy": 7.2,
+        "services": 7.0,
+        "campusAccess": 9.0,
+        "greenCalm": 7.0
+      },
+      "confidence": "high",
+      "geomTarget": "official quartier",
+      "evidence": "official quartier geometry from marseille-student-life.md (high confidence)."
+    },
+    {
+      "code": "marseille-la-castellane-15e-north",
+      "name": "La Castellane / 15e north",
+      "parent": "15e",
+      "area": "15e",
+      "scores": {
+        "security": 2.6,
+        "affordability": 7.6,
+        "transport": 6.6,
+        "studentEnergy": 4.8,
+        "services": 6.2,
+        "campusAccess": 5.6,
+        "greenCalm": 4.8
+      },
+      "confidence": "medium",
+      "geomTarget": "official/group",
+      "evidence": "official/group geometry from marseille-student-life.md (medium confidence)."
+    }
+  ],
+  "nice": [
+    {
+      "code": "nice-jean-medecin-core",
+      "name": "Jean-Medecin core",
+      "parent": "Centre",
+      "area": "Centre",
+      "scores": {
+        "security": 5.6,
+        "affordability": 2.3,
+        "transport": 9.6,
+        "studentEnergy": 8.0,
+        "services": 9.4,
+        "campusAccess": 8.0,
+        "greenCalm": 3.4
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nice-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nice-carabacel",
+      "name": "Carabacel",
+      "parent": "Centre east",
+      "area": "Centre east",
+      "scores": {
+        "security": 6.2,
+        "affordability": 2.6,
+        "transport": 9.1,
+        "studentEnergy": 7.4,
+        "services": 8.8,
+        "campusAccess": 8.0,
+        "greenCalm": 4.4
+      },
+      "confidence": "medium",
+      "geomTarget": "official/IRIS group",
+      "evidence": "official/IRIS group geometry from nice-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nice-thiers-station-edge",
+      "name": "Thiers / station edge",
+      "parent": "Centre west",
+      "area": "Centre west",
+      "scores": {
+        "security": 5.1,
+        "affordability": 3.5,
+        "transport": 9.3,
+        "studentEnergy": 7.2,
+        "services": 8.5,
+        "campusAccess": 8.0,
+        "greenCalm": 4.0
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nice-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nice-musiciens",
+      "name": "Musiciens",
+      "parent": "Centre west",
+      "area": "Centre west",
+      "scores": {
+        "security": 6.1,
+        "affordability": 3.0,
+        "transport": 8.9,
+        "studentEnergy": 6.8,
+        "services": 8.7,
+        "campusAccess": 7.8,
+        "greenCalm": 4.8
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nice-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nice-vernier",
+      "name": "Vernier",
+      "parent": "North centre",
+      "area": "North centre",
+      "scores": {
+        "security": 5.7,
+        "affordability": 4.3,
+        "transport": 8.8,
+        "studentEnergy": 7.6,
+        "services": 8.0,
+        "campusAccess": 8.6,
+        "greenCalm": 4.7
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nice-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nice-liberation",
+      "name": "Liberation",
+      "parent": "North centre",
+      "area": "North centre",
+      "scores": {
+        "security": 6.6,
+        "affordability": 4.6,
+        "transport": 8.9,
+        "studentEnergy": 8.3,
+        "services": 8.5,
+        "campusAccess": 9.3,
+        "greenCalm": 5.8
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nice-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nice-borriglione-valrose",
+      "name": "Borriglione / Valrose",
+      "parent": "North centre campus",
+      "area": "North centre campus",
+      "scores": {
+        "security": 6.8,
+        "affordability": 4.7,
+        "transport": 8.8,
+        "studentEnergy": 8.3,
+        "services": 8.3,
+        "campusAccess": 9.6,
+        "greenCalm": 6.0
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nice-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nice-saint-maurice",
+      "name": "Saint-Maurice",
+      "parent": "North centre",
+      "area": "North centre",
+      "scores": {
+        "security": 6.5,
+        "affordability": 4.8,
+        "transport": 8.0,
+        "studentEnergy": 7.0,
+        "services": 7.6,
+        "campusAccess": 8.6,
+        "greenCalm": 6.0
+      },
+      "confidence": "medium",
+      "geomTarget": "official/IRIS group",
+      "evidence": "official/IRIS group geometry from nice-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nice-cimiez",
+      "name": "Cimiez",
+      "parent": "North-east hills",
+      "area": "North-east hills",
+      "scores": {
+        "security": 8.1,
+        "affordability": 2.6,
+        "transport": 7.0,
+        "studentEnergy": 4.8,
+        "services": 7.9,
+        "campusAccess": 7.3,
+        "greenCalm": 8.2
+      },
+      "confidence": "medium",
+      "geomTarget": "official/IRIS group",
+      "evidence": "official/IRIS group geometry from nice-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nice-rimiez",
+      "name": "Rimiez",
+      "parent": "North-east hills",
+      "area": "North-east hills",
+      "scores": {
+        "security": 8.3,
+        "affordability": 2.7,
+        "transport": 6.2,
+        "studentEnergy": 4.2,
+        "services": 7.4,
+        "campusAccess": 6.8,
+        "greenCalm": 8.8
+      },
+      "confidence": "medium",
+      "geomTarget": "official/IRIS group",
+      "evidence": "official/IRIS group geometry from nice-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nice-vieux-nice",
+      "name": "Vieux-Nice",
+      "parent": "Historic centre",
+      "area": "Historic centre",
+      "scores": {
+        "security": 5.4,
+        "affordability": 2.8,
+        "transport": 8.9,
+        "studentEnergy": 9.0,
+        "services": 9.1,
+        "campusAccess": 7.5,
+        "greenCalm": 4.0
+      },
+      "confidence": "medium",
+      "geomTarget": "official/IRIS group",
+      "evidence": "official/IRIS group geometry from nice-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nice-port",
+      "name": "Port",
+      "parent": "East centre",
+      "area": "East centre",
+      "scores": {
+        "security": 5.9,
+        "affordability": 3.0,
+        "transport": 8.7,
+        "studentEnergy": 8.4,
+        "services": 8.9,
+        "campusAccess": 7.6,
+        "greenCalm": 5.2
+      },
+      "confidence": "medium",
+      "geomTarget": "official/IRIS group",
+      "evidence": "official/IRIS group geometry from nice-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nice-riquier",
+      "name": "Riquier",
+      "parent": "East inner city",
+      "area": "East inner city",
+      "scores": {
+        "security": 5.8,
+        "affordability": 5.3,
+        "transport": 8.6,
+        "studentEnergy": 7.2,
+        "services": 8.1,
+        "campusAccess": 7.6,
+        "greenCalm": 5.0
+      },
+      "confidence": "medium",
+      "geomTarget": "official/IRIS group",
+      "evidence": "official/IRIS group geometry from nice-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nice-saint-roch",
+      "name": "Saint-Roch",
+      "parent": "East",
+      "area": "East",
+      "scores": {
+        "security": 5.7,
+        "affordability": 5.8,
+        "transport": 8.3,
+        "studentEnergy": 6.8,
+        "services": 7.7,
+        "campusAccess": 7.6,
+        "greenCalm": 5.2
+      },
+      "confidence": "medium",
+      "geomTarget": "official/IRIS group",
+      "evidence": "official/IRIS group geometry from nice-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nice-saint-jean-d-angely",
+      "name": "Saint-Jean-d'Angely",
+      "parent": "East campus",
+      "area": "East campus",
+      "scores": {
+        "security": 5.8,
+        "affordability": 5.2,
+        "transport": 8.6,
+        "studentEnergy": 7.6,
+        "services": 7.8,
+        "campusAccess": 9.0,
+        "greenCalm": 5.2
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nice-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nice-pasteur",
+      "name": "Pasteur",
+      "parent": "East",
+      "area": "East",
+      "scores": {
+        "security": 4.5,
+        "affordability": 6.7,
+        "transport": 7.6,
+        "studentEnergy": 5.8,
+        "services": 7.0,
+        "campusAccess": 8.1,
+        "greenCalm": 5.0
+      },
+      "confidence": "medium",
+      "geomTarget": "official/IRIS group",
+      "evidence": "official/IRIS group geometry from nice-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nice-ariane",
+      "name": "Ariane",
+      "parent": "North-east edge",
+      "area": "North-east edge",
+      "scores": {
+        "security": 3.2,
+        "affordability": 7.4,
+        "transport": 6.8,
+        "studentEnergy": 4.8,
+        "services": 6.2,
+        "campusAccess": 5.6,
+        "greenCalm": 5.6
+      },
+      "confidence": "medium",
+      "geomTarget": "official/IRIS group",
+      "evidence": "official/IRIS group geometry from nice-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nice-rue-de-france-promenade-edge",
+      "name": "Rue de France / Promenade edge",
+      "parent": "Centre west coast",
+      "area": "Centre west coast",
+      "scores": {
+        "security": 6.1,
+        "affordability": 2.8,
+        "transport": 8.7,
+        "studentEnergy": 7.2,
+        "services": 8.8,
+        "campusAccess": 7.4,
+        "greenCalm": 4.8
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nice-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nice-baumettes-magnan",
+      "name": "Baumettes / Magnan",
+      "parent": "West coast",
+      "area": "West coast",
+      "scores": {
+        "security": 6.2,
+        "affordability": 4.2,
+        "transport": 8.0,
+        "studentEnergy": 6.8,
+        "services": 7.8,
+        "campusAccess": 8.2,
+        "greenCalm": 5.8
+      },
+      "confidence": "medium",
+      "geomTarget": "official/IRIS group",
+      "evidence": "official/IRIS group geometry from nice-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nice-carlone-campus",
+      "name": "Carlone campus",
+      "parent": "West campus",
+      "area": "West campus",
+      "scores": {
+        "security": 6.5,
+        "affordability": 4.8,
+        "transport": 7.6,
+        "studentEnergy": 7.3,
+        "services": 7.4,
+        "campusAccess": 9.2,
+        "greenCalm": 6.3
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nice-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nice-madeleine",
+      "name": "Madeleine",
+      "parent": "West valley",
+      "area": "West valley",
+      "scores": {
+        "security": 6.1,
+        "affordability": 5.1,
+        "transport": 7.4,
+        "studentEnergy": 6.5,
+        "services": 7.2,
+        "campusAccess": 8.5,
+        "greenCalm": 6.2
+      },
+      "confidence": "medium",
+      "geomTarget": "official/IRIS group",
+      "evidence": "official/IRIS group geometry from nice-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nice-arenas-saint-augustin-edhec",
+      "name": "Arenas / Saint-Augustin / EDHEC",
+      "parent": "West airport",
+      "area": "West airport",
+      "scores": {
+        "security": 5.0,
+        "affordability": 5.4,
+        "transport": 8.4,
+        "studentEnergy": 6.2,
+        "services": 7.4,
+        "campusAccess": 8.2,
+        "greenCalm": 5.2
+      },
+      "confidence": "medium",
+      "geomTarget": "official/IRIS group",
+      "evidence": "official/IRIS group geometry from nice-student-life.md (medium confidence)."
+    }
+  ],
+  "nantes": [
+    {
+      "code": "nantes-decre-bouffay",
+      "name": "Decre / Bouffay",
+      "parent": "Centre-ville",
+      "area": "Centre-ville",
+      "scores": {
+        "security": 5.8,
+        "affordability": 3.1,
+        "transport": 9.7,
+        "studentEnergy": 9.4,
+        "services": 9.2,
+        "campusAccess": 8.4,
+        "greenCalm": 3.8
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nantes-commerce-graslin",
+      "name": "Commerce / Graslin",
+      "parent": "Centre-ville",
+      "area": "Centre-ville",
+      "scores": {
+        "security": 6.4,
+        "affordability": 2.7,
+        "transport": 9.7,
+        "studentEnergy": 9.0,
+        "services": 9.4,
+        "campusAccess": 8.3,
+        "greenCalm": 4.2
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nantes-talensac-viarme",
+      "name": "Talensac / Viarme",
+      "parent": "Centre north",
+      "area": "Centre north",
+      "scores": {
+        "security": 6.7,
+        "affordability": 3.8,
+        "transport": 9.0,
+        "studentEnergy": 8.4,
+        "services": 8.7,
+        "campusAccess": 8.6,
+        "greenCalm": 5.6
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nantes-hauts-paves",
+      "name": "Hauts-Paves",
+      "parent": "Hauts-Paves - Saint-Felix",
+      "area": "Hauts-Paves - Saint-Felix",
+      "scores": {
+        "security": 7.1,
+        "affordability": 4.2,
+        "transport": 8.6,
+        "studentEnergy": 8.1,
+        "services": 8.1,
+        "campusAccess": 9.0,
+        "greenCalm": 6.6
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nantes-saint-felix-michelet",
+      "name": "Saint-Felix / Michelet",
+      "parent": "Hauts-Paves - Saint-Felix",
+      "area": "Hauts-Paves - Saint-Felix",
+      "scores": {
+        "security": 7.3,
+        "affordability": 4.4,
+        "transport": 8.6,
+        "studentEnergy": 8.6,
+        "services": 8.2,
+        "campusAccess": 9.6,
+        "greenCalm": 7.0
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nantes-facultes-petit-port",
+      "name": "Facultes / Petit-Port",
+      "parent": "Nantes Nord",
+      "area": "Nantes Nord",
+      "scores": {
+        "security": 6.5,
+        "affordability": 5.6,
+        "transport": 8.6,
+        "studentEnergy": 8.8,
+        "services": 7.8,
+        "campusAccess": 10.0,
+        "greenCalm": 7.6
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nantes-joneliere",
+      "name": "Joneliere",
+      "parent": "Nantes Nord",
+      "area": "Nantes Nord",
+      "scores": {
+        "security": 6.8,
+        "affordability": 5.8,
+        "transport": 8.2,
+        "studentEnergy": 8.2,
+        "services": 7.4,
+        "campusAccess": 9.8,
+        "greenCalm": 8.2
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nantes-bout-des-landes-boissiere",
+      "name": "Bout des Landes / Boissiere",
+      "parent": "Nantes Nord",
+      "area": "Nantes Nord",
+      "scores": {
+        "security": 5.2,
+        "affordability": 6.7,
+        "transport": 7.8,
+        "studentEnergy": 6.2,
+        "services": 6.8,
+        "campusAccess": 8.2,
+        "greenCalm": 6.8
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nantes-chantrerie-gachet",
+      "name": "Chantrerie / Gachet",
+      "parent": "Nantes Erdre",
+      "area": "Nantes Erdre",
+      "scores": {
+        "security": 7.2,
+        "affordability": 5.2,
+        "transport": 7.2,
+        "studentEnergy": 7.3,
+        "services": 7.3,
+        "campusAccess": 9.5,
+        "greenCalm": 8.8
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nantes-saint-joseph-porterie",
+      "name": "Saint-Joseph de Porterie",
+      "parent": "Nantes Erdre",
+      "area": "Nantes Erdre",
+      "scores": {
+        "security": 7.0,
+        "affordability": 5.6,
+        "transport": 7.4,
+        "studentEnergy": 6.6,
+        "services": 7.2,
+        "campusAccess": 8.2,
+        "greenCalm": 8.0
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nantes-ile-de-nantes-west",
+      "name": "Ile de Nantes west",
+      "parent": "Ile de Nantes",
+      "area": "Ile de Nantes",
+      "scores": {
+        "security": 6.8,
+        "affordability": 4.0,
+        "transport": 8.7,
+        "studentEnergy": 8.1,
+        "services": 8.1,
+        "campusAccess": 8.2,
+        "greenCalm": 6.7
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nantes-ile-de-nantes-east",
+      "name": "Ile de Nantes east",
+      "parent": "Ile de Nantes",
+      "area": "Ile de Nantes",
+      "scores": {
+        "security": 6.4,
+        "affordability": 4.5,
+        "transport": 8.5,
+        "studentEnergy": 7.5,
+        "services": 7.8,
+        "campusAccess": 7.8,
+        "greenCalm": 6.6
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nantes-malakoff",
+      "name": "Malakoff",
+      "parent": "Malakoff - Saint-Donatien",
+      "area": "Malakoff - Saint-Donatien",
+      "scores": {
+        "security": 4.8,
+        "affordability": 6.4,
+        "transport": 8.8,
+        "studentEnergy": 6.8,
+        "services": 7.4,
+        "campusAccess": 8.0,
+        "greenCalm": 5.4
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nantes-saint-donatien",
+      "name": "Saint-Donatien",
+      "parent": "Malakoff - Saint-Donatien",
+      "area": "Malakoff - Saint-Donatien",
+      "scores": {
+        "security": 6.8,
+        "affordability": 4.8,
+        "transport": 8.6,
+        "studentEnergy": 7.2,
+        "services": 8.2,
+        "campusAccess": 7.8,
+        "greenCalm": 6.2
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nantes-dervallieres",
+      "name": "Dervallieres",
+      "parent": "Dervallieres - Zola",
+      "area": "Dervallieres - Zola",
+      "scores": {
+        "security": 4.8,
+        "affordability": 6.6,
+        "transport": 7.8,
+        "studentEnergy": 6.0,
+        "services": 7.0,
+        "campusAccess": 6.8,
+        "greenCalm": 6.2
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nantes-zola",
+      "name": "Zola",
+      "parent": "Dervallieres - Zola",
+      "area": "Dervallieres - Zola",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.2,
+        "transport": 8.2,
+        "studentEnergy": 7.2,
+        "services": 8.0,
+        "campusAccess": 7.2,
+        "greenCalm": 6.6
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nantes-chantenay-sainte-anne",
+      "name": "Chantenay / Sainte-Anne",
+      "parent": "Bellevue - Chantenay - Sainte-Anne",
+      "area": "Bellevue - Chantenay - Sainte-Anne",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.4,
+        "transport": 8.0,
+        "studentEnergy": 7.1,
+        "services": 7.7,
+        "campusAccess": 7.0,
+        "greenCalm": 7.2
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nantes-bellevue",
+      "name": "Bellevue",
+      "parent": "Bellevue - Chantenay - Sainte-Anne",
+      "area": "Bellevue - Chantenay - Sainte-Anne",
+      "scores": {
+        "security": 4.3,
+        "affordability": 7.0,
+        "transport": 8.1,
+        "studentEnergy": 6.3,
+        "services": 7.0,
+        "campusAccess": 7.1,
+        "greenCalm": 6.0
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nantes-breil",
+      "name": "Breil",
+      "parent": "Breil - Barberie",
+      "area": "Breil - Barberie",
+      "scores": {
+        "security": 4.9,
+        "affordability": 6.3,
+        "transport": 7.6,
+        "studentEnergy": 5.8,
+        "services": 7.0,
+        "campusAccess": 6.6,
+        "greenCalm": 6.8
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nantes-barberie",
+      "name": "Barberie",
+      "parent": "Breil - Barberie",
+      "area": "Breil - Barberie",
+      "scores": {
+        "security": 6.2,
+        "affordability": 5.4,
+        "transport": 7.7,
+        "studentEnergy": 6.4,
+        "services": 7.4,
+        "campusAccess": 6.8,
+        "greenCalm": 7.0
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nantes-doulon",
+      "name": "Doulon",
+      "parent": "Doulon - Bottiere",
+      "area": "Doulon - Bottiere",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.8,
+        "transport": 8.0,
+        "studentEnergy": 6.6,
+        "services": 7.5,
+        "campusAccess": 7.0,
+        "greenCalm": 6.8
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    },
+    {
+      "code": "nantes-bottiere",
+      "name": "Bottiere",
+      "parent": "Doulon - Bottiere",
+      "area": "Doulon - Bottiere",
+      "scores": {
+        "security": 5.2,
+        "affordability": 6.6,
+        "transport": 8.3,
+        "studentEnergy": 6.2,
+        "services": 7.1,
+        "campusAccess": 7.0,
+        "greenCalm": 6.4
+      },
+      "confidence": "medium",
+      "geomTarget": "IRIS group",
+      "evidence": "IRIS group geometry from nantes-student-life.md (medium confidence)."
+    }
+  ]
+}

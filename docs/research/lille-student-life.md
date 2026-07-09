@@ -1,73 +1,111 @@
-# Lille student life scoring (research draft)
+# Lille student life scoring (major districts)
 
 ## Method
 
-Same seven criteria as Paris, same weights, same security cap:
+Same seven criteria, same weights, same security cap as the app.
 
-| Criterion | Weight |
-|-----------|--------|
-| Security | 3.0 |
-| Affordability | 1.6 |
-| Transport | 1.4 |
-| Student energy | 1.2 |
-| Services | 1.0 |
-| Campus access | 1.0 |
-| Green/calm | 0.8 |
+Rebuild target: **16 major districts** across Lille and core campus suburbs. Use official Lille quartier polygons for Lille proper; use full-commune IRIS groups for associated suburbs; scope Roubaix to Barbieux/EDHEC only.
 
-Lille should use city quartiers plus selected metro-area campus nodes. Villeneuve-d'Ascq must be included because Cité Scientifique and Pont de Bois are too important for student life to omit.
+Boundary confidence: **high** for official Lille quartiers, **high** for Villeneuve-d'Ascq commune grouping, **medium/low** for suburb commune fallbacks.
 
-Boundary confidence: **medium** for Lille city quartiers, **low/medium** for cross-commune campus labels until geometry source is chosen.
-
-## Baseline
-
-Lille is compact, transit-rich, and student-heavy. That makes over-scoring easy. Vauban is a genuine student winner; Wazemmes and Moulins have energy but need caps. Villeneuve-d'Ascq campus zones are not "suburban filler"; they are core student infrastructure.
-
-## Sources
+## Source Notes
 
 Primary:
 
-- [SSMSI crime dataset (data.gouv.fr)](https://www.data.gouv.fr/datasets/bases-statistiques-communale-departementale-et-regionale-de-la-delinquance-enregistree-par-la-police-et-la-gendarmerie-nationales)
-- [geo.api.gouv.fr commune contours](https://geo.api.gouv.fr/decoupage-administratif/communes)
-- [Quartiers de Lille](https://fr.wikipedia.org/wiki/Quartiers_de_Lille)
+- [SSMSI crime dataset](https://www.data.gouv.fr/datasets/bases-statistiques-communale-departementale-et-regionale-de-la-delinquance-enregistree-par-la-police-et-la-gendarmerie-nationales)
+- [INSEE IRIS definition](https://www.insee.fr/fr/metadonnees/definition/c1523)
+- [Quartiers de Lille](https://fr.wikipedia.org/wiki/Quartiers_de_Lille) — 10 recognized 21st-century districts
+- [Lille Metropole WFS](https://data.lillemetropole.fr/geoserver/wfs) — official quartier polygons (`ville_lille:limite_des_quartiers_de_lille_et_de_ses_communes_associees`)
+- [Université de Lille](https://www.univ-lille.fr/)
+- [Université catholique de Lille](https://www.univ-catholique.fr/)
+- [Ilévia network](https://www.ilevia.fr/)
 
-Context (not used alone for scoring):
+## Major District Rationale
 
-- [University of Lille](https://en.wikipedia.org/wiki/University_of_Lille)
-- [Ilévia transport network](https://en.wikipedia.org/wiki/Il%C3%A9via)
-- [Lille Metro](https://en.wikipedia.org/wiki/Lille_Metro)
-- [Lille tramway](https://en.wikipedia.org/wiki/Lille_tramway)
-- [Université catholique de Lille](https://fr.wikipedia.org/wiki/Universit%C3%A9_catholique_de_Lille)
+Previous micro/context partition created 40+ IRIS fragments with identical placeholder scores. Students choose by **district reputation** first: Vauban, Wazemmes, Centre, VdA campus, not 26 context slivers.
 
-## Harsh notes
+## Major Score Table
 
-- Vauban-Esquermes is the cleanest student-life pick: campus, services, social life, and tolerable risk.
-- Wazemmes must not be punished into uselessness, but it cannot be treated as comfort-safe.
-- Moulins gets strong campus access and value, but safety caps total score.
-- Vieux-Lille is pleasant but expensive and less student-practical than reputation suggests.
-- Lille-Sud is a cap zone. Cheap rent is not enough.
-- Villeneuve-d'Ascq has two different student profiles: Cité Scientifique stronger and calmer; Pont de Bois more mixed.
+Order: security / affordability / transport / studentEnergy / services / campusAccess / greenCalm
+
+| District | Geometry | Confidence | Scores | Role |
+|----------|----------|------------|--------|------|
+| Lille-Centre | official quartier | medium | 5.6 / 2.6 / 9.9 / 8.0 / 9.4 / 8.0 / 3.6 | primary |
+| Vieux-Lille | official quartier | high | 7.4 / 2.0 / 8.3 / 6.8 / 8.9 / 7.0 / 5.8 | primary |
+| Vauban-Esquermes | official quartier | high | 7.5 / 3.8 / 8.2 / 9.4 / 8.3 / 9.7 / 7.6 | primary |
+| Wazemmes (+ Faubourg de Béthune) | official quartier | high | 4.9 / 6.4 / 8.8 / 9.4 / 8.2 / 8.4 / 3.9 | primary |
+| Moulins | official quartier | medium | 4.5 / 6.8 / 8.5 / 8.2 / 7.4 / 9.1 / 4.1 | primary / risk_cap |
+| Fives | official quartier | medium | 5.4 / 6.5 / 8.7 / 7.1 / 7.3 / 7.1 / 4.9 | primary |
+| Bois-Blancs | official quartier | medium | 6.5 / 5.4 / 7.9 / 6.9 / 7.3 / 6.5 / 6.8 | primary |
+| Lille-Sud | official quartier | medium | 4.2 / 7.1 / 7.7 / 5.6 / 6.7 / 7.1 / 5.3 | primary / risk_cap |
+| Saint-Maurice Pellevoisin | official quartier | medium | 6.3 / 5.8 / 8.1 / 5.2 / 7.5 / 6.8 / 6.1 | context |
+| Hellemmes | official quartier | medium | 5.9 / 6.2 / 8.6 / 7.0 / 7.2 / 7.7 / 5.5 | context |
+| Lomme / CHR | official quartier | medium | 6.2 / 6.1 / 8.3 / 6.6 / 7.5 / 8.4 / 6.3 | campus |
+| Lambersart | commune IRIS group | low | 6.8 / 4.2 / 8.0 / 5.0 / 7.8 / 6.2 / 6.9 | context |
+| La Madeleine | commune IRIS group | medium | 7.1 / 3.6 / 8.6 / 6.3 / 8.1 / 7.1 / 6.4 | context |
+| Mons-en-Barœul | commune IRIS group | low | 6.0 / 6.0 / 8.4 / 6.2 / 7.0 / 7.3 / 5.8 | context |
+| Villeneuve-d'Ascq campus | commune IRIS group | high | 6.7 / 5.9 / 8.9 / 8.8 / 7.7 / 9.9 / 7.6 | campus |
+| Roubaix / Barbieux | IRIS group (4 units) | medium | 6.1 / 5.7 / 8.1 / 7.5 / 7.5 / 9.3 / 7.1 | campus |
+
+## Geometry Instructions
+
+- Lille WFS requests must include `srsName=EPSG:4326`.
+- Lille commune (`59350`): one feature per official quartier; merge Wazemmes + Faubourg de Béthune for student corridor continuity.
+- Lambersart, La Madeleine, Mons, Villeneuve-d'Ascq: all commune IRIS merged per district.
+- Roubaix: Barbieux/EDHEC IRIS only (`Barbieux Sud`, `Barbieux-Vauban`, `Alma Nord`, `Alma Sud`).
+- No context filler zones; no identical placeholder score tuples.
 
 ## Verdict
 
-Vauban-Esquermes and Cité Scientifique lead. Wazemmes is a good street-smart pick but capped. Moulins and Lille-Sud need honest safety penalties. Vieux-Lille is comfort/prestige, not best student value.
+Lille should read as a small set of honest districts. Vauban-Esquermes and Villeneuve-d'Ascq campus lead. Wazemmes and Fives offer value. Centre and Vieux-Lille are premium convenience. Moulins and Lille-Sud carry visible safety caps.
+## Croix, Roubaix, Tourcoing — Major-Zone Fallback
 
-## Micro score table
+East/north-east communes use **eight broad user-facing zones** (Croix 2, Roubaix 3, Tourcoing 3). IRIS polygons are a backend building block only — no official Roubaix/Tourcoing quartier WFS is in scope. Fewer zones are intentional for map readability and evidence honesty; scores are district-reputation fallback, not fake micro precision.
 
-Order: security / affordability / transport / studentEnergy / services / campusAccess / greenCalm -> total
+Sources:
 
-| Micro-area | Parent | Scores | Total |
-|------------|--------|--------|-------|
-| Lille-Centre / Gares / Euralille | Lille Centre | 5.4 / 2.8 / 9.8 / 8.0 / 9.2 / 8.2 / 3.8 | 6.2 |
-| Vieux-Lille | Vieux-Lille | 7.0 / 2.0 / 8.2 / 7.2 / 8.8 / 7.2 / 5.4 | 6.5 |
-| Vauban-Esquermes / Catho | Vauban-Esquermes | 7.2 / 4.0 / 8.0 / 9.0 / 8.0 / 9.3 / 7.2 | 7.3 |
-| Wazemmes | Wazemmes | 5.0 / 6.0 / 8.8 / 9.2 / 8.0 / 8.4 / 4.0 | 6.2 |
-| Moulins | Moulins | 4.6 / 6.6 / 8.6 / 8.0 / 7.4 / 9.0 / 4.2 | 5.2 |
-| Fives | Fives | 5.2 / 6.4 / 8.6 / 7.0 / 7.2 / 7.0 / 4.8 | 6.2 |
-| Bois-Blancs / Euratechnologies | Bois-Blancs | 6.4 / 5.2 / 7.8 / 6.8 / 7.2 / 6.4 / 6.6 | 6.5 |
-| Lille-Sud | Lille-Sud | 4.2 / 7.0 / 7.6 / 5.8 / 6.8 / 7.2 / 5.2 | 5.2 |
-| Villeneuve-d'Ascq Cité Scientifique | Villeneuve-d'Ascq | 6.8 / 5.8 / 8.8 / 8.6 / 7.6 / 10.0 / 7.8 | 7.0 |
-| Villeneuve-d'Ascq Pont de Bois | Villeneuve-d'Ascq | 5.8 / 6.2 / 8.8 / 8.8 / 7.4 / 9.8 / 6.8 | 6.2 |
+- [Croix (Nord)](https://fr.wikipedia.org/wiki/Croix_(Nord)) — EDHEC/Barbieux band vs rest-of-commune context
+- [Roubaix](https://fr.wikipedia.org/wiki/Roubaix) — Barbieux comfort band, centre-west hub, east/north risk context
+- [Tourcoing](https://fr.wikipedia.org/wiki/Tourcoing) — centre/gare hub, south-west connector, north-east risk context
+- [EDHEC Nord](https://fr.wikipedia.org/wiki/%C3%89cole_des_hautes_%C3%A9tudes_commerciales_du_Nord) — campus across Croix/Roubaix Barbieux
 
-## Boundary note
+### Croix (59163) — 2 zones
 
-Do not force all of Villeneuve-d'Ascq into one score. Cité Scientifique and Pont de Bois are both student-relevant but have different comfort profiles.
+| District | Confidence | Scores (S/A/T/SE/Sv/C/G) | Role |
+|----------|------------|--------------------------|------|
+| Barbieux / EDHEC | medium | 7.0 / 5.0 / 8.0 / 7.6 / 7.5 / 9.4 / 7.6 | campus |
+| Rest of commune | low | 6.4 / 6.1 / 8.2 / 6.0 / 7.2 / 6.4 / 6.0 | context |
+
+### Roubaix (59512) — 3 zones
+
+| District | Confidence | Scores | Role |
+|----------|------------|--------|------|
+| Barbieux / EDHEC | medium | 6.8 / 5.4 / 8.2 / 7.4 / 7.5 / 9.2 / 7.2 | campus |
+| Centre-west | medium | 5.5 / 5.8 / 8.7 / 6.6 / 8.2 / 7.0 / 4.3 | primary |
+| East / north | low | 4.8 / 6.8 / 7.8 / 5.6 / 6.6 / 6.0 / 4.0 | context |
+
+### Tourcoing (59599) — 3 zones
+
+| District | Confidence | Scores | Role |
+|----------|------------|--------|------|
+| Centre / Gare | medium | 5.9 / 5.9 / 8.6 / 6.5 / 8.0 / 6.7 / 4.5 | primary |
+| South-west | medium | 6.0 / 6.1 / 8.3 / 6.1 / 7.4 / 6.4 / 5.4 | primary |
+| North-east | low | 4.7 / 6.8 / 7.5 / 5.0 / 6.3 / 5.4 / 4.0 | context |
+
+Geometry: `iris_fallback_major_zone` — IRIS BFS partition from major-district seeds; full commune coverage; outline layer dissolved in UI.
+
+## Geometry Repair (2026-07)
+
+Lille now uses three geometry classes:
+
+| Class | Use | Examples |
+|-------|-----|----------|
+| `official_quartier` | Best quality; Lille WFS + VDA quartier layer | Lille-Centre, Cité Scientifique/Triolo |
+| `commune_context` | Whole adjacent commune, one honest broad score | La Madeleine, Lambersart, Mons-en-Barœul |
+| `iris_fallback_major_zone` | IRIS backend only; few broad user-facing zones | Croix, Roubaix, Tourcoing (8 zones) |
+
+**Visual seam fix:** Map outline layer dissolves MultiPolygon rings before drawing (`dissolveGeometry` in `ParisStudentMap.tsx`), so merged IRIS/commune zones no longer show internal white borders. Fill layer still uses raw geometry for accurate click targets.
+
+**Villeneuve-d'Ascq:** Replaced whole-commune `lille-villeneuve-dascq-campus` blob with five official VDA quartier zones partitioned by adjacency.
+
+**Roubaix/Tourcoing limitations:** No official quartier WFS in scope; eight major zones replace granular IRIS labels. Scores are district-reputation fallback, not micro-precision.

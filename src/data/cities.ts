@@ -26,6 +26,8 @@ export type Source = {
 
 export type PlaceGranularity = "micro" | "macro";
 export type PlaceConfidence = "high" | "medium" | "low";
+export type CoverageRole = "primary" | "context" | "campus" | "risk_cap" | "low_relevance";
+export type GeometryBasis = "iris_partition" | "iris_district_partition" | "iris_fallback_major_zone" | "official_quartier" | "arrondissement" | "commune" | "commune_context";
 
 export type CityConfig = {
   id: CityId;
@@ -59,6 +61,8 @@ export type PlaceScore = {
   granularity?: PlaceGranularity;
   confidence?: PlaceConfidence;
   evidenceNote?: string;
+  coverageRole?: CoverageRole;
+  geometryBasis?: GeometryBasis;
 };
 
 export type ScoreKey =
@@ -277,6 +281,22 @@ const lilleSources: Source[] = [
   {
     label: "Wikipedia: Ilévia transport network",
     url: "https://en.wikipedia.org/wiki/Il%C3%A9via"
+  },
+  {
+    label: "Wikipedia: Croix (Nord)",
+    url: "https://fr.wikipedia.org/wiki/Croix_(Nord)"
+  },
+  {
+    label: "Wikipedia: Roubaix",
+    url: "https://fr.wikipedia.org/wiki/Roubaix"
+  },
+  {
+    label: "Wikipedia: Tourcoing",
+    url: "https://fr.wikipedia.org/wiki/Tourcoing"
+  },
+  {
+    label: "Wikipedia: EDHEC Nord",
+    url: "https://fr.wikipedia.org/wiki/%C3%89cole_des_hautes_%C3%A9tudes_commerciales_du_Nord"
   }
 ];
 
@@ -483,14 +503,35 @@ export const cities: CityConfig[] = [
     zoom: 12,
     minZoom: 10.5,
     maxZoom: 15,
-    defaultSelectedCode: "toulouse-rangueil-sauzelong",
-    areaOptions: ["Centre", "Rive gauche", "Centre south", "South-east campus", "South-west campus", "North"],
-    parentFilterOptions: [
+    defaultSelectedCode: "toulouse-rangueil-campus",
+    areaOptions: [
       "Centre",
+      "Centre north",
+      "Centre north-east",
+      "Station edge",
+      "Centre east",
       "Rive gauche",
       "Centre south",
+      "South",
       "South-east campus",
+      "South-east",
       "South-west campus",
+      "South-west",
+      "North"
+    ],
+    parentFilterOptions: [
+      "Centre",
+      "Centre north",
+      "Centre north-east",
+      "Station edge",
+      "Centre east",
+      "Rive gauche",
+      "Centre south",
+      "South",
+      "South-east campus",
+      "South-east",
+      "South-west campus",
+      "South-west",
       "North"
     ],
     sources: toulouseSources
@@ -498,24 +539,52 @@ export const cities: CityConfig[] = [
   {
     id: "lille",
     name: "Lille",
-    title: "Lille micro-areas + Villeneuve-d'Ascq campus",
+    title: "Lille + Roubaix-Tourcoing student quality map",
     geojsonUrl: "/data/lille.geojson",
-    center: [3.058, 50.632],
+    center: [3.12, 50.64],
     zoom: 12,
     minZoom: 10.5,
     maxZoom: 15,
     defaultSelectedCode: "lille-vauban-esquermes",
-    areaOptions: ["Lille Centre", "Vauban-Esquermes", "Vieux-Lille", "Wazemmes", "Moulins", "Fives", "Bois-Blancs", "Lille-Sud", "Villeneuve-d'Ascq"],
-    parentFilterOptions: [
-      "Lille Centre",
-      "Vauban-Esquermes",
+    areaOptions: [
+      "Lille-Centre",
       "Vieux-Lille",
+      "Vauban-Esquermes",
       "Wazemmes",
       "Moulins",
       "Fives",
+      "Hellemmes",
       "Bois-Blancs",
       "Lille-Sud",
-      "Villeneuve-d'Ascq"
+      "Saint-Maurice Pellevoisin",
+      "Lomme",
+      "Lambersart",
+      "La Madeleine",
+      "Mons-en-Barœul",
+      "Villeneuve-d'Ascq",
+      "Croix",
+      "Roubaix",
+      "Tourcoing"
+    ],
+    parentFilterOptions: [
+      "Lille-Centre",
+      "Vieux-Lille",
+      "Vauban-Esquermes",
+      "Wazemmes",
+      "Moulins",
+      "Fives",
+      "Hellemmes",
+      "Bois-Blancs",
+      "Lille-Sud",
+      "Saint-Maurice Pellevoisin",
+      "Lomme",
+      "Lambersart",
+      "La Madeleine",
+      "Mons-en-Barœul",
+      "Villeneuve-d'Ascq",
+      "Croix",
+      "Roubaix",
+      "Tourcoing"
     ],
     sources: lilleSources
   },
@@ -528,33 +597,9 @@ export const cities: CityConfig[] = [
     zoom: 11.6,
     minZoom: 10.5,
     maxZoom: 15,
-    defaultSelectedCode: "marseille-baille-timone",
-    areaOptions: [
-      "Marseille 1",
-      "Marseille 1/2",
-      "Marseille 1/3",
-      "Marseille 5",
-      "Marseille 5/6",
-      "Marseille 6",
-      "Marseille 7",
-      "Marseille 8",
-      "Marseille 9",
-      "Marseille 13",
-      "Marseille 15"
-    ],
-    parentFilterOptions: [
-      "Marseille 1",
-      "Marseille 1/2",
-      "Marseille 1/3",
-      "Marseille 5",
-      "Marseille 5/6",
-      "Marseille 6",
-      "Marseille 7",
-      "Marseille 8",
-      "Marseille 9",
-      "Marseille 13",
-      "Marseille 15"
-    ],
+    defaultSelectedCode: "marseille-baille",
+    areaOptions: ["1e", "2e", "3e", "5e", "6e", "6e/5e", "7e", "8e", "8e/9e", "9e", "13e", "15e"],
+    parentFilterOptions: ["1e", "2e", "3e", "5e", "6e", "6e/5e", "7e", "8e", "8e/9e", "9e", "13e", "15e"],
     sources: marseilleSources
   },
   {
@@ -566,18 +611,43 @@ export const cities: CityConfig[] = [
     zoom: 12,
     minZoom: 10.5,
     maxZoom: 15,
-    defaultSelectedCode: "nice-liberation-valrose",
-    areaOptions: ["Centre", "Centre east", "North centre", "Centre west", "East inner city", "West campus", "North-east hills", "East", "North-east edge", "West airport"],
+    defaultSelectedCode: "nice-borriglione-valrose",
+    areaOptions: [
+      "Centre",
+      "Centre east",
+      "Centre west",
+      "Centre west coast",
+      "North centre",
+      "North centre campus",
+      "Historic centre",
+      "East centre",
+      "East inner city",
+      "East",
+      "East campus",
+      "North-east hills",
+      "North-east edge",
+      "West coast",
+      "West campus",
+      "West valley",
+      "West airport"
+    ],
     parentFilterOptions: [
       "Centre",
       "Centre east",
-      "North centre",
       "Centre west",
+      "Centre west coast",
+      "North centre",
+      "North centre campus",
+      "Historic centre",
+      "East centre",
       "East inner city",
-      "West campus",
-      "North-east hills",
       "East",
+      "East campus",
+      "North-east hills",
       "North-east edge",
+      "West coast",
+      "West campus",
+      "West valley",
       "West airport"
     ],
     sources: niceSources
@@ -591,30 +661,32 @@ export const cities: CityConfig[] = [
     zoom: 12,
     minZoom: 10.5,
     maxZoom: 15,
-    defaultSelectedCode: "nantes-hauts-paves-saint-felix",
+    defaultSelectedCode: "nantes-saint-felix-michelet",
     areaOptions: [
       "Centre-ville",
-      "Hauts-Pavés - Saint-Félix",
+      "Centre north",
+      "Hauts-Paves - Saint-Felix",
       "Nantes Nord",
-      "Île de Nantes",
+      "Nantes Erdre",
+      "Ile de Nantes",
       "Malakoff - Saint-Donatien",
-      "Dervallières - Zola",
+      "Dervallieres - Zola",
       "Bellevue - Chantenay - Sainte-Anne",
       "Breil - Barberie",
-      "Nantes Erdre",
-      "Doulon - Bottière"
+      "Doulon - Bottiere"
     ],
     parentFilterOptions: [
       "Centre-ville",
-      "Hauts-Pavés - Saint-Félix",
+      "Centre north",
+      "Hauts-Paves - Saint-Felix",
       "Nantes Nord",
-      "Île de Nantes",
+      "Nantes Erdre",
+      "Ile de Nantes",
       "Malakoff - Saint-Donatien",
-      "Dervallières - Zola",
+      "Dervallieres - Zola",
       "Bellevue - Chantenay - Sainte-Anne",
       "Breil - Barberie",
-      "Nantes Erdre",
-      "Doulon - Bottière"
+      "Doulon - Bottiere"
     ],
     sources: nantesSources
   }

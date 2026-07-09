@@ -1,0 +1,618 @@
+{
+  "lille": [
+    {
+      "code": "lille-context-centre-saint-sauveur",
+      "name": "Centre / Saint-Sauveur context",
+      "parent": "Centre / Saint-Sauveur context",
+      "area": "Centre / Saint-Sauveur context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59350); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-gares-mel",
+      "name": "Gares / Euralille edge context",
+      "parent": "Gares / Euralille edge context",
+      "area": "Gares / Euralille edge context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59350); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-hellemmes-fill",
+      "name": "Hellemmes fill context",
+      "parent": "Hellemmes fill context",
+      "area": "Hellemmes fill context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59350); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-la-madeleine-centre",
+      "name": "La Madeleine centre context",
+      "parent": "La Madeleine centre context",
+      "area": "La Madeleine centre context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59368); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-la-madeleine-north",
+      "name": "La Madeleine north context",
+      "parent": "La Madeleine north context",
+      "area": "La Madeleine north context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59368); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-lambersart-bourg",
+      "name": "Lambersart Bourg context",
+      "parent": "Lambersart Bourg context",
+      "area": "Lambersart Bourg context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59328); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-lambersart-canon-or",
+      "name": "Lambersart Canon d'Or context",
+      "parent": "Lambersart Canon d'Or context",
+      "area": "Lambersart Canon d'Or context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59328); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-lambersart-canteleu",
+      "name": "Lambersart Canteleu context",
+      "parent": "Lambersart Canteleu context",
+      "area": "Lambersart Canteleu context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59328); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-lille-east-fives-edge",
+      "name": "Lille east / Fives edge context",
+      "parent": "Lille east / Fives edge context",
+      "area": "Lille east / Fives edge context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59350); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-lille-south-edge",
+      "name": "Lille south edge context",
+      "parent": "Lille south edge context",
+      "area": "Lille south edge context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59350); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-lomme",
+      "name": "Lomme context",
+      "parent": "Lomme context",
+      "area": "Lomme context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59350); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-mons-centre",
+      "name": "Mons-en-Barœul centre context",
+      "parent": "Mons-en-Barœul centre context",
+      "area": "Mons-en-Barœul centre context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59410); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-mons-east",
+      "name": "Mons-en-Barœul east context",
+      "parent": "Mons-en-Barœul east context",
+      "area": "Mons-en-Barœul east context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59410); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-mons-west",
+      "name": "Mons-en-Barœul west context",
+      "parent": "Mons-en-Barœul west context",
+      "area": "Mons-en-Barœul west context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59410); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-moulins-mitterie",
+      "name": "Moulins / Mitterie edge context",
+      "parent": "Moulins / Mitterie edge context",
+      "area": "Moulins / Mitterie edge context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59350); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-roubaix-barbieux-fill",
+      "name": "Roubaix Barbieux fill context",
+      "parent": "Roubaix Barbieux fill context",
+      "area": "Roubaix Barbieux fill context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59512); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-roubaix-centre",
+      "name": "Roubaix centre context",
+      "parent": "Roubaix centre context",
+      "area": "Roubaix centre context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59512); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-roubaix-east",
+      "name": "Roubaix east context",
+      "parent": "Roubaix east context",
+      "area": "Roubaix east context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59512); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-saint-maurice-pellevoisin",
+      "name": "Saint-Maurice / Pellevoisin context",
+      "parent": "Saint-Maurice / Pellevoisin context",
+      "area": "Saint-Maurice / Pellevoisin context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59350); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-vauban-citadelle-edge",
+      "name": "Vauban / Citadelle edge context",
+      "parent": "Vauban / Citadelle edge context",
+      "area": "Vauban / Citadelle edge context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59350); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-vda-annappes",
+      "name": "Villeneuve-d'Ascq Annappes context",
+      "parent": "Villeneuve-d'Ascq Annappes context",
+      "area": "Villeneuve-d'Ascq Annappes context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59009); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-vda-ascq",
+      "name": "Villeneuve-d'Ascq Ascq context",
+      "parent": "Villeneuve-d'Ascq Ascq context",
+      "area": "Villeneuve-d'Ascq Ascq context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59009); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-vda-cousinerie-brigode",
+      "name": "Villeneuve-d'Ascq Cousinerie / Brigode context",
+      "parent": "Villeneuve-d'Ascq Cousinerie / Brigode context",
+      "area": "Villeneuve-d'Ascq Cousinerie / Brigode context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59009); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-vda-flers-breucq",
+      "name": "Villeneuve-d'Ascq Flers / Breucq context",
+      "parent": "Villeneuve-d'Ascq Flers / Breucq context",
+      "area": "Villeneuve-d'Ascq Flers / Breucq context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59009); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-vda-residence-liberte",
+      "name": "Villeneuve-d'Ascq residence context",
+      "parent": "Villeneuve-d'Ascq residence context",
+      "area": "Villeneuve-d'Ascq residence context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59009); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "lille-context-wazemmes-baltique",
+      "name": "Wazemmes / Baltique edge context",
+      "parent": "Wazemmes / Baltique edge context",
+      "area": "Wazemmes / Baltique edge context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage district context from official IRIS partition (59350); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    }
+  ],
+  "nice": [
+    {
+      "code": "nice-context-north-west-hills",
+      "name": "North-west hills context",
+      "parent": "North-west hills context",
+      "area": "North-west hills context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage context zone from official IRIS partition (06088); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "nice-context-saint-sylvestre-las-planas",
+      "name": "Saint-Sylvestre / Las Planas context",
+      "parent": "Saint-Sylvestre / Las Planas context",
+      "area": "Saint-Sylvestre / Las Planas context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage context zone from official IRIS partition (06088); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "nice-context-rimiez-gairaut-east",
+      "name": "Rimiez / upper east context",
+      "parent": "Rimiez / upper east context",
+      "area": "Rimiez / upper east context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage context zone from official IRIS partition (06088); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "nice-context-east-hills",
+      "name": "East hills context",
+      "parent": "East hills context",
+      "area": "East hills context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage context zone from official IRIS partition (06088); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "nice-context-west-hills",
+      "name": "West hills context",
+      "parent": "West hills context",
+      "area": "West hills context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage context zone from official IRIS partition (06088); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "nice-context-airport-var",
+      "name": "Airport / Var plain context",
+      "parent": "Airport / Var plain context",
+      "area": "Airport / Var plain context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage context zone from official IRIS partition (06088); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "nice-context-north-centre-fill",
+      "name": "North-centre fill context",
+      "parent": "North-centre fill context",
+      "area": "North-centre fill context",
+      "role": "context",
+      "confidence": "low",
+      "evidence": "Full-coverage context zone from official IRIS partition (06088); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 5.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    },
+    {
+      "code": "nice-context-peripheral",
+      "name": "Peripheral low-relevance context",
+      "parent": "Peripheral low-relevance context",
+      "area": "Peripheral low-relevance context",
+      "role": "low_relevance",
+      "confidence": "low",
+      "evidence": "Full-coverage context zone from official IRIS partition (06088); map continuity, not a primary student pick.",
+      "scores": {
+        "security": 6.0,
+        "affordability": 5.5,
+        "transport": 7.0,
+        "studentEnergy": 4.5,
+        "services": 6.5,
+        "campusAccess": 5.5,
+        "greenCalm": 6.5
+      }
+    }
+  ]
+}

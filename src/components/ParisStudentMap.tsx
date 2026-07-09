@@ -113,6 +113,20 @@ export default function ParisStudentMap() {
     [places]
   );
 
+  const displayOutlineGeojson = useMemo<PlaceFeatureCollection | null>(() => {
+    if (!geojson) {
+      return null;
+    }
+
+    return {
+      type: "FeatureCollection",
+      features: geojson.features.map((feature) => ({
+        ...feature,
+        geometry: dissolveGeometry(feature.geometry)
+      }))
+    };
+  }, [geojson]);
+
   const selectionOutline = useMemo<FeatureCollection | null>(() => {
     if (!geojson) {
       return null;
@@ -286,7 +300,7 @@ export default function ParisStudentMap() {
 
     const outlineLayer = new GeoJsonLayer({
       id: "place-quality-outline",
-      data: geojson,
+      data: displayOutlineGeojson ?? geojson,
       pickable: false,
       stroked: true,
       filled: false,
@@ -319,7 +333,7 @@ export default function ParisStudentMap() {
     } else {
       overlayRef.current.setProps({ layers });
     }
-  }, [geojson, selectionOutline, mapMode, activeWeights, scoreOverrides, activePlaceByCode, cityId, selectedCode]);
+  }, [geojson, displayOutlineGeojson, selectionOutline, mapMode, activeWeights, scoreOverrides, activePlaceByCode, cityId, selectedCode]);
 
   const handleWeightChange = (key: ScoreKey, value: number) => {
     setActiveWeights((current) => ({ ...current, [key]: clampWeight(value) }));

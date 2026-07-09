@@ -6,7 +6,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "geo:build": "python3 scripts/build_new_city_geojson.py",
+    "geo:validate": "python3 scripts/validate_city_geojson.py",
+    "geo:coverage": "python3 scripts/build_full_coverage_specs.py",
+    "geo:coverage:all": "python3 scripts/build_full_coverage_specs.py lille nice && python3 scripts/append_context_places.py lille nice && python3 scripts/build_new_city_geojson.py lille nice && python3 scripts/validate_city_geojson.py lille nice"
   },
   "dependencies": {
     "@deck.gl/core": "^9.1.14",
