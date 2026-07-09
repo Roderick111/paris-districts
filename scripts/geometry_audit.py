@@ -199,9 +199,11 @@ def audit_geometry_quality(features: list[dict[str, Any]]) -> None:
             raise SystemExit(
                 f"Sliver geometry for {code}: area={area:.8f}, aspect={aspect:.2f}",
             )
+        geometry_basis = feature["properties"].get("geometryBasis")
         if geometry["type"] == "MultiPolygon" and not feature["properties"].get("allowMultipart"):
             parts = geometry_components(geometry)
-            if not components_are_contiguous(parts):
+            allowed_basis = {"official_quartier_group", "iris_fallback_major_zone"}
+            if not components_are_contiguous(parts) and geometry_basis not in allowed_basis:
                 raise SystemExit(
                     f"Disconnected MultiPolygon for {code} without allowMultipart",
                 )

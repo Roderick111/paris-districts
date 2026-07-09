@@ -1,0 +1,276 @@
+import type { PlaceScore } from "@/data/cities";
+
+export const strasbourgPlaces: PlaceScore[] = [
+  {
+    id: "strasbourg-bourse-esplanade-krutenau", cityId: "strasbourg", name: "Bourse / Esplanade / Krutenau", code: "strasbourg-bourse-esplanade-krutenau", kind: "quartier",
+    area: "Centre-east", granularity: "micro", parentName: "Centre-east",
+    confidence: "high", coverageRole: "primary", geometryBasis: "official_quartier_group",
+    evidenceNote: "Official Strasbourg functional quartier group.",
+    scores: {
+      security: 6.2,
+      affordability: 4.0,
+      transport: 9.4,
+      studentEnergy: 9.2,
+      services: 8.8,
+      campusAccess: 9.6,
+      greenCalm: 5.0
+    },
+    rentLevel: "high", studentFit: "excellent",
+    summary: "Main east-centre student belt with campus gravity.", caveat: "Leads Strasbourg on student energy; rent is not low."
+  },
+  {
+    id: "strasbourg-centre-ville-petite-france", cityId: "strasbourg", name: "Centre-ville / Petite France", code: "strasbourg-centre-ville-petite-france", kind: "quartier",
+    area: "Centre", granularity: "micro", parentName: "Centre",
+    confidence: "high", coverageRole: "primary", geometryBasis: "official_quartier_group",
+    evidenceNote: "Official Strasbourg functional quartier group.",
+    scores: {
+      security: 6.0,
+      affordability: 3.0,
+      transport: 9.6,
+      studentEnergy: 8.4,
+      services: 9.0,
+      campusAccess: 8.6,
+      greenCalm: 4.8
+    },
+    rentLevel: "high", studentFit: "good",
+    summary: "Historic core with strong services and tram access.", caveat: "Prestige rents and tourist exposure limit value."
+  },
+  {
+    id: "strasbourg-gare-tribunal", cityId: "strasbourg", name: "Gare / Tribunal", code: "strasbourg-gare-tribunal", kind: "quartier",
+    area: "Station core", granularity: "micro", parentName: "Station core",
+    confidence: "high", coverageRole: "risk_cap", geometryBasis: "official_quartier_group",
+    evidenceNote: "Official Strasbourg functional quartier group.",
+    scores: {
+      security: 4.8,
+      affordability: 5.0,
+      transport: 9.8,
+      studentEnergy: 7.8,
+      services: 8.2,
+      campusAccess: 8.0,
+      greenCalm: 3.8
+    },
+    rentLevel: "medium", studentFit: "mixed",
+    summary: "Hyper-connected station belt with mixed comfort.", caveat: "Safety cap dominates despite transit utility."
+  },
+  {
+    id: "strasbourg-orangerie-conseil-xv", cityId: "strasbourg", name: "Orangerie / Conseil des XV", code: "strasbourg-orangerie-conseil-xv", kind: "quartier",
+    area: "North-east premium", granularity: "micro", parentName: "North-east premium",
+    confidence: "high", coverageRole: "primary", geometryBasis: "official_quartier_group",
+    evidenceNote: "Official Strasbourg functional quartier group.",
+    scores: {
+      security: 7.8,
+      affordability: 3.0,
+      transport: 8.5,
+      studentEnergy: 6.4,
+      services: 8.4,
+      campusAccess: 8.0,
+      greenCalm: 8.8
+    },
+    rentLevel: "high", studentFit: "excellent",
+    summary: "Premium north-east belt with park calm.", caveat: "Quality-of-life pick, not a budget student default."
+  },
+  {
+    id: "strasbourg-robertsau-wacken", cityId: "strasbourg", name: "Robertsau / Wacken", code: "strasbourg-robertsau-wacken", kind: "quartier",
+    area: "North-east", granularity: "micro", parentName: "North-east",
+    confidence: "high", coverageRole: "primary", geometryBasis: "official_quartier_group",
+    evidenceNote: "Official Strasbourg functional quartier group.",
+    scores: {
+      security: 8.0,
+      affordability: 3.6,
+      transport: 7.4,
+      studentEnergy: 5.8,
+      services: 7.8,
+      campusAccess: 7.0,
+      greenCalm: 9.0
+    },
+    rentLevel: "high", studentFit: "good",
+    summary: "Green north-east belt with low student density.", caveat: "Calm and safe, but weak student social scene."
+  },
+  {
+    id: "strasbourg-cronenbourg-campus", cityId: "strasbourg", name: "Cronenbourg campus", code: "strasbourg-cronenbourg-campus", kind: "quartier",
+    area: "West campus", granularity: "micro", parentName: "West campus",
+    confidence: "high", coverageRole: "campus", geometryBasis: "official_quartier_group",
+    evidenceNote: "Official Strasbourg functional quartier group.",
+    scores: {
+      security: 5.6,
+      affordability: 6.0,
+      transport: 7.8,
+      studentEnergy: 7.2,
+      services: 7.4,
+      campusAccess: 9.0,
+      greenCalm: 6.0
+    },
+    rentLevel: "medium", studentFit: "excellent",
+    summary: "West campus belt with structural university access.", caveat: "Less central student life than Krutenau."
+  },
+  {
+    id: "strasbourg-hautepierre-poteries", cityId: "strasbourg", name: "Hautepierre / Poteries", code: "strasbourg-hautepierre-poteries", kind: "quartier",
+    area: "West cap", granularity: "micro", parentName: "West cap",
+    confidence: "high", coverageRole: "risk_cap", geometryBasis: "official_quartier_group",
+    evidenceNote: "Official Strasbourg functional quartier group.",
+    scores: {
+      security: 4.0,
+      affordability: 7.2,
+      transport: 8.0,
+      studentEnergy: 5.8,
+      services: 6.8,
+      campusAccess: 6.6,
+      greenCalm: 5.2
+    },
+    rentLevel: "lower", studentFit: "mixed",
+    summary: "Affordable west belt capped by safety and distance.", caveat: "Value pick with visible cap constraints."
+  },
+  {
+    id: "strasbourg-koenigshoffen", cityId: "strasbourg", name: "Koenigshoffen", code: "strasbourg-koenigshoffen", kind: "quartier",
+    area: "West-south", granularity: "micro", parentName: "West-south",
+    confidence: "high", coverageRole: "risk_cap", geometryBasis: "official_quartier",
+    evidenceNote: "Official Strasbourg functional quartier polygon.",
+    scores: {
+      security: 5.0,
+      affordability: 6.6,
+      transport: 7.8,
+      studentEnergy: 6.2,
+      services: 6.8,
+      campusAccess: 6.6,
+      greenCalm: 5.8
+    },
+    rentLevel: "lower", studentFit: "good",
+    summary: "Outer west belt with moderate value.", caveat: "Honest cap-zone profile; limited student scene."
+  },
+  {
+    id: "strasbourg-montagne-verte", cityId: "strasbourg", name: "Montagne Verte", code: "strasbourg-montagne-verte", kind: "quartier",
+    area: "South-west", granularity: "micro", parentName: "South-west",
+    confidence: "high", coverageRole: "context", geometryBasis: "official_quartier",
+    evidenceNote: "Official Strasbourg functional quartier polygon.",
+    scores: {
+      security: 5.6,
+      affordability: 6.0,
+      transport: 7.6,
+      studentEnergy: 6.2,
+      services: 6.8,
+      campusAccess: 6.6,
+      greenCalm: 6.4
+    },
+    rentLevel: "medium", studentFit: "good",
+    summary: "South-west context with tolerable daily life.", caveat: "Peripheral belt, not a student destination."
+  },
+  {
+    id: "strasbourg-elsau", cityId: "strasbourg", name: "Elsau", code: "strasbourg-elsau", kind: "quartier",
+    area: "South-west cap", granularity: "micro", parentName: "South-west cap",
+    confidence: "high", coverageRole: "risk_cap", geometryBasis: "official_quartier",
+    evidenceNote: "Official Strasbourg functional quartier polygon.",
+    scores: {
+      security: 4.8,
+      affordability: 6.8,
+      transport: 7.4,
+      studentEnergy: 5.8,
+      services: 6.6,
+      campusAccess: 6.0,
+      greenCalm: 5.4
+    },
+    rentLevel: "lower", studentFit: "mixed",
+    summary: "South-west cap with value but weak comfort.", caveat: "Safety cap stays visible despite affordability."
+  },
+  {
+    id: "strasbourg-meinau", cityId: "strasbourg", name: "Meinau", code: "strasbourg-meinau", kind: "quartier",
+    area: "South", granularity: "micro", parentName: "South",
+    confidence: "high", coverageRole: "context", geometryBasis: "official_quartier",
+    evidenceNote: "Official Strasbourg functional quartier polygon.",
+    scores: {
+      security: 5.4,
+      affordability: 6.2,
+      transport: 8.0,
+      studentEnergy: 6.6,
+      services: 7.0,
+      campusAccess: 7.0,
+      greenCalm: 5.8
+    },
+    rentLevel: "medium", studentFit: "good",
+    summary: "Southern belt with metro access and mixed profile.", caveat: "Useful value belt, not a premium pick."
+  },
+  {
+    id: "strasbourg-neudorf-musau", cityId: "strasbourg", name: "Neudorf / Musau", code: "strasbourg-neudorf-musau", kind: "quartier",
+    area: "South-east", granularity: "micro", parentName: "South-east",
+    confidence: "high", coverageRole: "primary", geometryBasis: "official_quartier",
+    evidenceNote: "Official Strasbourg functional quartier polygon.",
+    scores: {
+      security: 6.8,
+      affordability: 5.0,
+      transport: 8.8,
+      studentEnergy: 7.4,
+      services: 8.0,
+      campusAccess: 8.0,
+      greenCalm: 6.4
+    },
+    rentLevel: "medium", studentFit: "excellent",
+    summary: "South-east belt with improving services and tram.", caveat: "Strong practical pick outside the historic core."
+  },
+  {
+    id: "strasbourg-port-du-rhin", cityId: "strasbourg", name: "Port du Rhin", code: "strasbourg-port-du-rhin", kind: "quartier",
+    area: "East edge", granularity: "micro", parentName: "East edge",
+    confidence: "high", coverageRole: "context", geometryBasis: "official_quartier",
+    evidenceNote: "Official Strasbourg functional quartier polygon.",
+    scores: {
+      security: 5.0,
+      affordability: 6.4,
+      transport: 7.8,
+      studentEnergy: 6.2,
+      services: 6.8,
+      campusAccess: 7.0,
+      greenCalm: 5.2
+    },
+    rentLevel: "medium", studentFit: "good",
+    summary: "Eastern edge context with industrial-port character.", caveat: "Honest peripheral coverage zone."
+  },
+  {
+    id: "strasbourg-neuhof-1", cityId: "strasbourg", name: "Neuhof 1", code: "strasbourg-neuhof-1", kind: "quartier",
+    area: "South cap", granularity: "micro", parentName: "South cap",
+    confidence: "high", coverageRole: "risk_cap", geometryBasis: "official_quartier",
+    evidenceNote: "Official Strasbourg functional quartier polygon.",
+    scores: {
+      security: 3.8,
+      affordability: 7.4,
+      transport: 7.2,
+      studentEnergy: 5.0,
+      services: 6.2,
+      campusAccess: 5.6,
+      greenCalm: 5.6
+    },
+    rentLevel: "lower", studentFit: "weak",
+    summary: "Southern cap zone with hard safety constraints.", caveat: "Affordability cannot rescue the risk profile."
+  },
+  {
+    id: "strasbourg-neuhof-2-stockfeld-ganzau", cityId: "strasbourg", name: "Neuhof 2 / Stockfeld / Ganzau", code: "strasbourg-neuhof-2-stockfeld-ganzau", kind: "quartier",
+    area: "South cap", granularity: "micro", parentName: "South cap",
+    confidence: "high", coverageRole: "risk_cap", geometryBasis: "official_quartier_group",
+    evidenceNote: "Official Strasbourg functional quartier group.",
+    scores: {
+      security: 4.2,
+      affordability: 7.2,
+      transport: 7.0,
+      studentEnergy: 5.2,
+      services: 6.2,
+      campusAccess: 5.8,
+      greenCalm: 6.0
+    },
+    rentLevel: "lower", studentFit: "mixed",
+    summary: "Outer south cap with value and weak student energy.", caveat: "Visible cap zone; not a comfort default."
+  },
+  {
+    id: "strasbourg-illkirch-campus", cityId: "strasbourg", name: "Illkirch campus", code: "strasbourg-illkirch-campus", kind: "commune",
+    area: "Campus suburb", granularity: "micro", parentName: "Campus suburb",
+    confidence: "medium", coverageRole: "campus", geometryBasis: "commune",
+    evidenceNote: "Illkirch-Graffenstaden commune campus edge.",
+    scores: {
+      security: 7.6,
+      affordability: 5.8,
+      transport: 8.2,
+      studentEnergy: 7.6,
+      services: 7.6,
+      campusAccess: 10.0,
+      greenCalm: 8.4
+    },
+    rentLevel: "medium", studentFit: "excellent",
+    summary: "Commuter campus edge with structural university access.", caveat: "Tram commute required; not a centre lifestyle."
+  },
+];

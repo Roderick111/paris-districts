@@ -1499,5 +1499,901 @@
       "geometryBasis": "official_quartier",
       "confidence": "low"
     }
+  ],
+  "rennes": [
+    {
+      "code": "rennes-centre",
+      "rennes_quartier": [
+        "Centre"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "rennes-thabor-saint-helier-alphonse-guerin",
+      "rennes_quartier": [
+        "Thabor / Saint-Hélier / Alphonse Guérin / Baud-Chardonnet"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "rennes-bourg-levesque-la-touche-moulin-du-comte",
+      "rennes_quartier": [
+        "Bourg l'Evesque / La Touche / Moulin du Comte"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "rennes-nord-saint-martin",
+      "rennes_quartier": [
+        "Saint Martin",
+        "Zone Industrielle Nord"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "rennes-maurepas-patton",
+      "rennes_quartier": [
+        "Bretèche",
+        "Centre Ville",
+        "Champ Daguet Nord",
+        "Champ Daguet Sud",
+        "Cité des Jardins",
+        "La Barre Richelot, Cressonière, Vivier Louis, Belle Vue",
+        "La Ricoquais",
+        "Les Melliers",
+        "Maurepas / Bellangerais"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "rennes-jeanne-darc-longs-champs-beaulieu",
+      "rennes_quartier": [
+        "Jeanne d'Arc / Longs Champs / Beaulieu"
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "rennes-la-pommeraie",
+      "rennes_quartier": [
+        "La Pommeraie"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "rennes-sud-gare",
+      "rennes_quartier": [
+        "Bréquigny",
+        "Sud gare"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "rennes-cleunay-arsenal-redon",
+      "rennes_quartier": [
+        "Cleunay / Arsenal - Redon / La Courrouze"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "rennes-villejean-beauregard",
+      "rennes_quartier": [
+        "Belle Épine",
+        "Haut-Trait",
+        "Villejean / Beauregard"
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "rennes-le-blosne",
+      "rennes_quartier": [
+        "Le Blosne"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "rennes-brequigny",
+      "rennes_quartier": [
+        "La Peupleraie",
+        "Maison Blanche et Kerfleury",
+        "Moulin d'Olivet et Gué Mary",
+        "Secteur Rural"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    }
+  ],
+  "strasbourg": [
+    {
+      "code": "strasbourg-bourse-esplanade-krutenau",
+      "strasbourg_quartier": [
+        "Bourse Krutenau",
+        "Esplanade",
+        "Ampère"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "strasbourg-centre-ville-petite-france",
+      "strasbourg_quartier": [
+        "Centre ville",
+        "Cité de l'Ill"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "strasbourg-gare-tribunal",
+      "strasbourg_quartier": [
+        "Gare Porte Schirmeck",
+        "Tribunal"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "strasbourg-orangerie-conseil-xv",
+      "strasbourg_quartier": [
+        "Orang Cons des XV"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "strasbourg-robertsau-wacken",
+      "strasbourg_quartier": [
+        "Robertsau",
+        "Spach Rotterdam"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "strasbourg-cronenbourg-campus",
+      "strasbourg_quartier": [
+        "Cronenbourg Cité",
+        "Vieux Cronenbourg"
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "strasbourg-hautepierre-poteries",
+      "strasbourg_quartier": [
+        "Hautepierre",
+        "Parc des Poteries"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "strasbourg-koenigshoffen",
+      "strasbourg_quartier": [
+        "Koenigshoffen"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "strasbourg-montagne-verte",
+      "strasbourg_quartier": [
+        "Montagne Verte"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "strasbourg-elsau",
+      "strasbourg_quartier": [
+        "Elsau"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "strasbourg-meinau",
+      "strasbourg_quartier": [
+        "Meinau"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "strasbourg-neudorf-musau",
+      "strasbourg_quartier": [
+        "Neudorf"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "strasbourg-port-du-rhin",
+      "strasbourg_quartier": [
+        "Port du Rhin"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "strasbourg-neuhof-1",
+      "strasbourg_quartier": [
+        "Neuhof"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "strasbourg-neuhof-2-stockfeld-ganzau",
+      "strasbourg_quartier": [
+        "Vieux Neuhof",
+        "NEUHOF2"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "strasbourg-illkirch-campus",
+      "commune_insee": "67447",
+      "coverageRole": "campus",
+      "geometryBasis": "commune",
+      "confidence": "medium",
+      "geometry_method": "commune"
+    }
+  ],
+  "grenoble": [
+    {
+      "code": "grenoble-hyper-centre",
+      "grenoble_quartier": [
+        "Centre Ville"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "grenoble-notre-dame-mutualite",
+      "grenoble_quartier": [
+        "Notre Dame",
+        "Mutualité - Préfecture"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "grenoble-championnet-aigle",
+      "grenoble_quartier": [
+        "Championnet - Bonne - Condorcet - Hoche",
+        "Foch - Aigle - Libération"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "grenoble-europole-presquile",
+      "grenoble_quartier": [
+        "Berriat - Saint Bruno - Europole"
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "grenoble-chorier-berriat-saint-bruno",
+      "grenoble_quartier": [
+        "Arago - Jean Macé - Martyrs",
+        "Centre Gare",
+        "Rondeau - Libération"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "grenoble-saint-laurent-ile-verte",
+      "grenoble_quartier": [
+        "Saint Laurent - Rive Droite",
+        "Ile Verte"
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "grenoble-mistral-eaux-claires",
+      "grenoble_quartier": [
+        "Mistral - Drac",
+        "Eaux Claires"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "grenoble-capuche-allies-alpins",
+      "grenoble_quartier": [
+        "Capuche - Stalingrad - Grands Boulevards",
+        "Alliés - Alpins - Flaubert - Beauvert"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "grenoble-beauvert-cite-abbaye",
+      "grenoble_quartier": [
+        "Baladins - Géants"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "medium",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "grenoble-jouhaux-exposition-bajatiere",
+      "grenoble_quartier": [
+        "Abbaye - Jouhaux",
+        "Exposition - Bajatière"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "grenoble-teisseire-malherbe",
+      "grenoble_quartier": [
+        "Teisseire",
+        "Malherbe"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "grenoble-arlequin-village-olympique-vigny-musset",
+      "grenoble_quartier": [
+        "Villeneuve 1 - Arlequin",
+        "Village Olympique - Vigny Musset"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group",
+      "confidence": "high",
+      "geometry_method": "official_quartier_group"
+    },
+    {
+      "code": "grenoble-saint-martin-dheres-campus-core",
+      "commune_insee": "38421",
+      "coverageRole": "campus",
+      "geometryBasis": "commune",
+      "confidence": "medium",
+      "geometry_method": "commune"
+    },
+    {
+      "code": "grenoble-gieres-campus",
+      "commune_insee": "38179",
+      "coverageRole": "campus",
+      "geometryBasis": "commune",
+      "confidence": "medium",
+      "geometry_method": "commune"
+    }
+  ],
+  "montpellier": [
+    {
+      "code": "montpellier-ecusson-core",
+      "iris_insee": "34172",
+      "iris_names": [
+        "Aiguerelles",
+        "Mion",
+        "Peyrou",
+        "Préfecture",
+        "Saint-Martin",
+        "Saint-Roch",
+        "Tastavin",
+        "Tournezy",
+        "Ursulines",
+        "Verdanson"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "medium",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "montpellier-comedie-gare",
+      "iris_insee": "34172",
+      "iris_names": [
+        "Chaptal",
+        "Comédie",
+        "La Guirlande",
+        "La Piscine",
+        "La Rauze",
+        "Notre-Dame de la Paix",
+        "Parc Montcalm",
+        "Pont de Sète",
+        "République",
+        "Sabathé"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "medium",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "montpellier-beaux-arts-boutonnet",
+      "iris_insee": "34172",
+      "iris_names": [
+        "Beaux-Arts",
+        "Boutonnet",
+        "Justice",
+        "Moulin de l'Évêque",
+        "Méric",
+        "Nazareth",
+        "Pompignane",
+        "Rimbaud",
+        "Saint-Éloi",
+        "Sainte-Odile"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "high",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "montpellier-arceaux-gambetta-figuerolles",
+      "iris_insee": "34172",
+      "iris_names": [
+        "Agriculture",
+        "Astruc",
+        "Casseyrols",
+        "Gambetta",
+        "Lapeyronie",
+        "Les Aubes",
+        "Salaison",
+        "Soulas"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "medium",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "montpellier-antigone",
+      "iris_insee": "34172",
+      "iris_names": [
+        "Nombre d'Or",
+        "Place de l'Europe",
+        "Pont Trinquat",
+        "Rives du Lez"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "medium",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "montpellier-richter-jacques-coeur",
+      "iris_insee": "34172",
+      "iris_names": [
+        "Bassin Jacques Cœur",
+        "Blayac",
+        "Bologne",
+        "Charpak",
+        "Le Mail Nord",
+        "Le Mail Sud",
+        "Les Tours",
+        "Oxford"
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "high",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "montpellier-port-marianne-millenaire-odysseum",
+      "iris_insee": "34172",
+      "iris_names": [
+        "Eureka",
+        "Grammont",
+        "Millénaire",
+        "Méditerrannée",
+        "Occitanie",
+        "Odysseum",
+        "Saint-François"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "medium",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "montpellier-hopitaux-facultes-triolet",
+      "iris_insee": "34172",
+      "iris_names": [
+        "Assas",
+        "Euromédecine",
+        "Fac de Pharmacie",
+        "Vert Bois",
+        "École d'Architecture-Triolet"
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "high",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "montpellier-paul-valery-route-de-mende",
+      "iris_insee": "34172",
+      "iris_names": [
+        "Agropolis",
+        "Archives Départementales",
+        "Avenue de Lodève",
+        "École Normale"
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "high",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "montpellier-aiguelongue-malbosc",
+      "iris_insee": "34172",
+      "iris_names": [
+        "Aiguelongue",
+        "La Colline",
+        "Les Garrigues",
+        "Les Gémeaux",
+        "Lunaret",
+        "Malbosc"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "medium",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "montpellier-croix-argent-ovalie",
+      "iris_insee": "34172",
+      "iris_names": [
+        "Croix d'Argent",
+        "Garosud",
+        "Marquerose",
+        "Mas Drevon-Maurin",
+        "Ovalie",
+        "Rieucoulon",
+        "Yves du Manoir"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "medium",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "montpellier-cevennes-celleneuve",
+      "iris_insee": "34172",
+      "iris_names": [
+        "Celleneuve",
+        "La Fontaine",
+        "La Lironde",
+        "Les Grèzes",
+        "Pilory"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "medium",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "montpellier-mosson-paillade",
+      "iris_insee": "34172",
+      "iris_names": [
+        "Alco",
+        "Bel-Air",
+        "Le Petit Bard",
+        "Les Tonnelles",
+        "Pas du Loup"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "high",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "montpellier-pres-arenes-gare-sud",
+      "iris_insee": "34172",
+      "iris_names": [
+        "Bouisses",
+        "Estanove",
+        "Lepic",
+        "Saint-Denis"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "medium",
+      "geometry_method": "iris_major_zone_partition"
+    }
+  ],
+  "toulon": [
+    {
+      "code": "toulon-haute-ville-liberte",
+      "iris_insee": "83137",
+      "iris_names": [
+        "Besagne",
+        "Cathédrale",
+        "Champ de Mars I",
+        "Haute Ville-La Gare",
+        "Haute Ville-Place Liberté",
+        "Les Lices",
+        "Saint-Roch II",
+        "Sainte-Anne",
+        "Valbourdin"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "medium",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "toulon-basse-ville-port",
+      "iris_insee": "83137",
+      "iris_names": [
+        "Le Port",
+        "Place d'Armes-Arsenal",
+        "Port Marchand",
+        "Port Marchand-Port de Commerce",
+        "Saint-Roch I"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "medium",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "toulon-la-rode-mayol",
+      "iris_insee": "83137",
+      "iris_names": [
+        "Aguillon",
+        "Champ de Mars II",
+        "Dutasta-Mayol",
+        "La Rode"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "medium",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "toulon-mourillon-core",
+      "iris_insee": "83137",
+      "iris_names": [
+        "Le Mourillon I",
+        "Le Mourillon II",
+        "Le Mourillon III",
+        "Le Mourillon IV"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "medium",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "toulon-la-mitre-fort-saint-louis",
+      "iris_insee": "83137",
+      "iris_names": [
+        "Aguillon-Petit Bois",
+        "Lamalgue",
+        "Saint-Louis"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "medium",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "toulon-cap-brun-serinette",
+      "iris_insee": "83137",
+      "iris_names": [
+        "La Barre",
+        "La Barre-Les Ameniers",
+        "La Palasse-Collet de Gipon",
+        "La Serinette-Le Cap Brun",
+        "Pont de Suve",
+        "Saint-Jean du Var III"
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "medium",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "toulon-saint-jean-du-var-font-pre",
+      "iris_insee": "83137",
+      "iris_names": [
+        "Beaulieu",
+        "Brunet-Font Pré",
+        "Darboussède-La Bosquette",
+        "Saint-Jean du Var I",
+        "Saint-Jean du Var II",
+        "Sainte-Catherine",
+        "Sainte-Musse III",
+        "Vert Coteau",
+        "Élisa-La Pivotte"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "medium",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "toulon-sainte-musse-brunet",
+      "iris_insee": "83137",
+      "iris_names": [
+        "Brunet",
+        "Sainte-Musse I",
+        "Sainte-Musse II"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "medium",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "toulon-pont-du-las-bon-rencontre",
+      "iris_insee": "83137",
+      "iris_names": [
+        "Barbes",
+        "Bon Rencontre-Arsenal",
+        "L'Escaillon",
+        "Le Temple",
+        "Pont de Bois",
+        "Pont du Las I",
+        "Pont du Las II"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "medium",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "toulon-nord-ouest-routes-valbertrand",
+      "iris_insee": "83137",
+      "iris_names": [
+        "L'Oratoire",
+        "La Floranne",
+        "Le Jonquet",
+        "Les Arènes",
+        "Les Fours à Chaux",
+        "Les Routes I",
+        "Les Routes II",
+        "Monserrat-Bonnes Herbes",
+        "Rodeillac",
+        "Valbertrand"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "medium",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "toulon-faron-claret-siblas",
+      "iris_insee": "83137",
+      "iris_names": [
+        "Claret",
+        "Dardennes-Ubac",
+        "Faron-Fort Blanc",
+        "Faron-Fort Rouge-Favières",
+        "Les Pomets-Saint Pierre-Les Moulins",
+        "Siblas",
+        "Siblas-La Loubière"
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "medium",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "toulon-beaucaire-pont-neuf-lagoubran",
+      "iris_insee": "83137",
+      "iris_names": [
+        "La Beaucaire",
+        "Lagoubran",
+        "Pont Neuf"
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "iris_fallback_major_zone",
+      "confidence": "medium",
+      "geometry_method": "iris_major_zone_partition"
+    },
+    {
+      "code": "toulon-la-garde-campus",
+      "commune_insee": "83062",
+      "coverageRole": "campus",
+      "geometryBasis": "commune",
+      "confidence": "medium",
+      "geometry_method": "commune"
+    },
+    {
+      "code": "toulon-la-valette-avenue-83-la-seyne-edge",
+      "commune_insee": "83144",
+      "coverageRole": "campus",
+      "geometryBasis": "commune_context",
+      "confidence": "low",
+      "geometry_method": "commune"
+    }
   ]
 }

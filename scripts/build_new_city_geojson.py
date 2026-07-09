@@ -587,11 +587,17 @@ def build_city(city_id: str, specs: list[dict[str, Any]], places_file: Path, out
 
 
 def main() -> None:
+    from build_batch_cities import BATCH_OUTPUTS, build_city as build_batch_city
+
     geometry_specs = json.loads(GEOMETRY_JSON.read_text(encoding="utf-8"))
+    all_outputs = {**CITY_OUTPUTS, **BATCH_OUTPUTS}
     targets = sys.argv[1:] or list(CITY_OUTPUTS)
     for city_id in targets:
-        if city_id not in CITY_OUTPUTS:
+        if city_id not in all_outputs:
             raise SystemExit(f"Unknown city {city_id}")
+        if city_id in BATCH_OUTPUTS:
+            build_batch_city(city_id)
+            continue
         places_file, output = CITY_OUTPUTS[city_id]
         build_city(city_id, geometry_specs[city_id], places_file, output)
 

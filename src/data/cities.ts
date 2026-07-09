@@ -2,8 +2,13 @@ import { bordeauxMacroPlaces, bordeauxMicroPlaces } from "@/data/bordeauxPlaces"
 import { lilleMicroPlaces } from "@/data/lillePlaces";
 import { lyonMacroPlaces, lyonMicroPlaces } from "@/data/lyonPlaces";
 import { marseilleMicroPlaces } from "@/data/marseillePlaces";
+import { grenoblePlaces } from "@/data/grenoblePlaces";
+import { montpellierPlaces } from "@/data/montpellierPlaces";
 import { nantesMicroPlaces } from "@/data/nantesPlaces";
 import { niceMicroPlaces } from "@/data/nicePlaces";
+import { rennesPlaces } from "@/data/rennesPlaces";
+import { strasbourgPlaces } from "@/data/strasbourgPlaces";
+import { toulonPlaces } from "@/data/toulonPlaces";
 import { toulouseMicroPlaces } from "@/data/toulousePlaces";
 
 export type CityId =
@@ -14,7 +19,12 @@ export type CityId =
   | "lille"
   | "marseille"
   | "nice"
-  | "nantes";
+  | "nantes"
+  | "strasbourg"
+  | "montpellier"
+  | "rennes"
+  | "toulon"
+  | "grenoble";
 export type PlaceKind = "arrondissement" | "quartier" | "commune";
 export type RentLevel = "lower" | "medium" | "high" | "very high";
 export type StudentFit = "excellent" | "good" | "mixed" | "weak";
@@ -348,6 +358,101 @@ const niceSources: Source[] = [
   {
     label: "Wikipedia: Universite Cote d'Azur",
     url: "https://en.wikipedia.org/wiki/C%C3%B4te_d%27Azur_University"
+  }
+];
+
+const rennesSources: Source[] = [
+  {
+    label: "SSMSI / data.gouv.fr crime indicators, 2025 geography",
+    url: "https://www.data.gouv.fr/fr/datasets/bases-statistiques-communale-departementale-et-regionale-de-la-delinquance-enregistree-par-la-police-et-la-gendarmerie-nationales/"
+  },
+  {
+    label: "Rennes Metropole 12 administrative quartiers",
+    url: "https://data.rennesmetropole.fr/explore/dataset/perimetres-des-12-quartiers-de-la-ville-de-rennes/"
+  },
+  {
+    label: "geo.api.gouv.fr commune contours",
+    url: "https://geo.api.gouv.fr/decoupage-administratif/communes"
+  },
+  {
+    label: "Wikipedia: Quartiers de Rennes",
+    url: "https://fr.wikipedia.org/wiki/Quartiers_de_Rennes"
+  }
+];
+
+const strasbourgSources: Source[] = [
+  {
+    label: "SSMSI / data.gouv.fr crime indicators, 2025 geography",
+    url: "https://www.data.gouv.fr/fr/datasets/bases-statistiques-communale-departementale-et-regionale-de-la-delinquance-enregistree-par-la-police-et-la-gendarmerie-nationales/"
+  },
+  {
+    label: "Strasbourg Eurometropole functional quartiers",
+    url: "https://data.strasbourg.eu/explore/dataset/strasbourg_23_quartiers/"
+  },
+  {
+    label: "geo.api.gouv.fr commune contours",
+    url: "https://geo.api.gouv.fr/decoupage-administratif/communes"
+  },
+  {
+    label: "Wikipedia: Quartiers de Strasbourg",
+    url: "https://fr.wikipedia.org/wiki/Quartiers_de_Strasbourg"
+  }
+];
+
+const grenobleSources: Source[] = [
+  {
+    label: "SSMSI / data.gouv.fr crime indicators, 2025 geography",
+    url: "https://www.data.gouv.fr/fr/datasets/bases-statistiques-communale-departementale-et-regionale-de-la-delinquance-enregistree-par-la-police-et-la-gendarmerie-nationales/"
+  },
+  {
+    label: "Grenoble-Alpes Metropole unions de quartier",
+    url: "https://data.metropolegrenoble.fr/"
+  },
+  {
+    label: "geo.api.gouv.fr commune contours",
+    url: "https://geo.api.gouv.fr/decoupage-administratif/communes"
+  },
+  {
+    label: "Wikipedia: Quartiers de Grenoble",
+    url: "https://fr.wikipedia.org/wiki/Quartiers_de_Grenoble"
+  }
+];
+
+const montpellierSources: Source[] = [
+  {
+    label: "SSMSI / data.gouv.fr crime indicators, 2025 geography",
+    url: "https://www.data.gouv.fr/fr/datasets/bases-statistiques-communale-departementale-et-regionale-de-la-delinquance-enregistree-par-la-police-et-la-gendarmerie-nationales/"
+  },
+  {
+    label: "INSEE IRIS boundaries (Montpellier commune 34172)",
+    url: "https://geoservices.ign.fr/contoursiris"
+  },
+  {
+    label: "geo.api.gouv.fr commune contours",
+    url: "https://geo.api.gouv.fr/decoupage-administratif/communes"
+  },
+  {
+    label: "Wikipedia: Quartiers de Montpellier",
+    url: "https://fr.wikipedia.org/wiki/Quartiers_de_Montpellier"
+  }
+];
+
+const toulonSources: Source[] = [
+  {
+    label: "SSMSI / data.gouv.fr crime indicators, 2025 geography",
+    url: "https://www.data.gouv.fr/fr/datasets/bases-statistiques-communale-departementale-et-regionale-de-la-delinquance-enregistree-par-la-police-et-la-gendarmerie-nationales/"
+  },
+  {
+    label: "INSEE IRIS boundaries (Toulon commune 83137)",
+    url: "https://geoservices.ign.fr/contoursiris"
+  },
+  {
+    label: "geo.api.gouv.fr commune contours",
+    url: "https://geo.api.gouv.fr/decoupage-administratif/communes"
+  },
+  {
+    label: "Wikipedia: Quartiers de Toulon",
+    url: "https://fr.wikipedia.org/wiki/Quartiers_de_Toulon"
   }
 ];
 
@@ -705,6 +810,215 @@ export const cities: CityConfig[] = [
       "Nantes Sud"
     ],
     sources: nantesSources
+  },
+  {
+    id: "strasbourg",
+    name: "Strasbourg",
+    title: "Strasbourg official quartiers + Illkirch campus",
+    geojsonUrl: "/data/strasbourg.geojson",
+    outlineGeojsonUrl: "/data/strasbourg-outlines.geojson",
+    center: [7.752, 48.573],
+    zoom: 12,
+    minZoom: 10.5,
+    maxZoom: 15,
+    defaultSelectedCode: "strasbourg-bourse-esplanade-krutenau",
+    areaOptions: [
+      "Centre-east",
+      "Centre",
+      "Station core",
+      "North-east premium",
+      "North-east",
+      "West campus",
+      "West cap",
+      "West-south",
+      "South-west",
+      "South-west cap",
+      "South",
+      "South-east",
+      "East edge",
+      "South cap",
+      "Campus suburb"
+    ],
+    parentFilterOptions: [
+      "Centre-east",
+      "Centre",
+      "Station core",
+      "North-east premium",
+      "North-east",
+      "West campus",
+      "West cap",
+      "West-south",
+      "South-west",
+      "South-west cap",
+      "South",
+      "South-east",
+      "East edge",
+      "South cap",
+      "Campus suburb"
+    ],
+    sources: strasbourgSources
+  },
+  {
+    id: "montpellier",
+    name: "Montpellier",
+    title: "Montpellier major districts + campus belts",
+    geojsonUrl: "/data/montpellier.geojson",
+    outlineGeojsonUrl: "/data/montpellier-outlines.geojson",
+    center: [3.877, 43.611],
+    zoom: 12,
+    minZoom: 10.5,
+    maxZoom: 15,
+    defaultSelectedCode: "montpellier-beaux-arts-boutonnet",
+    areaOptions: [
+      "Montpellier Centre",
+      "North centre",
+      "West centre",
+      "East centre",
+      "East campus",
+      "East",
+      "North campus",
+      "North-east",
+      "South-west",
+      "West",
+      "North-west cap",
+      "South"
+    ],
+    parentFilterOptions: [
+      "Montpellier Centre",
+      "North centre",
+      "West centre",
+      "East centre",
+      "East campus",
+      "East",
+      "North campus",
+      "North-east",
+      "South-west",
+      "West",
+      "North-west cap",
+      "South"
+    ],
+    sources: montpellierSources
+  },
+  {
+    id: "rennes",
+    name: "Rennes",
+    title: "Rennes official quartiers + campus belts",
+    geojsonUrl: "/data/rennes.geojson",
+    outlineGeojsonUrl: "/data/rennes-outlines.geojson",
+    center: [-1.677, 48.117],
+    zoom: 12,
+    minZoom: 10.5,
+    maxZoom: 15,
+    defaultSelectedCode: "rennes-thabor-saint-helier-alphonse-guerin",
+    areaOptions: [
+      "Centre",
+      "East centre",
+      "West centre",
+      "North",
+      "North cap",
+      "North-east campus",
+      "East-south",
+      "South centre",
+      "West inner",
+      "West campus",
+      "South cap",
+      "South-west"
+    ],
+    parentFilterOptions: [
+      "Centre",
+      "East centre",
+      "West centre",
+      "North",
+      "North cap",
+      "North-east campus",
+      "East-south",
+      "South centre",
+      "West inner",
+      "West campus",
+      "South cap",
+      "South-west"
+    ],
+    sources: rennesSources
+  },
+  {
+    id: "toulon",
+    name: "Toulon",
+    title: "Toulon commute districts + La Garde campus",
+    geojsonUrl: "/data/toulon.geojson",
+    outlineGeojsonUrl: "/data/toulon-outlines.geojson",
+    center: [5.930, 43.124],
+    zoom: 11.8,
+    minZoom: 10.5,
+    maxZoom: 15,
+    defaultSelectedCode: "toulon-la-garde-campus",
+    areaOptions: [
+      "Centre",
+      "East centre",
+      "East coast",
+      "East inner",
+      "East",
+      "West",
+      "North-west",
+      "West edge",
+      "Campus suburb",
+      "Commute edge"
+    ],
+    parentFilterOptions: [
+      "Centre",
+      "East centre",
+      "East coast",
+      "East inner",
+      "East",
+      "West",
+      "North-west",
+      "West edge",
+      "Campus suburb",
+      "Commute edge"
+    ],
+    sources: toulonSources
+  },
+  {
+    id: "grenoble",
+    name: "Grenoble",
+    title: "Grenoble sector districts + campus edges",
+    geojsonUrl: "/data/grenoble.geojson",
+    outlineGeojsonUrl: "/data/grenoble-outlines.geojson",
+    center: [5.724, 45.188],
+    zoom: 12,
+    minZoom: 10.5,
+    maxZoom: 15,
+    defaultSelectedCode: "grenoble-gieres-campus",
+    areaOptions: [
+      "Centre",
+      "Centre-east",
+      "Centre-west",
+      "North-west campus",
+      "West inner",
+      "East river",
+      "West cap",
+      "East inner",
+      "East",
+      "South-east",
+      "South-east cap",
+      "South cap",
+      "Campus suburb"
+    ],
+    parentFilterOptions: [
+      "Centre",
+      "Centre-east",
+      "Centre-west",
+      "North-west campus",
+      "West inner",
+      "East river",
+      "West cap",
+      "East inner",
+      "East",
+      "South-east",
+      "South-east cap",
+      "South cap",
+      "Campus suburb"
+    ],
+    sources: grenobleSources
   }
 ];
 
@@ -1346,7 +1660,12 @@ export const placesByCity: Record<CityId, PlaceScore[]> = {
   lille: lilleMicroPlaces,
   marseille: marseilleMicroPlaces,
   nice: niceMicroPlaces,
-  nantes: nantesMicroPlaces
+  nantes: nantesMicroPlaces,
+  strasbourg: strasbourgPlaces,
+  montpellier: montpellierPlaces,
+  rennes: rennesPlaces,
+  toulon: toulonPlaces,
+  grenoble: grenoblePlaces
 };
 
 export function isMapPlace(place: PlaceScore) {
@@ -1379,6 +1698,11 @@ const allPlaces = [
   ...lilleMicroPlaces,
   ...marseilleMicroPlaces,
   ...niceMicroPlaces,
-  ...nantesMicroPlaces
+  ...nantesMicroPlaces,
+  ...strasbourgPlaces,
+  ...montpellierPlaces,
+  ...rennesPlaces,
+  ...toulonPlaces,
+  ...grenoblePlaces
 ];
 export const placeByCode = new Map<string, PlaceScore>(allPlaces.map((place) => [place.code, place]));

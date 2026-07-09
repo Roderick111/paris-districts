@@ -1,0 +1,122 @@
+{
+  "rennes": {
+    "source": "Rennes Metropole perimetres-des-12-quartiers-de-la-ville-de-rennes",
+    "sourceUrl": "https://data.rennesmetropole.fr/api/explore/v2.1/catalog/datasets/perimetres-des-12-quartiers-de-la-ville-de-rennes/exports/geojson",
+    "nameKey": "nom",
+    "parentKey": "nuquart",
+    "parentZones": {
+      "1": ["Centre", "Bretèche"],
+      "2": ["Thabor / Saint-Hélier / Alphonse Guérin / Baud-Chardonnet", "Belle Épine", "Haut-Trait"],
+      "3": ["Bourg l'Evesque / La Touche / Moulin du Comte", "Cité des Jardins"],
+      "4": ["Saint Martin", "La Peupleraie"],
+      "5": ["Moulin d'Olivet et Gué Mary", "Maurepas / Bellangerais"],
+      "6": ["Jeanne d'Arc / Longs Champs / Beaulieu", "Centre Ville"],
+      "7": ["La Pommeraie", "Les Melliers"],
+      "8": ["La Barre Richelot, Cressonière, Vivier Louis, Belle Vue", "Sud gare"],
+      "9": ["La Ricoquais", "Cleunay / Arsenal - Redon / La Courrouze"],
+      "10": ["Villejean / Beauregard", "Champ Daguet Nord"],
+      "11": ["Le Blosne", "Champ Daguet Sud"],
+      "12": ["Maison Blanche et Kerfleury", "Bréquigny"],
+      "13": ["Secteur Rural"],
+      "14": ["Zone Industrielle Nord"]
+    },
+    "groups": [
+      {"code": "rennes-centre", "name": "Centre", "parentIds": [1], "coverageRole": "primary", "geometryBasis": "official_quartier", "confidence": "high"},
+      {"code": "rennes-thabor-saint-helier-alphonse-guerin", "name": "Thabor / Saint-Helier / Alphonse Guerin", "parentIds": [2], "coverageRole": "primary", "geometryBasis": "official_quartier", "confidence": "high"},
+      {"code": "rennes-bourg-levesque-la-touche-moulin-du-comte", "name": "Bourg-l'Evesque / La Touche / Moulin du Comte", "parentIds": [3], "coverageRole": "primary", "geometryBasis": "official_quartier", "confidence": "high"},
+      {"code": "rennes-nord-saint-martin", "name": "Nord / Saint-Martin", "parentIds": [4, 14], "coverageRole": "primary", "geometryBasis": "official_quartier", "confidence": "high"},
+      {"code": "rennes-maurepas-patton", "name": "Maurepas / Patton", "parentIds": [5], "coverageRole": "risk_cap", "geometryBasis": "official_quartier", "confidence": "high"},
+      {"code": "rennes-jeanne-darc-longs-champs-beaulieu", "name": "Jeanne d'Arc / Longs-Champs / Beaulieu", "parentIds": [6], "coverageRole": "campus", "geometryBasis": "official_quartier", "confidence": "high"},
+      {"code": "rennes-la-pommeraie", "name": "La Pommeraie", "parentIds": [7], "coverageRole": "primary", "geometryBasis": "official_quartier", "confidence": "high"},
+      {"code": "rennes-sud-gare", "name": "Sud-Gare", "parentIds": [8], "coverageRole": "primary", "geometryBasis": "official_quartier", "confidence": "high"},
+      {"code": "rennes-cleunay-arsenal-redon", "name": "Cleunay / Arsenal-Redon", "parentIds": [9], "coverageRole": "primary", "geometryBasis": "official_quartier", "confidence": "high"},
+      {"code": "rennes-villejean-beauregard", "name": "Villejean / Beauregard", "parentIds": [10], "coverageRole": "campus", "geometryBasis": "official_quartier", "confidence": "high"},
+      {"code": "rennes-le-blosne", "name": "Le Blosne", "parentIds": [11], "coverageRole": "risk_cap", "geometryBasis": "official_quartier", "confidence": "high"},
+      {"code": "rennes-brequigny", "name": "Brequigny", "parentIds": [12, 13], "coverageRole": "context", "geometryBasis": "official_quartier", "confidence": "high"}
+    ]
+  },
+  "strasbourg": {
+    "source": "Strasbourg 23 functional quartiers",
+    "sourceUrl": "https://data.strasbourg.eu/api/explore/v2.1/catalog/datasets/strasbourg_23_quartiers/exports/geojson",
+    "nameKey": "nom_quartier",
+    "groups": [
+      {"code": "strasbourg-bourse-esplanade-krutenau", "name": "Bourse / Esplanade / Krutenau", "quartiers": ["Bourse Krutenau", "Esplanade", "Ampère"], "coverageRole": "primary", "geometryBasis": "official_quartier_group", "confidence": "high"},
+      {"code": "strasbourg-centre-ville-petite-france", "name": "Centre-ville / Petite France", "quartiers": ["Centre ville", "Cité de l'Ill"], "coverageRole": "primary", "geometryBasis": "official_quartier_group", "confidence": "high"},
+      {"code": "strasbourg-gare-tribunal", "name": "Gare / Tribunal", "quartiers": ["Gare Porte Schirmeck", "Tribunal"], "coverageRole": "risk_cap", "geometryBasis": "official_quartier_group", "confidence": "high"},
+      {"code": "strasbourg-orangerie-conseil-xv", "name": "Orangerie / Conseil des XV", "quartiers": ["Orang Cons des XV"], "coverageRole": "primary", "geometryBasis": "official_quartier", "confidence": "high"},
+      {"code": "strasbourg-robertsau-wacken", "name": "Robertsau / Wacken", "quartiers": ["Robertsau", "Spach Rotterdam"], "coverageRole": "primary", "geometryBasis": "official_quartier_group", "confidence": "high"},
+      {"code": "strasbourg-cronenbourg-campus", "name": "Cronenbourg campus", "quartiers": ["Cronenbourg Cité", "Vieux Cronenbourg"], "coverageRole": "campus", "geometryBasis": "official_quartier_group", "confidence": "high"},
+      {"code": "strasbourg-hautepierre-poteries", "name": "Hautepierre / Poteries", "quartiers": ["Hautepierre", "Parc des Poteries"], "coverageRole": "risk_cap", "geometryBasis": "official_quartier_group", "confidence": "high"},
+      {"code": "strasbourg-koenigshoffen", "name": "Koenigshoffen", "quartiers": ["Koenigshoffen"], "coverageRole": "risk_cap", "geometryBasis": "official_quartier", "confidence": "high"},
+      {"code": "strasbourg-montagne-verte", "name": "Montagne Verte", "quartiers": ["Montagne Verte"], "coverageRole": "context", "geometryBasis": "official_quartier", "confidence": "high"},
+      {"code": "strasbourg-elsau", "name": "Elsau", "quartiers": ["Elsau"], "coverageRole": "risk_cap", "geometryBasis": "official_quartier", "confidence": "high"},
+      {"code": "strasbourg-meinau", "name": "Meinau", "quartiers": ["Meinau"], "coverageRole": "context", "geometryBasis": "official_quartier", "confidence": "high"},
+      {"code": "strasbourg-neudorf-musau", "name": "Neudorf / Musau", "quartiers": ["Neudorf"], "coverageRole": "primary", "geometryBasis": "official_quartier", "confidence": "high"},
+      {"code": "strasbourg-port-du-rhin", "name": "Port du Rhin", "quartiers": ["Port du Rhin"], "coverageRole": "context", "geometryBasis": "official_quartier", "confidence": "high"},
+      {"code": "strasbourg-neuhof-1", "name": "Neuhof 1", "quartiers": ["Neuhof"], "coverageRole": "risk_cap", "geometryBasis": "official_quartier", "confidence": "high"},
+      {"code": "strasbourg-neuhof-2-stockfeld-ganzau", "name": "Neuhof 2 / Stockfeld / Ganzau", "quartiers": ["Vieux Neuhof"], "coverageRole": "risk_cap", "geometryBasis": "official_quartier", "confidence": "high", "extraSourceUrl": "https://data.strasbourg.eu/api/explore/v2.1/catalog/datasets/strasbourg-15-quartiers/exports/geojson", "extraQuartiers": ["NEUHOF2"]},
+      {"code": "strasbourg-illkirch-campus", "name": "Illkirch campus", "communeInsee": "67447", "coverageRole": "campus", "geometryBasis": "commune", "confidence": "medium"}
+    ]
+  },
+  "grenoble": {
+    "source": "Grenoble unions de quartier CSV",
+    "sourceUrl": "https://data.metropolegrenoble.fr/sites/default/files/dataset/2023/02/22/0dcfa54a-6dad-4a31-af19-d2baaef4320e/csv_gen_0dcfa54a_6dad_4a31_af19_d2baaef4320e_63f63698555a9.csv",
+    "nameKey": "sdec_libel",
+    "groups": [
+      {"code": "grenoble-hyper-centre", "name": "Hyper-centre", "quartiers": ["Centre Ville"], "coverageRole": "primary", "geometryBasis": "official_quartier_group", "confidence": "high"},
+      {"code": "grenoble-notre-dame-mutualite", "name": "Notre-Dame / Mutualite", "quartiers": ["Notre Dame", "Mutualité - Préfecture"], "coverageRole": "primary", "geometryBasis": "official_quartier_group", "confidence": "high"},
+      {"code": "grenoble-championnet-aigle", "name": "Championnet / Aigle", "quartiers": ["Championnet - Bonne - Condorcet - Hoche", "Foch - Aigle - Libération"], "coverageRole": "primary", "geometryBasis": "official_quartier_group", "confidence": "high"},
+      {"code": "grenoble-europole-presquile", "name": "Europole / Presqu'ile", "quartiers": ["Berriat - Saint Bruno - Europole"], "coverageRole": "campus", "geometryBasis": "official_quartier_group", "confidence": "high"},
+      {"code": "grenoble-chorier-berriat-saint-bruno", "name": "Chorier-Berriat / Saint-Bruno", "quartiers": ["Arago - Jean Macé - Martyrs", "Centre Gare", "Rondeau - Libération"], "coverageRole": "primary", "geometryBasis": "official_quartier_group", "confidence": "high"},
+      {"code": "grenoble-saint-laurent-ile-verte", "name": "Saint-Laurent / Ile Verte", "quartiers": ["Saint Laurent - Rive Droite", "Ile Verte"], "coverageRole": "campus", "geometryBasis": "official_quartier_group", "confidence": "high"},
+      {"code": "grenoble-mistral-eaux-claires", "name": "Mistral / Eaux-Claires", "quartiers": ["Mistral - Drac", "Eaux Claires"], "coverageRole": "risk_cap", "geometryBasis": "official_quartier_group", "confidence": "high"},
+      {"code": "grenoble-capuche-allies-alpins", "name": "Capuche / Allies-Alpins", "quartiers": ["Capuche - Stalingrad - Grands Boulevards", "Alliés - Alpins - Flaubert - Beauvert"], "coverageRole": "context", "geometryBasis": "official_quartier_group", "confidence": "high"},
+      {"code": "grenoble-beauvert-cite-abbaye", "name": "Beauvert / Cite de l'Abbaye", "quartiers": ["Baladins - Géants"], "coverageRole": "context", "geometryBasis": "official_quartier_group", "confidence": "medium"},
+      {"code": "grenoble-jouhaux-exposition-bajatiere", "name": "Jouhaux / Exposition-Bajatiere", "quartiers": ["Abbaye - Jouhaux", "Exposition - Bajatière"], "coverageRole": "context", "geometryBasis": "official_quartier_group", "confidence": "high"},
+      {"code": "grenoble-teisseire-malherbe", "name": "Teisseire / Malherbe", "quartiers": ["Teisseire", "Malherbe"], "coverageRole": "risk_cap", "geometryBasis": "official_quartier_group", "confidence": "high"},
+      {"code": "grenoble-arlequin-village-olympique-vigny-musset", "name": "Arlequin / Village Olympique / Vigny Musset", "quartiers": ["Villeneuve 1 - Arlequin", "Village Olympique - Vigny Musset"], "coverageRole": "risk_cap", "geometryBasis": "official_quartier_group", "confidence": "high"},
+      {"code": "grenoble-saint-martin-dheres-campus-core", "name": "Saint-Martin-d'Heres campus core", "communeInsee": "38421", "coverageRole": "campus", "geometryBasis": "commune", "confidence": "medium"},
+      {"code": "grenoble-gieres-campus", "name": "Gieres campus", "communeInsee": "38179", "coverageRole": "campus", "geometryBasis": "commune", "confidence": "medium"}
+    ]
+  },
+  "montpellier": {
+    "source": "IRIS major-zone partition (34172)",
+    "insee": "34172",
+    "groups": [
+      {"code": "montpellier-ecusson-core", "name": "Ecusson core", "coverageRole": "primary", "geometryBasis": "iris_fallback_major_zone", "confidence": "medium"},
+      {"code": "montpellier-comedie-gare", "name": "Comedie / Gare", "coverageRole": "primary", "geometryBasis": "iris_fallback_major_zone", "confidence": "medium"},
+      {"code": "montpellier-beaux-arts-boutonnet", "name": "Beaux-Arts / Boutonnet", "coverageRole": "primary", "geometryBasis": "iris_fallback_major_zone", "confidence": "high"},
+      {"code": "montpellier-arceaux-gambetta-figuerolles", "name": "Arceaux / Gambetta / Figuerolles", "coverageRole": "primary", "geometryBasis": "iris_fallback_major_zone", "confidence": "medium"},
+      {"code": "montpellier-antigone", "name": "Antigone", "coverageRole": "primary", "geometryBasis": "iris_fallback_major_zone", "confidence": "medium"},
+      {"code": "montpellier-richter-jacques-coeur", "name": "Richter / Jacques-Coeur", "coverageRole": "campus", "geometryBasis": "iris_fallback_major_zone", "confidence": "high"},
+      {"code": "montpellier-port-marianne-millenaire-odysseum", "name": "Port Marianne / Millenaire / Odysseum", "coverageRole": "primary", "geometryBasis": "iris_fallback_major_zone", "confidence": "medium"},
+      {"code": "montpellier-hopitaux-facultes-triolet", "name": "Hopitaux-Facultes / Triolet", "coverageRole": "campus", "geometryBasis": "iris_fallback_major_zone", "confidence": "high"},
+      {"code": "montpellier-paul-valery-route-de-mende", "name": "Paul-Valery / Route de Mende", "coverageRole": "campus", "geometryBasis": "iris_fallback_major_zone", "confidence": "high"},
+      {"code": "montpellier-aiguelongue-malbosc", "name": "Aiguelongue / Malbosc", "coverageRole": "primary", "geometryBasis": "iris_fallback_major_zone", "confidence": "medium"},
+      {"code": "montpellier-croix-argent-ovalie", "name": "Croix d'Argent / Ovalie", "coverageRole": "context", "geometryBasis": "iris_fallback_major_zone", "confidence": "medium"},
+      {"code": "montpellier-cevennes-celleneuve", "name": "Les Cevennes / Celleneuve", "coverageRole": "context", "geometryBasis": "iris_fallback_major_zone", "confidence": "medium"},
+      {"code": "montpellier-mosson-paillade", "name": "Mosson / Paillade", "coverageRole": "risk_cap", "geometryBasis": "iris_fallback_major_zone", "confidence": "high"},
+      {"code": "montpellier-pres-arenes-gare-sud", "name": "Pres d'Arenes / Gare Sud", "coverageRole": "context", "geometryBasis": "iris_fallback_major_zone", "confidence": "medium"}
+    ]
+  },
+  "toulon": {
+    "source": "IRIS major-zone partition (83137) + campus communes",
+    "insee": "83137",
+    "groups": [
+      {"code": "toulon-haute-ville-liberte", "name": "Haute Ville / Liberte", "coverageRole": "risk_cap", "geometryBasis": "iris_fallback_major_zone", "confidence": "medium"},
+      {"code": "toulon-basse-ville-port", "name": "Basse Ville / Port", "coverageRole": "risk_cap", "geometryBasis": "iris_fallback_major_zone", "confidence": "medium"},
+      {"code": "toulon-la-rode-mayol", "name": "La Rode / Mayol", "coverageRole": "primary", "geometryBasis": "iris_fallback_major_zone", "confidence": "medium"},
+      {"code": "toulon-mourillon-core", "name": "Mourillon core", "coverageRole": "primary", "geometryBasis": "iris_fallback_major_zone", "confidence": "medium"},
+      {"code": "toulon-la-mitre-fort-saint-louis", "name": "La Mitre / Fort Saint-Louis", "coverageRole": "primary", "geometryBasis": "iris_fallback_major_zone", "confidence": "medium"},
+      {"code": "toulon-cap-brun-serinette", "name": "Cap Brun / Serinette", "coverageRole": "primary", "geometryBasis": "iris_fallback_major_zone", "confidence": "medium"},
+      {"code": "toulon-saint-jean-du-var-font-pre", "name": "Saint-Jean-du-Var / Font-Pre", "coverageRole": "context", "geometryBasis": "iris_fallback_major_zone", "confidence": "medium"},
+      {"code": "toulon-sainte-musse-brunet", "name": "Sainte-Musse / Brunet", "coverageRole": "context", "geometryBasis": "iris_fallback_major_zone", "confidence": "medium"},
+      {"code": "toulon-pont-du-las-bon-rencontre", "name": "Pont-du-Las / Bon Rencontre", "coverageRole": "risk_cap", "geometryBasis": "iris_fallback_major_zone", "confidence": "medium"},
+      {"code": "toulon-nord-ouest-routes-valbertrand", "name": "Nord-Ouest / Routes / Valbertrand", "coverageRole": "context", "geometryBasis": "iris_fallback_major_zone", "confidence": "medium"},
+      {"code": "toulon-faron-claret-siblas", "name": "Faron / Claret / Siblas", "coverageRole": "context", "geometryBasis": "iris_fallback_major_zone", "confidence": "medium"},
+      {"code": "toulon-beaucaire-pont-neuf-lagoubran", "name": "Beaucaire / Pont-Neuf / Lagoubran", "coverageRole": "risk_cap", "geometryBasis": "iris_fallback_major_zone", "confidence": "medium"},
+      {"code": "toulon-la-garde-campus", "name": "La Garde campus", "communeInsee": "83062", "coverageRole": "campus", "geometryBasis": "commune", "confidence": "medium"},
+      {"code": "toulon-la-valette-avenue-83-la-seyne-edge", "name": "La Valette / Avenue 83 edge", "communeInsee": "83144", "coverageRole": "campus", "geometryBasis": "commune_context", "confidence": "low"}
+    ]
+  }
+}

@@ -29,6 +29,11 @@ CITY_FILES = {
     "marseille": (ROOT / "src/data/marseillePlaces.ts", PUBLIC_DATA / "marseille.geojson"),
     "nice": (ROOT / "src/data/nicePlaces.ts", PUBLIC_DATA / "nice.geojson"),
     "nantes": (ROOT / "src/data/nantesPlaces.ts", PUBLIC_DATA / "nantes.geojson"),
+    "rennes": (ROOT / "src/data/rennesPlaces.ts", PUBLIC_DATA / "rennes.geojson"),
+    "strasbourg": (ROOT / "src/data/strasbourgPlaces.ts", PUBLIC_DATA / "strasbourg.geojson"),
+    "grenoble": (ROOT / "src/data/grenoblePlaces.ts", PUBLIC_DATA / "grenoble.geojson"),
+    "montpellier": (ROOT / "src/data/montpellierPlaces.ts", PUBLIC_DATA / "montpellier.geojson"),
+    "toulon": (ROOT / "src/data/toulonPlaces.ts", PUBLIC_DATA / "toulon.geojson"),
 }
 
 LILLE_OBSOLETE_CODES = {
