@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync, writeFileSync } from "fs";
+import { readFileSync, readdirSync, writeFileSync } from "fs";
 import { join } from "path";
 import type { FeatureCollection, Geometry } from "geojson";
 import { dissolveGeometry } from "../src/lib/geometryOutline";
@@ -8,29 +8,61 @@ type OutlineFeatureCollection = FeatureCollection<
   { code: string; name: string; kind: string }
 >;
 
-function outlineCitiesFromConfigs(): string[] {
+type CityConfigPaths = {
+  cityId: string;
+  geojsonOutput: string;
+  outlineOutput: string;
+};
+
+function outlineCitiesFromConfigs(): CityConfigPaths[] {
   const configDir = join("scripts", "city_configs");
   return readdirSync(configDir)
     .filter((file) => file.endsWith(".json"))
     .flatMap((file) => {
       const raw = JSON.parse(readFileSync(join(configDir, file), "utf8")) as {
+        cityId?: string;
+        geojsonOutput?: string;
         outlineOutput?: string;
       };
-      return raw.outlineOutput ? [file.replace(/\.json$/, "")] : [];
+      if (!raw.outlineOutput || !raw.geojsonOutput) {
+        return [];
+      }
+      return [
+        {
+          cityId: raw.cityId ?? file.replace(/\.json$/, ""),
+          geojsonOutput: raw.geojsonOutput,
+          outlineOutput: raw.outlineOutput
+        }
+      ];
     })
-    .sort();
+    .sort((a, b) => a.cityId.localeCompare(b.cityId));
 }
 
-const cities = process.argv.slice(2);
-const targets = cities.length > 0 ? cities : outlineCitiesFromConfigs();
+function dissolveWithFallback(geometry: Geometry): Geometry {
+  try {
+    return dissolveGeometry(geometry);
+  } catch {
+    return geometry;
+  }
+}
+
+const requested = process.argv.slice(2);
+const targets = requested.length > 0
+  ? outlineCitiesFromConfigs().filter((entry) => requested.includes(entry.cityId))
+  : outlineCitiesFromConfigs();
+
 if (targets.length === 0) {
   console.error("No cities with outlineOutput configured.");
   process.exit(1);
 }
 
-for (const city of targets) {
-  const inputPath = join("public/data", `${city}.geojson`);
-  const outputPath = join("public/data", `${city}-outlines.geojson`);
+for (const { cityId, geojsonOutput, outlineOutput } of targets) {
+  const inputPath = geojsonOutput.startsWith("public/")
+    ? geojsonOutput
+    : join("public/data", `${cityId}.geojson`);
+  const outputPath = outlineOutput.startsWith("public/")
+    ? outlineOutput
+    : join("public/data", `${cityId}-outlines.geojson`);
 
   const started = performance.now();
   const geojson = JSON.parse(readFileSync(inputPath, "utf8")) as OutlineFeatureCollection;
@@ -44,7 +76,7 @@ for (const city of targets) {
         name: feature.properties.name,
         kind: feature.properties.kind
       },
-      geometry: dissolveGeometry(feature.geometry)
+      geometry: dissolveWithFallback(feature.geometry)
     }))
   };
 

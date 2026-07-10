@@ -3,15 +3,32 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 from typing import Any
 
 
+def write_json_atomic(path: Path, payload: Any, *, compact: bool = False) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temp_path = path.with_suffix(path.suffix + ".tmp")
+    try:
+        with temp_path.open("w", encoding="utf-8") as handle:
+            if compact:
+                json.dump(payload, handle, separators=(",", ":"))
+            else:
+                json.dump(payload, handle)
+            handle.flush()
+            os.fsync(handle.fileno())
+        temp_path.replace(path)
+    except Exception:
+        if temp_path.exists():
+            temp_path.unlink()
+        raise
+
+
 def write_feature_collection(features: list[dict[str, Any]], output: Path) -> None:
-    output.parent.mkdir(parents=True, exist_ok=True)
     payload = {"type": "FeatureCollection", "features": features}
-    with output.open("w", encoding="utf-8") as handle:
-        json.dump(payload, handle, separators=(",", ":"))
+    write_json_atomic(output, payload, compact=True)
 
 
 def read_feature_collection(path: Path) -> list[dict[str, Any]]:

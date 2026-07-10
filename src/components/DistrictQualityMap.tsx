@@ -1,29 +1,31 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import { GeoJsonLayer } from "@deck.gl/layers";
-import { MapboxOverlay } from "@deck.gl/mapbox";
-import maplibregl, { Map as MapLibreMap } from "maplibre-gl";
-import type { FeatureCollection, GeoJsonProperties, Geometry } from "geojson";
-import { dissolveGeometry } from "@/lib/geometryOutline";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { FeatureCollection } from "geojson";
+import MapView, { boundsFromGeojson } from "@/components/MapView";
 import SettingsDrawer, { type SettingsTab } from "@/components/SettingsDrawer";
 import {
   cities,
   cityById,
+  colorForScore,
   defaultWeights,
-  getPlacesForCity,
+  formatScore,
+  scoreForMode,
   SCORE_KEYS,
+  UNKNOWN_FEATURE_COLOR,
   weightedTotal,
   type CityId,
   type PlaceScore,
   type ScoreKey,
   type Weights
 } from "@/data/cities";
+import { loadPlacesForCity } from "@/data/placeLoaders";
+import { useCityGeojson } from "@/hooks/useCityGeojson";
 import {
   clampScore,
   clampWeight,
-  getPlaceOverrides,
   getEffectiveScores,
+  getPlaceOverrides,
   hasCustomSettings,
   loadScoreOverrides,
   loadWeights,
@@ -33,8 +35,6 @@ import {
   type ScoreOverridesByPlace
 } from "@/lib/userSettings";
 
-type PlaceFeatureCollection = FeatureCollection<Geometry, GeoJsonProperties & { code: string; name: string; kind: string }>;
-
 type HoverInfo = {
   x: number;
   y: number;
@@ -43,100 +43,14 @@ type HoverInfo = {
 
 type MapMode = "overall" | ScoreKey;
 
-const BASE_LINE_COLOR: [number, number, number, number] = [255, 255, 255, 230];
-const SELECTION_LINE_COLOR: [number, number, number, number] = [15, 23, 42, 255];
-
-function colorForScore(score: number, alpha = 185): [number, number, number, number] {
-  const clamped = Math.max(0, Math.min(10, score));
-  if (clamped <= 4) {
-    const t = clamped / 4;
-    return [Math.round(185 + 64 * t), Math.round(28 + 87 * t), Math.round(28 - 6 * t), alpha];
-  }
-
-  if (clamped <= 6.5) {
-    const t = (clamped - 4) / 2.5;
-    return [Math.round(249 + 1 * t), Math.round(115 + 89 * t), Math.round(22 - 1 * t), alpha];
-  }
-
-  if (clamped <= 8) {
-    const t = (clamped - 6.5) / 1.5;
-    return [Math.round(250 - 118 * t), Math.round(204 - 28 * t), Math.round(21 + 11 * t), alpha];
-  }
-
-  const t = (clamped - 8) / 2;
-  return [Math.round(132 - 110 * t), Math.round(176 - 13 * t), Math.round(32 + 42 * t), alpha];
-}
-
-function formatScore(value: number) {
-  return value.toFixed(1).replace(".0", "");
-}
-
-function scoreForMode(
-  place: PlaceScore,
-  mode: MapMode,
-  activeWeights: Weights,
-  scoreOverrides: ScoreOverridesByPlace
-) {
-  if (mode === "overall") {
-    return weightedTotal(place, activeWeights, getPlaceOverrides(scoreOverrides, place.code));
-  }
-
-  return getEffectiveScores(place, scoreOverrides)[mode];
-}
-
 function mapModeLabel(mode: MapMode) {
   return mode === "overall" ? "risk-adjusted overall" : metricLabel(mode).toLowerCase();
 }
 
-function boundsFromGeojson(geojson: PlaceFeatureCollection): [[number, number], [number, number]] {
-  let minLon = Infinity;
-  let minLat = Infinity;
-  let maxLon = -Infinity;
-  let maxLat = -Infinity;
-
-  const walk = (coords: unknown): void => {
-    if (!Array.isArray(coords) || coords.length === 0) {
-      return;
-    }
-
-    if (typeof coords[0] === "number" && typeof coords[1] === "number") {
-      const [lon, lat] = coords as [number, number];
-      minLon = Math.min(minLon, lon);
-      maxLon = Math.max(maxLon, lon);
-      minLat = Math.min(minLat, lat);
-      maxLat = Math.max(maxLat, lat);
-      return;
-    }
-
-    for (const part of coords) {
-      walk(part);
-    }
-  };
-
-  for (const feature of geojson.features) {
-    const { geometry } = feature;
-    if ("coordinates" in geometry) {
-      walk(geometry.coordinates);
-    }
-  }
-
-  return [[minLon, minLat], [maxLon, maxLat]];
-}
-
 export default function DistrictQualityMap() {
-  const mapNode = useRef<HTMLDivElement | null>(null);
-  const mapRef = useRef<MapLibreMap | null>(null);
-  const overlayRef = useRef<MapboxOverlay | null>(null);
   const [cityId, setCityId] = useState<CityId>("paris");
-  const [geojsonCache, setGeojsonCache] = useState<{
-    url: string;
-    data: PlaceFeatureCollection;
-  } | null>(null);
-  const [outlineGeojsonCache, setOutlineGeojsonCache] = useState<{
-    url: string;
-    data: PlaceFeatureCollection;
-  } | null>(null);
   const lastHoverRef = useRef<{ code: string; x: number; y: number } | null>(null);
+  const unknownCodesWarnedRef = useRef(false);
   const [selectedCode, setSelectedCode] = useState("75101");
   const [hoverInfo, setHoverInfo] = useState<HoverInfo | null>(null);
   const [filter, setFilter] = useState<"all" | string>("all");
@@ -146,15 +60,61 @@ export default function DistrictQualityMap() {
   const [settingsTab, setSettingsTab] = useState<SettingsTab>("criteria");
   const [activeWeights, setActiveWeights] = useState<Weights>(() => loadWeights());
   const [scoreOverrides, setScoreOverrides] = useState<ScoreOverridesByPlace>(() => loadScoreOverrides());
+  const [placesResult, setPlacesResult] = useState<{
+    cityId: CityId;
+    places: PlaceScore[];
+    error: string | null;
+  }>({ cityId: "paris", places: [], error: null });
 
   const city = cityById.get(cityId)!;
-  const geojson =
-    geojsonCache?.url === city.geojsonUrl ? geojsonCache.data : null;
-  const outlineGeojson =
-    city.outlineGeojsonUrl && outlineGeojsonCache?.url === city.outlineGeojsonUrl
-      ? outlineGeojsonCache.data
-      : null;
-  const places = useMemo(() => getPlacesForCity(cityId), [cityId]);
+  const {
+    data: geojson,
+    loading: geojsonLoading,
+    error: geojsonError,
+    retry: retryGeojson
+  } = useCityGeojson(city.geojsonUrl);
+  const {
+    data: outlineGeojson,
+    loading: outlineLoading,
+    error: outlineError,
+    retry: retryOutline
+  } = useCityGeojson(city.outlineGeojsonUrl);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    loadPlacesForCity(cityId)
+      .then((loaded) => {
+        if (!cancelled) {
+          setPlacesResult({ cityId, places: loaded, error: null });
+        }
+      })
+      .catch((error: unknown) => {
+        if (!cancelled) {
+          setPlacesResult({
+            cityId,
+            places: [],
+            error: error instanceof Error ? error.message : "Failed to load place data"
+          });
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [cityId]);
+
+  const placesSettled = placesResult.cityId === cityId;
+  const places = useMemo(
+    () => (placesSettled ? placesResult.places : []),
+    [placesResult.places, placesSettled]
+  );
+  const placesLoading = !placesSettled;
+  const placesError = placesSettled ? placesResult.error : null;
+
+  useEffect(() => {
+    unknownCodesWarnedRef.current = false;
+  }, [cityId, geojson]);
 
   const activePlaceByCode = useMemo(
     () => new Map(places.map((place) => [place.code, place])),
@@ -167,7 +127,7 @@ export default function DistrictQualityMap() {
   );
 
   const selectionOutline = useMemo<FeatureCollection | null>(() => {
-    if (!geojson) {
+    if (!geojson || !selectedCode) {
       return null;
     }
 
@@ -178,25 +138,53 @@ export default function DistrictQualityMap() {
       return null;
     }
 
-    const geometry = precomputed ? precomputed.geometry : dissolveGeometry(match.geometry);
-
     return {
       type: "FeatureCollection",
       features: [
         {
           type: "Feature",
-          geometry,
+          geometry: match.geometry,
           properties: { code: selectedCode }
         }
       ]
     };
   }, [geojson, outlineGeojson, selectedCode]);
 
-  const selected = activePlaceByCode.get(selectedCode) ?? places[0];
-  const selectedOverrides = getPlaceOverrides(scoreOverrides, selected.code);
-  const selectedScores = getEffectiveScores(selected, scoreOverrides);
-  const selectedTotal = weightedTotal(selected, activeWeights, selectedOverrides);
-  const selectedMapScore = scoreForMode(selected, mapMode, activeWeights, scoreOverrides);
+  const dataMismatch = useMemo(() => {
+    if (!geojson) {
+      return { unknownCodes: [] as string[], missingCodes: [] as string[] };
+    }
+
+    const featureCodes = geojson.features
+      .map((feature) => feature.properties?.code)
+      .filter((code): code is string => typeof code === "string" && code.length > 0);
+    const placeCodes = new Set(places.map((place) => place.code));
+    const featureCodeSet = new Set(featureCodes);
+
+    const unknownCodes = [...new Set(featureCodes.filter((code) => !placeCodes.has(code)))];
+    const missingCodes = places.map((place) => place.code).filter((code) => !featureCodeSet.has(code));
+
+    return { unknownCodes, missingCodes };
+  }, [geojson, places]);
+
+  useEffect(() => {
+    if (dataMismatch.unknownCodes.length > 0 && !unknownCodesWarnedRef.current) {
+      unknownCodesWarnedRef.current = true;
+      console.warn(
+        `[${cityId}] GeoJSON features with unknown place codes:`,
+        dataMismatch.unknownCodes.join(", ")
+      );
+    }
+  }, [cityId, dataMismatch.unknownCodes]);
+
+  const selected = activePlaceByCode.get(selectedCode) ?? places[0] ?? null;
+  const selectedOverrides = selected ? getPlaceOverrides(scoreOverrides, selected.code) : undefined;
+  const selectedScores = selected ? getEffectiveScores(selected, scoreOverrides) : null;
+  const selectedTotal = selected ? weightedTotal(selected, activeWeights, selectedOverrides) : null;
+  const selectedMapScore =
+    selected && selectedScores && selectedTotal !== null
+      ? scoreForMode(selected, mapMode, activeWeights, selectedScores, selectedTotal)
+      : null;
   const usingCustomSettings = hasCustomSettings(activeWeights, scoreOverrides);
 
   const rankRows = useMemo(() => {
@@ -208,6 +196,14 @@ export default function DistrictQualityMap() {
       .sort((a, b) => b.total - a.total);
   }, [places, activeWeights, scoreOverrides]);
 
+  const fitBounds = useMemo(() => {
+    if (!geojson?.features.length) {
+      return null;
+    }
+
+    return boundsFromGeojson(geojson);
+  }, [geojson]);
+
   useEffect(() => {
     saveWeights(activeWeights);
   }, [activeWeights]);
@@ -215,90 +211,6 @@ export default function DistrictQualityMap() {
   useEffect(() => {
     saveScoreOverrides(scoreOverrides);
   }, [scoreOverrides]);
-
-  useEffect(() => {
-    const url = city.outlineGeojsonUrl;
-    if (!url) {
-      return;
-    }
-
-    let cancelled = false;
-
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Failed to load ${url}: ${response.status}`);
-        }
-        return response.json() as Promise<PlaceFeatureCollection>;
-      })
-      .then((data) => {
-        if (!cancelled) {
-          setOutlineGeojsonCache({ url, data });
-        }
-      })
-      .catch((error: unknown) => {
-        console.error(error);
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [city.outlineGeojsonUrl]);
-
-  useEffect(() => {
-    const url = city.geojsonUrl;
-    let cancelled = false;
-
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Failed to load ${url}: ${response.status}`);
-        }
-        return response.json() as Promise<PlaceFeatureCollection>;
-      })
-      .then((data) => {
-        if (!cancelled) {
-          setGeojsonCache({ url, data });
-        }
-      })
-      .catch((error: unknown) => {
-        console.error(error);
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [city.geojsonUrl]);
-
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!map) {
-      return;
-    }
-
-    map.setMinZoom(city.minZoom);
-    map.setMaxZoom(city.maxZoom);
-
-    if (geojson?.features.length) {
-      const [[minLon, minLat], [maxLon, maxLat]] = boundsFromGeojson(geojson);
-      if (Number.isFinite(minLon) && Number.isFinite(minLat) && Number.isFinite(maxLon) && Number.isFinite(maxLat)) {
-        map.fitBounds(
-          [
-            [minLon, minLat],
-            [maxLon, maxLat]
-          ],
-          {
-            padding: 48,
-            duration: 700,
-            maxZoom: city.zoom
-          }
-        );
-        return;
-      }
-    }
-
-    map.flyTo({ center: city.center, zoom: city.zoom, essential: true });
-  }, [cityId, city.center, city.zoom, city.minZoom, city.maxZoom, geojson]);
 
   const handleCityChange = (nextCityId: CityId) => {
     const nextCity = cityById.get(nextCityId);
@@ -314,133 +226,54 @@ export default function DistrictQualityMap() {
     setParentFilter("all");
   };
 
-  useEffect(() => {
-    if (!mapNode.current || mapRef.current) {
-      return;
-    }
-
-    const initialCity = cityById.get("paris")!;
-    const map = new maplibregl.Map({
-      container: mapNode.current,
-      style: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
-      center: initialCity.center,
-      zoom: initialCity.zoom,
-      minZoom: initialCity.minZoom,
-      maxZoom: initialCity.maxZoom,
-      attributionControl: { compact: true }
-    });
-
-    map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), "bottom-right");
-    mapRef.current = map;
-
-    return () => {
-      overlayRef.current?.finalize();
-      overlayRef.current = null;
-      map.remove();
-      mapRef.current = null;
-    };
-  }, []);
-
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!map) {
-      return;
-    }
-
-    if (!geojson) {
-      overlayRef.current?.setProps({ layers: [] });
-      return;
-    }
-
-    const onHover = (info: { object?: { properties?: { code?: string } }; x?: number; y?: number }) => {
-      const code = info.object?.properties?.code;
-      const place = code ? activePlaceByCode.get(code) : null;
-
-      if (place && code && typeof info.x === "number" && typeof info.y === "number") {
-        const roundedX = Math.round(info.x);
-        const roundedY = Math.round(info.y);
-        const last = lastHoverRef.current;
-        if (!last || last.code !== code || last.x !== roundedX || last.y !== roundedY) {
-          lastHoverRef.current = { code, x: roundedX, y: roundedY };
-          setHoverInfo({ x: info.x, y: info.y, place });
+  const handleHoverPlace = useCallback(
+    (info: { code: string; x: number; y: number } | null) => {
+      if (!info) {
+        if (lastHoverRef.current !== null) {
+          lastHoverRef.current = null;
+          setHoverInfo(null);
         }
-      } else if (lastHoverRef.current !== null) {
-        lastHoverRef.current = null;
-        setHoverInfo(null);
+        return;
       }
 
-      if (map.getCanvas()) {
-        map.getCanvas().style.cursor = place ? "pointer" : "";
+      const place = activePlaceByCode.get(info.code);
+      if (!place) {
+        return;
       }
-    };
 
-    const onClick = (info: { object?: { properties?: { code?: string } } }) => {
-      const code = info.object?.properties?.code;
-      if (code && activePlaceByCode.has(code)) {
-        setSelectedCode(code);
+      const roundedX = Math.round(info.x);
+      const roundedY = Math.round(info.y);
+      const last = lastHoverRef.current;
+      if (!last || last.code !== info.code || last.x !== roundedX || last.y !== roundedY) {
+        lastHoverRef.current = { code: info.code, x: roundedX, y: roundedY };
+        setHoverInfo({ x: info.x, y: info.y, place });
       }
-    };
+    },
+    [activePlaceByCode]
+  );
 
-    const fillLayer = new GeoJsonLayer({
-      id: "place-quality-fill",
-      data: geojson,
-      pickable: true,
-      stroked: false,
-      filled: true,
-      getFillColor: (feature: { properties: { code: string } }) => {
-        const place = activePlaceByCode.get(feature.properties.code);
-        if (!place) {
-          return colorForScore(0);
-        }
+  const getFillColor = useCallback(
+    (feature: { properties: { code: string } }) => {
+      const place = activePlaceByCode.get(feature.properties.code);
+      if (!place) {
+        return UNKNOWN_FEATURE_COLOR;
+      }
 
-        return colorForScore(scoreForMode(place, mapMode, activeWeights, scoreOverrides));
-      },
-      updateTriggers: {
-        getFillColor: [mapMode, activeWeights, scoreOverrides, cityId]
-      },
-      onHover,
-      onClick
-    });
+      const overrides = getPlaceOverrides(scoreOverrides, place.code);
+      const effectiveScores = getEffectiveScores(place, scoreOverrides);
+      const overall = weightedTotal(place, activeWeights, overrides);
+      return colorForScore(scoreForMode(place, mapMode, activeWeights, effectiveScores, overall));
+    },
+    [activePlaceByCode, activeWeights, mapMode, scoreOverrides]
+  );
 
-    const outlineLayer = new GeoJsonLayer({
-      id: "place-quality-outline",
-      data: displayOutlineGeojson ?? geojson,
-      pickable: false,
-      stroked: true,
-      filled: false,
-      lineWidthMinPixels: 1,
-      getLineColor: BASE_LINE_COLOR,
-      getLineWidth: 1
-    });
-
-    const selectionLayer = selectionOutline
-      ? new GeoJsonLayer({
-          id: "place-quality-selection",
-          data: selectionOutline,
-          pickable: false,
-          stroked: true,
-          filled: false,
-          lineWidthMinPixels: 3,
-          getLineColor: SELECTION_LINE_COLOR,
-          getLineWidth: 4,
-          lineJointRounded: true,
-          lineCapRounded: true,
-          parameters: { depthTest: false }
-        })
-      : null;
-
-    const layers = selectionLayer ? [fillLayer, outlineLayer, selectionLayer] : [fillLayer, outlineLayer];
-
-    if (!overlayRef.current) {
-      overlayRef.current = new MapboxOverlay({ interleaved: false, layers });
-      map.addControl(overlayRef.current as unknown as maplibregl.IControl);
-    } else {
-      overlayRef.current.setProps({ layers });
-    }
-  }, [geojson, displayOutlineGeojson, selectionOutline, mapMode, activeWeights, scoreOverrides, activePlaceByCode, cityId, selectedCode]);
+  const canSelectCode = useCallback(
+    (code: string) => activePlaceByCode.has(code),
+    [activePlaceByCode]
+  );
 
   const handleWeightChange = (key: ScoreKey, value: number) => {
-    setActiveWeights((current) => ({ ...current, [key]: clampWeight(value) }));
+    setActiveWeights((current) => ({ ...current, [key]: clampWeight(value, current[key]) }));
   };
 
   const handleScoreOverrideChange = (code: string, key: ScoreKey, value: number) => {
@@ -449,7 +282,7 @@ export default function DistrictQualityMap() {
       return;
     }
 
-    const clamped = clampScore(value);
+    const clamped = clampScore(value, place.scores[key]);
     setScoreOverrides((current) => {
       const nextPlaceOverrides = { ...current[code] };
 
@@ -495,10 +328,48 @@ export default function DistrictQualityMap() {
     setScoreOverrides({});
   };
 
+  const mapFetchError = geojsonError ?? outlineError;
+  const mapLoading = geojsonLoading || (city.outlineGeojsonUrl ? outlineLoading : false);
+
+  const retryMapData = () => {
+    retryGeojson();
+    if (city.outlineGeojsonUrl) {
+      retryOutline();
+    }
+  };
+
   return (
     <main className="shell">
       <section className="mapArea" aria-label="District quality map">
-        <div ref={mapNode} className="map" />
+        {mapFetchError ? (
+          <div className="map mapError" role="alert">
+            <p>Could not load map boundaries for {city.name}.</p>
+            <p className="mapErrorDetail">{mapFetchError}</p>
+            <button type="button" onClick={retryMapData}>
+              Retry
+            </button>
+          </div>
+        ) : mapLoading ? (
+          <div className="map mapLoading" aria-busy="true">
+            Loading map…
+          </div>
+        ) : (
+          <MapView
+            center={city.center}
+            zoom={city.zoom}
+            minZoom={city.minZoom}
+            maxZoom={city.maxZoom}
+            geojson={geojson}
+            displayOutlineGeojson={displayOutlineGeojson}
+            selectionOutline={selectionOutline}
+            getFillColor={getFillColor}
+            fillUpdateTriggers={[mapMode, activeWeights, scoreOverrides, cityId, dataMismatch.unknownCodes.length]}
+            onHoverPlace={handleHoverPlace}
+            onSelectCode={setSelectedCode}
+            canSelectCode={canSelectCode}
+            fitBounds={fitBounds}
+          />
+        )}
         <div className="mapTopBar">
           <label className="citySelect">
             <span className="citySelectLabel">City</span>
@@ -507,9 +378,9 @@ export default function DistrictQualityMap() {
               onChange={(event) => handleCityChange(event.target.value as CityId)}
               aria-label="Select city"
             >
-              {cities.map((city) => (
-                <option key={city.id} value={city.id}>
-                  {city.name}
+              {cities.map((entry) => (
+                <option key={entry.id} value={entry.id}>
+                  {entry.name}
                 </option>
               ))}
             </select>
@@ -535,7 +406,20 @@ export default function DistrictQualityMap() {
           <div className="tooltip" style={{ left: hoverInfo.x + 14, top: hoverInfo.y + 14 }}>
             <strong>{hoverInfo.place.name}</strong>
             <span>
-              {formatScore(scoreForMode(hoverInfo.place, mapMode, activeWeights, scoreOverrides))}/10 {mapModeLabel(mapMode)}
+              {formatScore(
+                scoreForMode(
+                  hoverInfo.place,
+                  mapMode,
+                  activeWeights,
+                  getEffectiveScores(hoverInfo.place, scoreOverrides),
+                  weightedTotal(
+                    hoverInfo.place,
+                    activeWeights,
+                    getPlaceOverrides(scoreOverrides, hoverInfo.place.code)
+                  )
+                )
+              )}
+              /10 {mapModeLabel(mapMode)}
             </span>
           </div>
         ) : null}
@@ -552,58 +436,89 @@ export default function DistrictQualityMap() {
           {usingCustomSettings ? (
             <p className="customNote compactNote">Using custom weights and/or place ratings.</p>
           ) : null}
+          {dataMismatch.missingCodes.length > 0 ? (
+            <p className="customNote compactNote" role="status">
+              Data warning: {dataMismatch.missingCodes.length} place
+              {dataMismatch.missingCodes.length === 1 ? "" : "s"} missing map geometry.
+            </p>
+          ) : null}
         </div>
 
-        <div className="modeControl" aria-label="Map color mode">
-          <button className={mapMode === "overall" ? "activeMode" : ""} type="button" onClick={() => setMapMode("overall")}>
-            Overall
-          </button>
-          <button className={mapMode === "security" ? "activeMode" : ""} type="button" onClick={() => setMapMode("security")}>
-            Safety
-          </button>
-        </div>
-
-        <section className="selectedCard">
-          <div className="selectedTopline">
-            <div>
-              <h2>{selected.name}</h2>
-              <p>
-                {selected.parentName ? `${selected.parentName} · ` : ""}
-                {selected.area} · {selected.rentLevel} rent · {selected.studentFit} fit
-              </p>
+        {placesLoading ? (
+          <section className="selectedCard" aria-busy="true">
+            <p>Loading place data…</p>
+          </section>
+        ) : placesError ? (
+          <section className="selectedCard" role="alert">
+            <p>Could not load place data for {city.name}.</p>
+            <p className="caveat">{placesError}</p>
+          </section>
+        ) : places.length === 0 ? (
+          <section className="selectedCard emptyState">
+            <h2>No places configured</h2>
+            <p>This city has no scored districts yet. Choose another city or check the data pipeline.</p>
+          </section>
+        ) : (
+          <>
+            <div className="modeControl" aria-label="Map color mode">
+              <button className={mapMode === "overall" ? "activeMode" : ""} type="button" onClick={() => setMapMode("overall")}>
+                Overall
+              </button>
+              <button className={mapMode === "security" ? "activeMode" : ""} type="button" onClick={() => setMapMode("security")}>
+                Safety
+              </button>
             </div>
-            <div className="scoreBadge" style={{ backgroundColor: `rgb(${colorForScore(selectedTotal, 255).slice(0, 3).join(",")})` }}>
-              {formatScore(selectedTotal)}
-            </div>
-          </div>
-          <p className="mapScore">
-            Map color: {formatScore(selectedMapScore)}/10 {mapModeLabel(mapMode)}
-          </p>
-          <p className="summary">{selected.summary}</p>
-          <p className="caveat">{selected.caveat}</p>
 
-          <div className="scoreGrid" aria-label="Place criteria scores">
-            {SCORE_KEYS.map((key) => {
-              const isOverridden = selectedOverrides?.[key] !== undefined;
-              const isActive = mapMode === key;
-              return (
-                <button
-                  key={key}
-                  type="button"
-                  className={`metric${isOverridden ? " metricOverridden" : ""}${isActive ? " metricActive" : ""}`}
-                  aria-pressed={isActive}
-                  onClick={() => setMapMode(key)}
-                >
-                  <span>
-                    {metricLabel(key)}
-                    {isOverridden ? <em className="overrideTag">custom</em> : null}
-                  </span>
-                  <strong>{formatScore(selectedScores[key])}</strong>
-                </button>
-              );
-            })}
-          </div>
-        </section>
+            {selected ? (
+              <section className="selectedCard">
+                <div className="selectedTopline">
+                  <div>
+                    <h2>{selected.name}</h2>
+                    <p>
+                      {selected.parentName ? `${selected.parentName} · ` : ""}
+                      {selected.area} · {selected.rentLevel} rent · {selected.studentFit} fit
+                    </p>
+                  </div>
+                  <div
+                    className="scoreBadge"
+                    style={{
+                      backgroundColor: `rgb(${colorForScore(selectedTotal ?? 0, 255).slice(0, 3).join(",")})`
+                    }}
+                  >
+                    {formatScore(selectedTotal ?? 0)}
+                  </div>
+                </div>
+                <p className="mapScore">
+                  Map color: {formatScore(selectedMapScore ?? 0)}/10 {mapModeLabel(mapMode)}
+                </p>
+                <p className="summary">{selected.summary}</p>
+                <p className="caveat">{selected.caveat}</p>
+
+                <div className="scoreGrid" aria-label="Place criteria scores">
+                  {SCORE_KEYS.map((key) => {
+                    const isOverridden = selectedOverrides?.[key] !== undefined;
+                    const isActive = mapMode === key;
+                    return (
+                      <button
+                        key={key}
+                        type="button"
+                        className={`metric${isOverridden ? " metricOverridden" : ""}${isActive ? " metricActive" : ""}`}
+                        aria-pressed={isActive}
+                        onClick={() => setMapMode(key)}
+                      >
+                        <span>
+                          {metricLabel(key)}
+                          {isOverridden ? <em className="overrideTag">custom</em> : null}
+                        </span>
+                        <strong>{formatScore(selectedScores?.[key] ?? 0)}</strong>
+                      </button>
+                    );
+                  })}
+                </div>
+              </section>
+            ) : null}
+          </>
+        )}
 
         <section className="relocationCta" aria-label="Relocation help">
           <p>Need help with relocation?</p>
@@ -630,9 +545,15 @@ export default function DistrictQualityMap() {
         activeWeights={activeWeights}
         scoreOverrides={scoreOverrides}
         selectedCode={selectedCode}
+        selectedPlace={selected}
         filter={filter}
         parentFilter={parentFilter}
         rankRows={rankRows}
+        dataWarning={
+          dataMismatch.missingCodes.length > 0
+            ? `${dataMismatch.missingCodes.length} places missing map geometry`
+            : null
+        }
         onClose={() => setSettingsOpen(false)}
         onTabChange={setSettingsTab}
         onWeightChange={handleWeightChange}

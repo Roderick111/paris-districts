@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from city_compiler.errors import SourceError
 import csv
 import json
 import urllib.parse
@@ -12,6 +13,7 @@ from typing import Any
 
 from city_compiler.geometry import iter_geometry_points, merge_geometries
 from city_compiler.normalize import normalize_label
+from city_compiler.outputs import write_json_atomic
 
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPTS = ROOT / "scripts"
@@ -76,7 +78,7 @@ class SourceLayer:
             for point in iter_geometry_points(geometry):
                 lon, lat = point[:2]
                 if lon < -180 or lon > 180 or lat < -90 or lat > 90:
-                    raise SystemExit(
+                    raise SourceError(
                         f"Source {self.source_id}: invalid lon/lat for unit {name}: {(lon, lat)}"
                     )
 
@@ -112,7 +114,7 @@ def load_iris_wfs(insee: str) -> SourceLayer:
             }
         )
         data = fetch_json(f"{IRIS_WFS}&{params}")
-        cache_path.write_text(json.dumps(data), encoding="utf-8")
+        write_json_atomic(cache_path, data, compact=True)
     layer = SourceLayer(source_id=f"iris_{insee}")
     for feature in data["features"]:
         name = feature["properties"]["nom_iris"]
@@ -135,12 +137,12 @@ def resolve_commune_geometry(insee: str) -> dict[str, Any]:
         data = json.loads(cache_path.read_text(encoding="utf-8"))
     else:
         data = fetch_json(COMMUNE_GEO_API.format(insee=insee))
-        cache_path.write_text(json.dumps(data), encoding="utf-8")
+        write_json_atomic(cache_path, data, compact=True)
     geometry = data["geometry"]
     for point in iter_geometry_points(geometry):
         lon, lat = point[:2]
         if lon < -180 or lon > 180 or lat < -90 or lat > 90:
-            raise SystemExit(f"geo_api_commune: invalid lon/lat for {insee}: {(lon, lat)}")
+            raise SourceError(f"geo_api_commune: invalid lon/lat for {insee}: {(lon, lat)}")
     return geometry
 
 
@@ -373,7 +375,7 @@ def _load_strasbourg(cfg: dict[str, Any]) -> SourceLayer:
 def load_source(config: dict[str, Any]) -> SourceLayer:
     adapter = ADAPTER_BY_TYPE.get(config["type"])
     if adapter is None:
-        raise SystemExit(f"Unknown source type: {config['type']}")
+        raise SourceError(f"Unknown source type: {config['type']}")
     layer = adapter(config)
     layer.source_id = config["id"]
     return layer

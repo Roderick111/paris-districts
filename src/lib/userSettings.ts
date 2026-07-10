@@ -24,6 +24,8 @@ export type ScoreOverridesByPlace = Record<string, PlaceScoreOverrides>;
 /** @deprecated Use ScoreOverridesByPlace */
 export type ScoreOverridesByDistrict = ScoreOverridesByPlace;
 
+type StorageLike = Pick<Storage, "getItem" | "setItem">;
+
 export function metricLabel(key: ScoreKey | string) {
   const labels: Record<string, string> = {
     security: "Security",
@@ -69,27 +71,23 @@ function isValidScoreOverrides(value: unknown): value is ScoreOverridesByPlace {
   });
 }
 
-function migrateLegacyStorage() {
-  if (typeof window === "undefined") {
-    return;
-  }
-
+function migrateLegacyStorage(storage: StorageLike) {
   try {
-    if (!localStorage.getItem(WEIGHTS_STORAGE_KEY)) {
+    if (!storage.getItem(WEIGHTS_STORAGE_KEY)) {
       for (const legacyKey of LEGACY_WEIGHTS_KEYS) {
-        const legacyWeights = localStorage.getItem(legacyKey);
+        const legacyWeights = storage.getItem(legacyKey);
         if (legacyWeights) {
-          localStorage.setItem(WEIGHTS_STORAGE_KEY, legacyWeights);
+          storage.setItem(WEIGHTS_STORAGE_KEY, legacyWeights);
           break;
         }
       }
     }
 
-    if (!localStorage.getItem(OVERRIDES_STORAGE_KEY)) {
+    if (!storage.getItem(OVERRIDES_STORAGE_KEY)) {
       for (const legacyKey of LEGACY_OVERRIDES_KEYS) {
-        const legacyOverrides = localStorage.getItem(legacyKey);
+        const legacyOverrides = storage.getItem(legacyKey);
         if (legacyOverrides) {
-          localStorage.setItem(OVERRIDES_STORAGE_KEY, legacyOverrides);
+          storage.setItem(OVERRIDES_STORAGE_KEY, legacyOverrides);
           break;
         }
       }
@@ -99,15 +97,28 @@ function migrateLegacyStorage() {
   }
 }
 
-export function loadWeights(): Weights {
+function resolveStorage(storage?: StorageLike): StorageLike | null {
+  if (storage) {
+    return storage;
+  }
+
   if (typeof window === "undefined") {
+    return null;
+  }
+
+  return window.localStorage;
+}
+
+export function loadWeights(storage?: StorageLike): Weights {
+  const store = resolveStorage(storage);
+  if (!store) {
     return { ...defaultWeights };
   }
 
-  migrateLegacyStorage();
+  migrateLegacyStorage(store);
 
   try {
-    const raw = localStorage.getItem(WEIGHTS_STORAGE_KEY);
+    const raw = store.getItem(WEIGHTS_STORAGE_KEY);
     if (!raw) {
       return { ...defaultWeights };
     }
@@ -119,23 +130,29 @@ export function loadWeights(): Weights {
   }
 }
 
-export function saveWeights(weights: Weights) {
-  if (typeof window === "undefined") {
+export function saveWeights(weights: Weights, storage?: StorageLike) {
+  const store = resolveStorage(storage);
+  if (!store) {
     return;
   }
 
-  localStorage.setItem(WEIGHTS_STORAGE_KEY, JSON.stringify(weights));
+  try {
+    store.setItem(WEIGHTS_STORAGE_KEY, JSON.stringify(weights));
+  } catch {
+    // QuotaExceededError / SecurityError must not crash effects.
+  }
 }
 
-export function loadScoreOverrides(): ScoreOverridesByPlace {
-  if (typeof window === "undefined") {
+export function loadScoreOverrides(storage?: StorageLike): ScoreOverridesByPlace {
+  const store = resolveStorage(storage);
+  if (!store) {
     return {};
   }
 
-  migrateLegacyStorage();
+  migrateLegacyStorage(store);
 
   try {
-    const raw = localStorage.getItem(OVERRIDES_STORAGE_KEY);
+    const raw = store.getItem(OVERRIDES_STORAGE_KEY);
     if (!raw) {
       return {};
     }
@@ -147,12 +164,17 @@ export function loadScoreOverrides(): ScoreOverridesByPlace {
   }
 }
 
-export function saveScoreOverrides(overrides: ScoreOverridesByPlace) {
-  if (typeof window === "undefined") {
+export function saveScoreOverrides(overrides: ScoreOverridesByPlace, storage?: StorageLike) {
+  const store = resolveStorage(storage);
+  if (!store) {
     return;
   }
 
-  localStorage.setItem(OVERRIDES_STORAGE_KEY, JSON.stringify(overrides));
+  try {
+    store.setItem(OVERRIDES_STORAGE_KEY, JSON.stringify(overrides));
+  } catch {
+    // QuotaExceededError / SecurityError must not crash effects.
+  }
 }
 
 export function getPlaceOverrides(
@@ -190,10 +212,18 @@ export function hasCustomSettings(activeWeights: Weights, overrides: ScoreOverri
   return weightsDifferFromDefaults(activeWeights) || hasScoreOverrides(overrides);
 }
 
-export function clampWeight(value: number) {
+export function clampWeight(value: number, fallback = 0) {
+  if (!Number.isFinite(value)) {
+    return fallback;
+  }
+
   return Math.min(5, Math.max(0, Number(value.toFixed(1))));
 }
 
-export function clampScore(value: number) {
+export function clampScore(value: number, fallback = 0) {
+  if (!Number.isFinite(value)) {
+    return fallback;
+  }
+
   return Math.min(10, Math.max(0, Number(value.toFixed(1))));
 }

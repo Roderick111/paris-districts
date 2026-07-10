@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from city_compiler.errors import ConfigError, GeometryError, SourceError
 from typing import Any
 
 from city_compiler.audits import audit_build_output
@@ -35,7 +36,7 @@ def resolve_zone_geometry(
         layer = layers[unit.source]
         geometry = layer.lookup(unit.name)
         if geometry is None:
-            raise SystemExit(f"Missing source unit {unit.source}/{unit.name} for {zone.code}")
+            raise GeometryError(f"Missing source unit {unit.source}/{unit.name} for {zone.code}")
         if unit.lat_split:
             geometry = split_geometry_by_lat(
                 geometry,
@@ -45,7 +46,7 @@ def resolve_zone_geometry(
         shapes[unit.name] = geometry
         names.append(unit.name)
     if not names:
-        raise SystemExit(f"Zone {zone.code} resolved zero source units")
+        raise GeometryError(f"Zone {zone.code} resolved zero source units")
     role = zone.coverage_role or "primary"
     basis = zone.geometry_basis or ""
     check_contiguity = (
@@ -54,7 +55,7 @@ def resolve_zone_geometry(
     )
     if check_contiguity and len(names) > 1:
         if not is_connected_source_group(names, shapes):
-            raise SystemExit(f"Disconnected source group for {zone.code}: {names}")
+            raise GeometryError(f"Disconnected source group for {zone.code}: {names}")
     geometries = [shapes[name] for name in names]
     geometry = merge_geometries(geometries)
     validate_lon_lat(geometry, zone.code)
@@ -69,7 +70,7 @@ def build_features(
     features: list[dict[str, Any]] = []
     for zone in config.zones:
         if zone.code not in meta:
-            raise SystemExit(f"Missing PlaceScore row for geometry code {zone.code}")
+            raise GeometryError(f"Missing PlaceScore row for geometry code {zone.code}")
         geometry = round_geometry_coords(resolve_zone_geometry(zone, layers))
         properties: dict[str, Any] = {
             "code": zone.code,
@@ -88,7 +89,7 @@ def build_features(
 
 def build_city(config: CityConfig) -> None:
     if config.build_mode == "legacy":
-        raise SystemExit(
+        raise ConfigError(
             f"{config.city_id}: legacy build mode — run {config.legacy_script} instead"
         )
     layers = load_all_sources(config.sources)

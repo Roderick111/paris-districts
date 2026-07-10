@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from city_compiler.errors import GeometryError
 import sys
 from pathlib import Path
 from typing import Any
@@ -98,4 +99,4 @@ def validate_lon_lat(geometry: dict[str, Any], code: str) -> None:
     for point in iter_geometry_points(geometry):
         lon, lat = point[:2]
         if lon < -180 or lon > 180 or lat < -90 or lat > 90:
-            raise SystemExit(f"Invalid lon/lat coordinate for {code}: {point[:2]}")
+            raise GeometryError(f"Invalid lon/lat coordinate for {code}: {point[:2]}")

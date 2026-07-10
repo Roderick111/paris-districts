@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from city_compiler.errors import ConfigError
 import json
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -78,7 +79,7 @@ def _resolve_path(value: str) -> Path:
 def validate_zone(raw: dict[str, Any]) -> Zone:
     missing = REQUIRED_ZONE_KEYS - set(raw)
     if missing:
-        raise SystemExit(f"Zone {raw.get('code', '?')} missing keys: {sorted(missing)}")
+        raise ConfigError(f"Zone {raw.get('code', '?')} missing keys: {sorted(missing)}")
     units = [
         SourceUnit(
             source=item["source"],
@@ -106,13 +107,13 @@ def validate_zone(raw: dict[str, Any]) -> Zone:
 def load_city_config(city_id: str) -> CityConfig:
     config_path = CONFIGS_DIR / f"{city_id}.json"
     if not config_path.exists():
-        raise SystemExit(f"Missing city config: {config_path}")
+        raise ConfigError(f"Missing city config: {config_path}")
     raw = json.loads(config_path.read_text(encoding="utf-8"))
     missing = REQUIRED_CITY_KEYS - set(raw)
     if missing:
-        raise SystemExit(f"City config {city_id} missing keys: {sorted(missing)}")
+        raise ConfigError(f"City config {city_id} missing keys: {sorted(missing)}")
     if raw["cityId"] != city_id:
-        raise SystemExit(f"Config cityId {raw['cityId']} does not match {city_id}")
+        raise ConfigError(f"Config cityId {raw['cityId']} does not match {city_id}")
     return CityConfig(
         city_id=city_id,
         places_file=_resolve_path(raw["placesFile"]),
@@ -171,7 +172,7 @@ def legacy_spec_to_zone(spec: dict[str, Any], city_id: str) -> dict[str, Any]:
             ]
             break
     if not zone["sourceUnits"]:
-        raise SystemExit(f"Cannot convert legacy spec for {city_id}/{spec['code']}")
+        raise ConfigError(f"Cannot convert legacy spec for {city_id}/{spec['code']}")
     return zone
 
 

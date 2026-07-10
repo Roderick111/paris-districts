@@ -1,7 +1,8 @@
 {
   "cityId": "paris",
-  "placesFile": "src/data/cities.ts",
+  "placesFile": "src/data/parisPlaces.ts",
   "geojsonOutput": "public/data/districts.geojson",
+  "outlineOutput": "public/data/districts-outlines.geojson",
   "sources": [
     {
       "id": "geo_api_commune",
@@ -492,6 +493,5 @@
   ],
   "scope": {
     "coverageMode": "curated_subset"
-  },
-  "placesSection": "parisPlaces"
+  }
 }

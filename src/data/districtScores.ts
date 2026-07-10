@@ -1,10 +1,7 @@
 export {
   cityById,
   defaultWeights,
-  getPlacesForCity,
   mergeScores,
-  placeByCode as districtByCode,
-  placesByCity,
   SCORE_KEYS,
   weightedTotal,
   weights,
@@ -14,10 +11,12 @@ export {
   type Weights
 } from "@/data/cities";
 
-import { cityById, getPlacesForCity } from "@/data/cities";
+import { cityById } from "@/data/cityMetadata";
+import { parisPlaces } from "@/data/parisPlaces";
+import { isMapPlace } from "@/data/placeLoaders";
 
-/** @deprecated Use getPlacesForCity("paris") */
-export const districts = getPlacesForCity("paris");
+/** @deprecated Use loadPlacesForCity("paris") */
+export const districts = parisPlaces.filter(isMapPlace);
 
 /** @deprecated Use cityById.get("paris")?.sources */
 export const sources = cityById.get("paris")!.sources;

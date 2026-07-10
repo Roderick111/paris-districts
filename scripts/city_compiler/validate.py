@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from city_compiler.errors import ValidationError
 import json
 
 from city_compiler.audits import audit_build_output
@@ -13,7 +14,7 @@ from city_compiler.sources import load_all_sources
 
 def validate_city(config: CityConfig) -> None:
     if not config.geojson_output.exists():
-        raise SystemExit(f"Missing GeoJSON: {config.geojson_output}")
+        raise ValidationError(f"Missing GeoJSON: {config.geojson_output}")
     features = read_feature_collection(config.geojson_output)
     score_codes = load_score_codes(config.places_file, section=config.places_section)
     excluded = set(config.scope.get("excludedPlaceCodes", []))

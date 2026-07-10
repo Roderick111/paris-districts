@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from city_compiler.errors import GeometryError, ValidationError
 import json
 import re
 from pathlib import Path
@@ -144,12 +145,12 @@ def _audit_zone_metadata(config: CityConfig) -> None:
         return
     for zone in config.zones:
         if not zone.coverage_role:
-            raise SystemExit(
+            raise ValidationError(
                 f"{config.city_id}: zone {zone.code} missing coverageRole "
                 "(required when fullCoverageSources is set)"
             )
         if not zone.geometry_basis:
-            raise SystemExit(
+            raise ValidationError(
                 f"{config.city_id}: zone {zone.code} missing geometryBasis "
                 "(required when fullCoverageSources is set)"
             )
@@ -161,7 +162,7 @@ def _audit_coverage_scope(config: CityConfig) -> None:
         return
     insee_codes = config.scope.get("inseeCodes", [])
     if insee_codes and not config.scope.get("fullCoverageSources"):
-        raise SystemExit(
+        raise ValidationError(
             f"{config.city_id}: scope declares full_partition coverage with inseeCodes "
             "but fullCoverageSources is missing"
         )
@@ -175,7 +176,7 @@ def _audit_outline_requirement(config: CityConfig, features: list[dict[str, Any]
         raw_parts = len(geometry["coordinates"]) if geometry.get("type") == "MultiPolygon" else 1
         if raw_parts > 1:
             code = feature["properties"]["code"]
-            raise SystemExit(
+            raise ValidationError(
                 f"{config.city_id}: zone {code} has {raw_parts} raw polygon parts "
                 f"but outlineOutput is not configured"
             )
@@ -186,29 +187,29 @@ def _audit_parity(features: list[dict[str, Any]], score_codes: set[str]) -> None
     missing = sorted(score_codes - feature_codes)
     extra = sorted(feature_codes - score_codes)
     if missing:
-        raise SystemExit(f"PlaceScore code without geometry: {missing}")
+        raise ValidationError(f"PlaceScore code without geometry: {missing}")
     if extra:
-        raise SystemExit(f"geometry without PlaceScore code: {extra}")
+        raise ValidationError(f"geometry without PlaceScore code: {extra}")
 
 
 def _audit_duplicates(features: list[dict[str, Any]]) -> None:
     codes = [feature["properties"]["code"] for feature in features]
     duplicates = sorted({code for code in codes if codes.count(code) > 1})
     if duplicates:
-        raise SystemExit(f"duplicate feature code: {duplicates}")
+        raise ValidationError(f"duplicate feature code: {duplicates}")
     hash_map: dict[str, list[str]] = {}
     for feature in features:
         code = feature["properties"]["code"]
         geometry = feature["geometry"]
         if geometry.get("type") not in {"Polygon", "MultiPolygon"} or not polygon_parts(geometry):
-            raise SystemExit(f"Invalid or empty geometry for {code}")
+            raise ValidationError(f"Invalid or empty geometry for {code}")
         digest = geometry_hash(geometry)
         hash_map.setdefault(digest, []).append(code)
     duplicate_hashes = {digest: values for digest, values in hash_map.items() if len(values) > 1}
     if duplicate_hashes:
         for digest, values in duplicate_hashes.items():
             print(f"Identical geometry hash {digest}: {values}")
-        raise SystemExit("duplicate geometry hash across scored features")
+        raise ValidationError("duplicate geometry hash across scored features")
 
 
 def _audit_lon_lat(features: list[dict[str, Any]]) -> None:
@@ -218,7 +219,7 @@ def _audit_lon_lat(features: list[dict[str, Any]]) -> None:
             for ring in polygon:
                 for lon, lat in ring:
                     if lon < -180 or lon > 180 or lat < -90 or lat > 90:
-                        raise SystemExit(f"invalid lon/lat for {code}: {(lon, lat)}")
+                        raise ValidationError(f"invalid lon/lat for {code}: {(lon, lat)}")
 
 
 def _audit_source_assignment(config: CityConfig, layers: dict[str, Any]) -> None:
@@ -229,17 +230,17 @@ def _audit_source_assignment(config: CityConfig, layers: dict[str, Any]) -> None
                 continue
             layer = layers.get(unit.source)
             if layer is None:
-                raise SystemExit(f"missing source layer {unit.source} for zone {zone.code}")
+                raise ValidationError(f"missing source layer {unit.source} for zone {zone.code}")
             geometry = layer.lookup(unit.name)
             if geometry is None:
-                raise SystemExit(f"missing source unit {unit.source}/{unit.name} for zone {zone.code}")
+                raise ValidationError(f"missing source unit {unit.source}/{unit.name} for zone {zone.code}")
             split_key = (
                 unit.lat_split.get("keep"),
                 unit.lat_split.get("latitude"),
             ) if unit.lat_split else None
             key = (unit.source, unit.name, split_key)
             if key in assigned and assigned[key] != zone.code:
-                raise SystemExit(
+                raise ValidationError(
                     f"source unit {unit.source}/{unit.name} assigned to both "
                     f"{assigned[key]} and {zone.code}"
                 )
@@ -259,7 +260,7 @@ def _audit_source_assignment(config: CityConfig, layers: dict[str, Any]) -> None
         exempt = set(scope.get("exemptUnits", {}).get(source_id, []))
         unassigned = sorted(layer.official_unit_names - covered - exempt)
         if unassigned:
-            raise SystemExit(
+            raise ValidationError(
                 f"{config.city_id}: unassigned official units in {source_id} "
                 f"({len(unassigned)}): {unassigned[:8]}"
             )
@@ -301,7 +302,7 @@ def _audit_source_contiguity(config: CityConfig, layers: dict[str, Any]) -> None
             print(f"{config.city_id}: disconnected source group {zone.code} ({len(clusters)} clusters):")
             for index, cluster in enumerate(clusters, start=1):
                 print(f"  cluster {index}: {cluster}")
-            raise SystemExit(f"Disconnected source group for {zone.code}: {names}")
+            raise ValidationError(f"Disconnected source group for {zone.code}: {names}")
 
 
 def _audit_feature_overlap(config: CityConfig, features: list[dict[str, Any]]) -> None:
@@ -317,7 +318,7 @@ def _audit_feature_overlap(config: CityConfig, features: list[dict[str, Any]]) -
             if pair in exempt_pairs:
                 continue
             if geometries_overlap(left["geometry"], right["geometry"]):
-                raise SystemExit(
+                raise ValidationError(
                     f"{config.city_id}: displayed zones overlap: {left_code} vs {right_code}"
                 )
 
@@ -337,15 +338,15 @@ def _audit_visual_risk(config: CityConfig, features: list[dict[str, Any]]) -> No
         dissolved = dissolved_component_count(geometry)
         area = bbox_area(geometry)
         if dissolved > 1:
-            raise SystemExit(
+            raise ValidationError(
                 f"visualRisk: {config.city_id} {code} has {dissolved} disconnected components"
             )
         if raw_parts > OVERSIZED_PART_COUNT:
-            raise SystemExit(
+            raise ValidationError(
                 f"visualRisk: {config.city_id} {code} has {raw_parts} raw polygon parts"
             )
         if area > OVERSIZED_BBOX_AREA:
-            raise SystemExit(
+            raise ValidationError(
                 f"visualRisk: {config.city_id} {code} bbox area {area:.5f} exceeds "
                 f"{OVERSIZED_BBOX_AREA}"
             )
@@ -366,12 +367,12 @@ def _audit_zone_contiguity(config: CityConfig, features: list[dict[str, Any]]) -
         if geometry.get("type") == "MultiPolygon" and not multipart_ok:
             parts = geometry_components(geometry)
             if not components_are_contiguous(parts):
-                raise SystemExit(f"Disconnected MultiPolygon for {code} without allowMultipart")
+                raise ValidationError(f"Disconnected MultiPolygon for {code} without allowMultipart")
         if role == "low_relevance":
             continue
         dissolved = dissolved_component_count(geometry)
         if dissolved > 1 and not multipart_ok:
-            raise SystemExit(f"disconnected {role} zone {code} ({dissolved} components)")
+            raise ValidationError(f"disconnected {role} zone {code} ({dissolved} components)")
 
 
 def _audit_allow_multipart(config: CityConfig, features: list[dict[str, Any]]) -> None:
@@ -384,12 +385,12 @@ def _audit_allow_multipart(config: CityConfig, features: list[dict[str, Any]]) -
         role = zone.coverage_role or "?"
         justification = zone.multipart_justification or feature["properties"].get("multipartJustification")
         if role not in ALLOW_MULTIPART_ROLES and not _is_unavoidable_official_multipart(zone):
-            raise SystemExit(
+            raise ValidationError(
                 f"{config.city_id}: allowMultipart on {role} zone {code} "
                 "(only low_relevance or unavoidable official geography permitted)"
             )
         if not justification:
-            raise SystemExit(f"{config.city_id}: allowMultipart on {code} requires multipartJustification")
+            raise ValidationError(f"{config.city_id}: allowMultipart on {code} requires multipartJustification")
 
 
 def _audit_warnings(config: CityConfig, features: list[dict[str, Any]], score_codes: set[str]) -> None:
@@ -442,7 +443,7 @@ def _audit_user_facing_caveats(config: CityConfig) -> None:
     for code, caveat in caveats.items():
         for term, pattern in FORBIDDEN_CAVEAT_CHECKS:
             if pattern.search(caveat):
-                raise SystemExit(
+                raise ValidationError(
                     f"{config.city_id}: user-facing caveat for {code} contains "
                     f'internal provenance term "{term}"'
                 )
@@ -458,7 +459,7 @@ def _audit_city_specific(
     if city_id == "lille":
         stale = sorted(feature_codes & LILLE_OBSOLETE_CODES)
         if stale:
-            raise SystemExit(f"lille: obsolete codes in geojson: {stale}")
+            raise ValidationError(f"lille: obsolete codes in geojson: {stale}")
         zones = _zone_by_code(config)
         for feature in features:
             code = feature["properties"]["code"]
@@ -472,6 +473,6 @@ def _audit_city_specific(
                 if source_count > WARN_SOURCE_UNIT_COUNT:
                     print(f"warn: {code} east major zone has {source_count} source IRIS")
             if role == "primary" and dissolved > 1:
-                raise SystemExit(f"lille: disconnected primary zone {code}")
+                raise ValidationError(f"lille: disconnected primary zone {code}")
             if role == "campus" and dissolved > 1 and source_count > 6:
-                raise SystemExit(f"lille: campus zone {code} spans multiple clusters")
+                raise ValidationError(f"lille: campus zone {code} spans multiple clusters")

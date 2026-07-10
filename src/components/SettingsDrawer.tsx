@@ -9,8 +9,6 @@ import {
   type Weights
 } from "@/data/cities";
 import {
-  clampScore,
-  clampWeight,
   hasCustomSettings,
   metricLabel,
   type ScoreOverridesByPlace
@@ -33,9 +31,11 @@ type SettingsDrawerProps = {
   activeWeights: Weights;
   scoreOverrides: ScoreOverridesByPlace;
   selectedCode: string;
+  selectedPlace: PlaceScore | null;
   filter: "all" | string;
   parentFilter: "all" | string;
   rankRows: RankRow[];
+  dataWarning?: string | null;
   onClose: () => void;
   onTabChange: (tab: SettingsTab) => void;
   onWeightChange: (key: ScoreKey, value: number) => void;
@@ -60,9 +60,11 @@ export default function SettingsDrawer({
   activeWeights,
   scoreOverrides,
   selectedCode,
+  selectedPlace,
   filter,
   parentFilter,
   rankRows,
+  dataWarning,
   onClose,
   onTabChange,
   onWeightChange,
@@ -77,9 +79,9 @@ export default function SettingsDrawer({
   formatScore
 }: SettingsDrawerProps) {
   const drawerRef = useRef<HTMLElement | null>(null);
-  const selectedPlace = places.find((place) => place.code === selectedCode) ?? places[0];
-  const selectedOverrides = scoreOverrides[selectedCode] ?? {};
+  const selectedOverrides = selectedPlace ? (scoreOverrides[selectedPlace.code] ?? {}) : {};
   const usingCustomSettings = hasCustomSettings(activeWeights, scoreOverrides);
+  const hasPlaces = places.length > 0;
   const visibleRows = rankRows.filter(({ place }) => {
     if (filter !== "all" && place.area !== filter) {
       return false;
@@ -162,6 +164,8 @@ export default function SettingsDrawer({
         </div>
 
         <div className="drawerBody">
+          {dataWarning ? <p className="customNote drawerHint">{dataWarning}</p> : null}
+
           {tab === "criteria" ? (
             <>
               <section className="drawerSection">
@@ -178,7 +182,7 @@ export default function SettingsDrawer({
                           max={5}
                           step={0.1}
                           value={activeWeights[key]}
-                          onChange={(event) => onWeightChange(key, clampWeight(Number(event.target.value)))}
+                          onChange={(event) => onWeightChange(key, Number(event.target.value))}
                         />
                         <input
                           type="number"
@@ -186,7 +190,7 @@ export default function SettingsDrawer({
                           max={5}
                           step={0.1}
                           value={activeWeights[key]}
-                          onChange={(event) => onWeightChange(key, clampWeight(Number(event.target.value)))}
+                          onChange={(event) => onWeightChange(key, Number(event.target.value))}
                           aria-label={`${metricLabel(key)} weight`}
                         />
                       </div>
@@ -198,64 +202,72 @@ export default function SettingsDrawer({
               <section className="drawerSection">
                 <h3>Place ratings</h3>
                 <p className="drawerHint">Override researched defaults for a specific place.</p>
-                <label className="fieldLabel">
-                  Place
-                  <select value={selectedCode} onChange={(event) => onSelectedCodeChange(event.target.value)}>
-                    {places.map((place) => (
-                      <option key={place.code} value={place.code}>
-                        {place.name}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <div className="controlList">
-                  {SCORE_KEYS.map((key) => {
-                    const defaultScore = selectedPlace.scores[key];
-                    const currentScore = selectedOverrides[key] ?? defaultScore;
-                    const isOverridden = selectedOverrides[key] !== undefined;
+                {hasPlaces ? (
+                  <>
+                    <label className="fieldLabel">
+                      Place
+                      <select value={selectedCode} onChange={(event) => onSelectedCodeChange(event.target.value)}>
+                        {places.map((place) => (
+                          <option key={place.code} value={place.code}>
+                            {place.name}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                    {selectedPlace ? (
+                      <div className="controlList">
+                        {SCORE_KEYS.map((key) => {
+                          const defaultScore = selectedPlace.scores[key];
+                          const currentScore = selectedOverrides[key] ?? defaultScore;
+                          const isOverridden = selectedOverrides[key] !== undefined;
 
-                    return (
-                      <label key={key} className="controlRow">
-                        <span>
-                          {metricLabel(key)}
-                          {isOverridden ? <em className="overrideTag">custom</em> : null}
-                        </span>
-                        <div className="controlInputs">
-                          <input
-                            type="range"
-                            min={0}
-                            max={10}
-                            step={0.1}
-                            value={currentScore}
-                            onChange={(event) =>
-                              onScoreOverrideChange(selectedCode, key, clampScore(Number(event.target.value)))
-                            }
-                          />
-                          <input
-                            type="number"
-                            min={0}
-                            max={10}
-                            step={0.1}
-                            value={currentScore}
-                            onChange={(event) =>
-                              onScoreOverrideChange(selectedCode, key, clampScore(Number(event.target.value)))
-                            }
-                            aria-label={`${metricLabel(key)} rating`}
-                          />
-                        </div>
-                      </label>
-                    );
-                  })}
-                </div>
+                          return (
+                            <label key={key} className="controlRow">
+                              <span>
+                                {metricLabel(key)}
+                                {isOverridden ? <em className="overrideTag">custom</em> : null}
+                              </span>
+                              <div className="controlInputs">
+                                <input
+                                  type="range"
+                                  min={0}
+                                  max={10}
+                                  step={0.1}
+                                  value={currentScore}
+                                  onChange={(event) =>
+                                    onScoreOverrideChange(selectedPlace.code, key, Number(event.target.value))
+                                  }
+                                />
+                                <input
+                                  type="number"
+                                  min={0}
+                                  max={10}
+                                  step={0.1}
+                                  value={currentScore}
+                                  onChange={(event) =>
+                                    onScoreOverrideChange(selectedPlace.code, key, Number(event.target.value))
+                                  }
+                                  aria-label={`${metricLabel(key)} rating`}
+                                />
+                              </div>
+                            </label>
+                          );
+                        })}
+                      </div>
+                    ) : null}
+                  </>
+                ) : (
+                  <p className="drawerHint">No places available for this city.</p>
+                )}
               </section>
 
               <section className="drawerSection resetSection">
                 <h3>Reset</h3>
                 <div className="resetActions">
-                  <button type="button" onClick={onResetSelectedRatings}>
+                  <button type="button" onClick={onResetSelectedRatings} disabled={!hasPlaces}>
                     Reset selected place
                   </button>
-                  <button type="button" onClick={onResetAllRatings}>
+                  <button type="button" onClick={onResetAllRatings} disabled={!hasPlaces}>
                     Reset all ratings
                   </button>
                   <button type="button" onClick={onResetWeights}>
@@ -305,32 +317,36 @@ export default function SettingsDrawer({
               {usingCustomSettings ? (
                 <p className="customNote">Using custom settings: weights and/or place ratings differ from defaults.</p>
               ) : null}
-              <div className="tableWrap">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Place</th>
-                      <th>Total</th>
-                      <th>Safety</th>
-                      <th>Rent</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {visibleRows.map(({ place, total }) => (
-                      <tr
-                        key={place.id}
-                        className={place.code === selectedCode ? "activeRow" : ""}
-                        onClick={() => onSelectedCodeChange(place.code)}
-                      >
-                        <td>{place.name}</td>
-                        <td>{formatScore(total)}</td>
-                        <td>{formatScore(getEffectiveScore(place, scoreOverrides, "security"))}</td>
-                        <td>{place.rentLevel}</td>
+              {hasPlaces ? (
+                <div className="tableWrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Place</th>
+                        <th>Total</th>
+                        <th>Safety</th>
+                        <th>Rent</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody>
+                      {visibleRows.map(({ place, total }) => (
+                        <tr
+                          key={place.id}
+                          className={place.code === selectedCode ? "activeRow" : ""}
+                          onClick={() => onSelectedCodeChange(place.code)}
+                        >
+                          <td>{place.name}</td>
+                          <td>{formatScore(total)}</td>
+                          <td>{formatScore(getEffectiveScore(place, scoreOverrides, "security"))}</td>
+                          <td>{place.rentLevel}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <p className="drawerHint">No ranked places for this city.</p>
+              )}
             </section>
           ) : null}
 
