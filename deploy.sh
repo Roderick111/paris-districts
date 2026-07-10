@@ -16,7 +16,7 @@ echo "Creating deployment directory..."
 ssh "$SERVER" "mkdir -p $REMOTE_DIR"
 
 echo "Syncing files..."
-rsync -avz \
+rsync -avz --delete \
   --exclude node_modules \
   --exclude .next \
   --exclude .git \
