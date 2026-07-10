@@ -3,32 +3,55 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 from typing import Any
 
 from city_compiler.geometry import (
     bbox_area,
     components_are_contiguous,
+    geometries_overlap,
+    geometries_touch,
     geometry_components,
     geometry_hash,
-    geometries_touch,
     is_connected_source_group,
     polygon_parts,
 )
-from city_compiler.places import load_score_tuples
+from city_compiler.places import load_place_caveats, load_place_meta, load_score_tuples
 from city_compiler.schema import CityConfig, Zone
+from city_compiler.sources import resolve_commune_geometry
 
 ROOT = Path(__file__).resolve().parents[2]
 COVERAGE_SCOPES = ROOT / "scripts" / "city_coverage_scopes.json"
 
-ALLOW_MULTIPART_ROLES = {"context", "low_relevance"}
+ALLOW_MULTIPART_ROLES = {"low_relevance"}
+ALLOW_LOOSE_GROUP_ROLES = {"low_relevance"}
+FATAL_VISUAL_RISK_ROLES = {"primary", "campus", "risk_cap"}
+OFFICIAL_MULTIPART_BASES = {"official_quartier", "official_quartier_group"}
 WARN_ZONE_COUNT = 30
 WARN_CONTEXT_RATIO = 0.4
 WARN_SAME_SCORE_COUNT = 5
-WARN_SOURCE_UNIT_COUNT = 8
+WARN_SOURCE_UNIT_COUNT = 6
+WARN_BROAD_NAME_SOURCE_COUNT = 4
 WARN_OUTLINE_PARTS = 8
 OVERSIZED_BBOX_AREA = 0.012
 OVERSIZED_PART_COUNT = 10
+
+FORBIDDEN_CAVEAT_CHECKS: list[tuple[str, re.Pattern[str]]] = [
+    ("IRIS", re.compile(r"\bIRIS\b", re.I)),
+    ("confidence", re.compile(r"\bconfidence\b", re.I)),
+    ("source", re.compile(r"\bsource\b", re.I)),
+    ("boundary", re.compile(r"\bboundary\b", re.I)),
+    ("official", re.compile(r"\bofficial\b", re.I)),
+    (
+        "polygon",
+        re.compile(
+            r"\b(?:adjacent|contiguous|commune|official|IRIS|geometry|neighborhood)\b[^.]{0,48}\bpolygon\b"
+            r"|\bpolygon\b[^.]{0,48}\b(?:until|boundary|commune|IRIS|exist|geometry)\b",
+            re.I,
+        ),
+    ),
+]
 
 LILLE_OBSOLETE_CODES = {
     "lille-croix-centre-saint-martin",
@@ -50,6 +73,24 @@ LILLE_OBSOLETE_CODES = {
 }
 
 LILLE_EAST_PREFIXES = ("lille-croix-", "lille-roubaix-", "lille-tourcoing-")
+
+
+def source_unit_clusters(names: list[str], shapes: dict[str, dict[str, Any]]) -> list[list[str]]:
+    remaining = list(names)
+    clusters: list[list[str]] = []
+    while remaining:
+        seed = remaining.pop(0)
+        cluster = [seed]
+        stack = [seed]
+        while stack:
+            current = stack.pop()
+            for candidate in list(remaining):
+                if geometries_touch(shapes[current], shapes[candidate]):
+                    remaining.remove(candidate)
+                    cluster.append(candidate)
+                    stack.append(candidate)
+        clusters.append(sorted(cluster))
+    return clusters
 
 
 def dissolved_component_count(geometry: dict[str, Any]) -> int:
@@ -79,14 +120,65 @@ def audit_build_output(
     score_codes: set[str],
     layers: dict[str, Any],
 ) -> None:
+    _audit_zone_metadata(config)
+    _audit_coverage_scope(config)
+    _audit_outline_requirement(config, features)
     _audit_parity(features, score_codes)
     _audit_duplicates(features)
     _audit_lon_lat(features)
     _audit_source_assignment(config, layers)
+    _audit_source_contiguity(config, layers)
     _audit_zone_contiguity(config, features)
+    _audit_feature_overlap(config, features)
+    _audit_visual_risk(config, features)
     _audit_allow_multipart(config, features)
     _audit_warnings(config, features, score_codes)
     _audit_city_specific(config, features, score_codes)
+    _audit_user_facing_caveats(config)
+
+
+def _audit_zone_metadata(config: CityConfig) -> None:
+    if config.scope.get("coverageMode") == "curated_subset":
+        return
+    if not config.scope.get("fullCoverageSources"):
+        return
+    for zone in config.zones:
+        if not zone.coverage_role:
+            raise SystemExit(
+                f"{config.city_id}: zone {zone.code} missing coverageRole "
+                "(required when fullCoverageSources is set)"
+            )
+        if not zone.geometry_basis:
+            raise SystemExit(
+                f"{config.city_id}: zone {zone.code} missing geometryBasis "
+                "(required when fullCoverageSources is set)"
+            )
+
+
+def _audit_coverage_scope(config: CityConfig) -> None:
+    mode = config.scope.get("coverageMode")
+    if mode != "full_partition":
+        return
+    insee_codes = config.scope.get("inseeCodes", [])
+    if insee_codes and not config.scope.get("fullCoverageSources"):
+        raise SystemExit(
+            f"{config.city_id}: scope declares full_partition coverage with inseeCodes "
+            "but fullCoverageSources is missing"
+        )
+
+
+def _audit_outline_requirement(config: CityConfig, features: list[dict[str, Any]]) -> None:
+    if config.build_mode == "legacy" or config.outline_output is not None:
+        return
+    for feature in features:
+        geometry = feature["geometry"]
+        raw_parts = len(geometry["coordinates"]) if geometry.get("type") == "MultiPolygon" else 1
+        if raw_parts > 1:
+            code = feature["properties"]["code"]
+            raise SystemExit(
+                f"{config.city_id}: zone {code} has {raw_parts} raw polygon parts "
+                f"but outlineOutput is not configured"
+            )
 
 
 def _audit_parity(features: list[dict[str, Any]], score_codes: set[str]) -> None:
@@ -177,6 +269,88 @@ def _zone_by_code(config: CityConfig) -> dict[str, Zone]:
     return {zone.code: zone for zone in config.zones}
 
 
+def _is_unavoidable_official_multipart(zone: Zone) -> bool:
+    basis = zone.geometry_basis or ""
+    return basis in OFFICIAL_MULTIPART_BASES and len(zone.source_units) == 1
+
+
+def _audit_source_contiguity(config: CityConfig, layers: dict[str, Any]) -> None:
+    for zone in config.zones:
+        role = zone.coverage_role or "primary"
+        if role in ALLOW_LOOSE_GROUP_ROLES or zone.allow_multipart:
+            continue
+        shapes: dict[str, dict[str, Any]] = {}
+        names: list[str] = []
+        for unit in zone.source_units:
+            if unit.source == "geo_api_commune":
+                shapes[unit.name] = resolve_commune_geometry(unit.name)
+                names.append(unit.name)
+                continue
+            layer = layers.get(unit.source)
+            if layer is None:
+                continue
+            geometry = layer.lookup(unit.name)
+            if geometry is None:
+                continue
+            shapes[unit.name] = geometry
+            names.append(unit.name)
+        if len(names) <= 1:
+            continue
+        if not is_connected_source_group(names, shapes):
+            clusters = source_unit_clusters(names, shapes)
+            print(f"{config.city_id}: disconnected source group {zone.code} ({len(clusters)} clusters):")
+            for index, cluster in enumerate(clusters, start=1):
+                print(f"  cluster {index}: {cluster}")
+            raise SystemExit(f"Disconnected source group for {zone.code}: {names}")
+
+
+def _audit_feature_overlap(config: CityConfig, features: list[dict[str, Any]]) -> None:
+    exempt_pairs = {
+        tuple(sorted(pair))
+        for pair in config.scope.get("overlapExemptions", [])
+    }
+    for left_index, left in enumerate(features):
+        left_code = left["properties"]["code"]
+        for right in features[left_index + 1 :]:
+            right_code = right["properties"]["code"]
+            pair = tuple(sorted((left_code, right_code)))
+            if pair in exempt_pairs:
+                continue
+            if geometries_overlap(left["geometry"], right["geometry"]):
+                raise SystemExit(
+                    f"{config.city_id}: displayed zones overlap: {left_code} vs {right_code}"
+                )
+
+
+def _audit_visual_risk(config: CityConfig, features: list[dict[str, Any]]) -> None:
+    zones = _zone_by_code(config)
+    for feature in features:
+        code = feature["properties"]["code"]
+        zone = zones.get(code)
+        if zone is None:
+            continue
+        role = zone.coverage_role or "primary"
+        if role not in FATAL_VISUAL_RISK_ROLES:
+            continue
+        geometry = feature["geometry"]
+        raw_parts = len(geometry["coordinates"]) if geometry.get("type") == "MultiPolygon" else 1
+        dissolved = dissolved_component_count(geometry)
+        area = bbox_area(geometry)
+        if dissolved > 1:
+            raise SystemExit(
+                f"visualRisk: {config.city_id} {code} has {dissolved} disconnected components"
+            )
+        if raw_parts > OVERSIZED_PART_COUNT:
+            raise SystemExit(
+                f"visualRisk: {config.city_id} {code} has {raw_parts} raw polygon parts"
+            )
+        if area > OVERSIZED_BBOX_AREA:
+            raise SystemExit(
+                f"visualRisk: {config.city_id} {code} bbox area {area:.5f} exceeds "
+                f"{OVERSIZED_BBOX_AREA}"
+            )
+
+
 def _audit_zone_contiguity(config: CityConfig, features: list[dict[str, Any]]) -> None:
     zones = _zone_by_code(config)
     for feature in features:
@@ -185,28 +359,18 @@ def _audit_zone_contiguity(config: CityConfig, features: list[dict[str, Any]]) -
         if zone is None:
             continue
         role = zone.coverage_role or "primary"
-        if role in ALLOW_MULTIPART_ROLES:
-            continue
         geometry = feature["geometry"]
-        if geometry.get("type") == "MultiPolygon" and not zone.allow_multipart:
+        multipart_ok = zone.allow_multipart and (
+            role in ALLOW_MULTIPART_ROLES or _is_unavoidable_official_multipart(zone)
+        )
+        if geometry.get("type") == "MultiPolygon" and not multipart_ok:
             parts = geometry_components(geometry)
-            allowed_basis = {"official_quartier_group", "iris_fallback_major_zone"}
-            basis = zone.geometry_basis or ""
-            if not components_are_contiguous(parts) and basis not in allowed_basis:
+            if not components_are_contiguous(parts):
                 raise SystemExit(f"Disconnected MultiPolygon for {code} without allowMultipart")
+        if role == "low_relevance":
+            continue
         dissolved = dissolved_component_count(geometry)
-        basis = zone.geometry_basis or ""
-        allow_disconnected = basis in {
-            "official_quartier_group",
-            "iris_fallback_major_zone",
-            "iris_major_zone_partition",
-        }
-        if (
-            role in {"primary", "campus", "risk_cap"}
-            and dissolved > 1
-            and not zone.allow_multipart
-            and not allow_disconnected
-        ):
+        if dissolved > 1 and not multipart_ok:
             raise SystemExit(f"disconnected {role} zone {code} ({dissolved} components)")
 
 
@@ -219,10 +383,10 @@ def _audit_allow_multipart(config: CityConfig, features: list[dict[str, Any]]) -
         zone = zones.get(code, Zone(code=code, source_units=[]))
         role = zone.coverage_role or "?"
         justification = zone.multipart_justification or feature["properties"].get("multipartJustification")
-        if role not in ALLOW_MULTIPART_ROLES:
+        if role not in ALLOW_MULTIPART_ROLES and not _is_unavoidable_official_multipart(zone):
             raise SystemExit(
                 f"{config.city_id}: allowMultipart on {role} zone {code} "
-                "(only context/low_relevance permitted)"
+                "(only low_relevance or unavoidable official geography permitted)"
             )
         if not justification:
             raise SystemExit(f"{config.city_id}: allowMultipart on {code} requires multipartJustification")
@@ -245,27 +409,25 @@ def _audit_warnings(config: CityConfig, features: list[dict[str, Any]], score_co
     for values, codes in by_tuple.items():
         if len(codes) > WARN_SAME_SCORE_COUNT:
             print(f"warn: {config.city_id} {len(codes)} zones share score tuple {values}: {codes[:4]}...")
+    place_meta = load_place_meta(config.places_file, section=config.places_section)
     zones_by_code = _zone_by_code(config)
     for feature in features:
         code = feature["properties"]["code"]
         zone = zones_by_code.get(code)
-        if zone and len(zone.source_units) > WARN_SOURCE_UNIT_COUNT:
-            print(f"warn: {code} has {len(zone.source_units)} source units (>{WARN_SOURCE_UNIT_COUNT})")
+        if zone:
+            role = zone.coverage_role or "primary"
+            source_count = len(zone.source_units)
+            if role != "low_relevance" and source_count > WARN_SOURCE_UNIT_COUNT:
+                print(f"warn: {code} has {source_count} source units (>{WARN_SOURCE_UNIT_COUNT})")
+            display_name = place_meta.get(code, {}).get("name", "")
+            if "/" in display_name and source_count > WARN_BROAD_NAME_SOURCE_COUNT:
+                print(
+                    f"warn: {code} name {display_name!r} spans {source_count} source units "
+                    f"(>{WARN_BROAD_NAME_SOURCE_COUNT}); zone may be over-broad"
+                )
         geometry = feature["geometry"]
         raw_parts = len(geometry["coordinates"]) if geometry.get("type") == "MultiPolygon" else 1
         dissolved = dissolved_component_count(geometry)
-        role = zone.coverage_role if zone else "?"
-        if role not in ALLOW_MULTIPART_ROLES:
-            area = bbox_area(geometry)
-            if (
-                area > OVERSIZED_BBOX_AREA
-                or raw_parts > OVERSIZED_PART_COUNT
-                or dissolved > 2
-            ):
-                print(
-                    f"visualRisk: {config.city_id} {code} likely jagged outline "
-                    f"(bbox={area:.5f}, rawParts={raw_parts}, dissolved={dissolved})"
-                )
         if raw_parts > WARN_OUTLINE_PARTS:
             print(f"visualRisk: {code} has {raw_parts} polygon parts (selection outline may be jagged)")
         basis = zone.geometry_basis if zone else None
@@ -273,6 +435,17 @@ def _audit_warnings(config: CityConfig, features: list[dict[str, Any]], score_co
             unit.source.endswith("_quartiers") or "quartier" in unit.source for unit in zone.source_units
         ):
             print(f"visualRisk: {code} mixes IRIS fallback with official quartier sources")
+
+
+def _audit_user_facing_caveats(config: CityConfig) -> None:
+    caveats = load_place_caveats(config.places_file, section=config.places_section)
+    for code, caveat in caveats.items():
+        for term, pattern in FORBIDDEN_CAVEAT_CHECKS:
+            if pattern.search(caveat):
+                raise SystemExit(
+                    f"{config.city_id}: user-facing caveat for {code} contains "
+                    f'internal provenance term "{term}"'
+                )
 
 
 def _audit_city_specific(

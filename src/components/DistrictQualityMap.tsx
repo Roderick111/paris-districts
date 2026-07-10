@@ -128,8 +128,14 @@ export default function DistrictQualityMap() {
   const mapRef = useRef<MapLibreMap | null>(null);
   const overlayRef = useRef<MapboxOverlay | null>(null);
   const [cityId, setCityId] = useState<CityId>("paris");
-  const [geojson, setGeojson] = useState<PlaceFeatureCollection | null>(null);
-  const [outlineGeojson, setOutlineGeojson] = useState<PlaceFeatureCollection | null>(null);
+  const [geojsonCache, setGeojsonCache] = useState<{
+    url: string;
+    data: PlaceFeatureCollection;
+  } | null>(null);
+  const [outlineGeojsonCache, setOutlineGeojsonCache] = useState<{
+    url: string;
+    data: PlaceFeatureCollection;
+  } | null>(null);
   const lastHoverRef = useRef<{ code: string; x: number; y: number } | null>(null);
   const [selectedCode, setSelectedCode] = useState("75101");
   const [hoverInfo, setHoverInfo] = useState<HoverInfo | null>(null);
@@ -138,11 +144,16 @@ export default function DistrictQualityMap() {
   const [mapMode, setMapMode] = useState<MapMode>("overall");
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [settingsTab, setSettingsTab] = useState<SettingsTab>("criteria");
-  const [activeWeights, setActiveWeights] = useState<Weights>(defaultWeights);
-  const [scoreOverrides, setScoreOverrides] = useState<ScoreOverridesByPlace>({});
-  const [settingsHydrated, setSettingsHydrated] = useState(false);
+  const [activeWeights, setActiveWeights] = useState<Weights>(() => loadWeights());
+  const [scoreOverrides, setScoreOverrides] = useState<ScoreOverridesByPlace>(() => loadScoreOverrides());
 
   const city = cityById.get(cityId)!;
+  const geojson =
+    geojsonCache?.url === city.geojsonUrl ? geojsonCache.data : null;
+  const outlineGeojson =
+    city.outlineGeojsonUrl && outlineGeojsonCache?.url === city.outlineGeojsonUrl
+      ? outlineGeojsonCache.data
+      : null;
   const places = useMemo(() => getPlacesForCity(cityId), [cityId]);
 
   const activePlaceByCode = useMemo(
@@ -198,36 +209,20 @@ export default function DistrictQualityMap() {
   }, [places, activeWeights, scoreOverrides]);
 
   useEffect(() => {
-    setActiveWeights(loadWeights());
-    setScoreOverrides(loadScoreOverrides());
-    setSettingsHydrated(true);
-  }, []);
-
-  useEffect(() => {
-    if (!settingsHydrated) {
-      return;
-    }
-
     saveWeights(activeWeights);
-  }, [activeWeights, settingsHydrated]);
+  }, [activeWeights]);
 
   useEffect(() => {
-    if (!settingsHydrated) {
-      return;
-    }
-
     saveScoreOverrides(scoreOverrides);
-  }, [scoreOverrides, settingsHydrated]);
+  }, [scoreOverrides]);
 
   useEffect(() => {
     const url = city.outlineGeojsonUrl;
     if (!url) {
-      setOutlineGeojson(null);
       return;
     }
 
     let cancelled = false;
-    setOutlineGeojson(null);
 
     fetch(url)
       .then((response) => {
@@ -238,14 +233,11 @@ export default function DistrictQualityMap() {
       })
       .then((data) => {
         if (!cancelled) {
-          setOutlineGeojson(data);
+          setOutlineGeojsonCache({ url, data });
         }
       })
       .catch((error: unknown) => {
         console.error(error);
-        if (!cancelled) {
-          setOutlineGeojson(null);
-        }
       });
 
     return () => {
@@ -254,26 +246,23 @@ export default function DistrictQualityMap() {
   }, [city.outlineGeojsonUrl]);
 
   useEffect(() => {
+    const url = city.geojsonUrl;
     let cancelled = false;
-    setGeojson(null);
 
-    fetch(city.geojsonUrl)
+    fetch(url)
       .then((response) => {
         if (!response.ok) {
-          throw new Error(`Failed to load ${city.geojsonUrl}: ${response.status}`);
+          throw new Error(`Failed to load ${url}: ${response.status}`);
         }
         return response.json() as Promise<PlaceFeatureCollection>;
       })
       .then((data) => {
         if (!cancelled) {
-          setGeojson(data);
+          setGeojsonCache({ url, data });
         }
       })
       .catch((error: unknown) => {
         console.error(error);
-        if (!cancelled) {
-          setGeojson(null);
-        }
       });
 
     return () => {
@@ -557,7 +546,7 @@ export default function DistrictQualityMap() {
           <p className="eyebrow">District Quality Map</p>
           <h1>{city.title}</h1>
           <p>
-            Composite score from safety, rent pressure, transport, local energy, services, access, and calm.
+            Composite score from safety, rent pressure, transport, student energy, services, campus access, and calm.
             Security is weighted 3x and caps unsafe areas.
           </p>
           {usingCustomSettings ? (
@@ -614,6 +603,20 @@ export default function DistrictQualityMap() {
               );
             })}
           </div>
+        </section>
+
+        <section className="relocationCta" aria-label="Relocation help">
+          <p>Need help with relocation?</p>
+          <p>
+            Write me on{" "}
+            <a href="https://t.me/daniel_mathias" target="_blank" rel="noreferrer">
+              Telegram @daniel_mathias
+            </a>{" "}
+            or{" "}
+            <a href="mailto:nex.mod.daniel@gmail.com">
+              nex.mod.daniel@gmail.com
+            </a>
+          </p>
         </section>
       </aside>
 

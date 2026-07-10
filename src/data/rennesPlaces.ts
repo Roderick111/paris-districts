@@ -70,10 +70,10 @@ export const rennesPlaces: PlaceScore[] = [
     summary: "Practical northern belt with metro access and tolerable value.", caveat: "Commuter-value zone, not a headline student scene."
   },
   {
-    id: "rennes-maurepas-patton", cityId: "rennes", name: "Maurepas / Patton", code: "rennes-maurepas-patton", kind: "quartier",
+    id: "rennes-maurepas-bellangerais", cityId: "rennes", name: "Maurepas / Bellangerais", code: "rennes-maurepas-bellangerais", kind: "quartier",
     area: "North cap", granularity: "micro", parentName: "North cap",
     confidence: "high", coverageRole: "risk_cap", geometryBasis: "official_quartier",
-    evidenceNote: "Official Rennes administrative quartier polygon.",
+    evidenceNote: "Score inherited from broad Maurepas / Patton district reputation.",
     scores: {
       security: 4.8,
       affordability: 6.8,
@@ -84,7 +84,24 @@ export const rennesPlaces: PlaceScore[] = [
       greenCalm: 6.0
     },
     rentLevel: "lower", studentFit: "mixed",
-    summary: "Affordable north belt capped by safety profile.", caveat: "Value trade, not a comfort default."
+    summary: "Maurepas north belt capped by safety profile.", caveat: "Value trade, not a comfort default."
+  },
+  {
+    id: "rennes-patton-north", cityId: "rennes", name: "Patton north", code: "rennes-patton-north", kind: "quartier",
+    area: "North cap", granularity: "micro", parentName: "North cap",
+    confidence: "high", coverageRole: "risk_cap", geometryBasis: "official_quartier",
+    evidenceNote: "Score inherited from broad Maurepas / Patton district reputation.",
+    scores: {
+      security: 4.8,
+      affordability: 6.8,
+      transport: 8.2,
+      studentEnergy: 6.0,
+      services: 7.0,
+      campusAccess: 6.8,
+      greenCalm: 6.0
+    },
+    rentLevel: "lower", studentFit: "mixed",
+    summary: "Patton, Bretèche, and Cité des Jardins north belt with safety cap.", caveat: "Separate from Maurepas; cap still visible."
   },
   {
     id: "rennes-jeanne-darc-longs-champs-beaulieu", cityId: "rennes", name: "Jeanne d'Arc / Longs-Champs / Beaulieu", code: "rennes-jeanne-darc-longs-champs-beaulieu", kind: "quartier",
@@ -158,7 +175,7 @@ export const rennesPlaces: PlaceScore[] = [
     id: "rennes-villejean-beauregard", cityId: "rennes", name: "Villejean / Beauregard", code: "rennes-villejean-beauregard", kind: "quartier",
     area: "West campus", granularity: "micro", parentName: "West campus",
     confidence: "high", coverageRole: "campus", geometryBasis: "official_quartier",
-    evidenceNote: "Official Rennes administrative quartier polygon.",
+    evidenceNote: "Official Rennes campus-core quartier polygon.",
     scores: {
       security: 5.8,
       affordability: 6.2,
@@ -169,7 +186,24 @@ export const rennesPlaces: PlaceScore[] = [
       greenCalm: 6.0
     },
     rentLevel: "medium", studentFit: "excellent",
-    summary: "West campus pole with structural university access and metro.", caveat: "Campus utility over centre social life."
+    summary: "West campus core with structural university access and metro.", caveat: "Campus utility over centre social life."
+  },
+  {
+    id: "rennes-belle-epine-haut-trait", cityId: "rennes", name: "Belle Epine / Haut-Trait", code: "rennes-belle-epine-haut-trait", kind: "quartier",
+    area: "West campus fringe", granularity: "micro", parentName: "West campus",
+    confidence: "high", coverageRole: "context", geometryBasis: "official_quartier",
+    evidenceNote: "Score inherited from broad Villejean / Beauregard west-campus context.",
+    scores: {
+      security: 5.8,
+      affordability: 6.2,
+      transport: 9.0,
+      studentEnergy: 8.2,
+      services: 7.6,
+      campusAccess: 10.0,
+      greenCalm: 6.0
+    },
+    rentLevel: "medium", studentFit: "good",
+    summary: "West-campus fringe context with metro but less campus density.", caveat: "Peripheral to campus core; lower access emphasis."
   },
   {
     id: "rennes-le-blosne", cityId: "rennes", name: "Le Blosne", code: "rennes-le-blosne", kind: "quartier",
@@ -192,7 +226,7 @@ export const rennesPlaces: PlaceScore[] = [
     id: "rennes-brequigny", cityId: "rennes", name: "Brequigny", code: "rennes-brequigny", kind: "quartier",
     area: "South-west", granularity: "micro", parentName: "South-west",
     confidence: "high", coverageRole: "context", geometryBasis: "official_quartier",
-    evidenceNote: "Official Rennes administrative quartier polygon.",
+    evidenceNote: "Official Rennes Bréquigny quartier polygon.",
     scores: {
       security: 5.0,
       affordability: 6.4,
@@ -203,6 +237,57 @@ export const rennesPlaces: PlaceScore[] = [
       greenCalm: 5.8
     },
     rentLevel: "medium", studentFit: "good",
-    summary: "Outer south-west context with moderate value.", caveat: "Honest peripheral belt; limited student scene."
+    summary: "Bréquigny south-west context with moderate value.", caveat: "Distinct from rural periphery belts."
+  },
+  {
+    id: "rennes-southwest-periphery", cityId: "rennes", name: "South-west periphery", code: "rennes-southwest-periphery", kind: "quartier",
+    area: "South-west fringe", granularity: "micro", parentName: "South-west",
+    confidence: "high", coverageRole: "context", geometryBasis: "official_quartier",
+    evidenceNote: "Score inherited from broad south-west periphery district reputation.",
+    scores: {
+      security: 5.0,
+      affordability: 6.4,
+      transport: 8.4,
+      studentEnergy: 6.4,
+      services: 7.2,
+      campusAccess: 7.0,
+      greenCalm: 5.8
+    },
+    rentLevel: "medium", studentFit: "good",
+    summary: "Peupleraie and Moulin south-west fringe.", caveat: "Honest periphery belt; limited student scene."
+  },
+  {
+    id: "rennes-maison-blanche-kerfleury", cityId: "rennes", name: "Maison Blanche / Kerfleury", code: "rennes-maison-blanche-kerfleury", kind: "quartier",
+    area: "South-west fringe", granularity: "micro", parentName: "South-west",
+    confidence: "high", coverageRole: "context", geometryBasis: "official_quartier",
+    evidenceNote: "Score inherited from broad south-west periphery district reputation.",
+    scores: {
+      security: 5.0,
+      affordability: 6.4,
+      transport: 8.4,
+      studentEnergy: 6.4,
+      services: 7.2,
+      campusAccess: 7.0,
+      greenCalm: 5.8
+    },
+    rentLevel: "medium", studentFit: "good",
+    summary: "Maison Blanche south-west context pocket.", caveat: "Separate fringe cluster from Peupleraie belt."
+  },
+  {
+    id: "rennes-secteur-rural", cityId: "rennes", name: "Secteur rural", code: "rennes-secteur-rural", kind: "quartier",
+    area: "Rural fringe", granularity: "micro", parentName: "Periphery",
+    confidence: "high", coverageRole: "low_relevance", geometryBasis: "official_quartier",
+    evidenceNote: "Score inherited from broad south-west periphery context; rural fringe only.",
+    scores: {
+      security: 5.0,
+      affordability: 6.4,
+      transport: 8.4,
+      studentEnergy: 6.4,
+      services: 7.2,
+      campusAccess: 7.0,
+      greenCalm: 5.8
+    },
+    rentLevel: "medium", studentFit: "mixed",
+    summary: "Peripheral rural fringe outside main student belts.", caveat: "Low relevance for typical student housing search."
   },
 ];

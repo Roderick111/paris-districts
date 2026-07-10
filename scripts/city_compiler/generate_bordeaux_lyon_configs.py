@@ -24,9 +24,98 @@ MAP_EXCLUDED_SCORE_CODES = [
     "gradignan-malartic-barthez",
 ]
 
+BORdeaux_INSEE = "33063"
+TALENCE_INSEE = "33522"
+PESSAC_INSEE = "33318"
+GRADIGNAN_INSEE = "33192"
+
+RISK_CAP_CODES = {
+    "bdx-sud-saint-michel-capucins",
+    "bdx-maritime-aubiers",
+}
+
+CAMPUS_CODES = {
+    "talence-campus",
+    "pessac-campus-compostelle",
+}
+
+CONTEXT_CODES = {
+    "gradignan-commune",
+}
+
+# Bordeaux Métropole macro quartiers + other communes — geometry comes from IRIS or is out of scope.
+EXEMPT_BORDEAUX_QUARTIERS = [
+    "Argous",
+    "Arlac",
+    "Beaudésert",
+    "Beutre",
+    "Birambits",
+    "Bordeaux Maritime",
+    "Bordeaux Sud",
+    "Bourran",
+    "Capeyron",
+    "Caudéran",
+    "Centre",
+    "Centre ville",
+    "Centujean",
+    "Chartrons - Grand Parc - Jardin Public",
+    "Chemin Long",
+    "Dorat Verduc",
+    "Forêt",
+    "Gambetta-Mairie-Lissandre",
+    "Gelès",
+    "Germignan",
+    "La Bastide",
+    "La Boétie",
+    "La Castagne",
+    "La Ferrade",
+    "La Glacière",
+    "La Raze",
+    "Le Burck",
+    "Le Prêche",
+    "Les Eyquems",
+    "Mairie Bourg",
+    "Nansouty - Saint Genès",
+    "Palmer-Gravières-Cavailles",
+    "Plaisance-Loret-Maregue",
+    "Quartier Centre",
+    "Quartier Est",
+    "Quartier Les Pins",
+    "Quartier Sud",
+    "Quartier Terre Rouge",
+    "Saint Augustin - Tauzin - Alphonse Dupeux",
+    "Sembat",
+    "Stade",
+]
+
+
+def bordeaux_coverage_role(code: str) -> str:
+    if code in RISK_CAP_CODES:
+        return "risk_cap"
+    if code in CAMPUS_CODES:
+        return "campus"
+    if code in CONTEXT_CODES:
+        return "context"
+    return "primary"
+
+
+def bordeaux_geometry_basis(spec: dict[str, Any]) -> str:
+    if spec.get("commune_full"):
+        return "commune_context"
+    if spec.get("sub_quartiers"):
+        return "official_quartier_group"
+    return "iris_fallback_major_zone"
+
 
 def bordeaux_zone(spec: dict[str, Any]) -> dict[str, Any]:
-    zone: dict[str, Any] = {"code": spec["code"], "kind": spec.get("kind", "quartier"), "sourceUnits": []}
+    code = spec["code"]
+    zone: dict[str, Any] = {
+        "code": code,
+        "kind": spec.get("kind", "quartier"),
+        "coverageRole": bordeaux_coverage_role(code),
+        "geometryBasis": bordeaux_geometry_basis(spec),
+        "sourceUnits": [],
+    }
     if spec.get("commune_full"):
         zone["communeInsee"] = spec["commune_full"]
         zone["sourceUnits"] = [{"source": "geo_api_commune", "name": spec["commune_full"]}]
@@ -84,12 +173,22 @@ def main() -> None:
         "placesFile": "src/data/bordeauxPlaces.ts",
         "placesSection": "bordeauxMicroPlaces",
         "geojsonOutput": "public/data/bordeaux.geojson",
+        "outlineOutput": "public/data/bordeaux-outlines.geojson",
         "sources": [
             {"id": "bordeaux_quartiers", "type": "bordeaux_quartiers"},
             {"id": "bordeaux_iris", "type": "bordeaux_iris"},
             {"id": "geo_api_commune", "type": "geo_api_commune"},
         ],
-        "scope": {"excludedPlaceCodes": MAP_EXCLUDED_SCORE_CODES},
+        "scope": {
+            "coverageMode": "major_district",
+            "preferredBase": "iris",
+            "inseeCodes": [BORdeaux_INSEE, TALENCE_INSEE, PESSAC_INSEE, GRADIGNAN_INSEE],
+            "fullCoverageSources": ["bordeaux_iris", "bordeaux_quartiers"],
+            "exemptUnits": {
+                "bordeaux_quartiers": EXEMPT_BORDEAUX_QUARTIERS,
+            },
+            "excludedPlaceCodes": MAP_EXCLUDED_SCORE_CODES,
+        },
         "zones": [bordeaux_zone(spec) for spec in BORDEAUX_SPECS],
     }
     lyon = {
@@ -97,6 +196,7 @@ def main() -> None:
         "placesFile": "src/data/lyonPlaces.ts",
         "placesSection": "lyonMicroPlaces",
         "geojsonOutput": "public/data/lyon.geojson",
+        "outlineOutput": "public/data/lyon-outlines.geojson",
         "sources": [
             {"id": "lyon_quartiers", "type": "lyon_quartiers"},
             {"id": "lyon_metro_quartiers", "type": "lyon_metro_quartiers"},

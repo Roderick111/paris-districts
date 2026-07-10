@@ -60,7 +60,18 @@
       "geometryBasis": "official_quartier"
     },
     {
-      "code": "rennes-maurepas-patton",
+      "code": "rennes-maurepas-bellangerais",
+      "sourceUnits": [
+        {
+          "source": "rennes_quartiers",
+          "name": "Maurepas / Bellangerais"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "rennes-patton-north",
       "sourceUnits": [
         {
           "source": "rennes_quartiers",
@@ -93,10 +104,6 @@
         {
           "source": "rennes_quartiers",
           "name": "Les Melliers"
-        },
-        {
-          "source": "rennes_quartiers",
-          "name": "Maurepas / Bellangerais"
         }
       ],
       "coverageRole": "risk_cap",
@@ -129,10 +136,6 @@
       "sourceUnits": [
         {
           "source": "rennes_quartiers",
-          "name": "Bréquigny"
-        },
-        {
-          "source": "rennes_quartiers",
           "name": "Sud gare"
         }
       ],
@@ -155,18 +158,25 @@
       "sourceUnits": [
         {
           "source": "rennes_quartiers",
+          "name": "Villejean / Beauregard"
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "rennes-belle-epine-haut-trait",
+      "sourceUnits": [
+        {
+          "source": "rennes_quartiers",
           "name": "Belle Épine"
         },
         {
           "source": "rennes_quartiers",
           "name": "Haut-Trait"
-        },
-        {
-          "source": "rennes_quartiers",
-          "name": "Villejean / Beauregard"
         }
       ],
-      "coverageRole": "campus",
+      "coverageRole": "context",
       "geometryBasis": "official_quartier"
     },
     {
@@ -185,22 +195,47 @@
       "sourceUnits": [
         {
           "source": "rennes_quartiers",
+          "name": "Bréquigny"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "rennes-southwest-periphery",
+      "sourceUnits": [
+        {
+          "source": "rennes_quartiers",
           "name": "La Peupleraie"
         },
         {
           "source": "rennes_quartiers",
-          "name": "Maison Blanche et Kerfleury"
-        },
+          "name": "Moulin d'Olivet et Gué Mary"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "rennes-maison-blanche-kerfleury",
+      "sourceUnits": [
         {
           "source": "rennes_quartiers",
-          "name": "Moulin d'Olivet et Gué Mary"
-        },
+          "name": "Maison Blanche et Kerfleury"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "rennes-secteur-rural",
+      "sourceUnits": [
         {
           "source": "rennes_quartiers",
           "name": "Secteur Rural"
         }
       ],
-      "coverageRole": "context",
+      "coverageRole": "low_relevance",
       "geometryBasis": "official_quartier"
     }
   ],

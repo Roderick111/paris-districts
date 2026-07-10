@@ -29,9 +29,9 @@ export function metricLabel(key: ScoreKey | string) {
     security: "Security",
     affordability: "Affordability",
     transport: "Transport",
-    studentEnergy: "Local energy",
+    studentEnergy: "Student energy",
     services: "Services",
-    campusAccess: "Access",
+    campusAccess: "Campus access",
     greenCalm: "Green/calm"
   };
 

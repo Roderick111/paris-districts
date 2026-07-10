@@ -3,6 +3,7 @@
   "placesFile": "src/data/lyonPlaces.ts",
   "placesSection": "lyonMicroPlaces",
   "geojsonOutput": "public/data/lyon.geojson",
+  "outlineOutput": "public/data/lyon-outlines.geojson",
   "sources": [
     {
       "id": "lyon_quartiers",

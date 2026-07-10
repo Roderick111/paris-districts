@@ -2,6 +2,7 @@
   "cityId": "strasbourg",
   "placesFile": "src/data/strasbourgPlaces.ts",
   "geojsonOutput": "public/data/strasbourg.geojson",
+  "outlineOutput": "public/data/strasbourg-outlines.geojson",
   "sources": [
     {
       "id": "strasbourg_quartiers",
@@ -27,29 +28,43 @@
         {
           "source": "strasbourg_quartiers",
           "name": "Esplanade"
-        },
-        {
-          "source": "strasbourg_quartiers",
-          "name": "Ampère"
         }
       ],
       "coverageRole": "primary",
       "geometryBasis": "official_quartier_group"
     },
     {
-      "code": "strasbourg-centre-ville-petite-france",
+      "code": "strasbourg-ampere",
+      "sourceUnits": [
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Ampère"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "strasbourg-centre-ville",
       "sourceUnits": [
         {
           "source": "strasbourg_quartiers",
           "name": "Centre ville"
-        },
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "strasbourg-cite-de-lill",
+      "sourceUnits": [
         {
           "source": "strasbourg_quartiers",
           "name": "Cité de l'Ill"
         }
       ],
       "coverageRole": "primary",
-      "geometryBasis": "official_quartier_group"
+      "geometryBasis": "official_quartier"
     },
     {
       "code": "strasbourg-gare-tribunal",
@@ -78,19 +93,26 @@
       "geometryBasis": "official_quartier"
     },
     {
-      "code": "strasbourg-robertsau-wacken",
+      "code": "strasbourg-robertsau",
       "sourceUnits": [
         {
           "source": "strasbourg_quartiers",
           "name": "Robertsau"
-        },
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "strasbourg-wacken",
+      "sourceUnits": [
         {
           "source": "strasbourg_quartiers",
           "name": "Spach Rotterdam"
         }
       ],
       "coverageRole": "primary",
-      "geometryBasis": "official_quartier_group"
+      "geometryBasis": "official_quartier"
     },
     {
       "code": "strasbourg-cronenbourg-campus",
@@ -205,10 +227,6 @@
         {
           "source": "strasbourg_quartiers",
           "name": "Vieux Neuhof"
-        },
-        {
-          "source": "strasbourg_quartiers",
-          "name": "NEUHOF2"
         }
       ],
       "coverageRole": "risk_cap",
@@ -227,6 +245,5 @@
       "communeInsee": "67447"
     }
   ],
-  "scope": {},
-  "outlineOutput": "public/data/strasbourg-outlines.geojson"
+  "scope": {}
 }

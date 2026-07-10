@@ -199,7 +199,7 @@ export const niceMicroPlaces: PlaceScore[] = [
     scores: { security: 6.0, affordability: 5.5, transport: 7.0, studentEnergy: 4.5, services: 6.5, campusAccess: 5.5, greenCalm: 6.5 },
     rentLevel: "medium", studentFit: "weak",
     summary: "Full-coverage context zone; useful for map continuity, not a primary student pick.",
-    caveat: "Broad official geometry; block-level choice still matters."
+    caveat: "Broad zone; block-level choice still matters."
   },
   {
     id: "nice-saint-augustin-moulins", cityId: "nice", name: "Saint-Augustin / Moulins", code: "nice-saint-augustin-moulins", kind: "quartier",
@@ -239,7 +239,7 @@ export const niceMicroPlaces: PlaceScore[] = [
     scores: { security: 6.4, affordability: 5.4, transport: 6.8, studentEnergy: 4.6, services: 6.4, campusAccess: 5.6, greenCalm: 7.4 },
     rentLevel: "medium", studentFit: "mixed",
     summary: "Full-coverage context zone; useful for map continuity, not a primary student pick.",
-    caveat: "Broad official geometry; block-level choice still matters."
+    caveat: "Broad zone; block-level choice still matters."
   },
   {
     id: "nice-riquier-saint-roch", cityId: "nice", name: "Riquier / Saint-Roch", code: "nice-riquier-saint-roch", kind: "quartier",
@@ -289,7 +289,7 @@ export const niceMicroPlaces: PlaceScore[] = [
     scores: { security: 6.8, affordability: 4.2, transport: 7.2, studentEnergy: 5.0, services: 6.8, campusAccess: 5.8, greenCalm: 7.2 },
     rentLevel: "medium", studentFit: "mixed",
     summary: "Full-coverage context zone; useful for map continuity, not a primary student pick.",
-    caveat: "Broad official geometry; block-level choice still matters."
+    caveat: "Broad zone; block-level choice still matters."
   },
   {
     id: "nice-corniche-promenade", cityId: "nice", name: "Corniche / Promenade", code: "nice-corniche-promenade", kind: "quartier",

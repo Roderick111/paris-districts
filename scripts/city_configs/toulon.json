@@ -78,7 +78,7 @@
         },
         {
           "source": "iris_83137",
-          "name": "Saint-Roch I"
+          "name": "Saint-Louis"
         }
       ],
       "coverageRole": "risk_cap",
@@ -131,7 +131,7 @@
       "geometryBasis": "iris_fallback_major_zone"
     },
     {
-      "code": "toulon-la-mitre-fort-saint-louis",
+      "code": "toulon-lamalgue-la-mitre",
       "sourceUnits": [
         {
           "source": "iris_83137",
@@ -140,10 +140,6 @@
         {
           "source": "iris_83137",
           "name": "Lamalgue"
-        },
-        {
-          "source": "iris_83137",
-          "name": "Saint-Louis"
         }
       ],
       "coverageRole": "primary",
@@ -189,6 +185,10 @@
         },
         {
           "source": "iris_83137",
+          "name": "Brunet"
+        },
+        {
+          "source": "iris_83137",
           "name": "Brunet-Font Pré"
         },
         {
@@ -224,12 +224,8 @@
       "geometryBasis": "iris_fallback_major_zone"
     },
     {
-      "code": "toulon-sainte-musse-brunet",
+      "code": "toulon-sainte-musse",
       "sourceUnits": [
-        {
-          "source": "iris_83137",
-          "name": "Brunet"
-        },
         {
           "source": "iris_83137",
           "name": "Sainte-Musse I"
@@ -243,19 +239,11 @@
       "geometryBasis": "iris_fallback_major_zone"
     },
     {
-      "code": "toulon-pont-du-las-bon-rencontre",
+      "code": "toulon-pont-du-las",
       "sourceUnits": [
         {
           "source": "iris_83137",
           "name": "Barbes"
-        },
-        {
-          "source": "iris_83137",
-          "name": "Bon Rencontre-Arsenal"
-        },
-        {
-          "source": "iris_83137",
-          "name": "L'Escaillon"
         },
         {
           "source": "iris_83137",
@@ -272,6 +260,21 @@
         {
           "source": "iris_83137",
           "name": "Pont du Las II"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Saint-Roch I"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "iris_fallback_major_zone"
+    },
+    {
+      "code": "toulon-bon-rencontre-escaillon",
+      "sourceUnits": [
+        {
+          "source": "iris_83137",
+          "name": "Bon Rencontre-Arsenal"
         }
       ],
       "coverageRole": "risk_cap",
@@ -360,7 +363,7 @@
       "geometryBasis": "iris_fallback_major_zone"
     },
     {
-      "code": "toulon-beaucaire-pont-neuf-lagoubran",
+      "code": "toulon-beaucaire",
       "sourceUnits": [
         {
           "source": "iris_83137",
@@ -368,11 +371,22 @@
         },
         {
           "source": "iris_83137",
-          "name": "Lagoubran"
-        },
+          "name": "L'Escaillon"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "iris_fallback_major_zone"
+    },
+    {
+      "code": "toulon-pont-neuf-lagoubran",
+      "sourceUnits": [
         {
           "source": "iris_83137",
           "name": "Pont Neuf"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Lagoubran"
         }
       ],
       "coverageRole": "risk_cap",

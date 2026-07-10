@@ -234,6 +234,33 @@ h2 {
   font-size: 14px;
 }
 
+.relocationCta {
+  display: grid;
+  gap: 4px;
+  margin-top: auto;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+  padding-top: 12px;
+}
+
+.relocationCta p:first-child {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.relocationCta a {
+  color: #8a4b16;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.relocationCta a:hover,
+.relocationCta a:focus-visible {
+  text-decoration: underline;
+}
+
 .mapTopBar {
   position: absolute;
   top: 18px;

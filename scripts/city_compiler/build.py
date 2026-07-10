@@ -50,8 +50,7 @@ def resolve_zone_geometry(
     basis = zone.geometry_basis or ""
     check_contiguity = (
         not zone.allow_multipart
-        and role not in {"context", "low_relevance"}
-        and basis not in {"official_quartier_group", "iris_fallback_major_zone", "iris_major_zone_partition"}
+        and role not in {"low_relevance"}
     )
     if check_contiguity and len(names) > 1:
         if not is_connected_source_group(names, shapes):

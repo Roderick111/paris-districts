@@ -33,7 +33,11 @@ CITY_META: dict[str, dict[str, str]] = {
     "toulon": {"placesFile": "src/data/toulonPlaces.ts", "geojsonOutput": "public/data/toulon.geojson", "outlineOutput": "public/data/toulon-outlines.geojson"},
     "grenoble": {"placesFile": "src/data/grenoblePlaces.ts", "geojsonOutput": "public/data/grenoble.geojson", "outlineOutput": "public/data/grenoble-outlines.geojson"},
     "paris": {"placesFile": "src/data/cities.ts", "geojsonOutput": "public/data/districts.geojson"},
-    "bordeaux": {"placesFile": "src/data/bordeauxPlaces.ts", "geojsonOutput": "public/data/bordeaux.geojson"},
+    "bordeaux": {
+        "placesFile": "src/data/bordeauxPlaces.ts",
+        "geojsonOutput": "public/data/bordeaux.geojson",
+        "outlineOutput": "public/data/bordeaux-outlines.geojson",
+    },
     "lyon": {"placesFile": "src/data/lyonPlaces.ts", "geojsonOutput": "public/data/lyon.geojson"},
 }
 

@@ -5,7 +5,7 @@ export const strasbourgPlaces: PlaceScore[] = [
     id: "strasbourg-bourse-esplanade-krutenau", cityId: "strasbourg", name: "Bourse / Esplanade / Krutenau", code: "strasbourg-bourse-esplanade-krutenau", kind: "quartier",
     area: "Centre-east", granularity: "micro", parentName: "Centre-east",
     confidence: "high", coverageRole: "primary", geometryBasis: "official_quartier_group",
-    evidenceNote: "Official Strasbourg functional quartier group.",
+    evidenceNote: "Official Strasbourg quartier group; Ampere split to contiguous child zone.",
     scores: {
       security: 6.2,
       affordability: 4.0,
@@ -19,10 +19,27 @@ export const strasbourgPlaces: PlaceScore[] = [
     summary: "Main east-centre student belt with campus gravity.", caveat: "Leads Strasbourg on student energy; rent is not low."
   },
   {
-    id: "strasbourg-centre-ville-petite-france", cityId: "strasbourg", name: "Centre-ville / Petite France", code: "strasbourg-centre-ville-petite-france", kind: "quartier",
+    id: "strasbourg-ampere", cityId: "strasbourg", name: "Ampere", code: "strasbourg-ampere", kind: "quartier",
+    area: "Centre-east", granularity: "micro", parentName: "Centre-east",
+    confidence: "medium", coverageRole: "primary", geometryBasis: "official_quartier_group",
+    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
+    scores: {
+      security: 6.2,
+      affordability: 4.0,
+      transport: 9.4,
+      studentEnergy: 9.2,
+      services: 8.8,
+      campusAccess: 9.6,
+      greenCalm: 5.0
+    },
+    rentLevel: "high", studentFit: "excellent",
+    summary: "Detached Ampere student belt north of Krutenau.", caveat: "Leads Strasbourg on student energy; rent is not low."
+  },
+  {
+    id: "strasbourg-centre-ville", cityId: "strasbourg", name: "Centre-ville", code: "strasbourg-centre-ville", kind: "quartier",
     area: "Centre", granularity: "micro", parentName: "Centre",
-    confidence: "high", coverageRole: "primary", geometryBasis: "official_quartier_group",
-    evidenceNote: "Official Strasbourg functional quartier group.",
+    confidence: "medium", coverageRole: "primary", geometryBasis: "official_quartier_group",
+    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
     scores: {
       security: 6.0,
       affordability: 3.0,
@@ -33,7 +50,24 @@ export const strasbourgPlaces: PlaceScore[] = [
       greenCalm: 4.8
     },
     rentLevel: "high", studentFit: "good",
-    summary: "Historic core with strong services and tram access.", caveat: "Prestige rents and tourist exposure limit value."
+    summary: "Historic centre-ville core.", caveat: "Prestige rents and tourist exposure limit value."
+  },
+  {
+    id: "strasbourg-cite-de-lill", cityId: "strasbourg", name: "Cite de l'Ill", code: "strasbourg-cite-de-lill", kind: "quartier",
+    area: "Centre", granularity: "micro", parentName: "Centre",
+    confidence: "medium", coverageRole: "primary", geometryBasis: "official_quartier_group",
+    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
+    scores: {
+      security: 6.0,
+      affordability: 3.0,
+      transport: 9.6,
+      studentEnergy: 8.4,
+      services: 9.0,
+      campusAccess: 8.6,
+      greenCalm: 4.8
+    },
+    rentLevel: "high", studentFit: "good",
+    summary: "Detached Cite de l'Ill island cluster.", caveat: "Prestige rents and tourist exposure limit value."
   },
   {
     id: "strasbourg-gare-tribunal", cityId: "strasbourg", name: "Gare / Tribunal", code: "strasbourg-gare-tribunal", kind: "quartier",
@@ -70,10 +104,10 @@ export const strasbourgPlaces: PlaceScore[] = [
     summary: "Premium north-east belt with park calm.", caveat: "Quality-of-life pick, not a budget student default."
   },
   {
-    id: "strasbourg-robertsau-wacken", cityId: "strasbourg", name: "Robertsau / Wacken", code: "strasbourg-robertsau-wacken", kind: "quartier",
+    id: "strasbourg-robertsau", cityId: "strasbourg", name: "Robertsau", code: "strasbourg-robertsau", kind: "quartier",
     area: "North-east", granularity: "micro", parentName: "North-east",
-    confidence: "high", coverageRole: "primary", geometryBasis: "official_quartier_group",
-    evidenceNote: "Official Strasbourg functional quartier group.",
+    confidence: "medium", coverageRole: "primary", geometryBasis: "official_quartier_group",
+    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
     scores: {
       security: 8.0,
       affordability: 3.6,
@@ -84,7 +118,24 @@ export const strasbourgPlaces: PlaceScore[] = [
       greenCalm: 9.0
     },
     rentLevel: "high", studentFit: "good",
-    summary: "Green north-east belt with low student density.", caveat: "Calm and safe, but weak student social scene."
+    summary: "Robertsau green north-east belt.", caveat: "Calm and safe, but weak student social scene."
+  },
+  {
+    id: "strasbourg-wacken", cityId: "strasbourg", name: "Wacken", code: "strasbourg-wacken", kind: "quartier",
+    area: "North-east", granularity: "micro", parentName: "North-east",
+    confidence: "medium", coverageRole: "primary", geometryBasis: "official_quartier_group",
+    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
+    scores: {
+      security: 8.0,
+      affordability: 3.6,
+      transport: 7.4,
+      studentEnergy: 5.8,
+      services: 7.8,
+      campusAccess: 7.0,
+      greenCalm: 9.0
+    },
+    rentLevel: "high", studentFit: "good",
+    summary: "Wacken / Spach-Rotterdam cluster.", caveat: "Calm and safe, but weak student social scene."
   },
   {
     id: "strasbourg-cronenbourg-campus", cityId: "strasbourg", name: "Cronenbourg campus", code: "strasbourg-cronenbourg-campus", kind: "quartier",
@@ -226,7 +277,7 @@ export const strasbourgPlaces: PlaceScore[] = [
     id: "strasbourg-neuhof-1", cityId: "strasbourg", name: "Neuhof 1", code: "strasbourg-neuhof-1", kind: "quartier",
     area: "South cap", granularity: "micro", parentName: "South cap",
     confidence: "high", coverageRole: "risk_cap", geometryBasis: "official_quartier",
-    evidenceNote: "Official Strasbourg functional quartier polygon.",
+    evidenceNote: "Official Strasbourg quartier polygon; NEUHOF2 source excluded (over-broad overlap with Ampere).",
     scores: {
       security: 3.8,
       affordability: 7.4,
@@ -240,10 +291,10 @@ export const strasbourgPlaces: PlaceScore[] = [
     summary: "Southern cap zone with hard safety constraints.", caveat: "Affordability cannot rescue the risk profile."
   },
   {
-    id: "strasbourg-neuhof-2-stockfeld-ganzau", cityId: "strasbourg", name: "Neuhof 2 / Stockfeld / Ganzau", code: "strasbourg-neuhof-2-stockfeld-ganzau", kind: "quartier",
+    id: "strasbourg-neuhof-2-stockfeld-ganzau", cityId: "strasbourg", name: "Vieux Neuhof", code: "strasbourg-neuhof-2-stockfeld-ganzau", kind: "quartier",
     area: "South cap", granularity: "micro", parentName: "South cap",
     confidence: "high", coverageRole: "risk_cap", geometryBasis: "official_quartier_group",
-    evidenceNote: "Official Strasbourg functional quartier group.",
+    evidenceNote: "Official Strasbourg quartier polygon; split from broad Neuhof group for contiguous geometry.",
     scores: {
       security: 4.2,
       affordability: 7.2,
@@ -254,7 +305,7 @@ export const strasbourgPlaces: PlaceScore[] = [
       greenCalm: 6.0
     },
     rentLevel: "lower", studentFit: "mixed",
-    summary: "Outer south cap with value and weak student energy.", caveat: "Visible cap zone; not a comfort default."
+    summary: "Vieux Neuhof southern cap cluster.", caveat: "Visible cap zone; not a comfort default."
   },
   {
     id: "strasbourg-illkirch-campus", cityId: "strasbourg", name: "Illkirch campus", code: "strasbourg-illkirch-campus", kind: "commune",
@@ -272,5 +323,5 @@ export const strasbourgPlaces: PlaceScore[] = [
     },
     rentLevel: "medium", studentFit: "excellent",
     summary: "Commuter campus edge with structural university access.", caveat: "Tram commute required; not a centre lifestyle."
-  },
+  }
 ];

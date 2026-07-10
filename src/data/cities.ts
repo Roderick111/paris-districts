@@ -551,8 +551,9 @@ export const cities: CityConfig[] = [
   {
     id: "bordeaux",
     name: "Bordeaux",
-    title: "Bordeaux micro-areas + campus suburbs",
+    title: "Bordeaux districts + campus suburbs",
     geojsonUrl: "/data/bordeaux.geojson",
+    outlineGeojsonUrl: "/data/bordeaux-outlines.geojson",
     center: [-0.579, 44.837],
     zoom: 12.5,
     minZoom: 10.5,
@@ -579,6 +580,7 @@ export const cities: CityConfig[] = [
     name: "Lyon",
     title: "Lyon micro-areas + Villeurbanne + Écully",
     geojsonUrl: "/data/lyon.geojson",
+    outlineGeojsonUrl: "/data/lyon-outlines.geojson",
     center: [4.835, 45.764],
     zoom: 12,
     minZoom: 10.5,
@@ -1037,7 +1039,7 @@ const parisPlaces: PlaceScore[] = [
     rentLevel: "very high",
     studentFit: "mixed",
     summary: "Central, beautiful, extremely connected, but expensive and theft-heavy around tourist flows.",
-    caveat: "Official per-resident crime rates are distorted by visitors and retail activity."
+    caveat: "Per-resident crime rates are distorted by visitors and retail activity."
   },
   {
     cityId: "paris",

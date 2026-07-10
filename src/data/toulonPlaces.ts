@@ -33,7 +33,7 @@ export const toulonPlaces: PlaceScore[] = [
       greenCalm: 3.6
     },
     rentLevel: "medium", studentFit: "mixed",
-    summary: "Port-centre belt with transit and mixed profile.", caveat: "Hard-capped centre zone, not a comfort default."
+    summary: "Port-centre belt including Fort Saint-Louis with transit.", caveat: "Hard-capped centre zone, not a comfort default."
   },
   {
     id: "toulon-la-rode-mayol", cityId: "toulon", name: "La Rode / Mayol", code: "toulon-la-rode-mayol", kind: "quartier",
@@ -70,10 +70,10 @@ export const toulonPlaces: PlaceScore[] = [
     summary: "Coastal east belt with village feel and calm.", caveat: "Quality-of-life pick with moderate student energy."
   },
   {
-    id: "toulon-la-mitre-fort-saint-louis", cityId: "toulon", name: "La Mitre / Fort Saint-Louis", code: "toulon-la-mitre-fort-saint-louis", kind: "quartier",
+    id: "toulon-lamalgue-la-mitre", cityId: "toulon", name: "Lamalgue / La Mitre", code: "toulon-lamalgue-la-mitre", kind: "quartier",
     area: "East coast", granularity: "micro", parentName: "East coast",
     confidence: "medium", coverageRole: "primary", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "IRIS-grouped grand quartier approximation.",
+    evidenceNote: "Score inherited from broad La Mitre / Fort Saint-Louis district reputation.",
     scores: {
       security: 7.6,
       affordability: 3.0,
@@ -84,7 +84,7 @@ export const toulonPlaces: PlaceScore[] = [
       greenCalm: 9.0
     },
     rentLevel: "high", studentFit: "good",
-    summary: "Premium east-coast belt with green calm.", caveat: "Low student density despite coastal appeal."
+    summary: "Premium Lamalgue east-coast belt with green calm.", caveat: "Low student density despite coastal appeal."
   },
   {
     id: "toulon-cap-brun-serinette", cityId: "toulon", name: "Cap Brun / Serinette", code: "toulon-cap-brun-serinette", kind: "quartier",
@@ -118,13 +118,13 @@ export const toulonPlaces: PlaceScore[] = [
       greenCalm: 5.2
     },
     rentLevel: "medium", studentFit: "good",
-    summary: "East-inner belt with moderate value.", caveat: "Honest context zone with mixed comfort."
+    summary: "East-inner belt including Brunet with moderate value.", caveat: "Honest context zone with mixed comfort."
   },
   {
-    id: "toulon-sainte-musse-brunet", cityId: "toulon", name: "Sainte-Musse / Brunet", code: "toulon-sainte-musse-brunet", kind: "quartier",
+    id: "toulon-sainte-musse", cityId: "toulon", name: "Sainte-Musse", code: "toulon-sainte-musse", kind: "quartier",
     area: "East", granularity: "micro", parentName: "East",
     confidence: "medium", coverageRole: "context", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "IRIS-grouped grand quartier approximation.",
+    evidenceNote: "Score inherited from broad Sainte-Musse / Brunet district reputation.",
     scores: {
       security: 5.6,
       affordability: 6.2,
@@ -135,13 +135,13 @@ export const toulonPlaces: PlaceScore[] = [
       greenCalm: 5.6
     },
     rentLevel: "medium", studentFit: "good",
-    summary: "Eastern belt with tolerable value and transit.", caveat: "Useful but not a headline student pick."
+    summary: "Sainte-Musse eastern belt with tolerable value.", caveat: "Honest context zone separate from Brunet."
   },
   {
-    id: "toulon-pont-du-las-bon-rencontre", cityId: "toulon", name: "Pont-du-Las / Bon Rencontre", code: "toulon-pont-du-las-bon-rencontre", kind: "quartier",
+    id: "toulon-pont-du-las", cityId: "toulon", name: "Pont-du-Las", code: "toulon-pont-du-las", kind: "quartier",
     area: "West", granularity: "micro", parentName: "West",
     confidence: "medium", coverageRole: "risk_cap", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "IRIS-grouped grand quartier approximation.",
+    evidenceNote: "Score inherited from broad Pont-du-Las / Bon Rencontre district reputation.",
     scores: {
       security: 4.8,
       affordability: 6.8,
@@ -152,7 +152,24 @@ export const toulonPlaces: PlaceScore[] = [
       greenCalm: 4.8
     },
     rentLevel: "lower", studentFit: "mixed",
-    summary: "Western belt capped by safety and distance.", caveat: "Value trade with visible cap constraints."
+    summary: "Western Pont-du-Las and upper Saint-Roch belt capped by safety.", caveat: "Value trade with visible cap constraints."
+  },
+  {
+    id: "toulon-bon-rencontre-escaillon", cityId: "toulon", name: "Bon Rencontre / Escaillon", code: "toulon-bon-rencontre-escaillon", kind: "quartier",
+    area: "West", granularity: "micro", parentName: "West",
+    confidence: "medium", coverageRole: "risk_cap", geometryBasis: "iris_fallback_major_zone",
+    evidenceNote: "Score inherited from broad Pont-du-Las / Bon Rencontre district reputation.",
+    scores: {
+      security: 4.8,
+      affordability: 6.8,
+      transport: 7.6,
+      studentEnergy: 6.4,
+      services: 7.2,
+      campusAccess: 6.4,
+      greenCalm: 4.8
+    },
+    rentLevel: "lower", studentFit: "mixed",
+    summary: "West-port Bon Rencontre arsenal belt with safety cap.", caveat: "Port belt only; upper Escaillon moved to Beaucaire."
   },
   {
     id: "toulon-nord-ouest-routes-valbertrand", cityId: "toulon", name: "Nord-Ouest / Routes / Valbertrand", code: "toulon-nord-ouest-routes-valbertrand", kind: "quartier",
@@ -189,10 +206,10 @@ export const toulonPlaces: PlaceScore[] = [
     summary: "North-centre hill and residential context.", caveat: "Useful for coverage continuity, not a student default."
   },
   {
-    id: "toulon-beaucaire-pont-neuf-lagoubran", cityId: "toulon", name: "Beaucaire / Pont-Neuf / Lagoubran", code: "toulon-beaucaire-pont-neuf-lagoubran", kind: "quartier",
+    id: "toulon-beaucaire", cityId: "toulon", name: "Beaucaire", code: "toulon-beaucaire", kind: "quartier",
     area: "West edge", granularity: "micro", parentName: "West edge",
     confidence: "medium", coverageRole: "risk_cap", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "IRIS-grouped grand quartier approximation.",
+    evidenceNote: "Score inherited from broad Beaucaire / Pont-Neuf / Lagoubran district reputation.",
     scores: {
       security: 4.6,
       affordability: 6.6,
@@ -203,7 +220,24 @@ export const toulonPlaces: PlaceScore[] = [
       greenCalm: 5.2
     },
     rentLevel: "lower", studentFit: "mixed",
-    summary: "West-edge cap with affordability and weak comfort.", caveat: "Safety cap stays visible."
+    summary: "West-edge Beaucaire and Escaillon cap with affordability.", caveat: "Safety cap stays visible."
+  },
+  {
+    id: "toulon-pont-neuf-lagoubran", cityId: "toulon", name: "Pont-Neuf / Lagoubran", code: "toulon-pont-neuf-lagoubran", kind: "quartier",
+    area: "West edge", granularity: "micro", parentName: "West edge",
+    confidence: "medium", coverageRole: "risk_cap", geometryBasis: "iris_fallback_major_zone",
+    evidenceNote: "Score inherited from broad Beaucaire / Pont-Neuf / Lagoubran district reputation.",
+    scores: {
+      security: 4.6,
+      affordability: 6.6,
+      transport: 6.8,
+      studentEnergy: 5.8,
+      services: 6.8,
+      campusAccess: 6.2,
+      greenCalm: 5.2
+    },
+    rentLevel: "lower", studentFit: "mixed",
+    summary: "West-edge Pont-Neuf and Lagoubran belt.", caveat: "Separate from Beaucaire; cap still visible."
   },
   {
     id: "toulon-la-garde-campus", cityId: "toulon", name: "La Garde campus", code: "toulon-la-garde-campus", kind: "commune",

@@ -15,6 +15,7 @@ from geometry_audit import (  # noqa: E402
     bbox_aspect_ratio,
     bbox_touch,
     components_are_contiguous,
+    geometries_overlap,
     geometries_touch,
     geometry_bbox,
     geometry_components,

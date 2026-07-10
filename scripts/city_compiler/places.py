@@ -39,6 +39,13 @@ def load_score_codes(places_file: Path, *, section: str | None = None) -> set[st
     return set(load_place_meta(places_file, section=section))
 
 
+def load_place_caveats(places_file: Path, *, section: str | None = None) -> dict[str, str]:
+    content = places_file.read_text(encoding="utf-8")
+    content = _extract_section(content, section)
+    blocks = re.findall(r'code:\s*"([^"]+)"[\s\S]*?caveat:\s*"([^"]*)"', content)
+    return {code: caveat for code, caveat in blocks}
+
+
 def load_score_tuples(places_file: Path, *, section: str | None = None) -> dict[str, tuple[float, ...]]:
     content = places_file.read_text(encoding="utf-8")
     content = _extract_section(content, section)

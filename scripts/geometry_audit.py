@@ -147,6 +147,57 @@ def components_are_contiguous(components: list[dict[str, Any]]) -> bool:
     return is_connected_source_group(names, shapes)
 
 
+def point_in_polygon(point: list[float], ring: list[list[float]]) -> bool:
+    x, y = point
+    inside = False
+    count = len(ring)
+    j = count - 1
+    for i in range(count):
+        xi, yi = ring[i][0], ring[i][1]
+        xj, yj = ring[j][0], ring[j][1]
+        if ((yi > y) != (yj > y)) and (
+            x < (xj - xi) * (y - yi) / (yj - yi + 1e-15) + xi
+        ):
+            inside = not inside
+        j = i
+    return inside
+
+
+def geometry_contains_point(geometry: dict[str, Any], point: list[float]) -> bool:
+    return any(point_in_polygon(point, poly[0]) for poly in polygon_parts(geometry))
+
+
+def geometries_overlap(
+    geometry_a: dict[str, Any],
+    geometry_b: dict[str, Any],
+    *,
+    steps: int = 36,
+    min_overlap_samples: int = 12,
+) -> bool:
+    box_a = geometry_bbox(geometry_a)
+    box_b = geometry_bbox(geometry_b)
+    if not bbox_touch(box_a, box_b):
+        return False
+    ix0 = max(box_a[0], box_b[0])
+    iy0 = max(box_a[1], box_b[1])
+    ix1 = min(box_a[2], box_b[2])
+    iy1 = min(box_a[3], box_b[3])
+    if ix1 <= ix0 or iy1 <= iy0:
+        return False
+    overlap_samples = 0
+    for row in range(steps):
+        for col in range(steps):
+            x = ix0 + (col + 0.5) * (ix1 - ix0) / steps
+            y = iy0 + (row + 0.5) * (iy1 - iy0) / steps
+            if geometry_contains_point(geometry_a, [x, y]) and geometry_contains_point(
+                geometry_b, [x, y]
+            ):
+                overlap_samples += 1
+                if overlap_samples >= min_overlap_samples:
+                    return True
+    return False
+
+
 def geometry_hash(geometry: dict[str, Any]) -> str:
     payload = json.dumps(geometry, sort_keys=True, separators=(",", ":"))
     return hashlib.md5(payload.encode()).hexdigest()[:12]
