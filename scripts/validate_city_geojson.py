@@ -20,21 +20,26 @@ from geometry_audit import (
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_DATA = ROOT / "public" / "data"
+CONFIGS_DIR = ROOT / "scripts" / "city_configs"
 GEOMETRY_JSON = ROOT / "scripts" / "granularity_geometry.json"
 COVERAGE_SCOPES = ROOT / "scripts" / "city_coverage_scopes.json"
 
-CITY_FILES = {
-    "toulouse": (ROOT / "src/data/toulousePlaces.ts", PUBLIC_DATA / "toulouse.geojson"),
-    "lille": (ROOT / "src/data/lillePlaces.ts", PUBLIC_DATA / "lille.geojson"),
-    "marseille": (ROOT / "src/data/marseillePlaces.ts", PUBLIC_DATA / "marseille.geojson"),
-    "nice": (ROOT / "src/data/nicePlaces.ts", PUBLIC_DATA / "nice.geojson"),
-    "nantes": (ROOT / "src/data/nantesPlaces.ts", PUBLIC_DATA / "nantes.geojson"),
-    "rennes": (ROOT / "src/data/rennesPlaces.ts", PUBLIC_DATA / "rennes.geojson"),
-    "strasbourg": (ROOT / "src/data/strasbourgPlaces.ts", PUBLIC_DATA / "strasbourg.geojson"),
-    "grenoble": (ROOT / "src/data/grenoblePlaces.ts", PUBLIC_DATA / "grenoble.geojson"),
-    "montpellier": (ROOT / "src/data/montpellierPlaces.ts", PUBLIC_DATA / "montpellier.geojson"),
-    "toulon": (ROOT / "src/data/toulonPlaces.ts", PUBLIC_DATA / "toulon.geojson"),
-}
+
+def _resolve_repo_path(value: str) -> Path:
+    path = Path(value)
+    return path if path.is_absolute() else ROOT / path
+
+
+def load_city_files() -> dict[str, tuple[Path, Path]]:
+    city_files: dict[str, tuple[Path, Path]] = {}
+    for config_path in sorted(CONFIGS_DIR.glob("*.json")):
+        raw = json.loads(config_path.read_text(encoding="utf-8"))
+        city_id = raw["cityId"]
+        city_files[city_id] = (
+            _resolve_repo_path(raw["placesFile"]),
+            _resolve_repo_path(raw["geojsonOutput"]),
+        )
+    return city_files
 
 LILLE_OBSOLETE_CODES = {
     "lille-croix-centre-saint-martin",
@@ -523,11 +528,13 @@ def main() -> None:
         expected_counts = {
             city_id: len(specs) for city_id, specs in json.loads(GEOMETRY_JSON.read_text(encoding="utf-8")).items()
         }
-    targets = sys.argv[1:] or list(CITY_FILES)
+    city_files = load_city_files()
+    targets = sys.argv[1:] or list(city_files)
     for city_id in targets:
-        if city_id not in CITY_FILES:
-            raise SystemExit(f"Unknown city {city_id}")
-        places_file, geojson_file = CITY_FILES[city_id]
+        if city_id not in city_files:
+            known = ", ".join(sorted(city_files))
+            raise SystemExit(f"Unknown city {city_id}. Known cities: {known}")
+        places_file, geojson_file = city_files[city_id]
         validate_city(city_id, places_file, geojson_file, expected_counts.get(city_id))
 
 

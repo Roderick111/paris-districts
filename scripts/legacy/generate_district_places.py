@@ -9,6 +9,8 @@ from pathlib import Path
 from statistics import mean
 
 ROOT = Path(__file__).resolve().parents[2]
+CONFIGS_DIR = ROOT / "scripts" / "city_configs"
+ALLOWED_CITIES = {path.stem for path in CONFIGS_DIR.glob("*.json")}
 KEYS = (
     "security",
     "affordability",
@@ -48,8 +50,16 @@ def load_places(path: Path) -> dict[str, dict]:
     return parse_places(path.read_text(encoding="utf-8"))
 
 
+def validate_city_name(city: str) -> str:
+    if city not in ALLOWED_CITIES:
+        known = ", ".join(sorted(ALLOWED_CITIES))
+        raise SystemExit(f"Unknown city {city!r}. Allowed cities: {known}")
+    return city
+
+
 def load_legacy_places(city: str) -> dict[str, dict]:
     """Load pre-rebuild micro-area scores from git HEAD for idempotent regeneration."""
+    city = validate_city_name(city)
     rel = f"src/data/{city}Places.ts"
     try:
         content = subprocess.check_output(

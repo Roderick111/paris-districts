@@ -2,13 +2,15 @@ import { describe, expect, test } from "bun:test";
 import {
   clampScore,
   clampWeight,
+  getEffectiveScores,
   loadScoreOverrides,
   loadWeights,
+  pruneScoreOverrides,
   saveScoreOverrides,
-  saveWeights,
-  WEIGHTS_STORAGE_KEY
+  saveWeights
 } from "@/lib/userSettings";
 import { defaultWeights } from "@/data/scoring";
+import type { PlaceScore } from "@/data/types";
 
 class MemoryStorage {
   private data = new Map<string, string>();
@@ -31,6 +33,28 @@ class ThrowingStorage {
     throw new DOMException("quota", "QuotaExceededError");
   }
 }
+
+const samplePlace: PlaceScore = {
+  id: "sample",
+  cityId: "paris",
+  name: "Sample",
+  code: "75101",
+  kind: "quartier",
+  area: "Paris",
+  scores: {
+    security: 7,
+    affordability: 5,
+    transport: 8,
+    studentEnergy: 6,
+    services: 7,
+    campusAccess: 6,
+    greenCalm: 5
+  },
+  rentLevel: "medium",
+  studentFit: "good",
+  summary: "sample",
+  caveat: "sample"
+};
 
 describe("clamp helpers", () => {
   test("reject non-finite weight input", () => {
@@ -57,8 +81,67 @@ describe("storage helpers", () => {
 
   test("load helpers accept injected storage", () => {
     const storage = new MemoryStorage();
-    storage.setItem(WEIGHTS_STORAGE_KEY, JSON.stringify(defaultWeights));
+    saveWeights(defaultWeights, storage);
     expect(loadWeights(storage)).toEqual(defaultWeights);
     expect(loadScoreOverrides(storage)).toEqual({});
+  });
+});
+
+describe("getEffectiveScores", () => {
+  test("returns place.scores when no override exists", () => {
+    const effective = getEffectiveScores(samplePlace, {});
+    expect(effective).toBe(samplePlace.scores);
+  });
+
+  test("merges overrides without mutating defaults", () => {
+    const effective = getEffectiveScores(samplePlace, {
+      [samplePlace.code]: { security: 4 }
+    });
+    expect(effective.security).toBe(4);
+    expect(effective.affordability).toBe(samplePlace.scores.affordability);
+    expect(samplePlace.scores.security).toBe(7);
+  });
+});
+
+describe("loadWeights forward compatibility", () => {
+  test("merges valid stored keys and fills missing future keys from defaults", () => {
+    const storage = new MemoryStorage();
+    storage.setItem(
+      "district-quality-map:weights:v1",
+      JSON.stringify({
+        security: 2.5,
+        affordability: 1.1,
+        transport: "bad",
+        studentEnergy: Number.NaN,
+        services: 99,
+        campusAccess: 1,
+        greenCalm: 0.8,
+        futureMetric: 4
+      })
+    );
+
+    expect(loadWeights(storage)).toEqual({
+      ...defaultWeights,
+      security: 2.5,
+      affordability: 1.1
+    });
+  });
+});
+
+describe("pruneScoreOverrides", () => {
+  test("drops stale place codes and invalid score keys", () => {
+    const pruned = pruneScoreOverrides(
+      {
+        "75101": { security: 6 },
+        stale: { security: 8 },
+        "75102": { security: 5, bogus: 9 } as never
+      },
+      new Set(["75101", "75102"])
+    );
+
+    expect(pruned).toEqual({
+      "75101": { security: 6 },
+      "75102": { security: 5 }
+    });
   });
 });

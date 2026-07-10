@@ -7,8 +7,8 @@ import {
   type Weights
 } from "@/data/cities";
 
-export const WEIGHTS_STORAGE_KEY = "district-quality-map:weights:v1";
-export const OVERRIDES_STORAGE_KEY = "district-quality-map:score-overrides:v1";
+const WEIGHTS_STORAGE_KEY = "district-quality-map:weights:v1";
+const OVERRIDES_STORAGE_KEY = "district-quality-map:score-overrides:v1";
 
 const LEGACY_WEIGHTS_KEYS = [
   "paris-student-map:weights:v1",
@@ -20,9 +20,6 @@ const LEGACY_OVERRIDES_KEYS = [
 ] as const;
 
 export type ScoreOverridesByPlace = Record<string, PlaceScoreOverrides>;
-
-/** @deprecated Use ScoreOverridesByPlace */
-export type ScoreOverridesByDistrict = ScoreOverridesByPlace;
 
 type StorageLike = Pick<Storage, "getItem" | "setItem">;
 
@@ -44,15 +41,24 @@ function isScoreKey(value: string): value is ScoreKey {
   return SCORE_KEYS.includes(value as ScoreKey);
 }
 
-function isValidWeights(value: unknown): value is Weights {
-  if (!value || typeof value !== "object") {
-    return false;
+function isValidWeightValue(value: unknown): value is number {
+  return typeof value === "number" && Number.isFinite(value) && value >= 0 && value <= 5;
+}
+
+function mergeStoredWeights(parsed: unknown): Weights {
+  const merged: Weights = { ...defaultWeights };
+  if (!parsed || typeof parsed !== "object") {
+    return merged;
   }
 
-  return SCORE_KEYS.every((key) => {
-    const weight = (value as Weights)[key];
-    return typeof weight === "number" && Number.isFinite(weight) && weight >= 0 && weight <= 5;
-  });
+  for (const key of SCORE_KEYS) {
+    const stored = (parsed as Partial<Weights>)[key];
+    if (stored !== undefined && isValidWeightValue(stored)) {
+      merged[key] = stored;
+    }
+  }
+
+  return merged;
 }
 
 function isValidScoreOverrides(value: unknown): value is ScoreOverridesByPlace {
@@ -124,7 +130,7 @@ export function loadWeights(storage?: StorageLike): Weights {
     }
 
     const parsed: unknown = JSON.parse(raw);
-    return isValidWeights(parsed) ? parsed : { ...defaultWeights };
+    return mergeStoredWeights(parsed);
   } catch {
     return { ...defaultWeights };
   }
@@ -181,49 +187,87 @@ export function getPlaceOverrides(
   overrides: ScoreOverridesByPlace,
   code: string
 ): PlaceScoreOverrides | undefined {
-  const placeOverrides = overrides[code];
-  return placeOverrides && Object.keys(placeOverrides).length > 0 ? placeOverrides : undefined;
-}
-
-/** @deprecated Use getPlaceOverrides */
-export function getDistrictOverrides(
-  overrides: ScoreOverridesByPlace,
-  code: string
-): PlaceScoreOverrides | undefined {
-  return getPlaceOverrides(overrides, code);
+  return overrides[code];
 }
 
 export function getEffectiveScores(
   place: PlaceScore,
   overrides: ScoreOverridesByPlace
 ): PlaceScore["scores"] {
-  return { ...place.scores, ...overrides[place.code] };
+  const placeOverrides = overrides[place.code];
+  if (!placeOverrides || Object.keys(placeOverrides).length === 0) {
+    return place.scores;
+  }
+
+  return { ...place.scores, ...placeOverrides };
+}
+
+export function pruneScoreOverrides(
+  overrides: ScoreOverridesByPlace,
+  validCodes: ReadonlySet<string>
+): ScoreOverridesByPlace {
+  const pruned: ScoreOverridesByPlace = {};
+
+  for (const [code, placeOverrides] of Object.entries(overrides)) {
+    if (!validCodes.has(code)) {
+      continue;
+    }
+
+    const cleaned: PlaceScoreOverrides = {};
+    for (const [key, score] of Object.entries(placeOverrides)) {
+      if (
+        isScoreKey(key) &&
+        typeof score === "number" &&
+        Number.isFinite(score) &&
+        score >= 0 &&
+        score <= 10
+      ) {
+        cleaned[key] = score;
+      }
+    }
+
+    if (Object.keys(cleaned).length > 0) {
+      pruned[code] = cleaned;
+    }
+  }
+
+  return pruned;
 }
 
 export function weightsDifferFromDefaults(activeWeights: Weights) {
   return SCORE_KEYS.some((key) => activeWeights[key] !== defaultWeights[key]);
 }
 
-export function hasScoreOverrides(overrides: ScoreOverridesByPlace) {
-  return Object.values(overrides).some((placeOverrides) => Object.keys(placeOverrides).length > 0);
+export function hasScoreOverrides(overrides: ScoreOverridesByPlace): boolean {
+  for (const placeOverrides of Object.values(overrides)) {
+    if (Object.keys(placeOverrides).length > 0) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 export function hasCustomSettings(activeWeights: Weights, overrides: ScoreOverridesByPlace) {
   return weightsDifferFromDefaults(activeWeights) || hasScoreOverrides(overrides);
 }
 
-export function clampWeight(value: number, fallback = 0) {
-  if (!Number.isFinite(value)) {
-    return fallback;
-  }
-
-  return Math.min(5, Math.max(0, Number(value.toFixed(1))));
+function round1(value: number): number {
+  return Math.round(value * 10) / 10;
 }
 
-export function clampScore(value: number, fallback = 0) {
+export function clampWeight(value: number, fallback = 0): number {
   if (!Number.isFinite(value)) {
     return fallback;
   }
 
-  return Math.min(10, Math.max(0, Number(value.toFixed(1))));
+  return Math.min(5, Math.max(0, round1(value)));
+}
+
+export function clampScore(value: number, fallback = 0): number {
+  if (!Number.isFinite(value)) {
+    return fallback;
+  }
+
+  return Math.min(10, Math.max(0, round1(value)));
 }

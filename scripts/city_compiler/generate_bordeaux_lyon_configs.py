@@ -24,7 +24,7 @@ MAP_EXCLUDED_SCORE_CODES = [
     "gradignan-malartic-barthez",
 ]
 
-BORdeaux_INSEE = "33063"
+BORDEAUX_INSEE = "33063"
 TALENCE_INSEE = "33522"
 PESSAC_INSEE = "33318"
 GRADIGNAN_INSEE = "33192"
@@ -182,7 +182,7 @@ def main() -> None:
         "scope": {
             "coverageMode": "major_district",
             "preferredBase": "iris",
-            "inseeCodes": [BORdeaux_INSEE, TALENCE_INSEE, PESSAC_INSEE, GRADIGNAN_INSEE],
+            "inseeCodes": [BORDEAUX_INSEE, TALENCE_INSEE, PESSAC_INSEE, GRADIGNAN_INSEE],
             "fullCoverageSources": ["bordeaux_iris", "bordeaux_quartiers"],
             "exemptUnits": {
                 "bordeaux_quartiers": EXEMPT_BORDEAUX_QUARTIERS,

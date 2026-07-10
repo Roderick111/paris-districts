@@ -21,21 +21,33 @@ type RankRow = {
   total: number;
 };
 
-type SettingsDrawerProps = {
+export type SettingsDrawerState = {
   open: boolean;
   tab: SettingsTab;
-  places: PlaceScore[];
-  sources: Source[];
+};
+
+export type SettingsDrawerFilters = {
+  filter: "all" | string;
+  parentFilter: "all" | string;
   areaOptions: string[];
   parentFilterOptions?: string[];
+};
+
+export type SettingsDrawerSettings = {
   activeWeights: Weights;
   scoreOverrides: ScoreOverridesByPlace;
   selectedCode: string;
   selectedPlace: PlaceScore | null;
-  filter: "all" | string;
-  parentFilter: "all" | string;
-  rankRows: RankRow[];
   dataWarning?: string | null;
+};
+
+export type SettingsDrawerRanking = {
+  places: PlaceScore[];
+  rankRows: RankRow[];
+  formatScore: (value: number) => string;
+};
+
+export type SettingsDrawerActions = {
   onClose: () => void;
   onTabChange: (tab: SettingsTab) => void;
   onWeightChange: (key: ScoreKey, value: number) => void;
@@ -47,37 +59,43 @@ type SettingsDrawerProps = {
   onResetAllRatings: () => void;
   onResetWeights: () => void;
   onResetEverything: () => void;
-  formatScore: (value: number) => string;
+};
+
+type SettingsDrawerProps = {
+  drawerState: SettingsDrawerState;
+  filters: SettingsDrawerFilters;
+  settings: SettingsDrawerSettings;
+  ranking: SettingsDrawerRanking;
+  sources: Source[];
+  actions: SettingsDrawerActions;
 };
 
 export default function SettingsDrawer({
-  open,
-  tab,
-  places,
+  drawerState,
+  filters,
+  settings,
+  ranking,
   sources,
-  areaOptions,
-  parentFilterOptions,
-  activeWeights,
-  scoreOverrides,
-  selectedCode,
-  selectedPlace,
-  filter,
-  parentFilter,
-  rankRows,
-  dataWarning,
-  onClose,
-  onTabChange,
-  onWeightChange,
-  onSelectedCodeChange,
-  onScoreOverrideChange,
-  onFilterChange,
-  onParentFilterChange,
-  onResetSelectedRatings,
-  onResetAllRatings,
-  onResetWeights,
-  onResetEverything,
-  formatScore
+  actions
 }: SettingsDrawerProps) {
+  const { open, tab } = drawerState;
+  const { filter, parentFilter, areaOptions, parentFilterOptions } = filters;
+  const { activeWeights, scoreOverrides, selectedCode, selectedPlace, dataWarning } = settings;
+  const { places, rankRows, formatScore } = ranking;
+  const {
+    onClose,
+    onTabChange,
+    onWeightChange,
+    onSelectedCodeChange,
+    onScoreOverrideChange,
+    onFilterChange,
+    onParentFilterChange,
+    onResetSelectedRatings,
+    onResetAllRatings,
+    onResetWeights,
+    onResetEverything
+  } = actions;
+
   const drawerRef = useRef<HTMLElement | null>(null);
   const selectedOverrides = selectedPlace ? (scoreOverrides[selectedPlace.code] ?? {}) : {};
   const usingCustomSettings = hasCustomSettings(activeWeights, scoreOverrides);

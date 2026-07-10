@@ -8,6 +8,8 @@
     "build": "bun run geo:reconcile && next build",
     "lint": "eslint .",
     "test": "bun test",
+    "test:py": "python3 -m unittest discover scripts/tests",
+    "audit": "bun pm audit",
     "geo:reconcile": "bun scripts/check_city_data.ts",
     "geo:build": "python3 scripts/city_compiler/cli.py build",
     "geo:validate": "python3 scripts/city_compiler/cli.py validate",
@@ -21,7 +23,6 @@
     "geo:validate:all": "python3 scripts/city_compiler/cli.py build && python3 scripts/city_compiler/cli.py validate && bun scripts/build_city_outlines.ts && bun run build"
   },
   "dependencies": {
-    "@deck.gl/core": "^9.1.14",
     "@deck.gl/layers": "^9.1.14",
     "@deck.gl/mapbox": "^9.1.14",
     "@turf/helpers": "^7.3.5",

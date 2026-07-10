@@ -5,7 +5,6 @@
     "": {
       "name": "paris-student-map",
       "dependencies": {
-        "@deck.gl/core": "^9.1.14",
         "@deck.gl/layers": "^9.1.14",
         "@deck.gl/mapbox": "^9.1.14",
         "@turf/helpers": "^7.3.5",

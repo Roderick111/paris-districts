@@ -44,7 +44,10 @@ def _run_for_targets(command: str, targets: list[str]) -> int:
 
 def main() -> int:
     if len(sys.argv) < 2:
-        print("Usage: python3 scripts/city_compiler/cli.py <build|validate|audit> [city ...]")
+        print(
+            "Usage: python3 scripts/city_compiler/cli.py <build|validate|audit> [city ...]",
+            file=sys.stderr,
+        )
         return 1
 
     command = sys.argv[1]

@@ -45,9 +45,3 @@ export async function getPlacesForCity(cityId: import("@/data/types").CityId) {
   const { loadPlacesForCity } = await import("@/data/placeLoaders");
   return loadPlacesForCity(cityId);
 }
-
-/** @deprecated Use loadMacroPlacesForCity(cityId) */
-export async function getMacroPlacesForCity(cityId: import("@/data/types").CityId) {
-  const { loadMacroPlacesForCity } = await import("@/data/placeLoaders");
-  return loadMacroPlacesForCity(cityId);
-}

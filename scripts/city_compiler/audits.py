@@ -8,7 +8,8 @@ import re
 from pathlib import Path
 from typing import Any
 
-from city_compiler.geometry import (
+from city_compiler.geometry import polygon_parts
+from geometry_audit import (
     bbox_area,
     components_are_contiguous,
     geometries_overlap,
@@ -16,7 +17,6 @@ from city_compiler.geometry import (
     geometry_components,
     geometry_hash,
     is_connected_source_group,
-    polygon_parts,
 )
 from city_compiler.places import load_place_caveats, load_place_meta, load_score_tuples
 from city_compiler.schema import CityConfig, Zone

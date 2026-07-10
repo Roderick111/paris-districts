@@ -30,6 +30,7 @@ import {
   loadScoreOverrides,
   loadWeights,
   metricLabel,
+  pruneScoreOverrides,
   saveScoreOverrides,
   saveWeights,
   type ScoreOverridesByPlace
@@ -45,6 +46,36 @@ type MapMode = "overall" | ScoreKey;
 
 function mapModeLabel(mode: MapMode) {
   return mode === "overall" ? "risk-adjusted overall" : metricLabel(mode).toLowerCase();
+}
+
+function overridesEqual(
+  left: ScoreOverridesByPlace,
+  right: ScoreOverridesByPlace
+): boolean {
+  const leftCodes = Object.keys(left);
+  const rightCodes = Object.keys(right);
+  if (leftCodes.length !== rightCodes.length) {
+    return false;
+  }
+
+  for (const code of leftCodes) {
+    const leftOverrides = left[code];
+    const rightOverrides = right[code];
+    if (!rightOverrides) {
+      return false;
+    }
+
+    const leftKeys = Object.keys(leftOverrides);
+    const rightKeys = Object.keys(rightOverrides);
+    if (
+      leftKeys.length !== rightKeys.length ||
+      leftKeys.some((key) => leftOverrides[key as ScoreKey] !== rightOverrides[key as ScoreKey])
+    ) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 export default function DistrictQualityMap() {
@@ -87,6 +118,11 @@ export default function DistrictQualityMap() {
       .then((loaded) => {
         if (!cancelled) {
           setPlacesResult({ cityId, places: loaded, error: null });
+          const validCodes = new Set(loaded.map((place) => place.code));
+          setScoreOverrides((current) => {
+            const pruned = pruneScoreOverrides(current, validCodes);
+            return overridesEqual(current, pruned) ? current : pruned;
+          });
         }
       })
       .catch((error: unknown) => {
@@ -151,7 +187,7 @@ export default function DistrictQualityMap() {
   }, [geojson, outlineGeojson, selectedCode]);
 
   const dataMismatch = useMemo(() => {
-    if (!geojson) {
+    if (!geojson || !placesSettled || placesLoading || placesError) {
       return { unknownCodes: [] as string[], missingCodes: [] as string[] };
     }
 
@@ -165,7 +201,7 @@ export default function DistrictQualityMap() {
     const missingCodes = places.map((place) => place.code).filter((code) => !featureCodeSet.has(code));
 
     return { unknownCodes, missingCodes };
-  }, [geojson, places]);
+  }, [geojson, places, placesError, placesLoading, placesSettled]);
 
   useEffect(() => {
     if (dataMismatch.unknownCodes.length > 0 && !unknownCodesWarnedRef.current) {
@@ -329,7 +365,8 @@ export default function DistrictQualityMap() {
   };
 
   const mapFetchError = geojsonError ?? outlineError;
-  const mapLoading = geojsonLoading || (city.outlineGeojsonUrl ? outlineLoading : false);
+  const mapLoading =
+    geojsonLoading || (city.outlineGeojsonUrl ? outlineLoading : false) || placesLoading;
 
   const retryMapData = () => {
     retryGeojson();
@@ -349,7 +386,7 @@ export default function DistrictQualityMap() {
               Retry
             </button>
           </div>
-        ) : mapLoading ? (
+        ) : mapLoading || !geojson ? (
           <div className="map mapLoading" aria-busy="true">
             Loading map…
           </div>
@@ -536,36 +573,38 @@ export default function DistrictQualityMap() {
       </aside>
 
       <SettingsDrawer
-        open={settingsOpen}
-        tab={settingsTab}
-        places={places}
+        drawerState={{ open: settingsOpen, tab: settingsTab }}
+        filters={{
+          filter,
+          parentFilter,
+          areaOptions: city.areaOptions,
+          parentFilterOptions: city.parentFilterOptions
+        }}
+        settings={{
+          activeWeights,
+          scoreOverrides,
+          selectedCode,
+          selectedPlace: selected,
+          dataWarning:
+            dataMismatch.missingCodes.length > 0
+              ? `${dataMismatch.missingCodes.length} places missing map geometry`
+              : null
+        }}
+        ranking={{ places, rankRows, formatScore }}
         sources={city.sources}
-        areaOptions={city.areaOptions}
-        parentFilterOptions={city.parentFilterOptions}
-        activeWeights={activeWeights}
-        scoreOverrides={scoreOverrides}
-        selectedCode={selectedCode}
-        selectedPlace={selected}
-        filter={filter}
-        parentFilter={parentFilter}
-        rankRows={rankRows}
-        dataWarning={
-          dataMismatch.missingCodes.length > 0
-            ? `${dataMismatch.missingCodes.length} places missing map geometry`
-            : null
-        }
-        onClose={() => setSettingsOpen(false)}
-        onTabChange={setSettingsTab}
-        onWeightChange={handleWeightChange}
-        onSelectedCodeChange={setSelectedCode}
-        onScoreOverrideChange={handleScoreOverrideChange}
-        onFilterChange={setFilter}
-        onParentFilterChange={setParentFilter}
-        onResetSelectedRatings={resetSelectedRatings}
-        onResetAllRatings={resetAllRatings}
-        onResetWeights={resetWeights}
-        onResetEverything={resetEverything}
-        formatScore={formatScore}
+        actions={{
+          onClose: () => setSettingsOpen(false),
+          onTabChange: setSettingsTab,
+          onWeightChange: handleWeightChange,
+          onSelectedCodeChange: setSelectedCode,
+          onScoreOverrideChange: handleScoreOverrideChange,
+          onFilterChange: setFilter,
+          onParentFilterChange: setParentFilter,
+          onResetSelectedRatings: resetSelectedRatings,
+          onResetAllRatings: resetAllRatings,
+          onResetWeights: resetWeights,
+          onResetEverything: resetEverything
+        }}
       />
     </main>
   );

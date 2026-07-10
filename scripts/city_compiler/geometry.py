@@ -5,25 +5,13 @@ from __future__ import annotations
 from city_compiler.errors import GeometryError
 import sys
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 SCRIPTS = Path(__file__).resolve().parents[1]
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
-from geometry_audit import (  # noqa: E402
-    bbox_area,
-    bbox_aspect_ratio,
-    bbox_touch,
-    components_are_contiguous,
-    geometries_overlap,
-    geometries_touch,
-    geometry_bbox,
-    geometry_components,
-    geometry_hash,
-    is_connected_source_group,
-    polygon_parts,
-)
+from geometry_audit import polygon_parts  # noqa: E402
 
 
 def merge_geometries(geometries: list[dict[str, Any]]) -> dict[str, Any]:
@@ -39,11 +27,13 @@ def merge_geometries(geometries: list[dict[str, Any]]) -> dict[str, Any]:
 
 def round_geometry_coords(geometry: dict[str, Any], precision: int = 6) -> dict[str, Any]:
     def round_nested(coords: Any) -> Any:
+        if not coords:
+            return coords
         if isinstance(coords[0], (int, float)):
             return [round(coords[0], precision), round(coords[1], precision)]
         return [round_nested(part) for part in coords]
 
-    return {"type": geometry["type"], "coordinates": round_nested(geometry["coordinates"])}
+    return {"type": geometry["type"], "coordinates": round_nested(geometry.get("coordinates") or [])}
 
 
 def iter_geometry_points(geometry: dict[str, Any]):
@@ -53,7 +43,9 @@ def iter_geometry_points(geometry: dict[str, Any]):
                 yield point
 
 
-def clip_ring_by_lat(ring: list[list[float]], lat_split: float, keep: str) -> list[list[float]]:
+def clip_ring_by_lat(
+    ring: list[list[float]], lat_split: float, keep: Literal["north", "south"]
+) -> list[list[float]]:
     def inside(lat: float) -> bool:
         return lat >= lat_split if keep == "north" else lat < lat_split
 
@@ -82,9 +74,13 @@ def clip_ring_by_lat(ring: list[list[float]], lat_split: float, keep: str) -> li
     return output
 
 
-def split_geometry_by_lat(geometry: dict[str, Any], lat_split: float, keep: str) -> dict[str, Any]:
+def split_geometry_by_lat(
+    geometry: dict[str, Any], lat_split: float, keep: Literal["north", "south"]
+) -> dict[str, Any]:
     kept: list[Any] = []
     for poly in polygon_parts(geometry):
+        if not poly or not poly[0]:
+            continue
         outer = clip_ring_by_lat(poly[0], lat_split, keep)
         if len(outer) >= 4:
             kept.append([outer, *poly[1:]])

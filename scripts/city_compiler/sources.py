@@ -5,6 +5,7 @@ from __future__ import annotations
 from city_compiler.errors import SourceError
 import csv
 import json
+import os
 import urllib.parse
 import urllib.request
 from dataclasses import dataclass, field
@@ -17,7 +18,7 @@ from city_compiler.outputs import write_json_atomic
 
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPTS = ROOT / "scripts"
-CACHE_DIR = SCRIPTS / "cache"
+CACHE_DIR = Path(os.environ.get("CITY_CACHE_DIR", SCRIPTS / "cache"))
 
 IRIS_WFS = (
     "https://data.geopf.fr/wfs/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature"
@@ -43,11 +44,11 @@ NANTES_QUARTIER_URL = (
     "244400404_quartiers-communes-nantes-metropole/exports/geojson"
 )
 COMMUNE_GEO_API = "https://geo.api.gouv.fr/communes/{insee}?format=geojson&geometry=contour"
-BORdeaux_QUARTIER_URL = (
+BORDEAUX_QUARTIER_URL = (
     "https://datahub.bordeaux-metropole.fr/api/explore/v2.1/catalog/datasets/"
     "se_quart_s/exports/geojson"
 )
-BORdeaux_IRIS_URL = (
+BORDEAUX_IRIS_URL = (
     "https://datahub.bordeaux-metropole.fr/api/explore/v2.1/catalog/datasets/"
     "se_iri24_s/exports/geojson"
 )
@@ -260,7 +261,7 @@ def load_opendatasoft(url: str, name_key: str, source_id: str) -> SourceLayer:
 
 
 def load_bordeaux_quartiers() -> SourceLayer:
-    features = fetch_json(BORdeaux_QUARTIER_URL)["features"]
+    features = fetch_json(BORDEAUX_QUARTIER_URL)["features"]
     layer = SourceLayer(source_id="bordeaux_quartiers")
     for feature in features:
         name = feature["properties"]["nom"]
@@ -275,7 +276,7 @@ def load_bordeaux_quartiers() -> SourceLayer:
 
 
 def load_bordeaux_iris() -> SourceLayer:
-    features = fetch_json(BORdeaux_IRIS_URL)["features"]
+    features = fetch_json(BORDEAUX_IRIS_URL)["features"]
     layer = SourceLayer(source_id="bordeaux_iris")
     for feature in features:
         if feature["properties"]["insee"] != "33063":
@@ -373,11 +374,15 @@ def _load_strasbourg(cfg: dict[str, Any]) -> SourceLayer:
 
 
 def load_source(config: dict[str, Any]) -> SourceLayer:
-    adapter = ADAPTER_BY_TYPE.get(config["type"])
+    source_id = config["id"]
+    source_type = config["type"]
+    print(f"[sources] Fetching {source_id} ({source_type})...", flush=True)
+    adapter = ADAPTER_BY_TYPE.get(source_type)
     if adapter is None:
-        raise SourceError(f"Unknown source type: {config['type']}")
+        raise SourceError(f"Unknown source type: {source_type}")
     layer = adapter(config)
-    layer.source_id = config["id"]
+    layer.source_id = source_id
+    print(f"[sources] Loaded {source_id} ({len(layer.units)} units)", flush=True)
     return layer
 
 

@@ -146,7 +146,9 @@ export default function MapView({
 
     if (!geojson) {
       overlayRef.current?.setProps({ layers: [] });
-      return;
+      return () => {
+        overlayRef.current?.setProps({ layers: [] });
+      };
     }
 
     const onHover = (info: { object?: { properties?: { code?: string } }; x?: number; y?: number }) => {
@@ -169,6 +171,8 @@ export default function MapView({
       }
     };
 
+    const outlineData = displayOutlineGeojson ?? geojson;
+
     const fillLayer = new GeoJsonLayer({
       id: "place-quality-fill",
       data: geojson,
@@ -185,7 +189,7 @@ export default function MapView({
 
     const outlineLayer = new GeoJsonLayer({
       id: "place-quality-outline",
-      data: displayOutlineGeojson ?? geojson,
+      data: outlineData,
       pickable: false,
       stroked: true,
       filled: false,
@@ -218,6 +222,10 @@ export default function MapView({
     } else {
       overlayRef.current.setProps({ layers });
     }
+
+    return () => {
+      overlayRef.current?.setProps({ layers: [] });
+    };
   }, [
     canSelectCode,
     displayOutlineGeojson,

@@ -22,15 +22,23 @@ export const weights: Weights = {
 
 export const defaultWeights: Weights = { ...weights };
 
-function finiteOr(value: number, fallback: number) {
+function finiteOr(value: number, fallback: number): number {
   return Number.isFinite(value) ? value : fallback;
+}
+
+function round1(value: number): number {
+  return Math.round(value * 10) / 10;
 }
 
 export function mergeScores(
   place: PlaceScore,
   scoreOverrides?: PlaceScoreOverrides
 ): PlaceScore["scores"] {
-  return scoreOverrides ? { ...place.scores, ...scoreOverrides } : place.scores;
+  if (!scoreOverrides || Object.keys(scoreOverrides).length === 0) {
+    return place.scores;
+  }
+
+  return { ...place.scores, ...scoreOverrides };
 }
 
 function securityCap(security: number) {
@@ -60,7 +68,7 @@ export function weightedTotal(
   place: PlaceScore,
   activeWeights: Weights,
   scoreOverrides?: PlaceScoreOverrides
-) {
+): number {
   const scores = mergeScores(place, scoreOverrides);
   const maxWeightedScore = SCORE_KEYS.reduce(
     (sum, key) => sum + finiteOr(activeWeights[key], 0) * 10,
@@ -72,7 +80,7 @@ export function weightedTotal(
   );
   const rawScore = maxWeightedScore > 0 ? (total / maxWeightedScore) * 10 : 0;
   const capped = Math.min(finiteOr(rawScore, 0), securityCap(scores.security));
-  return Number(finiteOr(capped, 0).toFixed(1));
+  return round1(finiteOr(capped, 0));
 }
 
 export function scoreForMode(
@@ -81,7 +89,7 @@ export function scoreForMode(
   activeWeights: Weights,
   effectiveScores: PlaceScore["scores"],
   overallScore: number
-) {
+): number {
   if (mode === "overall") {
     return finiteOr(overallScore, 0);
   }
@@ -116,7 +124,7 @@ export function colorForScore(score: number, alpha = 185): [number, number, numb
   return [Math.round(132 - 110 * t), Math.round(176 - 13 * t), Math.round(32 + 42 * t), alpha];
 }
 
-export function formatScore(value: number) {
+export function formatScore(value: number): string {
   if (!Number.isFinite(value)) {
     return "—";
   }

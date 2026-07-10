@@ -4,12 +4,13 @@ from __future__ import annotations
 
 from city_compiler.errors import ConfigError
 import json
+import os
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
-CONFIGS_DIR = ROOT / "scripts" / "city_configs"
+CONFIGS_DIR = Path(os.environ.get("CITY_CONFIGS_DIR", ROOT / "scripts" / "city_configs"))
 
 REQUIRED_CITY_KEYS = {
     "cityId",
@@ -70,6 +71,27 @@ class CityConfig:
     places_section: str | None = None
     raw: dict[str, Any] = field(default_factory=dict)
 
+    @classmethod
+    def from_json(cls, city_id: str, raw: dict[str, Any]) -> CityConfig:
+        missing = REQUIRED_CITY_KEYS - set(raw)
+        if missing:
+            raise ConfigError(f"City config {city_id} missing keys: {sorted(missing)}")
+        if raw["cityId"] != city_id:
+            raise ConfigError(f"Config cityId {raw['cityId']} does not match {city_id}")
+        return cls(
+            city_id=city_id,
+            places_file=_resolve_path(raw["placesFile"]),
+            geojson_output=_resolve_path(raw["geojsonOutput"]),
+            outline_output=_resolve_path(raw["outlineOutput"]) if raw.get("outlineOutput") else None,
+            sources=list(raw["sources"]),
+            zones=[validate_zone(zone) for zone in raw["zones"]],
+            scope=dict(raw.get("scope", {})),
+            build_mode=raw.get("buildMode", "compiler"),
+            legacy_script=raw.get("legacyScript"),
+            places_section=raw.get("placesSection"),
+            raw=raw,
+        )
+
 
 def _resolve_path(value: str) -> Path:
     path = Path(value)
@@ -104,29 +126,29 @@ def validate_zone(raw: dict[str, Any]) -> Zone:
     )
 
 
+def sanitize_city_id(city_id: str) -> str:
+    safe = os.path.basename(city_id)
+    if (
+        not safe
+        or safe != city_id
+        or ".." in city_id
+        or "/" in city_id
+        or "\\" in city_id
+    ):
+        raise ConfigError(f"Invalid city id: {city_id!r}")
+    return safe
+
+
 def load_city_config(city_id: str) -> CityConfig:
-    config_path = CONFIGS_DIR / f"{city_id}.json"
+    city_id = sanitize_city_id(city_id)
+    config_path = (CONFIGS_DIR / f"{city_id}.json").resolve()
+    configs_root = CONFIGS_DIR.resolve()
+    if not config_path.is_relative_to(configs_root):
+        raise ConfigError(f"Invalid city config path for {city_id}")
     if not config_path.exists():
         raise ConfigError(f"Missing city config: {config_path}")
     raw = json.loads(config_path.read_text(encoding="utf-8"))
-    missing = REQUIRED_CITY_KEYS - set(raw)
-    if missing:
-        raise ConfigError(f"City config {city_id} missing keys: {sorted(missing)}")
-    if raw["cityId"] != city_id:
-        raise ConfigError(f"Config cityId {raw['cityId']} does not match {city_id}")
-    return CityConfig(
-        city_id=city_id,
-        places_file=_resolve_path(raw["placesFile"]),
-        geojson_output=_resolve_path(raw["geojsonOutput"]),
-        outline_output=_resolve_path(raw["outlineOutput"]) if raw.get("outlineOutput") else None,
-        sources=list(raw["sources"]),
-        zones=[validate_zone(zone) for zone in raw["zones"]],
-        scope=dict(raw.get("scope", {})),
-        build_mode=raw.get("buildMode", "compiler"),
-        legacy_script=raw.get("legacyScript"),
-        places_section=raw.get("placesSection"),
-        raw=raw,
-    )
+    return CityConfig.from_json(city_id, raw)
 
 
 def list_city_ids() -> list[str]:

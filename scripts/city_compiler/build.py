@@ -7,12 +7,12 @@ from typing import Any
 
 from city_compiler.audits import audit_build_output
 from city_compiler.geometry import (
-    is_connected_source_group,
     merge_geometries,
     round_geometry_coords,
     split_geometry_by_lat,
     validate_lon_lat,
 )
+from geometry_audit import is_connected_source_group
 from city_compiler.outputs import write_feature_collection
 from city_compiler.places import load_place_meta
 from city_compiler.schema import CityConfig, Zone

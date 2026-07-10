@@ -11,24 +11,46 @@ SLIVER_MIN_AREA = 8e-6
 SLIVER_MAX_ASPECT = 12.0
 
 
+def _public_geometry(geometry: dict[str, Any]) -> dict[str, Any]:
+    return {key: value for key, value in geometry.items() if not key.startswith("_")}
+
+
 def polygon_parts(geometry: dict[str, Any]) -> list[Any]:
-    if geometry["type"] == "Polygon":
-        return [geometry["coordinates"]]
-    return geometry["coordinates"]
+    geom_type = geometry.get("type")
+    coordinates = geometry.get("coordinates")
+    if geom_type == "Polygon":
+        if not coordinates:
+            raise ValueError("Polygon has no coordinates")
+        return [coordinates]
+    if geom_type == "MultiPolygon":
+        if not coordinates:
+            raise ValueError("MultiPolygon has no coordinates")
+        return coordinates
+    raise ValueError(f"Unsupported geometry type: {geom_type!r}")
 
 
 def exterior_coords(geometry: dict[str, Any]) -> list[list[float]]:
     coords: list[list[float]] = []
     for poly in polygon_parts(geometry):
+        if not poly or not poly[0]:
+            raise ValueError("Polygon ring is empty")
         coords.extend(poly[0])
+    if not coords:
+        raise ValueError("Geometry has no exterior coordinates")
     return coords
 
 
 def geometry_bbox(geometry: dict[str, Any]) -> tuple[float, float, float, float]:
+    cached = geometry.get("_bbox")
+    if cached is not None:
+        return tuple(cached)  # type: ignore[return-value]
+
     coords = exterior_coords(geometry)
     xs = [point[0] for point in coords]
     ys = [point[1] for point in coords]
-    return min(xs), min(ys), max(xs), max(ys)
+    bbox = (min(xs), min(ys), max(xs), max(ys))
+    geometry["_bbox"] = list(bbox)
+    return bbox
 
 
 def bbox_area(geometry: dict[str, Any]) -> float:
@@ -91,10 +113,10 @@ def point_on_segment(
 
 
 def rings_touch(ring_a: list[list[float]], ring_b: list[list[float]], epsilon: float = 1e-6) -> bool:
+    vertices_b = {(point[0], point[1]) for point in ring_b}
     for point in ring_a:
-        for other in ring_b:
-            if abs(point[0] - other[0]) < epsilon and abs(point[1] - other[1]) < epsilon:
-                return True
+        if (point[0], point[1]) in vertices_b:
+            return True
     for index in range(len(ring_a)):
         start_a, end_a = ring_a[index], ring_a[(index + 1) % len(ring_a)]
         for other_index in range(len(ring_b)):
@@ -184,6 +206,16 @@ def geometries_overlap(
     iy1 = min(box_a[3], box_b[3])
     if ix1 <= ix0 or iy1 <= iy0:
         return False
+
+    for poly_a in polygon_parts(geometry_a):
+        for point in poly_a[0]:
+            if geometry_contains_point(geometry_b, point):
+                return True
+    for poly_b in polygon_parts(geometry_b):
+        for point in poly_b[0]:
+            if geometry_contains_point(geometry_a, point):
+                return True
+
     overlap_samples = 0
     for row in range(steps):
         for col in range(steps):
@@ -199,7 +231,7 @@ def geometries_overlap(
 
 
 def geometry_hash(geometry: dict[str, Any]) -> str:
-    payload = json.dumps(geometry, sort_keys=True, separators=(",", ":"))
+    payload = json.dumps(_public_geometry(geometry), sort_keys=True, separators=(",", ":"))
     return hashlib.md5(payload.encode()).hexdigest()[:12]
 
 
@@ -244,8 +276,11 @@ def audit_geometry_quality(features: list[dict[str, Any]]) -> None:
     for feature in features:
         code = feature["properties"]["code"]
         geometry = feature["geometry"]
-        area = bbox_area(geometry)
-        aspect = bbox_aspect_ratio(geometry)
+        try:
+            area = bbox_area(geometry)
+            aspect = bbox_aspect_ratio(geometry)
+        except ValueError as exc:
+            raise SystemExit(f"Invalid geometry for {code}: {exc}") from exc
         if area < SLIVER_MIN_AREA and aspect >= SLIVER_MAX_ASPECT:
             raise SystemExit(
                 f"Sliver geometry for {code}: area={area:.8f}, aspect={aspect:.2f}",
