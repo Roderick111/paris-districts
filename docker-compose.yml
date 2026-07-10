@@ -3,9 +3,9 @@ services:
     build: .
     restart: unless-stopped
     environment:
-      - VIRTUAL_HOST=paris-districts.beautiful-apps.com
+      - VIRTUAL_HOST=urbanqualitymap.com,www.urbanqualitymap.com,paris-districts.beautiful-apps.com
       - VIRTUAL_PORT=3000
-      - LETSENCRYPT_HOST=paris-districts.beautiful-apps.com
+      - LETSENCRYPT_HOST=urbanqualitymap.com,www.urbanqualitymap.com,paris-districts.beautiful-apps.com
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL:-daniel@beautiful-apps.com}
     networks:
       - proxy
