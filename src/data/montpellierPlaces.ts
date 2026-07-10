@@ -2,547 +2,264 @@ import type { PlaceScore } from "@/data/cities";
 
 export const montpellierPlaces: PlaceScore[] = [
   {
-    id: "montpellier-ecusson-north", cityId: "montpellier", name: "Ecusson north", code: "montpellier-ecusson-north", kind: "quartier",
+    id: "montpellier-ecusson-core", cityId: "montpellier", name: "Ecusson core", code: "montpellier-ecusson-core", kind: "quartier",
     area: "Montpellier Centre", granularity: "micro", parentName: "Montpellier Centre",
     confidence: "medium", coverageRole: "primary", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
+    evidenceNote: "IRIS-backed historic Ecusson core around Peyrou and Prefecture.",
     scores: {
-      security: 5.4,
-      affordability: 2.8,
-      transport: 9.6,
-      studentEnergy: 9.2,
-      services: 9.2,
-      campusAccess: 8.8,
-      greenCalm: 3.6
+      security: 5.4, affordability: 2.8, transport: 9.6, studentEnergy: 9.2,
+      services: 9.2, campusAccess: 8.8, greenCalm: 3.6
     },
     rentLevel: "very high", studentFit: "good",
-    summary: "Northern ecusson cluster around Peyrou approaches.", caveat: "Rent-hostile; comfort not automatic."
+    summary: "Historic centre with maximum student energy, services, and tram access.",
+    caveat: "Rent-hostile; comfort and calm are not automatic."
   },
   {
-    id: "montpellier-ecusson-south", cityId: "montpellier", name: "Ecusson south", code: "montpellier-ecusson-south", kind: "quartier",
+    id: "montpellier-comedie-gare", cityId: "montpellier", name: "Comedie / Gare", code: "montpellier-comedie-gare", kind: "quartier",
     area: "Montpellier Centre", granularity: "micro", parentName: "Montpellier Centre",
     confidence: "medium", coverageRole: "primary", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
+    evidenceNote: "IRIS-backed station and Comedie spine.",
     scores: {
-      security: 5.4,
-      affordability: 2.8,
-      transport: 9.6,
-      studentEnergy: 9.2,
-      services: 9.2,
-      campusAccess: 8.8,
-      greenCalm: 3.6
-    },
-    rentLevel: "very high", studentFit: "good",
-    summary: "Southern historic core around Peyrou and Prefecture.", caveat: "Rent-hostile; comfort not automatic."
-  },
-  {
-    id: "montpellier-comedie-station", cityId: "montpellier", name: "Comedie station", code: "montpellier-comedie-station", kind: "quartier",
-    area: "Montpellier Centre", granularity: "micro", parentName: "Montpellier Centre",
-    confidence: "medium", coverageRole: "primary", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
-    scores: {
-      security: 5.2,
-      affordability: 3.2,
-      transport: 9.8,
-      studentEnergy: 8.8,
-      services: 9.0,
-      campusAccess: 8.6,
-      greenCalm: 3.8
+      security: 5.2, affordability: 3.2, transport: 9.8, studentEnergy: 8.8,
+      services: 9.0, campusAccess: 8.6, greenCalm: 3.8
     },
     rentLevel: "high", studentFit: "good",
-    summary: "Station-core belt around Place de la Comedie.", caveat: "Connected but not calm or cheap."
-  },
-  {
-    id: "montpellier-comedie-west", cityId: "montpellier", name: "Comedie west", code: "montpellier-comedie-west", kind: "quartier",
-    area: "Montpellier Centre", granularity: "micro", parentName: "Montpellier Centre",
-    confidence: "medium", coverageRole: "primary", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
-    scores: {
-      security: 5.2,
-      affordability: 3.2,
-      transport: 9.8,
-      studentEnergy: 8.8,
-      services: 9.0,
-      campusAccess: 8.6,
-      greenCalm: 3.8
-    },
-    rentLevel: "high", studentFit: "good",
-    summary: "West-centre belt west of the station axis.", caveat: "Connected but not calm or cheap."
-  },
-  {
-    id: "montpellier-republique-rauze", cityId: "montpellier", name: "Republique / Rauze", code: "montpellier-republique-rauze", kind: "quartier",
-    area: "Montpellier Centre", granularity: "micro", parentName: "Montpellier Centre",
-    confidence: "medium", coverageRole: "primary", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
-    scores: {
-      security: 5.2,
-      affordability: 3.2,
-      transport: 9.8,
-      studentEnergy: 8.8,
-      services: 9.0,
-      campusAccess: 8.6,
-      greenCalm: 3.8
-    },
-    rentLevel: "high", studentFit: "good",
-    summary: "South-centre belt around Republique.", caveat: "Connected but not calm or cheap."
+    summary: "Station-core belt around Place de la Comedie and Gare Saint-Roch.",
+    caveat: "Connected but not calm or cheap."
   },
   {
     id: "montpellier-beaux-arts-boutonnet", cityId: "montpellier", name: "Beaux-Arts / Boutonnet", code: "montpellier-beaux-arts-boutonnet", kind: "quartier",
     area: "North centre", granularity: "micro", parentName: "North centre",
     confidence: "high", coverageRole: "primary", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "IRIS-grouped major district approximation.",
+    evidenceNote: "IRIS-backed north-centre student pocket around Beaux-Arts and Boutonnet.",
     scores: {
-      security: 7.0,
-      affordability: 4.2,
-      transport: 8.8,
-      studentEnergy: 9.0,
-      services: 8.4,
-      campusAccess: 9.2,
-      greenCalm: 6.4
+      security: 7.0, affordability: 4.2, transport: 8.8, studentEnergy: 9.0,
+      services: 8.4, campusAccess: 9.2, greenCalm: 6.4
     },
     rentLevel: "high", studentFit: "excellent",
-    summary: "Best north-centre student pick with campus adjacency.", caveat: "Leads Montpellier on balanced student quality."
+    summary: "Best north-centre student pick with campus adjacency.",
+    caveat: "Leads Montpellier on balanced student quality."
   },
   {
-    id: "montpellier-arceaux-agriculture", cityId: "montpellier", name: "Arceaux / Agriculture", code: "montpellier-arceaux-agriculture", kind: "quartier",
+    id: "montpellier-arceaux-gambetta-figuerolles", cityId: "montpellier", name: "Arceaux / Gambetta / Figuerolles", code: "montpellier-arceaux-gambetta-figuerolles", kind: "quartier",
     area: "West centre", granularity: "micro", parentName: "West centre",
     confidence: "medium", coverageRole: "primary", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
+    evidenceNote: "IRIS-backed west-centre Gambetta, Arceaux, and Figuerolles-adjacent belt.",
     scores: {
-      security: 5.3,
-      affordability: 5.2,
-      transport: 8.8,
-      studentEnergy: 8.4,
-      services: 8.2,
-      campusAccess: 8.0,
-      greenCalm: 4.0
+      security: 5.3, affordability: 5.2, transport: 8.8, studentEnergy: 8.4,
+      services: 8.2, campusAccess: 8.0, greenCalm: 4.0
     },
     rentLevel: "medium", studentFit: "good",
-    summary: "West-centre Arceaux and hospital belt.", caveat: "Mixed comfort; not a premium-safe default."
+    summary: "West-centre belt with Gambetta, pool-side streets, and Figuerolles edge.",
+    caveat: "Mixed comfort; not a premium-safe default."
   },
+
   {
-    id: "montpellier-gambetta", cityId: "montpellier", name: "Gambetta", code: "montpellier-gambetta", kind: "quartier",
+    id: "montpellier-arceaux-north-context", cityId: "montpellier", name: "Arceaux north context", code: "montpellier-arceaux-north-context", kind: "quartier",
     area: "West centre", granularity: "micro", parentName: "West centre",
-    confidence: "medium", coverageRole: "primary", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
+    confidence: "medium", coverageRole: "context", geometryBasis: "iris_fallback_major_zone",
+    evidenceNote: "IRIS-backed north-west-centre context around Agriculture, Astruc, Avenue de Lodève, and Casseyrols.",
     scores: {
-      security: 5.3,
-      affordability: 5.2,
-      transport: 8.8,
-      studentEnergy: 8.4,
-      services: 8.2,
-      campusAccess: 8.0,
-      greenCalm: 4.0
+      security: 5.6, affordability: 5.4, transport: 8.2, studentEnergy: 7.2,
+      services: 7.6, campusAccess: 8.4, greenCalm: 5.2
     },
     rentLevel: "medium", studentFit: "good",
-    summary: "Compact Gambetta west-centre cluster.", caveat: "Mixed comfort; not a premium-safe default."
+    summary: "North-west-centre context between Arceaux and campus routes.",
+    caveat: "Useful connector zone, less clear than core student picks."
   },
   {
-    id: "montpellier-aubes-salaison", cityId: "montpellier", name: "Aubes / Salaison", code: "montpellier-aubes-salaison", kind: "quartier",
-    area: "West centre", granularity: "micro", parentName: "West centre",
-    confidence: "medium", coverageRole: "primary", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
-    scores: {
-      security: 5.3,
-      affordability: 5.2,
-      transport: 8.8,
-      studentEnergy: 8.4,
-      services: 8.2,
-      campusAccess: 8.0,
-      greenCalm: 4.0
-    },
-    rentLevel: "medium", studentFit: "good",
-    summary: "Figuerolles-adjacent Aubes and Salaison belt.", caveat: "Mixed comfort; not a premium-safe default."
-  },
-  {
-    id: "montpellier-antigone", cityId: "montpellier", name: "Antigone", code: "montpellier-antigone", kind: "quartier",
+    id: "montpellier-aubes-pompignane", cityId: "montpellier", name: "Aubes / Pompignane", code: "montpellier-aubes-pompignane", kind: "quartier",
     area: "East centre", granularity: "micro", parentName: "East centre",
     confidence: "medium", coverageRole: "primary", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "IRIS-grouped major district approximation.",
+    evidenceNote: "IRIS-backed east-centre Aubes and Pompignane belt near campus corridors.",
     scores: {
-      security: 6.0,
-      affordability: 3.6,
-      transport: 9.4,
-      studentEnergy: 7.8,
-      services: 9.0,
-      campusAccess: 8.6,
-      greenCalm: 4.8
+      security: 6.6, affordability: 4.8, transport: 8.4, studentEnergy: 7.0,
+      services: 8.0, campusAccess: 8.4, greenCalm: 6.4
+    },
+    rentLevel: "medium", studentFit: "good",
+    summary: "East-centre belt with moderate rent and student presence.",
+    caveat: "Block choice inside the polygon still matters."
+  },
+  {
+    id: "montpellier-antigone", cityId: "montpellier", name: "Antigone core", code: "montpellier-antigone", kind: "quartier",
+    area: "East centre", granularity: "micro", parentName: "East centre",
+    confidence: "medium", coverageRole: "primary", geometryBasis: "iris_fallback_major_zone",
+    evidenceNote: "IRIS-backed planned Antigone core, excluding Jacques-Coeur basin.",
+    scores: {
+      security: 6.0, affordability: 3.6, transport: 9.4, studentEnergy: 7.8,
+      services: 9.0, campusAccess: 8.6, greenCalm: 4.8
     },
     rentLevel: "high", studentFit: "good",
-    summary: "Planned east-centre belt with tram and services.", caveat: "Less social than Ecusson or Boutonnet."
+    summary: "Planned east-centre quarter with tram and services.",
+    caveat: "Less social than Ecusson or Boutonnet."
   },
   {
-    id: "montpellier-jacques-coeur", cityId: "montpellier", name: "Jacques-Coeur", code: "montpellier-jacques-coeur", kind: "quartier",
+    id: "montpellier-jacques-coeur", cityId: "montpellier", name: "Jacques-Coeur basin", code: "montpellier-jacques-coeur", kind: "quartier",
     area: "East campus", granularity: "micro", parentName: "East campus",
-    confidence: "medium", coverageRole: "campus", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
+    confidence: "high", coverageRole: "campus", geometryBasis: "iris_fallback_major_zone",
+    evidenceNote: "IRIS-backed Jacques-Coeur, Charpak, and La Lironde east-campus belt.",
     scores: {
-      security: 7.0,
-      affordability: 4.2,
-      transport: 9.0,
-      studentEnergy: 7.8,
-      services: 8.2,
-      campusAccess: 9.4,
-      greenCalm: 6.6
+      security: 7.0, affordability: 4.2, transport: 9.0, studentEnergy: 7.8,
+      services: 8.2, campusAccess: 9.4, greenCalm: 6.6
     },
     rentLevel: "high", studentFit: "excellent",
-    summary: "East-campus Jacques-Coeur basin cluster.", caveat: "Campus-first pick with less historic-centre charm."
+    summary: "East-campus Jacques-Coeur and La Lironde belt.",
+    caveat: "Campus-first pick with less historic-centre charm."
   },
   {
-    id: "montpellier-richter", cityId: "montpellier", name: "Richter", code: "montpellier-richter", kind: "quartier",
-    area: "East campus", granularity: "micro", parentName: "East campus",
-    confidence: "medium", coverageRole: "campus", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
-    scores: {
-      security: 7.0,
-      affordability: 4.2,
-      transport: 9.0,
-      studentEnergy: 7.8,
-      services: 8.2,
-      campusAccess: 9.4,
-      greenCalm: 6.6
-    },
-    rentLevel: "high", studentFit: "excellent",
-    summary: "Richter and Mail campus belt.", caveat: "Campus-first pick with less historic-centre charm."
-  },
-  {
-    id: "montpellier-port-marianne", cityId: "montpellier", name: "Port Marianne", code: "montpellier-port-marianne", kind: "quartier",
+    id: "montpellier-port-marianne-millenaire-odysseum", cityId: "montpellier", name: "Port Marianne / Millenaire / Odysseum", code: "montpellier-port-marianne-millenaire-odysseum", kind: "quartier",
     area: "East", granularity: "micro", parentName: "East",
     confidence: "medium", coverageRole: "primary", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
+    evidenceNote: "IRIS-backed Port Marianne, Millenaire, Odysseum, and République east belt.",
     scores: {
-      security: 7.0,
-      affordability: 4.0,
-      transport: 8.8,
-      studentEnergy: 7.0,
-      services: 8.4,
-      campusAccess: 8.8,
-      greenCalm: 6.6
+      security: 7.0, affordability: 4.0, transport: 8.8, studentEnergy: 7.0,
+      services: 8.4, campusAccess: 8.8, greenCalm: 6.6
     },
     rentLevel: "high", studentFit: "excellent",
-    summary: "Port Marianne core with Odysseum.", caveat: "Different bet from historic centre."
+    summary: "Port Marianne core with Millenaire and Odysseum.",
+    caveat: "Different bet from historic centre."
   },
   {
-    id: "montpellier-port-marianne-lez", cityId: "montpellier", name: "Port Marianne Lez", code: "montpellier-port-marianne-lez", kind: "quartier",
-    area: "East", granularity: "micro", parentName: "East",
-    confidence: "medium", coverageRole: "primary", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
-    scores: {
-      security: 7.0,
-      affordability: 4.0,
-      transport: 8.8,
-      studentEnergy: 7.0,
-      services: 8.4,
-      campusAccess: 8.8,
-      greenCalm: 6.6
-    },
-    rentLevel: "high", studentFit: "excellent",
-    summary: "Lez-side Port Marianne belt.", caveat: "Different bet from historic centre."
-  },
-  {
-    id: "montpellier-occitanie", cityId: "montpellier", name: "Occitanie", code: "montpellier-occitanie", kind: "quartier",
-    area: "East", granularity: "micro", parentName: "East",
-    confidence: "medium", coverageRole: "primary", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
-    scores: {
-      security: 7.0,
-      affordability: 4.0,
-      transport: 8.8,
-      studentEnergy: 7.0,
-      services: 8.4,
-      campusAccess: 8.8,
-      greenCalm: 6.6
-    },
-    rentLevel: "high", studentFit: "excellent",
-    summary: "Eastern Occitanie extension.", caveat: "Different bet from historic centre."
-  },
-  {
-    id: "montpellier-assas-pharmacie", cityId: "montpellier", name: "Assas / Pharmacie", code: "montpellier-assas-pharmacie", kind: "quartier",
+    id: "montpellier-hopitaux-facultes-triolet", cityId: "montpellier", name: "Hopitaux-Facultes / Triolet", code: "montpellier-hopitaux-facultes-triolet", kind: "quartier",
     area: "North campus", granularity: "micro", parentName: "North campus",
-    confidence: "medium", coverageRole: "campus", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
+    confidence: "high", coverageRole: "campus", geometryBasis: "iris_fallback_major_zone",
+    evidenceNote: "IRIS-backed hospital and Triolet architecture cluster.",
     scores: {
-      security: 6.8,
-      affordability: 5.0,
-      transport: 8.8,
-      studentEnergy: 8.8,
-      services: 8.0,
-      campusAccess: 10.0,
-      greenCalm: 7.0
+      security: 6.8, affordability: 5.0, transport: 8.8, studentEnergy: 8.8,
+      services: 8.0, campusAccess: 10.0, greenCalm: 7.0
     },
     rentLevel: "medium", studentFit: "excellent",
-    summary: "North-campus Assas and pharmacy cluster.", caveat: "Campus utility over nightlife."
+    summary: "North-campus hospital and Triolet architecture cluster.",
+    caveat: "Campus utility over nightlife."
   },
   {
-    id: "montpellier-euromedecine", cityId: "montpellier", name: "Euromedecine", code: "montpellier-euromedecine", kind: "quartier",
+    id: "montpellier-paul-valery-route-mende", cityId: "montpellier", name: "Paul-Valery / Route de Mende", code: "montpellier-paul-valery-route-mende", kind: "quartier",
     area: "North campus", granularity: "micro", parentName: "North campus",
-    confidence: "medium", coverageRole: "campus", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
+    confidence: "high", coverageRole: "campus", geometryBasis: "iris_fallback_major_zone",
+    evidenceNote: "IRIS-backed Paul-Valery campus cluster along Route de Mende.",
     scores: {
-      security: 6.8,
-      affordability: 5.0,
-      transport: 8.8,
-      studentEnergy: 8.8,
-      services: 8.0,
-      campusAccess: 10.0,
-      greenCalm: 7.0
+      security: 6.6, affordability: 5.2, transport: 8.6, studentEnergy: 8.4,
+      services: 7.8, campusAccess: 10.0, greenCalm: 7.0
     },
     rentLevel: "medium", studentFit: "excellent",
-    summary: "Euromedecine hospital campus belt.", caveat: "Campus utility over nightlife."
+    summary: "Paul-Valery campus cluster along Route de Mende.",
+    caveat: "Best for campus-first students."
   },
   {
-    id: "montpellier-triolet-vert-bois", cityId: "montpellier", name: "Triolet / Vert-Bois", code: "montpellier-triolet-vert-bois", kind: "quartier",
+    id: "montpellier-euromedecine-agropolis", cityId: "montpellier", name: "Euromedecine / Agropolis", code: "montpellier-euromedecine-agropolis", kind: "quartier",
     area: "North campus", granularity: "micro", parentName: "North campus",
     confidence: "medium", coverageRole: "campus", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
+    evidenceNote: "Euromedecine and Agropolis research campuses north of city core.",
     scores: {
-      security: 6.8,
-      affordability: 5.0,
-      transport: 8.8,
-      studentEnergy: 8.8,
-      services: 8.0,
-      campusAccess: 10.0,
-      greenCalm: 7.0
+      security: 7.2, affordability: 5.4, transport: 7.8, studentEnergy: 7.2,
+      services: 7.4, campusAccess: 9.2, greenCalm: 8.2
     },
     rentLevel: "medium", studentFit: "excellent",
-    summary: "Triolet architecture and Vert-Bois cluster.", caveat: "Campus utility over nightlife."
-  },
-  {
-    id: "montpellier-agropolis", cityId: "montpellier", name: "Agropolis", code: "montpellier-agropolis", kind: "quartier",
-    area: "North campus", granularity: "micro", parentName: "North campus",
-    confidence: "medium", coverageRole: "campus", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
-    scores: {
-      security: 6.6,
-      affordability: 5.2,
-      transport: 8.6,
-      studentEnergy: 8.4,
-      services: 7.8,
-      campusAccess: 10.0,
-      greenCalm: 7.0
-    },
-    rentLevel: "medium", studentFit: "excellent",
-    summary: "Agropolis research campus cluster.", caveat: "Best for campus-first students."
-  },
-  {
-    id: "montpellier-ecole-normale", cityId: "montpellier", name: "Ecole Normale", code: "montpellier-ecole-normale", kind: "quartier",
-    area: "North campus", granularity: "micro", parentName: "North campus",
-    confidence: "medium", coverageRole: "campus", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
-    scores: {
-      security: 6.6,
-      affordability: 5.2,
-      transport: 8.6,
-      studentEnergy: 8.4,
-      services: 7.8,
-      campusAccess: 10.0,
-      greenCalm: 7.0
-    },
-    rentLevel: "medium", studentFit: "excellent",
-    summary: "Ecole Normale and archives belt.", caveat: "Best for campus-first students."
-  },
-  {
-    id: "montpellier-avenue-lodeve", cityId: "montpellier", name: "Avenue de Lodeve", code: "montpellier-avenue-lodeve", kind: "quartier",
-    area: "North campus", granularity: "micro", parentName: "North campus",
-    confidence: "medium", coverageRole: "campus", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
-    scores: {
-      security: 6.6,
-      affordability: 5.2,
-      transport: 8.6,
-      studentEnergy: 8.4,
-      services: 7.8,
-      campusAccess: 10.0,
-      greenCalm: 7.0
-    },
-    rentLevel: "medium", studentFit: "excellent",
-    summary: "Avenue de Lodeve campus corridor.", caveat: "Best for campus-first students."
+    summary: "Euromedecine and Agropolis research campus cluster.",
+    caveat: "Green and campus-focused; weaker on student nightlife."
   },
   {
     id: "montpellier-aiguelongue-lunaret", cityId: "montpellier", name: "Aiguelongue / Lunaret", code: "montpellier-aiguelongue-lunaret", kind: "quartier",
     area: "North-east", granularity: "micro", parentName: "North-east",
     confidence: "medium", coverageRole: "primary", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
+    evidenceNote: "IRIS-backed Aiguelongue and Lunaret green belt.",
     scores: {
-      security: 7.4,
-      affordability: 4.4,
-      transport: 7.8,
-      studentEnergy: 6.4,
-      services: 7.4,
-      campusAccess: 8.4,
-      greenCalm: 8.4
+      security: 7.4, affordability: 4.4, transport: 7.8, studentEnergy: 6.4,
+      services: 7.4, campusAccess: 8.4, greenCalm: 8.4
     },
     rentLevel: "high", studentFit: "excellent",
-    summary: "Aiguelongue and Lunaret green belt.", caveat: "Less student-social than Boutonnet."
-  },
-  {
-    id: "montpellier-colline", cityId: "montpellier", name: "La Colline", code: "montpellier-colline", kind: "quartier",
-    area: "North-east", granularity: "micro", parentName: "North-east",
-    confidence: "medium", coverageRole: "primary", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
-    scores: {
-      security: 7.4,
-      affordability: 4.4,
-      transport: 7.8,
-      studentEnergy: 6.4,
-      services: 7.4,
-      campusAccess: 8.4,
-      greenCalm: 8.4
-    },
-    rentLevel: "high", studentFit: "excellent",
-    summary: "Isolated Colline north-east cluster.", caveat: "Less student-social than Boutonnet."
+    summary: "Aiguelongue and Lunaret green belt with zoo adjacency.",
+    caveat: "Less student-social than Boutonnet."
   },
   {
     id: "montpellier-malbosc-garrigues", cityId: "montpellier", name: "Malbosc / Garrigues", code: "montpellier-malbosc-garrigues", kind: "quartier",
     area: "North-east", granularity: "micro", parentName: "North-east",
-    confidence: "medium", coverageRole: "primary", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
+    confidence: "medium", coverageRole: "context", geometryBasis: "iris_fallback_major_zone",
+    evidenceNote: "IRIS-backed Malbosc and Garrigues residential context.",
     scores: {
-      security: 7.4,
-      affordability: 4.4,
-      transport: 7.8,
-      studentEnergy: 6.4,
-      services: 7.4,
-      campusAccess: 8.4,
-      greenCalm: 8.4
+      security: 6.8, affordability: 5.6, transport: 7.8, studentEnergy: 6.6,
+      services: 7.2, campusAccess: 8.4, greenCalm: 7.8
     },
-    rentLevel: "high", studentFit: "excellent",
-    summary: "Malbosc and Garrigues residential belt.", caveat: "Less student-social than Boutonnet."
+    rentLevel: "medium", studentFit: "mixed",
+    summary: "Malbosc and Garrigues residential belt with green edges.",
+    caveat: "Fine for quiet commuting; weak as a student social hub."
+  },
+  {
+    id: "montpellier-northwest-context", cityId: "montpellier", name: "North-west context", code: "montpellier-northwest-context", kind: "quartier",
+    area: "North-west", granularity: "micro", parentName: "North-west",
+    confidence: "medium", coverageRole: "context", geometryBasis: "iris_fallback_major_zone",
+    evidenceNote: "IRIS-backed north-west context for Blayac, Bologne, Oxford, Le Mail, and Les Tours.",
+    scores: {
+      security: 5.6, affordability: 6.0, transport: 7.4, studentEnergy: 5.8,
+      services: 6.8, campusAccess: 7.0, greenCalm: 6.4
+    },
+    rentLevel: "medium", studentFit: "mixed",
+    summary: "North-west residential context with some campus access.",
+    caveat: "Useful fill zone, not a headline student pick."
   },
   {
     id: "montpellier-croix-argent-ovalie", cityId: "montpellier", name: "Croix d'Argent / Ovalie", code: "montpellier-croix-argent-ovalie", kind: "quartier",
     area: "South-west", granularity: "micro", parentName: "South-west",
     confidence: "medium", coverageRole: "context", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "IRIS-grouped major district approximation.",
+    evidenceNote: "IRIS-backed Croix d'Argent and Ovalie south-west belt.",
     scores: {
-      security: 5.4,
-      affordability: 6.0,
-      transport: 8.0,
-      studentEnergy: 6.4,
-      services: 7.4,
-      campusAccess: 7.4,
-      greenCalm: 5.4
+      security: 5.4, affordability: 6.0, transport: 8.0, studentEnergy: 6.4,
+      services: 7.4, campusAccess: 7.4, greenCalm: 5.4
     },
     rentLevel: "medium", studentFit: "good",
-    summary: "South-west context with tolerable value.", caveat: "Honest peripheral belt."
+    summary: "South-west context with tolerable value.",
+    caveat: "Honest peripheral belt."
+  },
+  {
+    id: "montpellier-pres-arenes", cityId: "montpellier", name: "Pres d'Arenes", code: "montpellier-pres-arenes", kind: "quartier",
+    area: "South", granularity: "micro", parentName: "South",
+    confidence: "medium", coverageRole: "risk_cap", geometryBasis: "iris_fallback_major_zone",
+    evidenceNote: "IRIS-backed Prés d'Arènes belt with mixed southern reputation.",
+    scores: {
+      security: 5.0, affordability: 6.2, transport: 8.4, studentEnergy: 6.4,
+      services: 7.2, campusAccess: 7.2, greenCalm: 5.0
+    },
+    rentLevel: "medium", studentFit: "mixed",
+    summary: "Southern Prés d'Arènes belt with tolerable value and tram links.",
+    caveat: "Useful value belt; check block-level comfort before committing."
   },
   {
     id: "montpellier-cevennes-celleneuve", cityId: "montpellier", name: "Les Cevennes / Celleneuve", code: "montpellier-cevennes-celleneuve", kind: "quartier",
     area: "West", granularity: "micro", parentName: "West",
-    confidence: "medium", coverageRole: "context", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "IRIS-grouped major district approximation.",
-    scores: {
-      security: 5.2,
-      affordability: 6.6,
-      transport: 8.0,
-      studentEnergy: 6.2,
-      services: 7.0,
-      campusAccess: 6.8,
-      greenCalm: 6.0
-    },
-    rentLevel: "lower", studentFit: "good",
-    summary: "Western context belt with moderate value.", caveat: "Coverage continuity zone, not a headline pick."
-  },
-  {
-    id: "montpellier-lironde", cityId: "montpellier", name: "La Lironde", code: "montpellier-lironde", kind: "quartier",
-    area: "West", granularity: "micro", parentName: "West",
-    confidence: "medium", coverageRole: "context", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
-    scores: {
-      security: 5.2,
-      affordability: 6.6,
-      transport: 8.0,
-      studentEnergy: 6.2,
-      services: 7.0,
-      campusAccess: 6.8,
-      greenCalm: 6.0
-    },
-    rentLevel: "lower", studentFit: "good",
-    summary: "Detached La Lironde western context belt.", caveat: "Coverage continuity zone, not a headline pick."
-  },
-  {
-    id: "montpellier-mosson-core", cityId: "montpellier", name: "Mosson core", code: "montpellier-mosson-core", kind: "quartier",
-    area: "North-west cap", granularity: "micro", parentName: "North-west cap",
     confidence: "medium", coverageRole: "risk_cap", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
+    evidenceNote: "IRIS-backed Cévennes and Celleneuve belt with security cap.",
     scores: {
-      security: 3.6,
-      affordability: 7.6,
-      transport: 8.2,
-      studentEnergy: 5.8,
-      services: 6.6,
-      campusAccess: 6.4,
-      greenCalm: 5.4
+      security: 4.8, affordability: 6.8, transport: 8.0, studentEnergy: 6.0,
+      services: 6.8, campusAccess: 6.8, greenCalm: 5.8
+    },
+    rentLevel: "lower", studentFit: "mixed",
+    summary: "Western Celleneuve belt with moderate value and visible security cap.",
+    caveat: "Budget option only if you accept reputation and block-level caution."
+  },
+  {
+    id: "montpellier-mosson-paillade", cityId: "montpellier", name: "Mosson / Paillade", code: "montpellier-mosson-paillade", kind: "quartier",
+    area: "North-west cap", granularity: "micro", parentName: "North-west cap",
+    confidence: "high", coverageRole: "risk_cap", geometryBasis: "iris_fallback_major_zone",
+    evidenceNote: "IRIS-backed Mosson and Paillade risk cluster.",
+    scores: {
+      security: 3.6, affordability: 7.6, transport: 8.2, studentEnergy: 5.8,
+      services: 6.6, campusAccess: 6.4, greenCalm: 5.4
     },
     rentLevel: "lower", studentFit: "weak",
-    summary: "Main Mosson / Paillade risk cluster.", caveat: "Affordability cannot rescue the risk profile."
+    summary: "Mosson / Paillade risk cluster with strong affordability cap.",
+    caveat: "Affordability cannot rescue the risk profile."
   },
   {
-    id: "montpellier-pas-du-loup", cityId: "montpellier", name: "Pas du Loup", code: "montpellier-pas-du-loup", kind: "quartier",
-    area: "North-west cap", granularity: "micro", parentName: "North-west cap",
-    confidence: "medium", coverageRole: "risk_cap", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
-    scores: {
-      security: 3.6,
-      affordability: 7.6,
-      transport: 8.2,
-      studentEnergy: 5.8,
-      services: 6.6,
-      campusAccess: 6.4,
-      greenCalm: 5.4
-    },
-    rentLevel: "lower", studentFit: "weak",
-    summary: "Detached Pas du Loup north-west cap.", caveat: "Affordability cannot rescue the risk profile."
-  },
-  {
-    id: "montpellier-bouisses", cityId: "montpellier", name: "Bouisses", code: "montpellier-bouisses", kind: "quartier",
+    id: "montpellier-estanove-south-context", cityId: "montpellier", name: "Estanove / Gare Sud context", code: "montpellier-estanove-south-context", kind: "quartier",
     area: "South", granularity: "micro", parentName: "South",
     confidence: "medium", coverageRole: "context", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
+    evidenceNote: "IRIS-backed Estanove, Gare Sud, and south-west context fill.",
     scores: {
-      security: 5.0,
-      affordability: 6.2,
-      transport: 8.4,
-      studentEnergy: 6.4,
-      services: 7.2,
-      campusAccess: 7.2,
-      greenCalm: 5.0
+      security: 5.6, affordability: 6.2, transport: 8.0, studentEnergy: 6.2,
+      services: 7.0, campusAccess: 7.0, greenCalm: 5.6
     },
     rentLevel: "medium", studentFit: "good",
-    summary: "Southern Bouisses context cluster.", caveat: "Useful value belt with cap constraints."
-  },
-  {
-    id: "montpellier-estanove-lepic", cityId: "montpellier", name: "Estanove / Lepic", code: "montpellier-estanove-lepic", kind: "quartier",
-    area: "South", granularity: "micro", parentName: "South",
-    confidence: "medium", coverageRole: "context", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
-    scores: {
-      security: 5.0,
-      affordability: 6.2,
-      transport: 8.4,
-      studentEnergy: 6.4,
-      services: 7.2,
-      campusAccess: 7.2,
-      greenCalm: 5.0
-    },
-    rentLevel: "medium", studentFit: "good",
-    summary: "Estanove and Lepic south belt.", caveat: "Useful value belt with cap constraints."
-  },
-  {
-    id: "montpellier-saint-denis-sud", cityId: "montpellier", name: "Saint-Denis sud", code: "montpellier-saint-denis-sud", kind: "quartier",
-    area: "South", granularity: "micro", parentName: "South",
-    confidence: "medium", coverageRole: "context", geometryBasis: "iris_fallback_major_zone",
-    evidenceNote: "Split from previous broad zone to preserve contiguous display geometry; score inherited from district-level evidence.",
-    scores: {
-      security: 5.0,
-      affordability: 6.2,
-      transport: 8.4,
-      studentEnergy: 6.4,
-      services: 7.2,
-      campusAccess: 7.2,
-      greenCalm: 5.0
-    },
-    rentLevel: "medium", studentFit: "good",
-    summary: "Detached Saint-Denis southern context.", caveat: "Useful value belt with cap constraints."
+    summary: "Estanove and southern station context with tolerable value.",
+    caveat: "Useful compromise, not a headline comfort pick."
   }
 ];

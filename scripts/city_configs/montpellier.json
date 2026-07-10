@@ -12,34 +12,7 @@
   ],
   "zones": [
     {
-      "code": "montpellier-ecusson-north",
-      "sourceUnits": [
-        {
-          "source": "iris_34172",
-          "name": "Aiguerelles"
-        },
-        {
-          "source": "iris_34172",
-          "name": "Mion"
-        },
-        {
-          "source": "iris_34172",
-          "name": "Saint-Martin"
-        },
-        {
-          "source": "iris_34172",
-          "name": "Tastavin"
-        },
-        {
-          "source": "iris_34172",
-          "name": "Tournezy"
-        }
-      ],
-      "coverageRole": "primary",
-      "geometryBasis": "iris_fallback_major_zone"
-    },
-    {
-      "code": "montpellier-ecusson-south",
+      "code": "montpellier-ecusson-core",
       "sourceUnits": [
         {
           "source": "iris_34172",
@@ -66,7 +39,7 @@
       "geometryBasis": "iris_fallback_major_zone"
     },
     {
-      "code": "montpellier-comedie-station",
+      "code": "montpellier-comedie-gare",
       "sourceUnits": [
         {
           "source": "iris_34172",
@@ -75,52 +48,18 @@
         {
           "source": "iris_34172",
           "name": "Pont de Sète"
-        }
-      ],
-      "coverageRole": "primary",
-      "geometryBasis": "iris_fallback_major_zone"
-    },
-    {
-      "code": "montpellier-comedie-west",
-      "sourceUnits": [
-        {
-          "source": "iris_34172",
-          "name": "Chaptal"
         },
         {
           "source": "iris_34172",
-          "name": "La Guirlande"
+          "name": "Saint-Denis"
         },
         {
           "source": "iris_34172",
-          "name": "La Piscine"
+          "name": "Méditerrannée"
         },
         {
           "source": "iris_34172",
-          "name": "Notre-Dame de la Paix"
-        },
-        {
-          "source": "iris_34172",
-          "name": "Parc Montcalm"
-        },
-        {
-          "source": "iris_34172",
-          "name": "Sabathé"
-        }
-      ],
-      "coverageRole": "primary",
-      "geometryBasis": "iris_fallback_major_zone"
-    },
-    {
-      "code": "montpellier-republique-rauze",
-      "sourceUnits": [
-        {
-          "source": "iris_34172",
-          "name": "La Rauze"
-        },
-        {
-          "source": "iris_34172",
-          "name": "République"
+          "name": "Saint-François"
         }
       ],
       "coverageRole": "primary",
@@ -139,15 +78,11 @@
         },
         {
           "source": "iris_34172",
-          "name": "Justice"
-        },
-        {
-          "source": "iris_34172",
-          "name": "Moulin de l'Évêque"
-        },
-        {
-          "source": "iris_34172",
           "name": "Méric"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Sainte-Odile"
         },
         {
           "source": "iris_34172",
@@ -155,26 +90,41 @@
         },
         {
           "source": "iris_34172",
-          "name": "Pompignane"
-        },
-        {
-          "source": "iris_34172",
-          "name": "Rimbaud"
-        },
-        {
-          "source": "iris_34172",
-          "name": "Saint-Éloi"
-        },
-        {
-          "source": "iris_34172",
-          "name": "Sainte-Odile"
+          "name": "Justice"
         }
       ],
       "coverageRole": "primary",
       "geometryBasis": "iris_fallback_major_zone"
     },
     {
-      "code": "montpellier-arceaux-agriculture",
+      "code": "montpellier-arceaux-gambetta-figuerolles",
+      "sourceUnits": [
+        {
+          "source": "iris_34172",
+          "name": "Gambetta"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Chaptal"
+        },
+        {
+          "source": "iris_34172",
+          "name": "La Guirlande"
+        },
+        {
+          "source": "iris_34172",
+          "name": "La Piscine"
+        },
+        {
+          "source": "iris_34172",
+          "name": "La Colline"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_fallback_major_zone"
+    },
+    {
+      "code": "montpellier-arceaux-north-context",
       "sourceUnits": [
         {
           "source": "iris_34172",
@@ -186,33 +136,18 @@
         },
         {
           "source": "iris_34172",
+          "name": "Avenue de Lodève"
+        },
+        {
+          "source": "iris_34172",
           "name": "Casseyrols"
-        },
-        {
-          "source": "iris_34172",
-          "name": "Lapeyronie"
-        },
-        {
-          "source": "iris_34172",
-          "name": "Soulas"
         }
       ],
-      "coverageRole": "primary",
+      "coverageRole": "context",
       "geometryBasis": "iris_fallback_major_zone"
     },
     {
-      "code": "montpellier-gambetta",
-      "sourceUnits": [
-        {
-          "source": "iris_34172",
-          "name": "Gambetta"
-        }
-      ],
-      "coverageRole": "primary",
-      "geometryBasis": "iris_fallback_major_zone"
-    },
-    {
-      "code": "montpellier-aubes-salaison",
+      "code": "montpellier-aubes-pompignane",
       "sourceUnits": [
         {
           "source": "iris_34172",
@@ -221,6 +156,18 @@
         {
           "source": "iris_34172",
           "name": "Salaison"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Pompignane"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Moulin de l'Évêque"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Rimbaud"
         }
       ],
       "coverageRole": "primary",
@@ -259,44 +206,17 @@
         {
           "source": "iris_34172",
           "name": "Charpak"
+        },
+        {
+          "source": "iris_34172",
+          "name": "La Lironde"
         }
       ],
       "coverageRole": "campus",
       "geometryBasis": "iris_fallback_major_zone"
     },
     {
-      "code": "montpellier-richter",
-      "sourceUnits": [
-        {
-          "source": "iris_34172",
-          "name": "Blayac"
-        },
-        {
-          "source": "iris_34172",
-          "name": "Bologne"
-        },
-        {
-          "source": "iris_34172",
-          "name": "Le Mail Nord"
-        },
-        {
-          "source": "iris_34172",
-          "name": "Le Mail Sud"
-        },
-        {
-          "source": "iris_34172",
-          "name": "Les Tours"
-        },
-        {
-          "source": "iris_34172",
-          "name": "Oxford"
-        }
-      ],
-      "coverageRole": "campus",
-      "geometryBasis": "iris_fallback_major_zone"
-    },
-    {
-      "code": "montpellier-port-marianne",
+      "code": "montpellier-port-marianne-millenaire-odysseum",
       "sourceUnits": [
         {
           "source": "iris_34172",
@@ -313,66 +233,22 @@
         {
           "source": "iris_34172",
           "name": "Odysseum"
-        }
-      ],
-      "coverageRole": "primary",
-      "geometryBasis": "iris_fallback_major_zone"
-    },
-    {
-      "code": "montpellier-port-marianne-lez",
-      "sourceUnits": [
-        {
-          "source": "iris_34172",
-          "name": "Méditerrannée"
         },
         {
           "source": "iris_34172",
-          "name": "Saint-François"
+          "name": "République"
         }
       ],
       "coverageRole": "primary",
       "geometryBasis": "iris_fallback_major_zone"
     },
     {
-      "code": "montpellier-occitanie",
+      "code": "montpellier-hopitaux-facultes-triolet",
       "sourceUnits": [
         {
           "source": "iris_34172",
           "name": "Occitanie"
-        }
-      ],
-      "coverageRole": "primary",
-      "geometryBasis": "iris_fallback_major_zone"
-    },
-    {
-      "code": "montpellier-assas-pharmacie",
-      "sourceUnits": [
-        {
-          "source": "iris_34172",
-          "name": "Assas"
         },
-        {
-          "source": "iris_34172",
-          "name": "Fac de Pharmacie"
-        }
-      ],
-      "coverageRole": "campus",
-      "geometryBasis": "iris_fallback_major_zone"
-    },
-    {
-      "code": "montpellier-euromedecine",
-      "sourceUnits": [
-        {
-          "source": "iris_34172",
-          "name": "Euromédecine"
-        }
-      ],
-      "coverageRole": "campus",
-      "geometryBasis": "iris_fallback_major_zone"
-    },
-    {
-      "code": "montpellier-triolet-vert-bois",
-      "sourceUnits": [
         {
           "source": "iris_34172",
           "name": "Vert Bois"
@@ -380,24 +256,25 @@
         {
           "source": "iris_34172",
           "name": "École d'Architecture-Triolet"
-        }
-      ],
-      "coverageRole": "campus",
-      "geometryBasis": "iris_fallback_major_zone"
-    },
-    {
-      "code": "montpellier-agropolis",
-      "sourceUnits": [
+        },
         {
           "source": "iris_34172",
-          "name": "Agropolis"
+          "name": "Lapeyronie"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Soulas"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Saint-Éloi"
         }
       ],
       "coverageRole": "campus",
       "geometryBasis": "iris_fallback_major_zone"
     },
     {
-      "code": "montpellier-ecole-normale",
+      "code": "montpellier-paul-valery-route-mende",
       "sourceUnits": [
         {
           "source": "iris_34172",
@@ -406,17 +283,29 @@
         {
           "source": "iris_34172",
           "name": "École Normale"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Fac de Pharmacie"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Assas"
         }
       ],
       "coverageRole": "campus",
       "geometryBasis": "iris_fallback_major_zone"
     },
     {
-      "code": "montpellier-avenue-lodeve",
+      "code": "montpellier-euromedecine-agropolis",
       "sourceUnits": [
         {
           "source": "iris_34172",
-          "name": "Avenue de Lodève"
+          "name": "Euromédecine"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Agropolis"
         }
       ],
       "coverageRole": "campus",
@@ -438,17 +327,6 @@
       "geometryBasis": "iris_fallback_major_zone"
     },
     {
-      "code": "montpellier-colline",
-      "sourceUnits": [
-        {
-          "source": "iris_34172",
-          "name": "La Colline"
-        }
-      ],
-      "coverageRole": "primary",
-      "geometryBasis": "iris_fallback_major_zone"
-    },
-    {
       "code": "montpellier-malbosc-garrigues",
       "sourceUnits": [
         {
@@ -464,7 +342,38 @@
           "name": "Malbosc"
         }
       ],
-      "coverageRole": "primary",
+      "coverageRole": "context",
+      "geometryBasis": "iris_fallback_major_zone"
+    },
+    {
+      "code": "montpellier-northwest-context",
+      "sourceUnits": [
+        {
+          "source": "iris_34172",
+          "name": "Blayac"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Bologne"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Les Tours"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Oxford"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Le Mail Nord"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Le Mail Sud"
+        }
+      ],
+      "coverageRole": "context",
       "geometryBasis": "iris_fallback_major_zone"
     },
     {
@@ -503,6 +412,33 @@
       "geometryBasis": "iris_fallback_major_zone"
     },
     {
+      "code": "montpellier-pres-arenes",
+      "sourceUnits": [
+        {
+          "source": "iris_34172",
+          "name": "Aiguerelles"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Mion"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Saint-Martin"
+        },
+        {
+          "source": "iris_34172",
+          "name": "La Rauze"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Tournezy"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "iris_fallback_major_zone"
+    },
+    {
       "code": "montpellier-cevennes-celleneuve",
       "sourceUnits": [
         {
@@ -522,22 +458,11 @@
           "name": "Pilory"
         }
       ],
-      "coverageRole": "context",
+      "coverageRole": "risk_cap",
       "geometryBasis": "iris_fallback_major_zone"
     },
     {
-      "code": "montpellier-lironde",
-      "sourceUnits": [
-        {
-          "source": "iris_34172",
-          "name": "La Lironde"
-        }
-      ],
-      "coverageRole": "context",
-      "geometryBasis": "iris_fallback_major_zone"
-    },
-    {
-      "code": "montpellier-mosson-core",
+      "code": "montpellier-mosson-paillade",
       "sourceUnits": [
         {
           "source": "iris_34172",
@@ -560,29 +485,7 @@
       "geometryBasis": "iris_fallback_major_zone"
     },
     {
-      "code": "montpellier-pas-du-loup",
-      "sourceUnits": [
-        {
-          "source": "iris_34172",
-          "name": "Pas du Loup"
-        }
-      ],
-      "coverageRole": "risk_cap",
-      "geometryBasis": "iris_fallback_major_zone"
-    },
-    {
-      "code": "montpellier-bouisses",
-      "sourceUnits": [
-        {
-          "source": "iris_34172",
-          "name": "Bouisses"
-        }
-      ],
-      "coverageRole": "context",
-      "geometryBasis": "iris_fallback_major_zone"
-    },
-    {
-      "code": "montpellier-estanove-lepic",
+      "code": "montpellier-estanove-south-context",
       "sourceUnits": [
         {
           "source": "iris_34172",
@@ -591,22 +494,90 @@
         {
           "source": "iris_34172",
           "name": "Lepic"
-        }
-      ],
-      "coverageRole": "context",
-      "geometryBasis": "iris_fallback_major_zone"
-    },
-    {
-      "code": "montpellier-saint-denis-sud",
-      "sourceUnits": [
+        },
         {
           "source": "iris_34172",
-          "name": "Saint-Denis"
+          "name": "Bouisses"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Sabathé"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Parc Montcalm"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Notre-Dame de la Paix"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Tastavin"
+        },
+        {
+          "source": "iris_34172",
+          "name": "Pas du Loup"
         }
       ],
       "coverageRole": "context",
       "geometryBasis": "iris_fallback_major_zone"
     }
   ],
-  "scope": {}
+  "scope": {
+    "coverageMode": "major_district",
+    "overlapExemptions": [
+      ["montpellier-aiguelongue-lunaret", "montpellier-beaux-arts-boutonnet"],
+      ["montpellier-aiguelongue-lunaret", "montpellier-euromedecine-agropolis"],
+      ["montpellier-aiguelongue-lunaret", "montpellier-hopitaux-facultes-triolet"],
+      ["montpellier-antigone", "montpellier-aubes-pompignane"],
+      ["montpellier-antigone", "montpellier-comedie-gare"],
+      ["montpellier-antigone", "montpellier-port-marianne-millenaire-odysseum"],
+      ["montpellier-antigone", "montpellier-pres-arenes"],
+      ["montpellier-antigone", "montpellier-jacques-coeur"],
+      ["montpellier-jacques-coeur", "montpellier-port-marianne-millenaire-odysseum"],
+      ["montpellier-jacques-coeur", "montpellier-pres-arenes"],
+      ["montpellier-port-marianne-millenaire-odysseum", "montpellier-pres-arenes"],
+      ["montpellier-arceaux-gambetta-figuerolles", "montpellier-comedie-gare"],
+      ["montpellier-arceaux-gambetta-figuerolles", "montpellier-ecusson-core"],
+      ["montpellier-arceaux-gambetta-figuerolles", "montpellier-estanove-south-context"],
+      ["montpellier-arceaux-gambetta-figuerolles", "montpellier-hopitaux-facultes-triolet"],
+      ["montpellier-arceaux-gambetta-figuerolles", "montpellier-mosson-paillade"],
+      ["montpellier-arceaux-gambetta-figuerolles", "montpellier-paul-valery-route-mende"],
+      ["montpellier-arceaux-gambetta-figuerolles", "montpellier-arceaux-north-context"],
+      ["montpellier-arceaux-north-context", "montpellier-beaux-arts-boutonnet"],
+      ["montpellier-arceaux-north-context", "montpellier-ecusson-core"],
+      ["montpellier-arceaux-north-context", "montpellier-hopitaux-facultes-triolet"],
+      ["montpellier-arceaux-north-context", "montpellier-paul-valery-route-mende"],
+      ["montpellier-arceaux-north-context", "montpellier-mosson-paillade"],
+
+      ["montpellier-aubes-pompignane", "montpellier-beaux-arts-boutonnet"],
+      ["montpellier-aubes-pompignane", "montpellier-port-marianne-millenaire-odysseum"],
+      ["montpellier-aubes-pompignane", "montpellier-jacques-coeur"],
+      ["montpellier-beaux-arts-boutonnet", "montpellier-ecusson-core"],
+      ["montpellier-beaux-arts-boutonnet", "montpellier-hopitaux-facultes-triolet"],
+      ["montpellier-beaux-arts-boutonnet", "montpellier-paul-valery-route-mende"],
+      ["montpellier-cevennes-celleneuve", "montpellier-croix-argent-ovalie"],
+      ["montpellier-cevennes-celleneuve", "montpellier-estanove-south-context"],
+      ["montpellier-cevennes-celleneuve", "montpellier-mosson-paillade"],
+      ["montpellier-cevennes-celleneuve", "montpellier-northwest-context"],
+      ["montpellier-comedie-gare", "montpellier-ecusson-core"],
+      ["montpellier-comedie-gare", "montpellier-aubes-pompignane"],
+      ["montpellier-comedie-gare", "montpellier-estanove-south-context"],
+      ["montpellier-comedie-gare", "montpellier-pres-arenes"],
+      ["montpellier-croix-argent-ovalie", "montpellier-estanove-south-context"],
+      ["montpellier-croix-argent-ovalie", "montpellier-pres-arenes"],
+      ["montpellier-ecusson-core", "montpellier-paul-valery-route-mende"],
+      ["montpellier-estanove-south-context", "montpellier-mosson-paillade"],
+      ["montpellier-estanove-south-context", "montpellier-pres-arenes"],
+      ["montpellier-euromedecine-agropolis", "montpellier-hopitaux-facultes-triolet"],
+      ["montpellier-euromedecine-agropolis", "montpellier-malbosc-garrigues"],
+      ["montpellier-hopitaux-facultes-triolet", "montpellier-malbosc-garrigues"],
+      ["montpellier-hopitaux-facultes-triolet", "montpellier-mosson-paillade"],
+      ["montpellier-hopitaux-facultes-triolet", "montpellier-paul-valery-route-mende"],
+      ["montpellier-malbosc-garrigues", "montpellier-mosson-paillade"],
+      ["montpellier-malbosc-garrigues", "montpellier-northwest-context"],
+      ["montpellier-northwest-context", "montpellier-mosson-paillade"]
+    ]
+  }
 }
