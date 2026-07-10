@@ -1,0 +1,756 @@
+{
+  "cityId": "marseille",
+  "placesFile": "src/data/marseillePlaces.ts",
+  "geojsonOutput": "public/data/marseille.geojson",
+  "sources": [
+    {
+      "id": "marseille_quartiers",
+      "type": "marseille_quartiers"
+    }
+  ],
+  "zones": [
+    {
+      "code": "marseille-saint-charles-chapitre",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT CHARLES"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "CHAPITRE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "THIERS"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "area": "1e"
+    },
+    {
+      "code": "marseille-belsunce-noailles",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "BELSUNCE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "NOAILLES"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group",
+      "area": "1e"
+    },
+    {
+      "code": "marseille-vieux-port-opera",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "OPERA"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "area": "1e"
+    },
+    {
+      "code": "marseille-panier-hotel-de-ville",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "HOTEL DE VILLE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "GRANDS CARMES"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "area": "2e"
+    },
+    {
+      "code": "marseille-joliette-arenc",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "LA JOLIETTE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "ARENC"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "area": "2e"
+    },
+    {
+      "code": "marseille-belle-de-mai",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "BELLE DE MAI"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group",
+      "area": "3e"
+    },
+    {
+      "code": "marseille-saint-mauront-villette",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT MAURON"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LA VILETTE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT LAZARE"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group",
+      "area": "3e"
+    },
+    {
+      "code": "marseille-cinq-avenues-chartreux",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "CINQ AVENUES"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LES CHARTREUX"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "area": "4e"
+    },
+    {
+      "code": "marseille-blancarde-chutes-lavie",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "LA BLANCARDE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "CHUTES LAVIE"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "area": "4e"
+    },
+    {
+      "code": "marseille-baille-timone-conception",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "BAILLE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LA TIMONE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LA CONCEPTION"
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group",
+      "area": "5e"
+    },
+    {
+      "code": "marseille-camas-saint-pierre",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "LE CAMAS"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT PIERRE"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "area": "5e"
+    },
+    {
+      "code": "marseille-cours-julien-plaine",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "NOTRE DAME DU MONT"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LODI"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "area": "6e"
+    },
+    {
+      "code": "marseille-castellane-prefecture",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "CASTELLANE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "PREFECTURE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "PALAIS DE JUSTICE"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "area": "6e"
+    },
+    {
+      "code": "marseille-vauban-roucas",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "VAUBAN"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "ROUCAS BLANC"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "area": "6e/7e"
+    },
+    {
+      "code": "marseille-pharo-bompard-coast",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "LE PHARO"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT VICTOR"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "BOMPARD"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT LAMBERT"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "area": "7e"
+    },
+    {
+      "code": "marseille-endoume-context",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "ENDOUME"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "allowMultipart": true,
+      "multipartJustification": "Official Endoume quartier tessellation is edge-separated into multiple coastal fragments.",
+      "area": "7e"
+    },
+    {
+      "code": "marseille-rouet-perier",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "LE ROUET"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "PERIER"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "area": "8e"
+    },
+    {
+      "code": "marseille-prado-saint-giniez",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT GINIEZ"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LA PLAGE"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "area": "8e"
+    },
+    {
+      "code": "marseille-bonneveine-pointe-rouge",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "BONNEVEINE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "POINTE ROUGE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "VIELLE CHAPELLE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "MONTREDON"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "area": "8e"
+    },
+    {
+      "code": "marseille-mazargues-sainte-anne",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "MAZARGUES"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINTE ANNE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LES BAUMETTES"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LE CABOT"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINTE MARGUERITE"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "area": "8e/9e"
+    },
+    {
+      "code": "marseille-luminy-redon",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "LE REDON"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LA PANOUSE"
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group",
+      "area": "9e"
+    },
+    {
+      "code": "marseille-carpaigne-context",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "CARPIAGNE"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "area": "9e"
+    },
+    {
+      "code": "marseille-vaufreges-low",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "VAUFREGES"
+        }
+      ],
+      "coverageRole": "low_relevance",
+      "geometryBasis": "official_quartier_group",
+      "area": "9e"
+    },
+    {
+      "code": "marseille-sormiou-low",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "SORMIOU"
+        }
+      ],
+      "coverageRole": "low_relevance",
+      "geometryBasis": "official_quartier_group",
+      "area": "9e"
+    },
+    {
+      "code": "marseille-les-goudes-low",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "LES GOUDES"
+        }
+      ],
+      "coverageRole": "low_relevance",
+      "geometryBasis": "official_quartier_group",
+      "allowMultipart": true,
+      "multipartJustification": "Official Les Goudes quartier is edge-separated along the calanques coast.",
+      "area": "9e"
+    },
+    {
+      "code": "marseille-capelette-pont-vivaux",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "LA CAPELETTE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "MENPENTI"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "PONT DE VIVAUX"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "area": "10e"
+    },
+    {
+      "code": "marseille-saint-loup-saint-tronc",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT LOUP"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT TRONC"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "area": "10e"
+    },
+    {
+      "code": "marseille-valentine-saint-marcel",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "LA VALENTINE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT MARCEL"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT MENET"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LA BARASSE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LA MILLIERE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LA POMME"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "area": "11e"
+    },
+    {
+      "code": "marseille-11e-hills-context",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "LA TREILLE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "EOURES"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LES ACCATES"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LES CAMOINS"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "area": "11e"
+    },
+    {
+      "code": "marseille-valbarelle-low",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "LA VALBARELLE"
+        }
+      ],
+      "coverageRole": "low_relevance",
+      "geometryBasis": "official_quartier_group",
+      "area": "11e"
+    },
+    {
+      "code": "marseille-saint-barnabe-montolivet",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT BARNABE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "MONTOLIVET"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT JULIEN"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LES CAILLOLS"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LA FOURRAGERE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LES TROIS LUCS"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT JEAN DU DESERT"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group",
+      "area": "12e"
+    },
+    {
+      "code": "marseille-saint-jerome-la-rose",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT JEROME"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LA ROSE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "MALPASSE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT JUST"
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group",
+      "area": "13e"
+    },
+    {
+      "code": "marseille-chateau-gombert-saint-mitre",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "CHATEAU-GOMBERT"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT MITRE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LES OLIVES"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LES MEDECINS"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LES MOURETS"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LA CROIX ROUGE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "PALAMA"
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group",
+      "area": "13e"
+    },
+    {
+      "code": "marseille-14e-north-risk",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "BON SECOURS"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LE CANET"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LE MERLAN"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LES ARNAVAUX"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT BARTHELEMY"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT JOSEPH"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINTE MARTHE"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group",
+      "area": "14e"
+    },
+    {
+      "code": "marseille-15e-port-north-risk",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "LA CABUCELLE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LA CALADE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LA DELORME"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LA VISTE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LES AYGALADES"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LES BORELS"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LES CROTTES"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT ANTOINE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT LOUIS"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "VERDURON"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "NOTRE DAME LIMITE"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group",
+      "area": "15e"
+    },
+    {
+      "code": "marseille-estaque-16e",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "L'ESTAQUE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT HENRI"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "SAINT ANDRE"
+        },
+        {
+          "source": "marseille_quartiers",
+          "name": "LES RIAUX"
+        }
+      ],
+      "coverageRole": "low_relevance",
+      "geometryBasis": "official_quartier_group",
+      "area": "16e"
+    }
+  ],
+  "scope": {
+    "coverageMode": "full_partition",
+    "preferredBase": "official_quartier",
+    "inseeCodes": [
+      "13055"
+    ],
+    "fullCoverageSources": [
+      "marseille_quartiers"
+    ]
+  },
+  "outlineOutput": "public/data/marseille-outlines.geojson"
+}

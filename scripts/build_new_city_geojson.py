@@ -587,7 +587,7 @@ def build_city(city_id: str, specs: list[dict[str, Any]], places_file: Path, out
 
 
 def main() -> None:
-    from build_batch_cities import BATCH_OUTPUTS, build_city as build_batch_city
+    from legacy.build_batch_cities import BATCH_OUTPUTS, build_city as build_batch_city
 
     geometry_specs = json.loads(GEOMETRY_JSON.read_text(encoding="utf-8"))
     all_outputs = {**CITY_OUTPUTS, **BATCH_OUTPUTS}

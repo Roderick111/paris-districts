@@ -1,0 +1,346 @@
+{
+  "cityId": "nantes",
+  "placesFile": "src/data/nantesPlaces.ts",
+  "geojsonOutput": "public/data/nantes.geojson",
+  "sources": [
+    {
+      "id": "nantes_quartiers",
+      "type": "nantes_quartiers"
+    },
+    {
+      "id": "iris_44109",
+      "type": "iris_wfs",
+      "insee": "44109"
+    }
+  ],
+  "zones": [
+    {
+      "code": "nantes-centre-bouffay-commerce",
+      "sourceUnits": [
+        {
+          "source": "nantes_quartiers",
+          "name": "Centre-ville"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "nantes-talensac-viarme-hauts-paves",
+      "sourceUnits": [
+        {
+          "source": "iris_44109",
+          "name": "Bellamy-Barbin"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Hauts Pavés"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Monselet"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Procé"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Rennes-Bellamy"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Talensac-Pont Morand"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Vannes-Saint-Pasquier"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Viarme"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_district_partition"
+    },
+    {
+      "code": "nantes-saint-felix-michelet",
+      "sourceUnits": [
+        {
+          "source": "iris_44109",
+          "name": "Saint-Félix"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Université-Michelet"
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "iris_district_partition"
+    },
+    {
+      "code": "nantes-facultes-petit-port",
+      "sourceUnits": [
+        {
+          "source": "iris_44109",
+          "name": "Boissière"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Bourgeonnière-Petit Port"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Bout des Pavés-Chêne des Anglais"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Chauvinière"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Jonelière-Université"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Pont du Cens-Côte d'Or"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Santos-Dumont"
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "iris_district_partition"
+    },
+    {
+      "code": "nantes-nord-context",
+      "sourceUnits": [
+        {
+          "source": "iris_44109",
+          "name": "Bout des Landes"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Z.A. Hauts de Gesvre"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "iris_district_partition"
+    },
+    {
+      "code": "nantes-chantrerie-gachet",
+      "sourceUnits": [
+        {
+          "source": "iris_44109",
+          "name": "Z.A. Chantrerie-Gachet"
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "iris_district_partition"
+    },
+    {
+      "code": "nantes-erdre-context",
+      "sourceUnits": [
+        {
+          "source": "iris_44109",
+          "name": "Beaujoire-Halvêque"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Plessis Tison"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Port Boyer"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Ranzay-Grand Clos"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Saint-Joseph-Bourg"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Saint-Joseph-Erdre"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Tortière"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Éraudière-Renaudière"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "iris_district_partition"
+    },
+    {
+      "code": "nantes-ile-west-centre",
+      "sourceUnits": [
+        {
+          "source": "iris_44109",
+          "name": "République-Les Ponts"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Z.A. Sainte-Anne-Zone Portuaire"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_district_partition"
+    },
+    {
+      "code": "nantes-ile-east",
+      "sourceUnits": [
+        {
+          "source": "iris_44109",
+          "name": "Beaulieu-Mangin"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Île Beaulieu"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "iris_district_partition"
+    },
+    {
+      "code": "nantes-malakoff",
+      "sourceUnits": [
+        {
+          "source": "iris_44109",
+          "name": "Agenêts"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Caserne Mellinet"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Coudray"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Coulmiers-Jardin des Plantes"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Dalby"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Malakoff"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Richebourg-Saint-Clément"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Toutes Aides"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Vieux Malakoff"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "iris_district_partition"
+    },
+    {
+      "code": "nantes-saint-donatien",
+      "sourceUnits": [
+        {
+          "source": "iris_44109",
+          "name": "Saint-Donatien"
+        },
+        {
+          "source": "iris_44109",
+          "name": "Waldeck-Sully"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_district_partition"
+    },
+    {
+      "code": "nantes-dervallieres-zola",
+      "sourceUnits": [
+        {
+          "source": "nantes_quartiers",
+          "name": "Dervallières - Zola"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "nantes-bellevue-chantenay-sainte-anne",
+      "sourceUnits": [
+        {
+          "source": "nantes_quartiers",
+          "name": "Bellevue - Chantenay - Sainte-Anne"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "nantes-breil-barberie",
+      "sourceUnits": [
+        {
+          "source": "nantes_quartiers",
+          "name": "Breil - Barberie"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "nantes-doulon-bottiere",
+      "sourceUnits": [
+        {
+          "source": "nantes_quartiers",
+          "name": "Doulon - Bottière"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "nantes-sud",
+      "sourceUnits": [
+        {
+          "source": "nantes_quartiers",
+          "name": "Nantes Sud"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier"
+    }
+  ],
+  "scope": {
+    "coverageMode": "full_partition",
+    "preferredBase": "iris",
+    "inseeCodes": [
+      "44109"
+    ],
+    "fullCoverageSources": [
+      "nantes_quartiers"
+    ],
+    "exemptUnits": {
+      "nantes_quartiers": [
+        "Hauts-Pavés - Saint-Félix",
+        "Nantes Nord",
+        "Nantes Erdre",
+        "Île de Nantes",
+        "Malakoff - Saint-Donatien"
+      ]
+    }
+  },
+  "outlineOutput": "public/data/nantes-outlines.geojson"
+}

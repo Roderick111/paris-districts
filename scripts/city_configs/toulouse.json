@@ -1,0 +1,349 @@
+{
+  "cityId": "toulouse",
+  "placesFile": "src/data/toulousePlaces.ts",
+  "geojsonOutput": "public/data/toulouse.geojson",
+  "sources": [
+    {
+      "id": "toulouse_quartiers",
+      "type": "toulouse_quartiers"
+    },
+    {
+      "id": "iris_31555",
+      "type": "iris_wfs",
+      "insee": "31555"
+    }
+  ],
+  "zones": [
+    {
+      "code": "toulouse-capitole-carmes",
+      "sourceUnits": [
+        {
+          "source": "iris_31555",
+          "name": "Croix Baragnon"
+        },
+        {
+          "source": "iris_31555",
+          "name": "Dalbade"
+        },
+        {
+          "source": "iris_31555",
+          "name": "Filatiers"
+        },
+        {
+          "source": "iris_31555",
+          "name": "Jacobins"
+        },
+        {
+          "source": "iris_31555",
+          "name": "Occitane"
+        },
+        {
+          "source": "iris_31555",
+          "name": "Ozenne"
+        },
+        {
+          "source": "iris_31555",
+          "name": "Saint-Rome"
+        },
+        {
+          "source": "iris_31555",
+          "name": "Taur"
+        },
+        {
+          "source": "iris_31555",
+          "name": "Valade"
+        },
+        {
+          "source": "iris_31555",
+          "name": "Wilson"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_district_partition"
+    },
+    {
+      "code": "toulouse-arnaud-bernard-saint-sernin",
+      "sourceUnits": [
+        {
+          "source": "iris_31555",
+          "name": "Saint-Sernin"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "iris_district_partition"
+    },
+    {
+      "code": "toulouse-saint-michel-saint-agne",
+      "sourceUnits": [
+        {
+          "source": "iris_31555",
+          "name": "Branly"
+        },
+        {
+          "source": "iris_31555",
+          "name": "Caserne Niel"
+        },
+        {
+          "source": "iris_31555",
+          "name": "Daste"
+        },
+        {
+          "source": "iris_31555",
+          "name": "Hôtel de Région"
+        },
+        {
+          "source": "iris_31555",
+          "name": "Jardin des Plantes"
+        },
+        {
+          "source": "iris_31555",
+          "name": "Montplaisir"
+        },
+        {
+          "source": "iris_31555",
+          "name": "Notre-Dame"
+        },
+        {
+          "source": "iris_31555",
+          "name": "Poudrerie"
+        },
+        {
+          "source": "iris_31555",
+          "name": "Saint-Léon"
+        },
+        {
+          "source": "iris_31555",
+          "name": "École Normale"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_district_partition"
+    },
+    {
+      "code": "toulouse-empalot-ramier",
+      "sourceUnits": [
+        {
+          "source": "iris_31555",
+          "name": "Ramier"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "iris_district_partition"
+    },
+    {
+      "code": "toulouse-amidonniers-compans",
+      "sourceUnits": [
+        {
+          "source": "toulouse_quartiers",
+          "name": "Amidonniers / Compans-Caffarelli / Brouardel"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "toulouse-saint-cyprien",
+      "sourceUnits": [
+        {
+          "source": "toulouse_quartiers",
+          "name": "Saint-Cyprien"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "toulouse-chalets-bayard-saint-aubin",
+      "sourceUnits": [
+        {
+          "source": "toulouse_quartiers",
+          "name": "Les Chalets / Bayard / Belfort / Saint-Aubin / Dupuy"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "toulouse-bonnefoy-marengo",
+      "sourceUnits": [
+        {
+          "source": "toulouse_quartiers",
+          "name": "Lapujade / Bonnefoy / Périole / Marengo / La Colonne"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "toulouse-croix-pierre-route-espagne",
+      "sourceUnits": [
+        {
+          "source": "toulouse_quartiers",
+          "name": "Croix-de-Pierre / Route d'Espagne"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "toulouse-arenes-bagatelle-papus",
+      "sourceUnits": [
+        {
+          "source": "toulouse_quartiers",
+          "name": "Fontaine-Lestang/Arènes/Bagatelle/Papus/Tabar/Bordelongue/Mermoz /La Faourette"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "toulouse-casselardit-cartoucherie",
+      "sourceUnits": [
+        {
+          "source": "toulouse_quartiers",
+          "name": "Casselardit / Fontaine-Bayonne / Cartoucherie"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "toulouse-minimes-barriere-paris",
+      "sourceUnits": [
+        {
+          "source": "toulouse_quartiers",
+          "name": "Minimes / Barrière de Paris / Ponts-Jumeaux / La Vache / Raisin / Fondeyre"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "toulouse-sept-deniers-lalande",
+      "sourceUnits": [
+        {
+          "source": "toulouse_quartiers",
+          "name": "Sept Deniers / Ginestous-Sesquières / Lalande"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "toulouse-borderouge-croix-daurade",
+      "sourceUnits": [
+        {
+          "source": "toulouse_quartiers",
+          "name": "Trois Cocus / Borderouge / Croix-Daurade / Paleficat / Grand Selve"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "toulouse-jolimont-roseraie-soupetard",
+      "sourceUnits": [
+        {
+          "source": "toulouse_quartiers",
+          "name": "Jolimont / Soupetard / Roseraie / Gloire / Gramont / Amouroux"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "toulouse-guilhemery-cote-pavee",
+      "sourceUnits": [
+        {
+          "source": "toulouse_quartiers",
+          "name": "Bonhoure / Guilheméry / Château de l'Hers / Limayrac / Côte Pavée"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "toulouse-demoiselles-montaudran",
+      "sourceUnits": [
+        {
+          "source": "toulouse_quartiers",
+          "name": "Pont des Demoiselles / Ormeau/ Montaudran / La Terrasse / Malepère"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "toulouse-rangueil-sauzelong",
+      "sourceUnits": [
+        {
+          "source": "toulouse_quartiers",
+          "name": "Rangueil / Sauzelong / Jules-Julien / Pech-David / Pouvourville"
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "toulouse-purpan-saint-martin",
+      "sourceUnits": [
+        {
+          "source": "toulouse_quartiers",
+          "name": "Arènes Romaines / Ancely / Saint-Martin du Touch / Purpan"
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "toulouse-lardenne-pradettes-basso-cambo",
+      "sourceUnits": [
+        {
+          "source": "toulouse_quartiers",
+          "name": "Lardenne / Pradettes / Basso-Cambo"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "toulouse-mirail-reynerie-bellefontaine",
+      "sourceUnits": [
+        {
+          "source": "toulouse_quartiers",
+          "name": "Mirail -Université / Reynerie / Bellefontaine"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "toulouse-saint-simon-lafourguette-oncopole",
+      "sourceUnits": [
+        {
+          "source": "toulouse_quartiers",
+          "name": "Saint-Simon / Lafourguette / Oncopole - Campus Santé du Futur"
+        }
+      ],
+      "coverageRole": "low_relevance",
+      "geometryBasis": "official_quartier"
+    }
+  ],
+  "scope": {
+    "coverageMode": "full_partition",
+    "preferredBase": "iris",
+    "inseeCodes": [
+      "31555"
+    ],
+    "fullCoverageSources": [
+      "toulouse_quartiers"
+    ],
+    "exemptUnits": {
+      "toulouse_quartiers": [
+        "Capitole / Arnaud Bernard / Carmes",
+        "Saint-Michel /  Saint-Agne / Empalot / Le Busca / Île du Ramier / Monplaisir"
+      ]
+    }
+  },
+  "outlineOutput": "public/data/toulouse-outlines.geojson"
+}

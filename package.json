@@ -1,5 +1,5 @@
 {
-  "name": "paris-student-map",
+  "name": "district-quality-map",
   "version": "0.1.0",
   "private": true,
   "packageManager": "bun@1.3.5",
@@ -7,11 +7,16 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "eslint .",
-    "geo:build": "python3 scripts/build_new_city_geojson.py",
-    "geo:validate": "python3 scripts/validate_city_geojson.py",
+    "geo:build": "python3 scripts/city_compiler/cli.py build",
+    "geo:validate": "python3 scripts/city_compiler/cli.py validate",
+    "geo:compile": "python3 scripts/city_compiler/cli.py build",
+    "geo:compile:validate": "python3 scripts/city_compiler/cli.py validate",
+    "geo:compile:audit": "python3 scripts/city_compiler/cli.py audit",
+    "geo:compile:configs": "python3 scripts/city_compiler/generate_configs.py",
     "geo:outlines": "bun scripts/build_city_outlines.ts",
-    "geo:coverage": "python3 scripts/build_full_coverage_specs.py",
-    "geo:coverage:all": "python3 scripts/build_full_coverage_specs.py lille nice && python3 scripts/append_context_places.py lille nice && python3 scripts/build_new_city_geojson.py lille nice && python3 scripts/validate_city_geojson.py lille nice"
+    "geo:coverage": "python3 scripts/legacy/build_full_coverage_specs.py",
+    "geo:coverage:all": "python3 scripts/legacy/build_full_coverage_specs.py lille nice && python3 scripts/legacy/append_context_places.py lille nice && python3 scripts/city_compiler/cli.py build lille nice && python3 scripts/city_compiler/cli.py validate lille nice",
+    "geo:validate:all": "python3 scripts/city_compiler/cli.py build && python3 scripts/city_compiler/cli.py validate && bun scripts/build_city_outlines.ts lille marseille nice nantes toulouse strasbourg montpellier rennes toulon grenoble && bun run build"
   },
   "dependencies": {
     "@deck.gl/core": "^9.1.14",

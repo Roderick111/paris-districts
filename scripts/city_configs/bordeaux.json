@@ -1,0 +1,728 @@
+{
+  "cityId": "bordeaux",
+  "placesFile": "src/data/bordeauxPlaces.ts",
+  "placesSection": "bordeauxMicroPlaces",
+  "geojsonOutput": "public/data/bordeaux.geojson",
+  "sources": [
+    {
+      "id": "bordeaux_quartiers",
+      "type": "bordeaux_quartiers"
+    },
+    {
+      "id": "bordeaux_iris",
+      "type": "bordeaux_iris"
+    },
+    {
+      "id": "geo_api_commune",
+      "type": "geo_api_commune"
+    }
+  ],
+  "scope": {
+    "excludedPlaceCodes": [
+      "gradignan-centre-mandavit",
+      "gradignan-campus-beausoleil",
+      "gradignan-malartic-barthez"
+    ]
+  },
+  "zones": [
+    {
+      "code": "bdx-centre-saint-pierre",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "Saint-Bruno-Saint-Victor 1"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Saint-Bruno-Saint-Victor 2"
+        }
+      ]
+    },
+    {
+      "code": "bdx-centre-hotel-ville",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "Hôtel de Ville-Quinconces 1"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Hôtel de Ville-Quinconces 2"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Hôtel de Ville-Quinconces 3"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Hôtel de Ville-Quinconces 4"
+        }
+      ]
+    },
+    {
+      "code": "bdx-centre-quinconces",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "Hôtel de Ville-Quinconces 5"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Hôtel de Ville-Quinconces 6"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Hôtel de Ville-Quinconces 7"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Hôtel de Ville-Quinconces 8"
+        }
+      ]
+    },
+    {
+      "code": "bdx-sud-victoire",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "Capucins-Victoire 1"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Capucins-Victoire 2"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Capucins-Victoire 3"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Capucins-Victoire 4"
+        }
+      ]
+    },
+    {
+      "code": "bdx-sud-saint-michel-capucins",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "Capucins-Victoire 5"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Capucins-Victoire 6"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Capucins-Victoire 7"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Capucins-Victoire 8"
+        }
+      ]
+    },
+    {
+      "code": "bdx-sud-sainte-croix",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "Gare Saint-Jean 1"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Gare Saint-Jean 2"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Gare Saint-Jean 3"
+        }
+      ]
+    },
+    {
+      "code": "bdx-sud-belcier",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "Gare Saint-Jean 4"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Gare Saint-Jean 5"
+        }
+      ]
+    },
+    {
+      "code": "bdx-chartrons-chartrons",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "Chartrons-Grand Parc 2"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Chartrons-Grand Parc 9"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Chartrons-Grand Parc 11"
+        }
+      ]
+    },
+    {
+      "code": "bdx-chartrons-jardin-public",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "Saint-Seurin-Fondaudège 1"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Saint-Seurin-Fondaudège 2"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Saint-Seurin-Fondaudège 3"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Saint-Seurin-Fondaudège 4"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Saint-Seurin-Fondaudège 5"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Saint-Seurin-Fondaudège 6"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Saint-Seurin-Fondaudège 7"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Saint-Seurin-Fondaudège 8"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Saint-Seurin-Fondaudège 9"
+        }
+      ]
+    },
+    {
+      "code": "bdx-chartrons-grand-parc",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "Chartrons-Grand Parc 5"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Chartrons-Grand Parc 6"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Chartrons-Grand Parc 7"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Chartrons-Grand Parc 8"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Chartrons-Grand Parc 10"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Chartrons-Grand Parc 12"
+        }
+      ]
+    },
+    {
+      "code": "bdx-maritime-bassins",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "Bacalan 1"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Bacalan 2"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Bacalan 3"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Bacalan 4"
+        }
+      ]
+    },
+    {
+      "code": "bdx-maritime-aubiers",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "Chartrons-Grand Parc 13"
+        }
+      ]
+    },
+    {
+      "code": "bdx-maritime-ginko",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "Le Lac 1"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Le Lac 3"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Chartrons-Grand Parc 1"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Chartrons-Grand Parc 3"
+        }
+      ]
+    },
+    {
+      "code": "bdx-bastide-stalingrad",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "La Bastide 1"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "La Bastide 2"
+        }
+      ]
+    },
+    {
+      "code": "bdx-bastide-niel",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "La Bastide 3"
+        }
+      ]
+    },
+    {
+      "code": "bdx-bastide-benauge",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "La Bastide 4"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "La Bastide 5"
+        }
+      ]
+    },
+    {
+      "code": "bdx-nansouty-nansouty",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "Nansouty 1"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Nansouty 2"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Nansouty 3"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Nansouty 4"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Nansouty 5"
+        }
+      ]
+    },
+    {
+      "code": "bdx-nansouty-saint-genes",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "Nansouty 6"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Nansouty 7"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Nansouty 8"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Nansouty 9"
+        }
+      ]
+    },
+    {
+      "code": "bdx-saint-augustin-augustin",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "Saint-Augustin 1"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Saint-Augustin 2"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Saint-Augustin 3"
+        }
+      ]
+    },
+    {
+      "code": "bdx-saint-augustin-tauzin",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "Saint-Augustin 4"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Saint-Augustin 5"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Saint-Bruno-Saint-Victor 3"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Saint-Bruno-Saint-Victor 4"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Saint-Bruno-Saint-Victor 5"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Saint-Bruno-Saint-Victor 6"
+        }
+      ]
+    },
+    {
+      "code": "bdx-cauderan-centre",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "Villa Primerose Parc Bordelais-Caudéran 1"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Villa Primerose Parc Bordelais-Caudéran 2"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Villa Primerose Parc Bordelais-Caudéran 3"
+        }
+      ]
+    },
+    {
+      "code": "bdx-cauderan-parc-bordelais",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "Villa Primerose Parc Bordelais-Caudéran 4"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Villa Primerose Parc Bordelais-Caudéran 5"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Villa Primerose Parc Bordelais-Caudéran 6"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Lestonnat-Monséjour 1"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Lestonnat-Monséjour 2"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Lestonnat-Monséjour 3"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Lestonnat-Monséjour 4"
+        }
+      ]
+    },
+    {
+      "code": "bdx-cauderan-stehelin",
+      "kind": "quartier",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_iris",
+          "name": "Lestonnat-Monséjour 5"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Lestonnat-Monséjour 6"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Lestonnat-Monséjour 7"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Lestonnat-Monséjour 8"
+        },
+        {
+          "source": "bordeaux_iris",
+          "name": "Lestonnat-Monséjour 9"
+        }
+      ]
+    },
+    {
+      "code": "talence-centre-forum-peixotto",
+      "kind": "commune",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Poste-Mairie"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Peylanne"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Plume la Poule"
+        }
+      ]
+    },
+    {
+      "code": "talence-campus",
+      "kind": "commune",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Domaine Universitaire"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Thouars"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Compostelle"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Le Bijou"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Raba"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Le Lycée"
+        }
+      ]
+    },
+    {
+      "code": "talence-medoquine-roustaing",
+      "kind": "commune",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Médoquine"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "La Taillade"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Zola"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Saint Genès"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "La Fauvette"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Caudérès"
+        }
+      ]
+    },
+    {
+      "code": "talence-haut-brion",
+      "kind": "commune",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Haut Brion"
+        }
+      ]
+    },
+    {
+      "code": "pessac-saige",
+      "kind": "commune",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Saige"
+        }
+      ]
+    },
+    {
+      "code": "pessac-campus-compostelle",
+      "kind": "commune",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_quartiers",
+          "name": "La Paillère-Compostelle"
+        }
+      ]
+    },
+    {
+      "code": "pessac-centre-camponac",
+      "kind": "commune",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Le Bourg"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Casino"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Sardine"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Arago-La Chataigneraie"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Chiquet-Fontaudin"
+        }
+      ]
+    },
+    {
+      "code": "pessac-magonty",
+      "kind": "commune",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Magonty"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Toctoucau"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Cap de Bos"
+        }
+      ]
+    },
+    {
+      "code": "pessac-alouette",
+      "kind": "commune",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_quartiers",
+          "name": "France Alouette"
+        }
+      ]
+    },
+    {
+      "code": "pessac-bourgailh",
+      "kind": "commune",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_quartiers",
+          "name": "3M-Bourgailh"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Le Monteil"
+        }
+      ]
+    },
+    {
+      "code": "pessac-haut-leveque",
+      "kind": "commune",
+      "sourceUnits": [
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Brivazac-Candau"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Le Vallon-Les Echoppes"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Noès"
+        },
+        {
+          "source": "bordeaux_quartiers",
+          "name": "Verthamon"
+        }
+      ]
+    },
+    {
+      "code": "gradignan-commune",
+      "kind": "commune",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "33192"
+        }
+      ],
+      "communeInsee": "33192"
+    }
+  ]
+}

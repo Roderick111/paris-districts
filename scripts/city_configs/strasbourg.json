@@ -1,0 +1,232 @@
+{
+  "cityId": "strasbourg",
+  "placesFile": "src/data/strasbourgPlaces.ts",
+  "geojsonOutput": "public/data/strasbourg.geojson",
+  "sources": [
+    {
+      "id": "strasbourg_quartiers",
+      "type": "strasbourg_quartiers",
+      "url": "https://data.strasbourg.eu/api/explore/v2.1/catalog/datasets/strasbourg_23_quartiers/exports/geojson",
+      "nameKey": "nom_quartier",
+      "extraUrl": "https://data.strasbourg.eu/api/explore/v2.1/catalog/datasets/strasbourg-15-quartiers/exports/geojson",
+      "extraNameKey": "libelle"
+    },
+    {
+      "id": "geo_api_commune",
+      "type": "geo_api_commune"
+    }
+  ],
+  "zones": [
+    {
+      "code": "strasbourg-bourse-esplanade-krutenau",
+      "sourceUnits": [
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Bourse Krutenau"
+        },
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Esplanade"
+        },
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Ampère"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "strasbourg-centre-ville-petite-france",
+      "sourceUnits": [
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Centre ville"
+        },
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Cité de l'Ill"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "strasbourg-gare-tribunal",
+      "sourceUnits": [
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Gare Porte Schirmeck"
+        },
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Tribunal"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "strasbourg-orangerie-conseil-xv",
+      "sourceUnits": [
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Orang Cons des XV"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "strasbourg-robertsau-wacken",
+      "sourceUnits": [
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Robertsau"
+        },
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Spach Rotterdam"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "strasbourg-cronenbourg-campus",
+      "sourceUnits": [
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Cronenbourg Cité"
+        },
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Vieux Cronenbourg"
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "strasbourg-hautepierre-poteries",
+      "sourceUnits": [
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Hautepierre"
+        },
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Parc des Poteries"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "strasbourg-koenigshoffen",
+      "sourceUnits": [
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Koenigshoffen"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "strasbourg-montagne-verte",
+      "sourceUnits": [
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Montagne Verte"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "strasbourg-elsau",
+      "sourceUnits": [
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Elsau"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "strasbourg-meinau",
+      "sourceUnits": [
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Meinau"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "strasbourg-neudorf-musau",
+      "sourceUnits": [
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Neudorf"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "strasbourg-port-du-rhin",
+      "sourceUnits": [
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Port du Rhin"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "strasbourg-neuhof-1",
+      "sourceUnits": [
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Neuhof"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "strasbourg-neuhof-2-stockfeld-ganzau",
+      "sourceUnits": [
+        {
+          "source": "strasbourg_quartiers",
+          "name": "Vieux Neuhof"
+        },
+        {
+          "source": "strasbourg_quartiers",
+          "name": "NEUHOF2"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "strasbourg-illkirch-campus",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "67447"
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "commune",
+      "communeInsee": "67447"
+    }
+  ],
+  "scope": {},
+  "outlineOutput": "public/data/strasbourg-outlines.geojson"
+}

@@ -1,0 +1,797 @@
+{
+  "cityId": "lille",
+  "placesFile": "src/data/lillePlaces.ts",
+  "geojsonOutput": "public/data/lille.geojson",
+  "sources": [
+    {
+      "id": "lille_quartiers",
+      "type": "lille_wfs_quartiers"
+    },
+    {
+      "id": "vda_wfs_quartiers",
+      "type": "vda_wfs_quartiers"
+    },
+    {
+      "id": "iris_59163",
+      "type": "iris_wfs",
+      "insee": "59163"
+    },
+    {
+      "id": "iris_59328",
+      "type": "iris_wfs",
+      "insee": "59328"
+    },
+    {
+      "id": "iris_59368",
+      "type": "iris_wfs",
+      "insee": "59368"
+    },
+    {
+      "id": "iris_59410",
+      "type": "iris_wfs",
+      "insee": "59410"
+    },
+    {
+      "id": "iris_59512",
+      "type": "iris_wfs",
+      "insee": "59512"
+    },
+    {
+      "id": "iris_59599",
+      "type": "iris_wfs",
+      "insee": "59599"
+    },
+    {
+      "id": "geo_api_commune",
+      "type": "geo_api_commune"
+    }
+  ],
+  "zones": [
+    {
+      "code": "lille-bois-blancs",
+      "sourceUnits": [
+        {
+          "source": "lille_quartiers",
+          "name": "Bois-Blancs"
+        }
+      ]
+    },
+    {
+      "code": "lille-centre",
+      "sourceUnits": [
+        {
+          "source": "lille_quartiers",
+          "name": "Lille-Centre"
+        }
+      ]
+    },
+    {
+      "code": "lille-croix-barbieux-edhec",
+      "sourceUnits": [
+        {
+          "source": "iris_59163",
+          "name": "Beaumont 1"
+        },
+        {
+          "source": "iris_59163",
+          "name": "Beaumont 2"
+        },
+        {
+          "source": "iris_59163",
+          "name": "Centre 2"
+        }
+      ]
+    },
+    {
+      "code": "lille-croix-context",
+      "sourceUnits": [
+        {
+          "source": "iris_59163",
+          "name": "Centre 1"
+        },
+        {
+          "source": "iris_59163",
+          "name": "Centre 4"
+        },
+        {
+          "source": "iris_59163",
+          "name": "Saint-Pierre 1"
+        },
+        {
+          "source": "iris_59163",
+          "name": "Saint-Pierre 2"
+        },
+        {
+          "source": "iris_59163",
+          "name": "Saint-Pierre 3"
+        },
+        {
+          "source": "iris_59163",
+          "name": "Saint-Pierre 4"
+        }
+      ]
+    },
+    {
+      "code": "lille-fives",
+      "sourceUnits": [
+        {
+          "source": "lille_quartiers",
+          "name": "Fives"
+        }
+      ]
+    },
+    {
+      "code": "lille-hellemmes",
+      "sourceUnits": [
+        {
+          "source": "lille_quartiers",
+          "name": "Hellemmes"
+        }
+      ]
+    },
+    {
+      "code": "lille-la-madeleine",
+      "sourceUnits": [
+        {
+          "source": "iris_59368",
+          "name": "Berckem-Kléber-Saint-Charles 1"
+        },
+        {
+          "source": "iris_59368",
+          "name": "Berckem-Kléber-Saint-Charles 2"
+        },
+        {
+          "source": "iris_59368",
+          "name": "Berckem-Kléber-Saint-Charles 3"
+        },
+        {
+          "source": "iris_59368",
+          "name": "Centre 1"
+        },
+        {
+          "source": "iris_59368",
+          "name": "Centre 2"
+        },
+        {
+          "source": "iris_59368",
+          "name": "Grand Boulevard 1"
+        },
+        {
+          "source": "iris_59368",
+          "name": "Grand Boulevard 2"
+        },
+        {
+          "source": "iris_59368",
+          "name": "Pompidou-Nouvelle Madeleine 1"
+        },
+        {
+          "source": "iris_59368",
+          "name": "Pompidou-Nouvelle Madeleine 2"
+        }
+      ]
+    },
+    {
+      "code": "lille-lambersart",
+      "sourceUnits": [
+        {
+          "source": "iris_59328",
+          "name": "Bourg"
+        },
+        {
+          "source": "iris_59328",
+          "name": "Braille-Verghelles-Cité familiale"
+        },
+        {
+          "source": "iris_59328",
+          "name": "Briqueterie"
+        },
+        {
+          "source": "iris_59328",
+          "name": "Canon d'Or"
+        },
+        {
+          "source": "iris_59328",
+          "name": "Canteleu-Ampère"
+        },
+        {
+          "source": "iris_59328",
+          "name": "Canteleu-Colysée"
+        },
+        {
+          "source": "iris_59328",
+          "name": "Cessoie"
+        },
+        {
+          "source": "iris_59328",
+          "name": "Champs de Courses-Delecaux"
+        },
+        {
+          "source": "iris_59328",
+          "name": "Châteaux-Carnoy"
+        },
+        {
+          "source": "iris_59328",
+          "name": "Conquérants"
+        },
+        {
+          "source": "iris_59328",
+          "name": "Pacot Vandracq"
+        },
+        {
+          "source": "iris_59328",
+          "name": "Rue de lille"
+        }
+      ]
+    },
+    {
+      "code": "lille-lomme-chr",
+      "sourceUnits": [
+        {
+          "source": "lille_quartiers",
+          "name": "Lomme"
+        }
+      ]
+    },
+    {
+      "code": "lille-mons-en-baroeul",
+      "sourceUnits": [
+        {
+          "source": "iris_59410",
+          "name": "Ancien Mons"
+        },
+        {
+          "source": "iris_59410",
+          "name": "Becquerel"
+        },
+        {
+          "source": "iris_59410",
+          "name": "Guinguette"
+        },
+        {
+          "source": "iris_59410",
+          "name": "Hôtel de Ville"
+        },
+        {
+          "source": "iris_59410",
+          "name": "Lamartine"
+        },
+        {
+          "source": "iris_59410",
+          "name": "Le Barœul"
+        },
+        {
+          "source": "iris_59410",
+          "name": "Les Provinces"
+        },
+        {
+          "source": "iris_59410",
+          "name": "Les Sarts"
+        },
+        {
+          "source": "iris_59410",
+          "name": "Louis XIV"
+        },
+        {
+          "source": "iris_59410",
+          "name": "Napoléon"
+        },
+        {
+          "source": "iris_59410",
+          "name": "Vauban"
+        }
+      ]
+    },
+    {
+      "code": "lille-moulins",
+      "sourceUnits": [
+        {
+          "source": "lille_quartiers",
+          "name": "Lille-Moulins"
+        }
+      ]
+    },
+    {
+      "code": "lille-roubaix-barbieux-edhec",
+      "sourceUnits": [
+        {
+          "source": "iris_59512",
+          "name": "Anseele"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Barbieux Sud"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Barbieux-Vauban"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Espérance Centre"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Mackellerie"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Potennerie"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Trichon"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Épeule Centre"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Épeule Nord"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Épeule Sud"
+        }
+      ]
+    },
+    {
+      "code": "lille-roubaix-centre-west",
+      "sourceUnits": [
+        {
+          "source": "iris_59512",
+          "name": "Fraternité"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Hauts Champs"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Justice"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Linné-Chemin Neuf"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Nouveau Roubaix"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Sartel"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Trois Ponts Sud"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Édouard Vaillant"
+        }
+      ]
+    },
+    {
+      "code": "lille-roubaix-east-north-context",
+      "sourceUnits": [
+        {
+          "source": "iris_59512",
+          "name": "Alma Nord"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Alma Sud"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Cul de Four"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Entrepont-Cartigny"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Fosse aux Chênes"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Fresnoy"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Hommelet Centre"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Hommelet Nord"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Hommelet Sud"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Hutin-Oran"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Moulin Nord"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Moulin Sud"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Nations Unies"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Pile Centre"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Pile Est"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Pile Nord"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Sainte-Élisabeth Centre"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Sainte-Élisabeth Nord"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Sainte-Élisabeth Sud"
+        },
+        {
+          "source": "iris_59512",
+          "name": "Trois Ponts Nord"
+        }
+      ]
+    },
+    {
+      "code": "lille-saint-maurice-pellevoisin",
+      "sourceUnits": [
+        {
+          "source": "lille_quartiers",
+          "name": "Saint-Maurice Pellevoisin"
+        }
+      ]
+    },
+    {
+      "code": "lille-sud",
+      "sourceUnits": [
+        {
+          "source": "lille_quartiers",
+          "name": "Lille-Sud"
+        }
+      ]
+    },
+    {
+      "code": "lille-tourcoing-centre-gare",
+      "sourceUnits": [
+        {
+          "source": "iris_59599",
+          "name": "Courbet"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Descat"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Gare"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Hôtel de Ville"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Menin"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Nationale"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Point Central"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Rue des Villas"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Tilleul-Guisnes"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Épidème"
+        }
+      ]
+    },
+    {
+      "code": "lille-tourcoing-north-east-context",
+      "sourceUnits": [
+        {
+          "source": "iris_59599",
+          "name": "Boulevard"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Chêne-Houplines"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Colbert"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Croix Rouge"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Hôpital Dron"
+        },
+        {
+          "source": "iris_59599",
+          "name": "La Baille"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Malcense"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Maraîchers"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Marlière"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Orions"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Phalempins"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Piats"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Pont Rompu"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Pont de Neuville"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Schweitzer"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Testelin"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Virolois"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Yser"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Z.A. du Ferrain"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Égalité"
+        }
+      ]
+    },
+    {
+      "code": "lille-tourcoing-south-west",
+      "sourceUnits": [
+        {
+          "source": "iris_59599",
+          "name": "Belencontre"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Blanc Seau"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Blanche Porte"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Bois d'Achelles"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Brun Pain"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Clinquet"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Flocon"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Gambetta"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Hippodrome"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Les Francs"
+        },
+        {
+          "source": "iris_59599",
+          "name": "Petit Village"
+        }
+      ]
+    },
+    {
+      "code": "lille-vauban-esquermes",
+      "sourceUnits": [
+        {
+          "source": "lille_quartiers",
+          "name": "Vauban-Esquermes"
+        }
+      ]
+    },
+    {
+      "code": "lille-vda-annappes-ascq-brigode",
+      "sourceUnits": [
+        {
+          "source": "vda_wfs_quartiers",
+          "name": "Annappes"
+        },
+        {
+          "source": "vda_wfs_quartiers",
+          "name": "Ascq"
+        },
+        {
+          "source": "vda_wfs_quartiers",
+          "name": "Brigode"
+        }
+      ]
+    },
+    {
+      "code": "lille-vda-breucq-flers-edge",
+      "sourceUnits": [
+        {
+          "source": "vda_wfs_quartiers",
+          "name": "Flers-Bourg"
+        },
+        {
+          "source": "vda_wfs_quartiers",
+          "name": "Les Prés"
+        }
+      ]
+    },
+    {
+      "code": "lille-vda-cite-scientifique-triolo",
+      "sourceUnits": [
+        {
+          "source": "vda_wfs_quartiers",
+          "name": "Cité Scientifique"
+        },
+        {
+          "source": "vda_wfs_quartiers",
+          "name": "Haute-Borne"
+        },
+        {
+          "source": "vda_wfs_quartiers",
+          "name": "Poste"
+        },
+        {
+          "source": "vda_wfs_quartiers",
+          "name": "Résidence"
+        },
+        {
+          "source": "vda_wfs_quartiers",
+          "name": "Triolo"
+        }
+      ]
+    },
+    {
+      "code": "lille-vda-cousinerie-recuel-sart",
+      "sourceUnits": [
+        {
+          "source": "vda_wfs_quartiers",
+          "name": "Cousinerie"
+        },
+        {
+          "source": "vda_wfs_quartiers",
+          "name": "Flers-Breucq"
+        },
+        {
+          "source": "vda_wfs_quartiers",
+          "name": "Recueil"
+        },
+        {
+          "source": "vda_wfs_quartiers",
+          "name": "Sart-Babylone"
+        }
+      ]
+    },
+    {
+      "code": "lille-vda-pont-de-bois-hotel-de-ville",
+      "sourceUnits": [
+        {
+          "source": "vda_wfs_quartiers",
+          "name": "Château"
+        },
+        {
+          "source": "vda_wfs_quartiers",
+          "name": "Hôtel-de-Ville"
+        },
+        {
+          "source": "vda_wfs_quartiers",
+          "name": "Pont-de-Bois"
+        }
+      ]
+    },
+    {
+      "code": "lille-vieux-lille",
+      "sourceUnits": [
+        {
+          "source": "lille_quartiers",
+          "name": "Vieux-Lille"
+        }
+      ]
+    },
+    {
+      "code": "lille-wazemmes",
+      "sourceUnits": [
+        {
+          "source": "lille_quartiers",
+          "name": "Wazemmes"
+        },
+        {
+          "source": "lille_quartiers",
+          "name": "Faubourg de Béthune"
+        }
+      ]
+    }
+  ],
+  "scope": {
+    "coverageMode": "major_district",
+    "preferredBase": "official_quartier",
+    "inseeCodes": [
+      "59350",
+      "59009",
+      "59328",
+      "59368",
+      "59410",
+      "59163",
+      "59512",
+      "59599"
+    ]
+  },
+  "outlineOutput": "public/data/lille-outlines.geojson"
+}

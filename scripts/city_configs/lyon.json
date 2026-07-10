@@ -1,0 +1,486 @@
+{
+  "cityId": "lyon",
+  "placesFile": "src/data/lyonPlaces.ts",
+  "placesSection": "lyonMicroPlaces",
+  "geojsonOutput": "public/data/lyon.geojson",
+  "sources": [
+    {
+      "id": "lyon_quartiers",
+      "type": "lyon_quartiers"
+    },
+    {
+      "id": "lyon_metro_quartiers",
+      "type": "lyon_metro_quartiers"
+    },
+    {
+      "id": "geo_api_commune",
+      "type": "geo_api_commune"
+    }
+  ],
+  "zones": [
+    {
+      "code": "lyon-01-terreaux",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Bas des Pentes - Presqu'île"
+        }
+      ]
+    },
+    {
+      "code": "lyon-01-pentes",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Haut et Coeur des Pentes"
+        },
+        {
+          "source": "lyon_quartiers",
+          "name": "Ouest Pentes"
+        }
+      ]
+    },
+    {
+      "code": "lyon-02-bellecour",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Bellecour - Cordeliers"
+        }
+      ]
+    },
+    {
+      "code": "lyon-02-ainay",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Bellecour - Carnot"
+        }
+      ]
+    },
+    {
+      "code": "lyon-02-perrache",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Perrache - Confluence",
+          "latSplit": {
+            "keep": "north",
+            "latitude": 45.7385
+          }
+        }
+      ]
+    },
+    {
+      "code": "lyon-02-confluence",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Perrache - Confluence",
+          "latSplit": {
+            "keep": "south",
+            "latitude": 45.7385
+          }
+        }
+      ]
+    },
+    {
+      "code": "lyon-03-prefecture-guillotiere-nord",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Mutualité - Préfecture - Moncey"
+        }
+      ]
+    },
+    {
+      "code": "lyon-03-part-dieu",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Voltaire - Part Dieu"
+        },
+        {
+          "source": "lyon_quartiers",
+          "name": "Villette - Paul Bert"
+        }
+      ]
+    },
+    {
+      "code": "lyon-03-sans-souci",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Sans Souci - Dauphiné"
+        }
+      ]
+    },
+    {
+      "code": "lyon-03-montchat",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Montchat"
+        }
+      ]
+    },
+    {
+      "code": "lyon-04-croix-rousse-plateau",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Croix-Rousse Centre"
+        },
+        {
+          "source": "lyon_quartiers",
+          "name": "Croix-Rousse Est et Rhône"
+        }
+      ]
+    },
+    {
+      "code": "lyon-04-serin-saone",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Croix-Rousse Saône"
+        }
+      ]
+    },
+    {
+      "code": "lyon-04-croix-rousse-ouest",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Croix-Rousse Ouest"
+        }
+      ]
+    },
+    {
+      "code": "lyon-05-vieux-lyon",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Quartiers anciens"
+        }
+      ]
+    },
+    {
+      "code": "lyon-05-fourviere",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Colline des Funiculaires"
+        }
+      ]
+    },
+    {
+      "code": "lyon-05-menival",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Champvert - Point du Jour - Jeunet"
+        },
+        {
+          "source": "lyon_quartiers",
+          "name": "Ménival - Battières - La Plaine"
+        }
+      ]
+    },
+    {
+      "code": "lyon-06-brotteaux",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Brotteaux"
+        }
+      ]
+    },
+    {
+      "code": "lyon-06-tete-dor",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Parc - Duquesne"
+        },
+        {
+          "source": "lyon_quartiers",
+          "name": "Saxe - Roosevelt"
+        }
+      ]
+    },
+    {
+      "code": "lyon-06-bellecombe",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Bellecombe village"
+        }
+      ]
+    },
+    {
+      "code": "lyon-07-guillotiere-universites",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Guillotière"
+        }
+      ]
+    },
+    {
+      "code": "lyon-07-jean-mace",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Jean Macé"
+        }
+      ]
+    },
+    {
+      "code": "lyon-07-gerland",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Gerland"
+        }
+      ]
+    },
+    {
+      "code": "lyon-08-monplaisir",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Monplaisir"
+        }
+      ]
+    },
+    {
+      "code": "lyon-08-bachut",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Bachut - Transvaal"
+        }
+      ]
+    },
+    {
+      "code": "lyon-08-mermoz",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Laënnec - Mermoz"
+        }
+      ]
+    },
+    {
+      "code": "lyon-08-etats-unis",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Etats-Unis"
+        },
+        {
+          "source": "lyon_quartiers",
+          "name": "La Plaine - Santy"
+        },
+        {
+          "source": "lyon_quartiers",
+          "name": "Grand Trou - Moulin à Vent - Petite Guille"
+        }
+      ]
+    },
+    {
+      "code": "lyon-09-vaise",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Vaise - Industrie - Rochecardon"
+        }
+      ]
+    },
+    {
+      "code": "lyon-09-gorge-de-loup",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Champvert - Gorge de Loup"
+        }
+      ]
+    },
+    {
+      "code": "lyon-09-duchere",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "La Duchère"
+        }
+      ]
+    },
+    {
+      "code": "lyon-09-saint-rambert",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_quartiers",
+          "name": "Saint Rambert - Ile Barbe"
+        }
+      ]
+    },
+    {
+      "code": "villeurbanne-charpennes",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_metro_quartiers",
+          "name": "Quartier Charpennes Tonkin"
+        }
+      ]
+    },
+    {
+      "code": "villeurbanne-la-doua",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_metro_quartiers",
+          "name": "Quartier Buers Croix-Luizet",
+          "latSplit": {
+            "keep": "north",
+            "latitude": 45.7835
+          }
+        }
+      ]
+    },
+    {
+      "code": "villeurbanne-gratte-ciel",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_metro_quartiers",
+          "name": "Quartier Gratte-Ciel Dedieu Charmettes"
+        }
+      ]
+    },
+    {
+      "code": "villeurbanne-cusset",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_metro_quartiers",
+          "name": "Quartier Cusset Bonnevay"
+        }
+      ]
+    },
+    {
+      "code": "villeurbanne-grandclement",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_metro_quartiers",
+          "name": "Quartier Perralière Grandclément"
+        },
+        {
+          "source": "lyon_metro_quartiers",
+          "name": "Quartier Ferrandière Maisons Neuves"
+        }
+      ]
+    },
+    {
+      "code": "villeurbanne-buers",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_metro_quartiers",
+          "name": "Quartier Cyprian Les Brosses"
+        },
+        {
+          "source": "lyon_metro_quartiers",
+          "name": "Quartier Saint-Jean"
+        },
+        {
+          "source": "lyon_metro_quartiers",
+          "name": "Quartier Buers Croix-Luizet",
+          "latSplit": {
+            "keep": "south",
+            "latitude": 45.7835
+          }
+        }
+      ]
+    },
+    {
+      "code": "69081-ecully",
+      "kind": "commune",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "69081"
+        }
+      ],
+      "communeInsee": "69081"
+    }
+  ]
+}

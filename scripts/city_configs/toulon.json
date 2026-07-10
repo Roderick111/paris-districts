@@ -1,0 +1,408 @@
+{
+  "cityId": "toulon",
+  "placesFile": "src/data/toulonPlaces.ts",
+  "geojsonOutput": "public/data/toulon.geojson",
+  "sources": [
+    {
+      "id": "iris_83137",
+      "type": "iris_wfs",
+      "insee": "83137"
+    },
+    {
+      "id": "geo_api_commune",
+      "type": "geo_api_commune"
+    }
+  ],
+  "zones": [
+    {
+      "code": "toulon-haute-ville-liberte",
+      "sourceUnits": [
+        {
+          "source": "iris_83137",
+          "name": "Besagne"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Cathédrale"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Champ de Mars I"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Haute Ville-La Gare"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Haute Ville-Place Liberté"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Les Lices"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Saint-Roch II"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Sainte-Anne"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Valbourdin"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "iris_fallback_major_zone"
+    },
+    {
+      "code": "toulon-basse-ville-port",
+      "sourceUnits": [
+        {
+          "source": "iris_83137",
+          "name": "Le Port"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Place d'Armes-Arsenal"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Port Marchand"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Port Marchand-Port de Commerce"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Saint-Roch I"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "iris_fallback_major_zone"
+    },
+    {
+      "code": "toulon-la-rode-mayol",
+      "sourceUnits": [
+        {
+          "source": "iris_83137",
+          "name": "Aguillon"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Champ de Mars II"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Dutasta-Mayol"
+        },
+        {
+          "source": "iris_83137",
+          "name": "La Rode"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_fallback_major_zone"
+    },
+    {
+      "code": "toulon-mourillon-core",
+      "sourceUnits": [
+        {
+          "source": "iris_83137",
+          "name": "Le Mourillon I"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Le Mourillon II"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Le Mourillon III"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Le Mourillon IV"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_fallback_major_zone"
+    },
+    {
+      "code": "toulon-la-mitre-fort-saint-louis",
+      "sourceUnits": [
+        {
+          "source": "iris_83137",
+          "name": "Aguillon-Petit Bois"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Lamalgue"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Saint-Louis"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_fallback_major_zone"
+    },
+    {
+      "code": "toulon-cap-brun-serinette",
+      "sourceUnits": [
+        {
+          "source": "iris_83137",
+          "name": "La Barre"
+        },
+        {
+          "source": "iris_83137",
+          "name": "La Barre-Les Ameniers"
+        },
+        {
+          "source": "iris_83137",
+          "name": "La Palasse-Collet de Gipon"
+        },
+        {
+          "source": "iris_83137",
+          "name": "La Serinette-Le Cap Brun"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Pont de Suve"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Saint-Jean du Var III"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_fallback_major_zone"
+    },
+    {
+      "code": "toulon-saint-jean-du-var-font-pre",
+      "sourceUnits": [
+        {
+          "source": "iris_83137",
+          "name": "Beaulieu"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Brunet-Font Pré"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Darboussède-La Bosquette"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Saint-Jean du Var I"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Saint-Jean du Var II"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Sainte-Catherine"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Sainte-Musse III"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Vert Coteau"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Élisa-La Pivotte"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "iris_fallback_major_zone"
+    },
+    {
+      "code": "toulon-sainte-musse-brunet",
+      "sourceUnits": [
+        {
+          "source": "iris_83137",
+          "name": "Brunet"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Sainte-Musse I"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Sainte-Musse II"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "iris_fallback_major_zone"
+    },
+    {
+      "code": "toulon-pont-du-las-bon-rencontre",
+      "sourceUnits": [
+        {
+          "source": "iris_83137",
+          "name": "Barbes"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Bon Rencontre-Arsenal"
+        },
+        {
+          "source": "iris_83137",
+          "name": "L'Escaillon"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Le Temple"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Pont de Bois"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Pont du Las I"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Pont du Las II"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "iris_fallback_major_zone"
+    },
+    {
+      "code": "toulon-nord-ouest-routes-valbertrand",
+      "sourceUnits": [
+        {
+          "source": "iris_83137",
+          "name": "L'Oratoire"
+        },
+        {
+          "source": "iris_83137",
+          "name": "La Floranne"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Le Jonquet"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Les Arènes"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Les Fours à Chaux"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Les Routes I"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Les Routes II"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Monserrat-Bonnes Herbes"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Rodeillac"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Valbertrand"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "iris_fallback_major_zone"
+    },
+    {
+      "code": "toulon-faron-claret-siblas",
+      "sourceUnits": [
+        {
+          "source": "iris_83137",
+          "name": "Claret"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Dardennes-Ubac"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Faron-Fort Blanc"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Faron-Fort Rouge-Favières"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Les Pomets-Saint Pierre-Les Moulins"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Siblas"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Siblas-La Loubière"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "iris_fallback_major_zone"
+    },
+    {
+      "code": "toulon-beaucaire-pont-neuf-lagoubran",
+      "sourceUnits": [
+        {
+          "source": "iris_83137",
+          "name": "La Beaucaire"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Lagoubran"
+        },
+        {
+          "source": "iris_83137",
+          "name": "Pont Neuf"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "iris_fallback_major_zone"
+    },
+    {
+      "code": "toulon-la-garde-campus",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "83062"
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "commune",
+      "communeInsee": "83062"
+    },
+    {
+      "code": "toulon-la-valette-avenue-83-la-seyne-edge",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "83144"
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "commune_context",
+      "communeInsee": "83144"
+    }
+  ],
+  "scope": {},
+  "outlineOutput": "public/data/toulon-outlines.geojson"
+}

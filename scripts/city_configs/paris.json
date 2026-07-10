@@ -1,0 +1,497 @@
+{
+  "cityId": "paris",
+  "placesFile": "src/data/cities.ts",
+  "geojsonOutput": "public/data/districts.geojson",
+  "sources": [
+    {
+      "id": "geo_api_commune",
+      "type": "geo_api_commune"
+    }
+  ],
+  "zones": [
+    {
+      "code": "75101",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "75101"
+        }
+      ],
+      "communeInsee": "75101"
+    },
+    {
+      "code": "75102",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "75102"
+        }
+      ],
+      "communeInsee": "75102"
+    },
+    {
+      "code": "75103",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "75103"
+        }
+      ],
+      "communeInsee": "75103"
+    },
+    {
+      "code": "75104",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "75104"
+        }
+      ],
+      "communeInsee": "75104"
+    },
+    {
+      "code": "75105",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "75105"
+        }
+      ],
+      "communeInsee": "75105"
+    },
+    {
+      "code": "75106",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "75106"
+        }
+      ],
+      "communeInsee": "75106"
+    },
+    {
+      "code": "75107",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "75107"
+        }
+      ],
+      "communeInsee": "75107"
+    },
+    {
+      "code": "75108",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "75108"
+        }
+      ],
+      "communeInsee": "75108"
+    },
+    {
+      "code": "75109",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "75109"
+        }
+      ],
+      "communeInsee": "75109"
+    },
+    {
+      "code": "75110",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "75110"
+        }
+      ],
+      "communeInsee": "75110"
+    },
+    {
+      "code": "75111",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "75111"
+        }
+      ],
+      "communeInsee": "75111"
+    },
+    {
+      "code": "75112",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "75112"
+        }
+      ],
+      "communeInsee": "75112"
+    },
+    {
+      "code": "75113",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "75113"
+        }
+      ],
+      "communeInsee": "75113"
+    },
+    {
+      "code": "75114",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "75114"
+        }
+      ],
+      "communeInsee": "75114"
+    },
+    {
+      "code": "75115",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "75115"
+        }
+      ],
+      "communeInsee": "75115"
+    },
+    {
+      "code": "75116",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "75116"
+        }
+      ],
+      "communeInsee": "75116"
+    },
+    {
+      "code": "75117",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "75117"
+        }
+      ],
+      "communeInsee": "75117"
+    },
+    {
+      "code": "75118",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "75118"
+        }
+      ],
+      "communeInsee": "75118"
+    },
+    {
+      "code": "75119",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "75119"
+        }
+      ],
+      "communeInsee": "75119"
+    },
+    {
+      "code": "75120",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "75120"
+        }
+      ],
+      "communeInsee": "75120"
+    },
+    {
+      "code": "92012",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "92012"
+        }
+      ],
+      "communeInsee": "92012"
+    },
+    {
+      "code": "92040",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "92040"
+        }
+      ],
+      "communeInsee": "92040"
+    },
+    {
+      "code": "92049",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "92049"
+        }
+      ],
+      "communeInsee": "92049"
+    },
+    {
+      "code": "92024",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "92024"
+        }
+      ],
+      "communeInsee": "92024"
+    },
+    {
+      "code": "93070",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "93070"
+        }
+      ],
+      "communeInsee": "93070"
+    },
+    {
+      "code": "92044",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "92044"
+        }
+      ],
+      "communeInsee": "92044"
+    },
+    {
+      "code": "92051",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "92051"
+        }
+      ],
+      "communeInsee": "92051"
+    },
+    {
+      "code": "94080",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "94080"
+        }
+      ],
+      "communeInsee": "94080"
+    },
+    {
+      "code": "93048",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "93048"
+        }
+      ],
+      "communeInsee": "93048"
+    },
+    {
+      "code": "93066",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "93066"
+        }
+      ],
+      "communeInsee": "93066"
+    },
+    {
+      "code": "92050",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "92050"
+        }
+      ],
+      "communeInsee": "92050"
+    },
+    {
+      "code": "92026",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "92026"
+        }
+      ],
+      "communeInsee": "92026"
+    },
+    {
+      "code": "92062",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "92062"
+        }
+      ],
+      "communeInsee": "92062"
+    },
+    {
+      "code": "92073",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "92073"
+        }
+      ],
+      "communeInsee": "92073"
+    },
+    {
+      "code": "92064",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "92064"
+        }
+      ],
+      "communeInsee": "92064"
+    },
+    {
+      "code": "92072",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "92072"
+        }
+      ],
+      "communeInsee": "92072"
+    },
+    {
+      "code": "92048",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "92048"
+        }
+      ],
+      "communeInsee": "92048"
+    },
+    {
+      "code": "92023",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "92023"
+        }
+      ],
+      "communeInsee": "92023"
+    },
+    {
+      "code": "92075",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "92075"
+        }
+      ],
+      "communeInsee": "92075"
+    },
+    {
+      "code": "92046",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "92046"
+        }
+      ],
+      "communeInsee": "92046"
+    },
+    {
+      "code": "94037",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "94037"
+        }
+      ],
+      "communeInsee": "94037"
+    },
+    {
+      "code": "94041",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "94041"
+        }
+      ],
+      "communeInsee": "94041"
+    },
+    {
+      "code": "94076",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "94076"
+        }
+      ],
+      "communeInsee": "94076"
+    },
+    {
+      "code": "92022",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "92022"
+        }
+      ],
+      "communeInsee": "92022"
+    },
+    {
+      "code": "78686",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "78686"
+        }
+      ],
+      "communeInsee": "78686"
+    },
+    {
+      "code": "78640",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "78640"
+        }
+      ],
+      "communeInsee": "78640"
+    },
+    {
+      "code": "78545",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "78545"
+        }
+      ],
+      "communeInsee": "78545"
+    },
+    {
+      "code": "78646",
+      "sourceUnits": [
+        {
+          "source": "geo_api_commune",
+          "name": "78646"
+        }
+      ],
+      "communeInsee": "78646"
+    }
+  ],
+  "scope": {
+    "coverageMode": "curated_subset"
+  },
+  "placesSection": "parisPlaces"
+}

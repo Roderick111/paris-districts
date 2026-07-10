@@ -13,9 +13,9 @@ Reference implementations:
 - **Paris** - reference for readable major coverage.
 - **Bordeaux** - detailed student-zone reference; useful, but not default for every city.
 - **Lille revised model** - official quartiers + commune context + IRIS fallback.
-- **Shared audits** - `scripts/geometry_audit.py`
-- **Generic builder** - `scripts/build_new_city_geojson.py`
-- **Validator** - `scripts/validate_city_geojson.py`
+- **City compiler** - `scripts/city_compiler/cli.py` + per-city configs in `scripts/city_configs/`
+- **Shared audits** - `scripts/geometry_audit.py` (imported by compiler)
+- **Legacy builders** - `scripts/legacy/` (one-off generators; deprecated)
 
 ## Good City Coverage
 
@@ -178,53 +178,62 @@ Research must support each zone's scale:
 
 Broad evidence gets broad confidence. Do not overfit decimals. If several context zones share the exact same score tuple, treat that as placeholder failure unless there is real reason.
 
-### 4. Write Geometry Specs
+### 4. Write City Config
 
-Shared files:
-
-- `scripts/granularity_intended.json` - research-aligned source of truth.
-- `scripts/granularity_geometry.json` - builder output consumed by `build_new_city_geojson.py`.
-- `scripts/city_coverage_scopes.json` - full-coverage scope and context seed definitions.
-
-Common spec shapes:
+Each city has a declarative config at `scripts/city_configs/<city>.json`:
 
 ```json
 {
-  "code": "lille-vieux-lille",
-  "lille_quartier": ["Vieux-Lille"],
-  "geometryBasis": "official_quartier",
-  "coverageRole": "primary"
+  "cityId": "lille",
+  "placesFile": "src/data/lillePlaces.ts",
+  "geojsonOutput": "public/data/lille.geojson",
+  "outlineOutput": "public/data/lille-outlines.geojson",
+  "sources": [
+    { "id": "lille_quartiers", "type": "lille_wfs_quartiers" },
+    { "id": "iris_59512", "type": "iris_wfs", "insee": "59512" }
+  ],
+  "scope": { "coverageMode": "major_district", "inseeCodes": ["59350"] },
+  "zones": [
+    {
+      "code": "lille-vieux-lille",
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier",
+      "sourceUnits": [{ "source": "lille_quartiers", "name": "Vieux-Lille" }]
+    }
+  ]
 }
 ```
 
-```json
-{
-  "code": "lille-roubaix-centre",
-  "iris_insee": "59512",
-  "iris_names": ["Justice", "Edouard Vaillant", "Grand-Place"],
-  "geometryBasis": "iris_partition",
-  "coverageRole": "primary"
-}
+PlaceScore rows stay in `src/data/*Places.ts` for now. The compiler reads codes/names only.
+
+To bootstrap configs from legacy `granularity_geometry.json`:
+
+```bash
+python3 scripts/city_compiler/generate_configs.py
 ```
 
-Optional keys include `fill_scope_iris_names`, `marseille_quartiers`, `nice_quartier`, `lille_quartier`, `vda_quartier`, `hellemmes_quartier`, and `allowMultipart`.
+Optional zone keys: `allowMultipart`, `multipartJustification`, `area`, `communeInsee`.
 
 `allowMultipart` is rare. Do not use it to hide broken geography. Split primary zones instead.
 
 ### 5. Build GeoJSON
 
 ```bash
-python3 scripts/build_new_city_geojson.py <city>
+python3 scripts/city_compiler/cli.py build <city>
 ~/.bun/bin/bun run geo:outlines -- <city>
 ```
 
-For full-coverage partition builders:
+Or via package scripts:
 
 ```bash
-python3 scripts/build_full_coverage_specs.py <city>
-python3 scripts/append_context_places.py <city>
-python3 scripts/build_new_city_geojson.py <city>
+~/.bun/bin/bun run geo:build -- <city>
 ~/.bun/bin/bun run geo:outlines -- <city>
+```
+
+Full local validation (all cities + Next build):
+
+```bash
+~/.bun/bin/bun run geo:validate:all
 ```
 
 Build-time audits must reject:
@@ -257,7 +266,7 @@ Build-time audits should fail or force rework on:
 ### 6. Validate
 
 ```bash
-python3 scripts/validate_city_geojson.py <city>
+python3 scripts/city_compiler/cli.py validate <city>
 ~/.bun/bin/bun run build
 ```
 

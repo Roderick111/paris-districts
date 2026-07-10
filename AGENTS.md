@@ -29,11 +29,13 @@
 GeoJSON (city data changes):
 
 ```bash
-python3 scripts/build_new_city_geojson.py <city>
-python3 scripts/validate_city_geojson.py <city>
+python3 scripts/city_compiler/cli.py build <city>
+python3 scripts/city_compiler/cli.py validate <city>
 ```
 
 Or: `~/.bun/bin/bun run geo:build -- <city>` / `geo:validate -- <city>`
+
+Per-city configs live in `scripts/city_configs/<city>.json`. Full CI-like check: `~/.bun/bin/bun run geo:validate:all`
 
 ## Adding or upgrading a city
 
@@ -67,13 +69,16 @@ Reference builders: `scripts/build_bordeaux_micro_geojson.py`, `scripts/build_na
 ```
 src/data/cities.ts              # CityConfig, weights, security cap
 src/data/*Places.ts             # PlaceScore[] per city
-src/components/ParisStudentMap.tsx
+src/components/DistrictQualityMap.tsx
 src/lib/geometryOutline.ts      # selection border / dissolveGeometry
 public/data/*.geojson           # map polygons (properties.code = PlaceScore.code)
+scripts/city_compiler/
+scripts/city_configs/
 scripts/granularity_geometry.json
 scripts/build_new_city_geojson.py
 scripts/validate_city_geojson.py
 scripts/geometry_audit.py
+scripts/legacy/
 docs/research/*-student-life.md
 docs/guides/city-geometry-pipeline.md
 ```

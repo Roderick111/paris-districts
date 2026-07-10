@@ -1,0 +1,447 @@
+{
+  "cityId": "nice",
+  "placesFile": "src/data/nicePlaces.ts",
+  "geojsonOutput": "public/data/nice.geojson",
+  "sources": [
+    {
+      "id": "nice_quartiers",
+      "type": "nice_quartiers"
+    },
+    {
+      "id": "iris_06088",
+      "type": "iris_wfs",
+      "insee": "06088"
+    }
+  ],
+  "zones": [
+    {
+      "code": "nice-vieux-nice-port",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Vieille Ville"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Le Port"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-carabacel-garibaldi",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Carabacel"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-jean-medecin-massena",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Centre Ville"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-thiers-musiciens",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Thiers"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-gambetta-rue-france",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Gambetta"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Rue de France"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-liberation-valrose",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Libération"
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-gare-tzanck-valrose",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "La Gare"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Jaquons - Ravet"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Tzanck - Galinières - Sauvaigo"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Point du Jour - Porte de France"
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-vernier",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Vernier"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-mantega-piol",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Mantega"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Le Piol"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-saint-maurice-ray",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Saint Maurice"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Le Ray"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-saint-sylvestre",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Saint Sylvestre"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-cimiez",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Cimiez"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-rimiez-gairaut",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Rimiez"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Gairaut"
+        }
+      ],
+      "coverageRole": "low_relevance",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-pessicart-saint-pancrace",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Pessicart"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Saint Pancrace"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-madeleine-saint-pierre",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Madeleine"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Saint Pierre de Féric"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-baumettes-magnan",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Baumettes"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-carlone-medecin",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Médecin"
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-saint-philippe",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Saint Philippe"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-fabron-saint-antoine",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Fabron"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Saint Antoine"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-caucade",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Caucade"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-saint-augustin-moulins",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Saint Augustin"
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-arenas-sainte-marguerite",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Arenas"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Sainte Marguerite"
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-saint-isidore-lingostiere",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Saint Isidore"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Lingostière"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Iscles - Ste Pétronille"
+        }
+      ],
+      "coverageRole": "low_relevance",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-cremat-bellet",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Cremat"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Saint Roman"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Ventabrun"
+        }
+      ],
+      "coverageRole": "low_relevance",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-riquier-saint-roch",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Riquier"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Saint Roch"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Roquebillière"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-pasteur",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Pasteur"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-ariane",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Ariane"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-mont-boron-vinaigrier",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Mont Boron"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Vinaigrier"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-vespins-littoral",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Vespins - Littoral"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-corniche-promenade",
+      "sourceUnits": [
+        {
+          "source": "nice_quartiers",
+          "name": "Les Pugets"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Montaleigne - Corniche Sud"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Plateaux Fleuris - Corniche Sud"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Rascas - Rives d'or"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group"
+    }
+  ],
+  "scope": {
+    "coverageMode": "full_partition",
+    "preferredBase": "iris",
+    "inseeCodes": [
+      "06088"
+    ],
+    "fullCoverageSources": [
+      "nice_quartiers"
+    ]
+  },
+  "outlineOutput": "public/data/nice-outlines.geojson"
+}

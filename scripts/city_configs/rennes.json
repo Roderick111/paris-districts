@@ -1,0 +1,209 @@
+{
+  "cityId": "rennes",
+  "placesFile": "src/data/rennesPlaces.ts",
+  "geojsonOutput": "public/data/rennes.geojson",
+  "sources": [
+    {
+      "id": "rennes_quartiers",
+      "type": "rennes_quartiers",
+      "url": "https://data.rennesmetropole.fr/api/explore/v2.1/catalog/datasets/perimetres-des-12-quartiers-de-la-ville-de-rennes/exports/geojson",
+      "nameKey": "nom"
+    }
+  ],
+  "zones": [
+    {
+      "code": "rennes-centre",
+      "sourceUnits": [
+        {
+          "source": "rennes_quartiers",
+          "name": "Centre"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "rennes-thabor-saint-helier-alphonse-guerin",
+      "sourceUnits": [
+        {
+          "source": "rennes_quartiers",
+          "name": "Thabor / Saint-Hélier / Alphonse Guérin / Baud-Chardonnet"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "rennes-bourg-levesque-la-touche-moulin-du-comte",
+      "sourceUnits": [
+        {
+          "source": "rennes_quartiers",
+          "name": "Bourg l'Evesque / La Touche / Moulin du Comte"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "rennes-nord-saint-martin",
+      "sourceUnits": [
+        {
+          "source": "rennes_quartiers",
+          "name": "Saint Martin"
+        },
+        {
+          "source": "rennes_quartiers",
+          "name": "Zone Industrielle Nord"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "rennes-maurepas-patton",
+      "sourceUnits": [
+        {
+          "source": "rennes_quartiers",
+          "name": "Bretèche"
+        },
+        {
+          "source": "rennes_quartiers",
+          "name": "Centre Ville"
+        },
+        {
+          "source": "rennes_quartiers",
+          "name": "Champ Daguet Nord"
+        },
+        {
+          "source": "rennes_quartiers",
+          "name": "Champ Daguet Sud"
+        },
+        {
+          "source": "rennes_quartiers",
+          "name": "Cité des Jardins"
+        },
+        {
+          "source": "rennes_quartiers",
+          "name": "La Barre Richelot, Cressonière, Vivier Louis, Belle Vue"
+        },
+        {
+          "source": "rennes_quartiers",
+          "name": "La Ricoquais"
+        },
+        {
+          "source": "rennes_quartiers",
+          "name": "Les Melliers"
+        },
+        {
+          "source": "rennes_quartiers",
+          "name": "Maurepas / Bellangerais"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "rennes-jeanne-darc-longs-champs-beaulieu",
+      "sourceUnits": [
+        {
+          "source": "rennes_quartiers",
+          "name": "Jeanne d'Arc / Longs Champs / Beaulieu"
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "rennes-la-pommeraie",
+      "sourceUnits": [
+        {
+          "source": "rennes_quartiers",
+          "name": "La Pommeraie"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "rennes-sud-gare",
+      "sourceUnits": [
+        {
+          "source": "rennes_quartiers",
+          "name": "Bréquigny"
+        },
+        {
+          "source": "rennes_quartiers",
+          "name": "Sud gare"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "rennes-cleunay-arsenal-redon",
+      "sourceUnits": [
+        {
+          "source": "rennes_quartiers",
+          "name": "Cleunay / Arsenal - Redon / La Courrouze"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "rennes-villejean-beauregard",
+      "sourceUnits": [
+        {
+          "source": "rennes_quartiers",
+          "name": "Belle Épine"
+        },
+        {
+          "source": "rennes_quartiers",
+          "name": "Haut-Trait"
+        },
+        {
+          "source": "rennes_quartiers",
+          "name": "Villejean / Beauregard"
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "rennes-le-blosne",
+      "sourceUnits": [
+        {
+          "source": "rennes_quartiers",
+          "name": "Le Blosne"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "rennes-brequigny",
+      "sourceUnits": [
+        {
+          "source": "rennes_quartiers",
+          "name": "La Peupleraie"
+        },
+        {
+          "source": "rennes_quartiers",
+          "name": "Maison Blanche et Kerfleury"
+        },
+        {
+          "source": "rennes_quartiers",
+          "name": "Moulin d'Olivet et Gué Mary"
+        },
+        {
+          "source": "rennes_quartiers",
+          "name": "Secteur Rural"
+        }
+      ],
+      "coverageRole": "context",
+      "geometryBasis": "official_quartier"
+    }
+  ],
+  "scope": {},
+  "outlineOutput": "public/data/rennes-outlines.geojson"
+}
