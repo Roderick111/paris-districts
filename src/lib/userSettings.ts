@@ -7,11 +7,17 @@ import {
   type Weights
 } from "@/data/cities";
 
-export const WEIGHTS_STORAGE_KEY = "student-city-map:weights:v1";
-export const OVERRIDES_STORAGE_KEY = "student-city-map:score-overrides:v1";
+export const WEIGHTS_STORAGE_KEY = "district-quality-map:weights:v1";
+export const OVERRIDES_STORAGE_KEY = "district-quality-map:score-overrides:v1";
 
-const LEGACY_WEIGHTS_STORAGE_KEY = "paris-student-map:weights:v1";
-const LEGACY_OVERRIDES_STORAGE_KEY = "paris-student-map:score-overrides:v1";
+const LEGACY_WEIGHTS_KEYS = [
+  "paris-student-map:weights:v1",
+  "student-city-map:weights:v1",
+] as const;
+const LEGACY_OVERRIDES_KEYS = [
+  "paris-student-map:score-overrides:v1",
+  "student-city-map:score-overrides:v1",
+] as const;
 
 export type ScoreOverridesByPlace = Record<string, PlaceScoreOverrides>;
 
@@ -23,9 +29,9 @@ export function metricLabel(key: ScoreKey | string) {
     security: "Security",
     affordability: "Affordability",
     transport: "Transport",
-    studentEnergy: "Student energy",
+    studentEnergy: "Local energy",
     services: "Services",
-    campusAccess: "Campus access",
+    campusAccess: "Access",
     greenCalm: "Green/calm"
   };
 
@@ -70,16 +76,22 @@ function migrateLegacyStorage() {
 
   try {
     if (!localStorage.getItem(WEIGHTS_STORAGE_KEY)) {
-      const legacyWeights = localStorage.getItem(LEGACY_WEIGHTS_STORAGE_KEY);
-      if (legacyWeights) {
-        localStorage.setItem(WEIGHTS_STORAGE_KEY, legacyWeights);
+      for (const legacyKey of LEGACY_WEIGHTS_KEYS) {
+        const legacyWeights = localStorage.getItem(legacyKey);
+        if (legacyWeights) {
+          localStorage.setItem(WEIGHTS_STORAGE_KEY, legacyWeights);
+          break;
+        }
       }
     }
 
     if (!localStorage.getItem(OVERRIDES_STORAGE_KEY)) {
-      const legacyOverrides = localStorage.getItem(LEGACY_OVERRIDES_STORAGE_KEY);
-      if (legacyOverrides) {
-        localStorage.setItem(OVERRIDES_STORAGE_KEY, legacyOverrides);
+      for (const legacyKey of LEGACY_OVERRIDES_KEYS) {
+        const legacyOverrides = localStorage.getItem(legacyKey);
+        if (legacyOverrides) {
+          localStorage.setItem(OVERRIDES_STORAGE_KEY, legacyOverrides);
+          break;
+        }
       }
     }
   } catch {

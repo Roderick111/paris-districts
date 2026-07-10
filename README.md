@@ -1,8 +1,8 @@
-# Paris Student Life Map
+# District Quality Map
 
-Interactive map of Paris arrondissements and nearby western suburbs, scored for student life quality. Click districts to compare safety, rent pressure, transport, student energy, services, campus access, and calm.
+Interactive map for comparing district quality across French cities.
 
-Live: [paris-districts.beautiful-apps.com](https://paris-districts.beautiful-apps.com)
+Live: [urbanqualitymap.com](https://urbanqualitymap.com) (also served at [paris-districts.beautiful-apps.com](https://paris-districts.beautiful-apps.com))
 
 ## Features
 
@@ -20,7 +20,8 @@ Live: [paris-districts.beautiful-apps.com](https://paris-districts.beautiful-app
 | Framework | Next.js 15 (App Router) |
 | Runtime / package manager | Bun |
 | Map | MapLibre GL JS + deck.gl GeoJsonLayer |
-| Data | Researched district scores + Paris Open Data / geo.api.gouv.fr boundaries |
+| Geo processing | Python city compiler (`scripts/city_compiler/`) |
+| Data | Researched district scores + official boundary sources |
 
 ## Local development
 
@@ -36,6 +37,7 @@ Validate:
 ```bash
 bun run lint
 bun run build
+bun run geo:validate:all
 ```
 
 ## Scoring model
@@ -47,67 +49,65 @@ Each district has researched 0–10 scores across seven criteria. Default weight
 | Security | 3.0x |
 | Affordability | 1.6x |
 | Transport | 1.4x |
-| Student energy | 1.2x |
+| Local energy | 1.2x |
 | Services | 1.0x |
-| Campus access | 1.0x |
+| Access | 1.0x |
 | Green/calm | 0.8x |
 
 The weighted total is normalized to 0–10, then capped by a security ceiling so unsafe areas cannot score green regardless of rent or nightlife.
 
 User adjustments are stored under:
 
-- `paris-student-map:weights:v1`
-- `paris-student-map:score-overrides:v1`
+- `district-quality-map:weights:v1`
+- `district-quality-map:score-overrides:v1`
+
+Legacy keys (`paris-student-map:*`, `student-city-map:*`) migrate automatically on first load.
 
 ## Project layout
 
 ```
 src/
   app/                    # Next.js pages and global styles
-  components/             # Map, settings drawer
+  components/             # DistrictQualityMap, settings drawer
   data/cities.ts          # City registry, weights, security cap
   data/*Places.ts         # Per-city PlaceScore[] micro-areas
   lib/geometryOutline.ts  # Map selection outline helpers
 public/data/
   *.geojson               # City micro-area boundaries
 docs/
-  research/               # Student-life score reports (source of truth)
+  research/               # District score reports (source of truth)
   guides/                 # Technical guides (see city geometry pipeline)
 scripts/
-  build_new_city_geojson.py
-  validate_city_geojson.py
-  geometry_audit.py
+  city_compiler/          # Common geometry compiler
+  city_configs/           # Per-city declarative build configs
+  geometry_audit.py       # Shared audits
+  legacy/                 # Deprecated one-off builders
 ```
 
-## Adding a new city
+## Adding or upgrading a city
 
-Do not ship coarse admin quartiers or merged non-adjacent polygons — they cause white holes and broken zones on the map.
+See [docs/guides/city-geometry-pipeline.md](docs/guides/city-geometry-pipeline.md).
 
-Follow the **[city geometry pipeline guide](docs/guides/city-geometry-pipeline.md)** end to end:
+Short version:
 
-1. Write `docs/research/<city>-student-life.md` (18–24 micro-areas with scores)
-2. Define **contiguous** geometry specs (IRIS / official quartiers)
-3. Add `src/data/<city>Places.ts` and register in `src/data/cities.ts`
-4. Build and validate GeoJSON:
+1. Research report → `docs/research/<city>-student-life.md`
+2. City config → `scripts/city_configs/<city>.json`
+3. Scores → `src/data/<city>Places.ts` + register in `src/data/cities.ts`
+4. Build + validate:
 
 ```bash
-python3 scripts/build_new_city_geojson.py <city>
-python3 scripts/validate_city_geojson.py <city>
-~/.bun/bin/bun run build
+python3 scripts/city_compiler/cli.py build <city>
+python3 scripts/city_compiler/cli.py validate <city>
+bun run geo:outlines -- <city>
 ```
 
-Reference implementations: Bordeaux (`scripts/build_bordeaux_micro_geojson.py`), Nantes (`scripts/build_nantes_geometry_specs.py`).
+5. `bun run build` + browser check
 
-## Deployment
+## Geo commands
 
-Docker + nginx-proxy on the server:
-
-```bash
-./deploy.sh
-```
-
-Target: `root@188.34.196.228:/opt/paris-districts`
-
-## Sources
-
-Research citations are listed in the app under **Settings / Data → Sources**. Primary references include SSMSI crime data, Paris Open Data boundaries, geo.api.gouv.fr commune contours, and reporting on north-east Paris safety pockets.
+| Command | Purpose |
+|---------|---------|
+| `bun run geo:build -- <city>` | Build GeoJSON via compiler |
+| `bun run geo:validate -- <city>` | Validate GeoJSON + audits |
+| `bun run geo:outlines -- <city>` | Regenerate selection outlines |
+| `bun run geo:validate:all` | Full CI-like validation |

@@ -123,7 +123,7 @@ function boundsFromGeojson(geojson: PlaceFeatureCollection): [[number, number], 
   return [[minLon, minLat], [maxLon, maxLat]];
 }
 
-export default function ParisStudentMap() {
+export default function DistrictQualityMap() {
   const mapNode = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
   const overlayRef = useRef<MapboxOverlay | null>(null);
@@ -508,7 +508,7 @@ export default function ParisStudentMap() {
 
   return (
     <main className="shell">
-      <section className="mapArea" aria-label="Student city quality map">
+      <section className="mapArea" aria-label="District quality map">
         <div ref={mapNode} className="map" />
         <div className="mapTopBar">
           <label className="citySelect">
@@ -554,10 +554,10 @@ export default function ParisStudentMap() {
 
       <aside className="panel" aria-label="Place score details">
         <div className="panelHeader">
-          <p className="eyebrow">Student city quality map</p>
+          <p className="eyebrow">District Quality Map</p>
           <h1>{city.title}</h1>
           <p>
-            Composite score from safety, rent pressure, transport, student energy, services, campus access, and calm.
+            Composite score from safety, rent pressure, transport, local energy, services, access, and calm.
             Security is weighted 3x and caps unsafe areas.
           </p>
           {usingCustomSettings ? (
