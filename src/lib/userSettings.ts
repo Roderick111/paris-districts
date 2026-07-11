@@ -1,14 +1,14 @@
 import {
   defaultWeights,
+  round1,
   SCORE_KEYS,
-  type PlaceScore,
   type PlaceScoreOverrides,
   type ScoreKey,
   type Weights
 } from "@/data/cities";
 
 const WEIGHTS_STORAGE_KEY = "district-quality-map:weights:v1";
-const OVERRIDES_STORAGE_KEY = "district-quality-map:score-overrides:v1";
+const LEGACY_OVERRIDES_STORAGE_KEY = "district-quality-map:score-overrides:v1";
 
 const LEGACY_WEIGHTS_KEYS = [
   "paris-student-map:weights:v1",
@@ -22,6 +22,10 @@ const LEGACY_OVERRIDES_KEYS = [
 export type ScoreOverridesByPlace = Record<string, PlaceScoreOverrides>;
 
 type StorageLike = Pick<Storage, "getItem" | "setItem">;
+
+export function scoreOverridesStorageKey(cityId: string): string {
+  return `district-quality-map:score-overrides:${cityId}:v1`;
+}
 
 export function metricLabel(key: ScoreKey | string) {
   const labels: Record<string, string> = {
@@ -61,20 +65,36 @@ function mergeStoredWeights(parsed: unknown): Weights {
   return merged;
 }
 
-function isValidScoreOverrides(value: unknown): value is ScoreOverridesByPlace {
+function sanitizeScoreOverrides(value: unknown): ScoreOverridesByPlace {
   if (!value || typeof value !== "object") {
-    return false;
+    return {};
   }
 
-  return Object.entries(value as ScoreOverridesByPlace).every(([code, overrides]) => {
-    if (typeof code !== "string" || !overrides || typeof overrides !== "object") {
-      return false;
+  const sanitized: ScoreOverridesByPlace = {};
+  for (const [code, overrides] of Object.entries(value)) {
+    if (!code || !overrides || typeof overrides !== "object") {
+      continue;
     }
 
-    return Object.entries(overrides).every(([key, score]) => {
-      return isScoreKey(key) && typeof score === "number" && Number.isFinite(score) && score >= 0 && score <= 10;
-    });
-  });
+    const cleaned: PlaceScoreOverrides = {};
+    for (const [key, score] of Object.entries(overrides)) {
+      if (
+        isScoreKey(key) &&
+        typeof score === "number" &&
+        Number.isFinite(score) &&
+        score >= 0 &&
+        score <= 10
+      ) {
+        cleaned[key] = score;
+      }
+    }
+
+    if (Object.keys(cleaned).length > 0) {
+      sanitized[code] = cleaned;
+    }
+  }
+
+  return sanitized;
 }
 
 function migrateLegacyStorage(storage: StorageLike) {
@@ -89,15 +109,6 @@ function migrateLegacyStorage(storage: StorageLike) {
       }
     }
 
-    if (!storage.getItem(OVERRIDES_STORAGE_KEY)) {
-      for (const legacyKey of LEGACY_OVERRIDES_KEYS) {
-        const legacyOverrides = storage.getItem(legacyKey);
-        if (legacyOverrides) {
-          storage.setItem(OVERRIDES_STORAGE_KEY, legacyOverrides);
-          break;
-        }
-      }
-    }
   } catch {
     // Ignore storage errors during migration.
   }
@@ -149,35 +160,53 @@ export function saveWeights(weights: Weights, storage?: StorageLike) {
   }
 }
 
-export function loadScoreOverrides(storage?: StorageLike): ScoreOverridesByPlace {
+export function loadScoreOverrides(
+  cityId: string,
+  validCodes: ReadonlySet<string>,
+  storage?: StorageLike
+): ScoreOverridesByPlace {
   const store = resolveStorage(storage);
   if (!store) {
     return {};
   }
 
-  migrateLegacyStorage(store);
-
   try {
-    const raw = store.getItem(OVERRIDES_STORAGE_KEY);
+    const cityKey = scoreOverridesStorageKey(cityId);
+    let raw = store.getItem(cityKey);
+    if (!raw) {
+      raw = store.getItem(LEGACY_OVERRIDES_STORAGE_KEY);
+    }
+    if (!raw) {
+      for (const legacyKey of LEGACY_OVERRIDES_KEYS) {
+        raw = store.getItem(legacyKey);
+        if (raw) {
+          break;
+        }
+      }
+    }
+
     if (!raw) {
       return {};
     }
 
-    const parsed: unknown = JSON.parse(raw);
-    return isValidScoreOverrides(parsed) ? parsed : {};
+    return pruneScoreOverrides(sanitizeScoreOverrides(JSON.parse(raw)), validCodes);
   } catch {
     return {};
   }
 }
 
-export function saveScoreOverrides(overrides: ScoreOverridesByPlace, storage?: StorageLike) {
+export function saveScoreOverrides(
+  cityId: string,
+  overrides: ScoreOverridesByPlace,
+  storage?: StorageLike
+) {
   const store = resolveStorage(storage);
   if (!store) {
     return;
   }
 
   try {
-    store.setItem(OVERRIDES_STORAGE_KEY, JSON.stringify(overrides));
+    store.setItem(scoreOverridesStorageKey(cityId), JSON.stringify(overrides));
   } catch {
     // QuotaExceededError / SecurityError must not crash effects.
   }
@@ -190,18 +219,6 @@ export function getPlaceOverrides(
   return overrides[code];
 }
 
-export function getEffectiveScores(
-  place: PlaceScore,
-  overrides: ScoreOverridesByPlace
-): PlaceScore["scores"] {
-  const placeOverrides = overrides[place.code];
-  if (!placeOverrides || Object.keys(placeOverrides).length === 0) {
-    return place.scores;
-  }
-
-  return { ...place.scores, ...placeOverrides };
-}
-
 export function pruneScoreOverrides(
   overrides: ScoreOverridesByPlace,
   validCodes: ReadonlySet<string>
@@ -209,7 +226,7 @@ export function pruneScoreOverrides(
   const pruned: ScoreOverridesByPlace = {};
 
   for (const [code, placeOverrides] of Object.entries(overrides)) {
-    if (!validCodes.has(code)) {
+    if (!validCodes.has(code) || !placeOverrides || typeof placeOverrides !== "object") {
       continue;
     }
 
@@ -239,8 +256,8 @@ export function weightsDifferFromDefaults(activeWeights: Weights) {
 }
 
 export function hasScoreOverrides(overrides: ScoreOverridesByPlace): boolean {
-  for (const placeOverrides of Object.values(overrides)) {
-    if (Object.keys(placeOverrides).length > 0) {
+  for (const code in overrides) {
+    if (Object.prototype.hasOwnProperty.call(overrides, code)) {
       return true;
     }
   }
@@ -250,10 +267,6 @@ export function hasScoreOverrides(overrides: ScoreOverridesByPlace): boolean {
 
 export function hasCustomSettings(activeWeights: Weights, overrides: ScoreOverridesByPlace) {
   return weightsDifferFromDefaults(activeWeights) || hasScoreOverrides(overrides);
-}
-
-function round1(value: number): number {
-  return Math.round(value * 10) / 10;
 }
 
 export function clampWeight(value: number, fallback = 0): number {

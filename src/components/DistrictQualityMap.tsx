@@ -4,12 +4,14 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { FeatureCollection } from "geojson";
 import MapView, { boundsFromGeojson } from "@/components/MapView";
 import SettingsDrawer, { type SettingsTab } from "@/components/SettingsDrawer";
+import { PRODUCT_HEADLINE, PRODUCT_SUBTITLE } from "@/data/productCopy";
 import {
   cities,
   cityById,
   colorForScore,
   defaultWeights,
   formatScore,
+  mergeScores,
   scoreForMode,
   SCORE_KEYS,
   UNKNOWN_FEATURE_COLOR,
@@ -19,18 +21,25 @@ import {
   type ScoreKey,
   type Weights
 } from "@/data/cities";
+import {
+  CITY_RATING_COUNT,
+  cityRatingById,
+  formatCityScore,
+  PILLAR_LABELS,
+  tierLabel,
+  type CityRating
+} from "@/data/cityRatings";
 import { loadPlacesForCity } from "@/data/placeLoaders";
 import { useCityGeojson } from "@/hooks/useCityGeojson";
 import {
   clampScore,
   clampWeight,
-  getEffectiveScores,
   getPlaceOverrides,
   hasCustomSettings,
   loadScoreOverrides,
   loadWeights,
   metricLabel,
-  pruneScoreOverrides,
+  scoreOverridesStorageKey,
   saveScoreOverrides,
   saveWeights,
   type ScoreOverridesByPlace
@@ -43,22 +52,21 @@ type HoverInfo = {
 };
 
 type MapMode = "overall" | ScoreKey;
+type PanelView = "city" | "district";
+type SegmentMode = PanelView;
 
 function mapModeLabel(mode: MapMode) {
   return mode === "overall" ? "risk-adjusted overall" : metricLabel(mode).toLowerCase();
 }
 
-function overridesEqual(
-  left: ScoreOverridesByPlace,
-  right: ScoreOverridesByPlace
-): boolean {
+function overridesEqual(left: ScoreOverridesByPlace, right: ScoreOverridesByPlace): boolean {
   const leftCodes = Object.keys(left);
   const rightCodes = Object.keys(right);
   if (leftCodes.length !== rightCodes.length) {
     return false;
   }
 
-  for (const code of leftCodes) {
+  return leftCodes.every((code) => {
     const leftOverrides = left[code];
     const rightOverrides = right[code];
     if (!rightOverrides) {
@@ -67,15 +75,15 @@ function overridesEqual(
 
     const leftKeys = Object.keys(leftOverrides);
     const rightKeys = Object.keys(rightOverrides);
-    if (
-      leftKeys.length !== rightKeys.length ||
-      leftKeys.some((key) => leftOverrides[key as ScoreKey] !== rightOverrides[key as ScoreKey])
-    ) {
-      return false;
-    }
-  }
+    return (
+      leftKeys.length === rightKeys.length &&
+      leftKeys.every((key) => leftOverrides[key as ScoreKey] === rightOverrides[key as ScoreKey])
+    );
+  });
+}
 
-  return true;
+function weightsEqual(left: Weights, right: Weights): boolean {
+  return SCORE_KEYS.every((key) => left[key] === right[key]);
 }
 
 export default function DistrictQualityMap() {
@@ -87,17 +95,20 @@ export default function DistrictQualityMap() {
   const [filter, setFilter] = useState<"all" | string>("all");
   const [parentFilter, setParentFilter] = useState<"all" | string>("all");
   const [mapMode, setMapMode] = useState<MapMode>("overall");
+  const [panelView, setPanelView] = useState<PanelView>("city");
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [settingsTab, setSettingsTab] = useState<SettingsTab>("criteria");
   const [activeWeights, setActiveWeights] = useState<Weights>(() => loadWeights());
-  const [scoreOverrides, setScoreOverrides] = useState<ScoreOverridesByPlace>(() => loadScoreOverrides());
+  const [scoreOverrides, setScoreOverrides] = useState<ScoreOverridesByPlace>({});
+  const [overridesCityId, setOverridesCityId] = useState<CityId | null>(null);
   const [placesResult, setPlacesResult] = useState<{
-    cityId: CityId;
+    cityId: CityId | null;
     places: PlaceScore[];
     error: string | null;
-  }>({ cityId: "paris", places: [], error: null });
+  }>({ cityId: null, places: [], error: null });
 
   const city = cityById.get(cityId)!;
+  const cityRating: CityRating | undefined = cityRatingById.get(cityId);
   const {
     data: geojson,
     loading: geojsonLoading,
@@ -119,10 +130,8 @@ export default function DistrictQualityMap() {
         if (!cancelled) {
           setPlacesResult({ cityId, places: loaded, error: null });
           const validCodes = new Set(loaded.map((place) => place.code));
-          setScoreOverrides((current) => {
-            const pruned = pruneScoreOverrides(current, validCodes);
-            return overridesEqual(current, pruned) ? current : pruned;
-          });
+          setScoreOverrides(loadScoreOverrides(cityId, validCodes));
+          setOverridesCityId(cityId);
         }
       })
       .catch((error: unknown) => {
@@ -156,6 +165,35 @@ export default function DistrictQualityMap() {
     () => new Map(places.map((place) => [place.code, place])),
     [places]
   );
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const handleStorage = (event: StorageEvent) => {
+      if (event.key === "district-quality-map:weights:v1") {
+        setActiveWeights((current) => {
+          const next = loadWeights();
+          return weightsEqual(current, next) ? current : next;
+        });
+        return;
+      }
+
+      if (event.key !== scoreOverridesStorageKey(cityId) || !placesSettled) {
+        return;
+      }
+
+      setScoreOverrides((current) => {
+        const next = loadScoreOverrides(cityId, new Set(places.map((place) => place.code)));
+        return overridesEqual(current, next) ? current : next;
+      });
+      setOverridesCityId(cityId);
+    };
+
+    window.addEventListener("storage", handleStorage);
+    return () => window.removeEventListener("storage", handleStorage);
+  }, [cityId, places, placesSettled]);
 
   const displayOutlineGeojson = useMemo(
     () => outlineGeojson ?? geojson,
@@ -215,11 +253,11 @@ export default function DistrictQualityMap() {
 
   const selected = activePlaceByCode.get(selectedCode) ?? places[0] ?? null;
   const selectedOverrides = selected ? getPlaceOverrides(scoreOverrides, selected.code) : undefined;
-  const selectedScores = selected ? getEffectiveScores(selected, scoreOverrides) : null;
+  const selectedScores = selected ? mergeScores(selected, selectedOverrides) : null;
   const selectedTotal = selected ? weightedTotal(selected, activeWeights, selectedOverrides) : null;
   const selectedMapScore =
     selected && selectedScores && selectedTotal !== null
-      ? scoreForMode(selected, mapMode, activeWeights, selectedScores, selectedTotal)
+      ? scoreForMode(mapMode, selectedScores, selectedTotal)
       : null;
   const usingCustomSettings = hasCustomSettings(activeWeights, scoreOverrides);
 
@@ -245,8 +283,10 @@ export default function DistrictQualityMap() {
   }, [activeWeights]);
 
   useEffect(() => {
-    saveScoreOverrides(scoreOverrides);
-  }, [scoreOverrides]);
+    if (overridesCityId === cityId) {
+      saveScoreOverrides(cityId, scoreOverrides);
+    }
+  }, [cityId, overridesCityId, scoreOverrides]);
 
   const handleCityChange = (nextCityId: CityId) => {
     const nextCity = cityById.get(nextCityId);
@@ -256,11 +296,29 @@ export default function DistrictQualityMap() {
 
     setCityId(nextCityId);
     setSelectedCode(nextCity.defaultSelectedCode);
+    setPanelView("city");
     setHoverInfo(null);
     lastHoverRef.current = null;
     setFilter("all");
     setParentFilter("all");
   };
+
+  const handleSelectCode = useCallback((code: string) => {
+    setSelectedCode(code);
+    setPanelView("district");
+    setMapMode("overall");
+  }, []);
+
+  const handleSegmentClick = (segment: SegmentMode) => {
+    if (segment === "city") {
+      setPanelView("city");
+      return;
+    }
+
+    setPanelView("district");
+  };
+
+  const activeSegment: SegmentMode = panelView;
 
   const handleHoverPlace = useCallback(
     (info: { code: string; x: number; y: number } | null) => {
@@ -296,9 +354,9 @@ export default function DistrictQualityMap() {
       }
 
       const overrides = getPlaceOverrides(scoreOverrides, place.code);
-      const effectiveScores = getEffectiveScores(place, scoreOverrides);
+      const effectiveScores = mergeScores(place, overrides);
       const overall = weightedTotal(place, activeWeights, overrides);
-      return colorForScore(scoreForMode(place, mapMode, activeWeights, effectiveScores, overall));
+      return colorForScore(scoreForMode(mapMode, effectiveScores, overall));
     },
     [activePlaceByCode, activeWeights, mapMode, scoreOverrides]
   );
@@ -364,6 +422,11 @@ export default function DistrictQualityMap() {
     setScoreOverrides({});
   };
 
+  const fillUpdateTriggers = useMemo(
+    () => [mapMode, activeWeights, scoreOverrides, cityId, dataMismatch.unknownCodes.length],
+    [activeWeights, cityId, dataMismatch.unknownCodes.length, mapMode, scoreOverrides]
+  );
+
   const mapFetchError = geojsonError ?? outlineError;
   const mapLoading =
     geojsonLoading || (city.outlineGeojsonUrl ? outlineLoading : false) || placesLoading;
@@ -378,6 +441,21 @@ export default function DistrictQualityMap() {
   return (
     <main className="shell">
       <section className="mapArea" aria-label="District quality map">
+        <MapView
+          center={city.center}
+          zoom={city.zoom}
+          minZoom={city.minZoom}
+          maxZoom={city.maxZoom}
+          geojson={geojson}
+          displayOutlineGeojson={displayOutlineGeojson}
+          selectionOutline={selectionOutline}
+          getFillColor={getFillColor}
+          fillUpdateTriggers={fillUpdateTriggers}
+          onHoverPlace={handleHoverPlace}
+          onSelectCode={handleSelectCode}
+          canSelectCode={canSelectCode}
+          fitBounds={fitBounds}
+        />
         {mapFetchError ? (
           <div className="map mapError" role="alert">
             <p>Could not load map boundaries for {city.name}.</p>
@@ -390,23 +468,7 @@ export default function DistrictQualityMap() {
           <div className="map mapLoading" aria-busy="true">
             Loading map…
           </div>
-        ) : (
-          <MapView
-            center={city.center}
-            zoom={city.zoom}
-            minZoom={city.minZoom}
-            maxZoom={city.maxZoom}
-            geojson={geojson}
-            displayOutlineGeojson={displayOutlineGeojson}
-            selectionOutline={selectionOutline}
-            getFillColor={getFillColor}
-            fillUpdateTriggers={[mapMode, activeWeights, scoreOverrides, cityId, dataMismatch.unknownCodes.length]}
-            onHoverPlace={handleHoverPlace}
-            onSelectCode={setSelectedCode}
-            canSelectCode={canSelectCode}
-            fitBounds={fitBounds}
-          />
-        )}
+        ) : null}
         <div className="mapTopBar">
           <label className="citySelect">
             <span className="citySelectLabel">City</span>
@@ -445,10 +507,8 @@ export default function DistrictQualityMap() {
             <span>
               {formatScore(
                 scoreForMode(
-                  hoverInfo.place,
                   mapMode,
-                  activeWeights,
-                  getEffectiveScores(hoverInfo.place, scoreOverrides),
+                  mergeScores(hoverInfo.place, getPlaceOverrides(scoreOverrides, hoverInfo.place.code)),
                   weightedTotal(
                     hoverInfo.place,
                     activeWeights,
@@ -464,12 +524,9 @@ export default function DistrictQualityMap() {
 
       <aside className="panel" aria-label="Place score details">
         <div className="panelHeader">
-          <p className="eyebrow">District Quality Map</p>
-          <h1>{city.title}</h1>
-          <p>
-            Composite score from safety, rent pressure, transport, student energy, services, campus access, and calm.
-            Security is weighted 3x and caps unsafe areas.
-          </p>
+          <p className="panelCity">{city.name}</p>
+          <h1>{PRODUCT_HEADLINE}</h1>
+          <p className="productSubtitle">{PRODUCT_SUBTITLE}</p>
           {usingCustomSettings ? (
             <p className="customNote compactNote">Using custom weights and/or place ratings.</p>
           ) : null}
@@ -497,16 +554,77 @@ export default function DistrictQualityMap() {
           </section>
         ) : (
           <>
-            <div className="modeControl" aria-label="Map color mode">
-              <button className={mapMode === "overall" ? "activeMode" : ""} type="button" onClick={() => setMapMode("overall")}>
-                Overall
+            <div className="modeControl" aria-label="Panel view and map color mode">
+              <button
+                className={activeSegment === "city" ? "activeMode" : ""}
+                type="button"
+                onClick={() => handleSegmentClick("city")}
+              >
+                City
               </button>
-              <button className={mapMode === "security" ? "activeMode" : ""} type="button" onClick={() => setMapMode("security")}>
-                Safety
+              <button
+                className={activeSegment === "district" ? "activeMode" : ""}
+                type="button"
+                onClick={() => handleSegmentClick("district")}
+              >
+                District
               </button>
             </div>
 
-            {selected ? (
+            {panelView === "city" && cityRating ? (
+              <section className="selectedCard cityRatingCard">
+                <div className="selectedTopline">
+                  <div>
+                    <h2>{city.name}</h2>
+                    <p className="cityMeta">
+                      #{cityRating.rank} of {CITY_RATING_COUNT} · {tierLabel(cityRating.tier)}
+                    </p>
+                  </div>
+                  <div
+                    className="cityScoreBadge"
+                    style={{
+                      backgroundColor: `rgb(${colorForScore(cityRating.score / 10, 255).slice(0, 3).join(",")})`
+                    }}
+                  >
+                    <strong>{formatCityScore(cityRating.score)}</strong>
+                    <span>/100</span>
+                  </div>
+                </div>
+                <p className="mapScore">
+                  City score: {formatCityScore(cityRating.score)}/100 structural relocation quality
+                </p>
+                <p className="verdict">{cityRating.verdict}</p>
+                <p className="summary">{cityRating.summary}</p>
+                <p className="caveat">{cityRating.caveat}</p>
+
+                <div className="pillarGrid" aria-label="City pillar scores">
+                  {PILLAR_LABELS.map(({ key, label }) => (
+                    <div key={key} className="pillar">
+                      <span>{label}</span>
+                      <strong>{formatCityScore(cityRating.pillars[key])}</strong>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="cityListBlock">
+                  <h3>Best for</h3>
+                  <ul className="chipList">
+                    {cityRating.bestFor.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="cityListBlock">
+                  <h3>Watch out</h3>
+                  <ul className="tradeoffList">
+                    {cityRating.tradeoffs.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </section>
+            ) : selected ? (
               <section className="selectedCard">
                 <div className="selectedTopline">
                   <div>
@@ -532,6 +650,18 @@ export default function DistrictQualityMap() {
                 <p className="caveat">{selected.caveat}</p>
 
                 <div className="scoreGrid" aria-label="Place criteria scores">
+                  <button
+                    type="button"
+                    className={`metric${mapMode === "overall" ? " metricActive" : ""}`}
+                    aria-pressed={mapMode === "overall"}
+                    onClick={() => {
+                      setPanelView("district");
+                      setMapMode("overall");
+                    }}
+                  >
+                    <span>Overall</span>
+                    <strong>{formatScore(selectedTotal ?? 0)}</strong>
+                  </button>
                   {SCORE_KEYS.map((key) => {
                     const isOverridden = selectedOverrides?.[key] !== undefined;
                     const isActive = mapMode === key;
@@ -541,7 +671,10 @@ export default function DistrictQualityMap() {
                         type="button"
                         className={`metric${isOverridden ? " metricOverridden" : ""}${isActive ? " metricActive" : ""}`}
                         aria-pressed={isActive}
-                        onClick={() => setMapMode(key)}
+                        onClick={() => {
+                          setPanelView("district");
+                          setMapMode(key);
+                        }}
                       >
                         <span>
                           {metricLabel(key)}
@@ -561,7 +694,7 @@ export default function DistrictQualityMap() {
           <p>Need help with relocation?</p>
           <p>
             Write me on{" "}
-            <a href="https://t.me/daniel_mathias" target="_blank" rel="noreferrer">
+            <a href="https://t.me/daniel_mathias" target="_blank" rel="noopener noreferrer">
               Telegram @daniel_mathias
             </a>{" "}
             or{" "}
@@ -572,7 +705,7 @@ export default function DistrictQualityMap() {
         </section>
       </aside>
 
-      <SettingsDrawer
+      {settingsOpen ? <SettingsDrawer
         drawerState={{ open: settingsOpen, tab: settingsTab }}
         filters={{
           filter,
@@ -596,7 +729,7 @@ export default function DistrictQualityMap() {
           onClose: () => setSettingsOpen(false),
           onTabChange: setSettingsTab,
           onWeightChange: handleWeightChange,
-          onSelectedCodeChange: setSelectedCode,
+          onSelectedCodeChange: handleSelectCode,
           onScoreOverrideChange: handleScoreOverrideChange,
           onFilterChange: setFilter,
           onParentFilterChange: setParentFilter,
@@ -605,7 +738,7 @@ export default function DistrictQualityMap() {
           onResetWeights: resetWeights,
           onResetEverything: resetEverything
         }}
-      />
+      /> : null}
     </main>
   );
 }

@@ -102,6 +102,11 @@ def point_on_segment(
     px, py = point
     x1, y1 = start
     x2, y2 = end
+    if px < min(x1, x2) - epsilon or px > max(x1, x2) + epsilon:
+        return False
+    if py < min(y1, y2) - epsilon or py > max(y1, y2) + epsilon:
+        return False
+
     cross = abs((x2 - x1) * (py - y1) - (y2 - y1) * (px - x1))
     if cross > epsilon:
         return False
@@ -232,7 +237,7 @@ def geometries_overlap(
 
 def geometry_hash(geometry: dict[str, Any]) -> str:
     payload = json.dumps(_public_geometry(geometry), sort_keys=True, separators=(",", ":"))
-    return hashlib.md5(payload.encode()).hexdigest()[:12]
+    return hashlib.sha256(payload.encode()).hexdigest()[:12]
 
 
 def audit_source_contiguity(

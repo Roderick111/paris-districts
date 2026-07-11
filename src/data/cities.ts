@@ -11,6 +11,7 @@ export type {
   RentLevel,
   ScoreKey,
   Source,
+  SourceKind,
   StudentFit,
   Weights
 } from "@/data/types";
@@ -26,6 +27,7 @@ export {
   defaultWeights,
   formatScore,
   mergeScores,
+  round1,
   scoreForMode,
   UNKNOWN_FEATURE_COLOR,
   weightedTotal,
@@ -37,11 +39,3 @@ export {
   loadMacroPlacesForCity,
   loadPlacesForCity
 } from "@/data/placeLoaders";
-
-export { parisPlaces } from "@/data/parisPlaces";
-
-/** @deprecated Use loadPlacesForCity(cityId) */
-export async function getPlacesForCity(cityId: import("@/data/types").CityId) {
-  const { loadPlacesForCity } = await import("@/data/placeLoaders");
-  return loadPlacesForCity(cityId);
-}

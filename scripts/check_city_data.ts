@@ -1,21 +1,7 @@
 import { readFileSync } from "fs";
 import { join } from "path";
 import { cities } from "../src/data/cityMetadata";
-import { bordeauxMicroPlaces } from "../src/data/bordeauxPlaces";
-import { grenoblePlaces } from "../src/data/grenoblePlaces";
-import { lilleMicroPlaces } from "../src/data/lillePlaces";
-import { lyonMicroPlaces } from "../src/data/lyonPlaces";
-import { marseilleMicroPlaces } from "../src/data/marseillePlaces";
-import { montpellierPlaces } from "../src/data/montpellierPlaces";
-import { nantesMicroPlaces } from "../src/data/nantesPlaces";
-import { niceMicroPlaces } from "../src/data/nicePlaces";
-import { parisPlaces } from "../src/data/parisPlaces";
-import { isMapPlace } from "../src/data/placeLoaders";
-import { rennesPlaces } from "../src/data/rennesPlaces";
-import { strasbourgPlaces } from "../src/data/strasbourgPlaces";
-import { toulonPlaces } from "../src/data/toulonPlaces";
-import { toulouseMicroPlaces } from "../src/data/toulousePlaces";
-import type { CityId, PlaceScore } from "../src/data/types";
+import { isMapPlace, loadPlacesForCity } from "../src/data/placeLoaders";
 
 type GeoFeature = {
   properties?: {
@@ -28,22 +14,6 @@ type GeoCollection = {
 };
 
 const ROOT = process.cwd();
-
-const PLACE_LOADERS: Record<CityId, PlaceScore[]> = {
-  paris: parisPlaces,
-  bordeaux: bordeauxMicroPlaces,
-  lyon: lyonMicroPlaces,
-  toulouse: toulouseMicroPlaces,
-  lille: lilleMicroPlaces,
-  marseille: marseilleMicroPlaces,
-  nice: niceMicroPlaces,
-  nantes: nantesMicroPlaces,
-  strasbourg: strasbourgPlaces,
-  montpellier: montpellierPlaces,
-  rennes: rennesPlaces,
-  toulon: toulonPlaces,
-  grenoble: grenoblePlaces
-};
 
 function readGeojson(publicPath: string): GeoCollection {
   const filePath = join(ROOT, "public", publicPath.replace(/^\/data\//, "data/"));
@@ -93,11 +63,16 @@ function compareCodeSets(cityId: string, label: string, placeCodes: Set<string>,
   }
 }
 
-let failed = false;
+export async function main(argv = process.argv.slice(2)): Promise<number> {
+  if (argv[0] === "-h" || argv[0] === "--help") {
+    console.log("Usage: bun scripts/check_city_data.ts");
+    return 0;
+  }
 
-for (const city of cities) {
-  try {
-    const places = PLACE_LOADERS[city.id].filter(isMapPlace);
+  let failed = false;
+  for (const city of cities) {
+    try {
+      const places = (await loadPlacesForCity(city.id)).filter(isMapPlace);
     const placeCodes = new Set(places.map((place) => place.code));
     if (placeCodes.size === 0) {
       throw new Error(`${city.id}: no map place codes configured`);
@@ -113,14 +88,19 @@ for (const city of cities) {
       compareCodeSets(city.id, "outlines", placeCodes, outlineCodes);
     }
 
-    console.log(`${city.id}: ok (${placeCodes.size} places, codes match GeoJSON)`);
-  } catch (error) {
-    failed = true;
-    const message = error instanceof Error ? error.message : String(error);
-    console.error(`${city.id}: ${message}`);
+      console.log(`${city.id}: ok (${placeCodes.size} places, codes match GeoJSON)`);
+    } catch (error) {
+      failed = true;
+      const message = error instanceof Error ? error.message : String(error);
+      console.error(`${city.id}: ${message}`);
+    }
   }
+
+  return failed ? 1 : 0;
 }
 
-if (failed) {
-  process.exit(1);
+if (import.meta.main) {
+  main().then((code) => {
+    process.exitCode = code;
+  });
 }

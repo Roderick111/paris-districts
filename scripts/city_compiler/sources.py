@@ -4,8 +4,10 @@ from __future__ import annotations
 
 from city_compiler.errors import SourceError
 import csv
+import hashlib
 import json
 import os
+import urllib.error
 import urllib.parse
 import urllib.request
 from dataclasses import dataclass, field
@@ -14,7 +16,7 @@ from typing import Any
 
 from city_compiler.geometry import iter_geometry_points, merge_geometries
 from city_compiler.normalize import normalize_label
-from city_compiler.outputs import write_json_atomic
+from city_compiler.outputs import write_json_atomic, write_text_atomic
 
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPTS = ROOT / "scripts"
@@ -84,10 +86,59 @@ class SourceLayer:
                     )
 
 
+def _cache_path(url: str, suffix: str) -> Path:
+    digest = hashlib.sha256(url.encode("utf-8")).hexdigest()[:20]
+    return CACHE_DIR / f"remote_{digest}{suffix}"
+
+
+def _cache_refresh_enabled() -> bool:
+    return os.environ.get("CITY_CACHE_REFRESH") == "1"
+
+
 def fetch_json(url: str) -> dict[str, Any]:
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    cache_path = _cache_path(url, ".json")
+    if cache_path.exists() and not _cache_refresh_enabled():
+        try:
+            return json.loads(cache_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            try:
+                cache_path.unlink()
+            except OSError:
+                pass
+
     request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(request, timeout=180) as response:
-        return json.load(response)
+    try:
+        with urllib.request.urlopen(request, timeout=180) as response:
+            data = json.load(response)
+    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, OSError, json.JSONDecodeError) as exc:
+        raise SourceError(f"Failed to fetch {url}: {exc}") from exc
+
+    write_json_atomic(cache_path, data, compact=True)
+    return data
+
+
+def fetch_text(url: str) -> str:
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    cache_path = _cache_path(url, ".txt")
+    if cache_path.exists() and not _cache_refresh_enabled():
+        try:
+            return cache_path.read_text(encoding="utf-8")
+        except OSError as exc:
+            try:
+                cache_path.unlink()
+            except OSError:
+                pass
+
+    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    try:
+        with urllib.request.urlopen(request, timeout=180) as response:
+            text = response.read().decode("utf-8")
+    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, OSError, UnicodeDecodeError) as exc:
+        raise SourceError(f"Failed to fetch {url}: {exc}") from exc
+
+    write_text_atomic(cache_path, text)
+    return text
 
 
 def _index_shapes(features: list[dict[str, Any]], name_key: str) -> SourceLayer:
@@ -314,9 +365,7 @@ def load_lyon_metro_quartiers() -> SourceLayer:
 
 
 def load_grenoble_csv(url: str, name_key: str) -> SourceLayer:
-    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(request, timeout=180) as response:
-        text = response.read().decode("utf-8")
+    text = fetch_text(url)
     layer = SourceLayer(source_id="grenoble_quartiers")
     for row in csv.DictReader(text.splitlines()):
         name = row[name_key]
@@ -380,7 +429,12 @@ def load_source(config: dict[str, Any]) -> SourceLayer:
     adapter = ADAPTER_BY_TYPE.get(source_type)
     if adapter is None:
         raise SourceError(f"Unknown source type: {source_type}")
-    layer = adapter(config)
+    try:
+        layer = adapter(config)
+    except SourceError:
+        raise
+    except (KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
+        raise SourceError(f"Invalid response for source {source_id}: {exc}") from exc
     layer.source_id = source_id
     print(f"[sources] Loaded {source_id} ({len(layer.units)} units)", flush=True)
     return layer

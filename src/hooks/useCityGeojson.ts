@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { FeatureCollection, GeoJsonProperties, Geometry } from "geojson";
 
 export type PlaceFeatureCollection = FeatureCollection<
@@ -14,12 +14,16 @@ type GeojsonResult = {
   error: string | null;
 };
 
+const geojsonCache = new Map<string, PlaceFeatureCollection>();
+
 export function useCityGeojson(url: string | undefined) {
   const [attempt, setAttempt] = useState(0);
   const [result, setResult] = useState<GeojsonResult>({ key: "", data: null, error: null });
+  const bypassCacheRef = useRef(false);
   const requestKey = url ? `${url}:${attempt}` : "";
 
   const retry = useCallback(() => {
+    bypassCacheRef.current = true;
     setAttempt((current) => current + 1);
   }, []);
 
@@ -30,6 +34,22 @@ export function useCityGeojson(url: string | undefined) {
 
     let cancelled = false;
 
+    const bypassCache = bypassCacheRef.current;
+    bypassCacheRef.current = false;
+    if (!bypassCache) {
+      const cached = geojsonCache.get(url);
+      if (cached) {
+        Promise.resolve(cached).then((data) => {
+          if (!cancelled) {
+            setResult({ key: requestKey, data, error: null });
+          }
+        });
+        return () => {
+          cancelled = true;
+        };
+      }
+    }
+
     fetch(url)
       .then((response) => {
         if (!response.ok) {
@@ -38,6 +58,7 @@ export function useCityGeojson(url: string | undefined) {
         return response.json() as Promise<PlaceFeatureCollection>;
       })
       .then((data) => {
+        geojsonCache.set(url, data);
         if (!cancelled) {
           setResult({ key: requestKey, data, error: null });
         }

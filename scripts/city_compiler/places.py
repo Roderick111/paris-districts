@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 import subprocess
 from dataclasses import dataclass
 from pathlib import Path
@@ -11,7 +12,7 @@ from city_compiler.errors import ConfigError
 
 ROOT = Path(__file__).resolve().parents[2]
 EXPORT_SCRIPT = ROOT / "scripts" / "export_places_json.ts"
-BUN = Path.home() / ".bun/bin/bun"
+BUN_FALLBACK = Path.home() / ".bun/bin/bun"
 
 SCORE_FIELD_NAMES = (
     "security",
@@ -50,12 +51,14 @@ class PlaceScoreRecord:
 
 
 def _run_places_bridge(places_file: Path, section: str | None = None) -> list[dict[str, object]]:
-    if not BUN.exists():
-        raise ConfigError(f"Bun runtime not found at {BUN}")
+    bun = shutil.which("bun")
+    bun_path = Path(bun) if bun else BUN_FALLBACK
+    if not bun_path.exists():
+        raise ConfigError(f"Bun runtime not found on PATH or at {BUN_FALLBACK}")
     if not EXPORT_SCRIPT.exists():
         raise ConfigError(f"Missing places bridge script: {EXPORT_SCRIPT}")
 
-    command = [str(BUN), str(EXPORT_SCRIPT), str(places_file)]
+    command = [str(bun_path), str(EXPORT_SCRIPT), str(places_file)]
     if section:
         command.append(section)
 

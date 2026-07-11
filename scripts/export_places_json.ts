@@ -1,16 +1,4 @@
-import { bordeauxMicroPlaces } from "../src/data/bordeauxPlaces";
-import { grenoblePlaces } from "../src/data/grenoblePlaces";
-import { lilleMicroPlaces } from "../src/data/lillePlaces";
-import { lyonMicroPlaces } from "../src/data/lyonPlaces";
-import { marseilleMicroPlaces } from "../src/data/marseillePlaces";
-import { montpellierPlaces } from "../src/data/montpellierPlaces";
-import { nantesMicroPlaces } from "../src/data/nantesPlaces";
-import { niceMicroPlaces } from "../src/data/nicePlaces";
-import { parisPlaces } from "../src/data/parisPlaces";
-import { rennesPlaces } from "../src/data/rennesPlaces";
-import { strasbourgPlaces } from "../src/data/strasbourgPlaces";
-import { toulonPlaces } from "../src/data/toulonPlaces";
-import { toulouseMicroPlaces } from "../src/data/toulousePlaces";
+import { isMapPlace, loadPlacesForCity } from "../src/data/placeLoaders";
 import type { CityId, PlaceScore } from "../src/data/types";
 
 const SCORE_KEYS = [
@@ -30,20 +18,27 @@ type ExportRecord = {
   scores: Record<(typeof SCORE_KEYS)[number], number>;
 };
 
-const CITY_PLACES: Record<CityId, PlaceScore[]> = {
-  paris: parisPlaces,
-  bordeaux: bordeauxMicroPlaces,
-  lyon: lyonMicroPlaces,
-  toulouse: toulouseMicroPlaces,
-  lille: lilleMicroPlaces,
-  marseille: marseilleMicroPlaces,
-  nice: niceMicroPlaces,
-  nantes: nantesMicroPlaces,
-  strasbourg: strasbourgPlaces,
-  montpellier: montpellierPlaces,
-  rennes: rennesPlaces,
-  toulon: toulonPlaces,
-  grenoble: grenoblePlaces
+const CITY_ALIASES: Record<string, CityId> = {
+  paris: "paris",
+  bordeaux: "bordeaux",
+  bordeauxmicro: "bordeaux",
+  lyon: "lyon",
+  lyonmicro: "lyon",
+  toulouse: "toulouse",
+  toulousemicro: "toulouse",
+  lille: "lille",
+  lillemicro: "lille",
+  marseille: "marseille",
+  marseillemicro: "marseille",
+  nice: "nice",
+  nicemicro: "nice",
+  nantes: "nantes",
+  nantesmicro: "nantes",
+  strasbourg: "strasbourg",
+  montpellier: "montpellier",
+  rennes: "rennes",
+  toulon: "toulon",
+  grenoble: "grenoble"
 };
 
 function toExportRecords(places: PlaceScore[]): ExportRecord[] {
@@ -64,15 +59,15 @@ function toExportRecords(places: PlaceScore[]): ExportRecord[] {
 function cityIdFromArgs(placesFile: string, section?: string): CityId {
   if (section) {
     const normalized = section.replace(/Places$/, "").toLowerCase();
-    if (normalized in CITY_PLACES) {
-      return normalized as CityId;
+    if (CITY_ALIASES[normalized]) {
+      return CITY_ALIASES[normalized];
     }
     throw new Error(`No place export for section ${section}`);
   }
 
   const fileMatch = placesFile.match(/\/([a-z]+)Places\.ts$/i);
-  if (fileMatch && fileMatch[1].toLowerCase() in CITY_PLACES) {
-    return fileMatch[1].toLowerCase() as CityId;
+  if (fileMatch && CITY_ALIASES[fileMatch[1].toLowerCase()]) {
+    return CITY_ALIASES[fileMatch[1].toLowerCase()];
   }
 
   if (placesFile.endsWith("cities.ts")) {
@@ -82,12 +77,31 @@ function cityIdFromArgs(placesFile: string, section?: string): CityId {
   throw new Error(`Could not infer city from places file ${placesFile}`);
 }
 
-const [placesFileArg, sectionArg] = process.argv.slice(2);
-if (!placesFileArg) {
-  console.error("Usage: bun scripts/export_places_json.ts <placesFile> [section]");
-  process.exit(1);
+export async function main(argv = process.argv.slice(2)): Promise<number> {
+  if (argv.includes("-h") || argv.includes("--help")) {
+    console.log("Usage: bun scripts/export_places_json.ts <placesFile> [section]");
+    return 0;
+  }
+
+  const [placesFileArg, sectionArg] = argv;
+  if (!placesFileArg) {
+    console.error("Usage: bun scripts/export_places_json.ts <placesFile> [section]");
+    return 1;
+  }
+
+  try {
+    const cityId = cityIdFromArgs(placesFileArg, sectionArg);
+    const records = toExportRecords((await loadPlacesForCity(cityId)).filter(isMapPlace));
+    process.stdout.write(`${JSON.stringify(records)}\n`);
+    return 0;
+  } catch (error) {
+    console.error(error instanceof Error ? error.message : String(error));
+    return 1;
+  }
 }
 
-const cityId = cityIdFromArgs(placesFileArg, sectionArg);
-const records = toExportRecords(CITY_PLACES[cityId]);
-process.stdout.write(JSON.stringify(records));
+if (import.meta.main) {
+  main().then((code) => {
+    process.exitCode = code;
+  });
+}

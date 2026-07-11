@@ -33,6 +33,8 @@ def _run_for_targets(command: str, targets: list[str]) -> int:
                 validate_city(config)
         except CityCompilerError as exc:
             failures.append(f"{city_id}: {exc}")
+        except Exception as exc:  # Keep CLI failures actionable without raw tracebacks.
+            failures.append(f"{city_id}: unexpected compiler error: {exc}")
 
     if failures:
         for message in failures:
@@ -43,6 +45,10 @@ def _run_for_targets(command: str, targets: list[str]) -> int:
 
 
 def main() -> int:
+    if len(sys.argv) >= 2 and sys.argv[1] in {"-h", "--help"}:
+        print("Usage: python3 scripts/city_compiler/cli.py <build|validate|audit> [city ...]")
+        return 0
+
     if len(sys.argv) < 2:
         print(
             "Usage: python3 scripts/city_compiler/cli.py <build|validate|audit> [city ...]",

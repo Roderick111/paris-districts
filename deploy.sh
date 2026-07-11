@@ -1,8 +1,13 @@
 #!/bin/bash
 set -e
 
-SERVER="root@188.34.196.228"
-REMOTE_DIR="/opt/paris-districts"
+if [ -z "${DEPLOY_TARGET:-}" ]; then
+  echo "DEPLOY_TARGET is required (user@host)." >&2
+  exit 1
+fi
+
+SERVER="$DEPLOY_TARGET"
+REMOTE_DIR="${DEPLOY_REMOTE_DIR:-/opt/paris-districts}"
 
 echo "Deploying District Quality Map to $SERVER"
 echo "   Target: $REMOTE_DIR"

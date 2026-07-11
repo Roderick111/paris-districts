@@ -371,13 +371,38 @@ export default function SettingsDrawer({
           {tab === "sources" ? (
             <section className="drawerSection sourcesSection">
               <h3>Sources</h3>
-              <div className="sourcesList">
-                {sources.map((source) => (
-                  <a key={source.url} href={source.url} target="_blank" rel="noreferrer">
-                    {source.label}
-                  </a>
-                ))}
-              </div>
+              {(() => {
+                const humanSources = sources.filter((source) => source.kind === "human_experience");
+                const officialSources = sources.filter((source) => source.kind !== "human_experience");
+                return (
+                  <>
+                    {humanSources.length > 0 ? (
+                      <div className="sourcesGroup">
+                        <h4 className="sourcesGroupTitle">Relocation / lived experience</h4>
+                        <div className="sourcesList">
+                          {humanSources.map((source) => (
+                            <a key={source.url} href={source.url} target="_blank" rel="noopener noreferrer">
+                              {source.label}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    ) : null}
+                    {officialSources.length > 0 ? (
+                      <div className="sourcesGroup">
+                        <h4 className="sourcesGroupTitle">Official / technical data</h4>
+                        <div className="sourcesList">
+                          {officialSources.map((source) => (
+                            <a key={source.url} href={source.url} target="_blank" rel="noopener noreferrer">
+                              {source.label}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    ) : null}
+                  </>
+                );
+              })()}
             </section>
           ) : null}
         </div>

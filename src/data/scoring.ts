@@ -26,7 +26,7 @@ function finiteOr(value: number, fallback: number): number {
   return Number.isFinite(value) ? value : fallback;
 }
 
-function round1(value: number): number {
+export function round1(value: number): number {
   return Math.round(value * 10) / 10;
 }
 
@@ -84,9 +84,7 @@ export function weightedTotal(
 }
 
 export function scoreForMode(
-  place: PlaceScore,
   mode: "overall" | ScoreKey,
-  activeWeights: Weights,
   effectiveScores: PlaceScore["scores"],
   overallScore: number
 ): number {

@@ -4,8 +4,10 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import sys
+import tempfile
 import unicodedata
 import urllib.parse
 import urllib.request
@@ -65,6 +67,23 @@ CITY_OUTPUTS = {
 }
 
 
+def write_json_atomic(path: Path, payload: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temp_fd, temp_name = tempfile.mkstemp(dir=path.parent, prefix=f".{path.name}.", suffix=".tmp")
+    os.close(temp_fd)
+    temp_path = Path(temp_name)
+    try:
+        with temp_path.open("w", encoding="utf-8") as handle:
+            json.dump(payload, handle, separators=(",", ":"))
+            handle.flush()
+            os.fsync(handle.fileno())
+        temp_path.replace(path)
+    except Exception:
+        if temp_path.exists():
+            temp_path.unlink()
+        raise
+
+
 def fetch_json(url: str) -> dict[str, Any]:
     request = urllib.request.Request(url, headers={"User-Agent": "paris-student-map/1.0"})
     with urllib.request.urlopen(request, timeout=180) as response:
@@ -111,7 +130,7 @@ def load_iris(insee: str) -> dict[str, dict[str, Any]]:
             }
         )
         data = fetch_json(f"{IRIS_WFS}&{params}")
-        cache_path.write_text(json.dumps(data), encoding="utf-8")
+        write_json_atomic(cache_path, data)
     shapes: dict[str, dict[str, Any]] = {}
     by_label: dict[str, dict[str, Any]] = {}
     for feature in data["features"]:
@@ -580,9 +599,7 @@ def build_city(city_id: str, specs: list[dict[str, Any]], places_file: Path, out
 
     score_codes = set(meta)
     audit_output(features, score_codes)
-    output.parent.mkdir(parents=True, exist_ok=True)
-    with output.open("w", encoding="utf-8") as handle:
-        json.dump({"type": "FeatureCollection", "features": features}, handle, separators=(",", ":"))
+    write_json_atomic(output, {"type": "FeatureCollection", "features": features})
     print(f"{city_id}: wrote {len(features)} features to {output}")
 
 

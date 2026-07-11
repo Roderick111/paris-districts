@@ -2,14 +2,14 @@ import { describe, expect, test } from "bun:test";
 import {
   clampScore,
   clampWeight,
-  getEffectiveScores,
   loadScoreOverrides,
   loadWeights,
   pruneScoreOverrides,
+  scoreOverridesStorageKey,
   saveScoreOverrides,
   saveWeights
 } from "@/lib/userSettings";
-import { defaultWeights } from "@/data/scoring";
+import { defaultWeights, mergeScores } from "@/data/scoring";
 import type { PlaceScore } from "@/data/types";
 
 class MemoryStorage {
@@ -76,30 +76,59 @@ describe("storage helpers", () => {
   });
 
   test("saveScoreOverrides survives quota errors", () => {
-    expect(() => saveScoreOverrides({}, new ThrowingStorage())).not.toThrow();
+    expect(() => saveScoreOverrides("paris", {}, new ThrowingStorage())).not.toThrow();
   });
 
   test("load helpers accept injected storage", () => {
     const storage = new MemoryStorage();
     saveWeights(defaultWeights, storage);
     expect(loadWeights(storage)).toEqual(defaultWeights);
-    expect(loadScoreOverrides(storage)).toEqual({});
+    expect(loadScoreOverrides("paris", new Set(), storage)).toEqual({});
   });
 });
 
-describe("getEffectiveScores", () => {
+describe("mergeScores", () => {
   test("returns place.scores when no override exists", () => {
-    const effective = getEffectiveScores(samplePlace, {});
+    const effective = mergeScores(samplePlace);
     expect(effective).toBe(samplePlace.scores);
   });
 
   test("merges overrides without mutating defaults", () => {
-    const effective = getEffectiveScores(samplePlace, {
-      [samplePlace.code]: { security: 4 }
-    });
+    const effective = mergeScores(samplePlace, { security: 4 });
     expect(effective.security).toBe(4);
     expect(effective.affordability).toBe(samplePlace.scores.affordability);
     expect(samplePlace.scores.security).toBe(7);
+  });
+});
+
+describe("score override migration", () => {
+  test("keeps valid records when one stored record is malformed", () => {
+    const storage = new MemoryStorage();
+    storage.setItem(
+      scoreOverridesStorageKey("paris"),
+      JSON.stringify({
+        "75101": { security: 4, bogus: 8 },
+        stale: { security: "bad" },
+        broken: null
+      })
+    );
+
+    expect(loadScoreOverrides("paris", new Set(["75101", "75102"]), storage)).toEqual({
+      "75101": { security: 4 }
+    });
+  });
+
+  test("migrates matching records from the shared key without removing others", () => {
+    const storage = new MemoryStorage();
+    storage.setItem(
+      "district-quality-map:score-overrides:v1",
+      JSON.stringify({ "75101": { security: 4 }, "69101": { security: 5 } })
+    );
+
+    expect(loadScoreOverrides("paris", new Set(["75101"]), storage)).toEqual({
+      "75101": { security: 4 }
+    });
+    expect(storage.getItem("district-quality-map:score-overrides:v1")).toContain("69101");
   });
 });
 
