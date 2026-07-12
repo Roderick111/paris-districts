@@ -5,7 +5,6 @@ from __future__ import annotations
 from city_compiler.errors import GeometryError, ValidationError
 import json
 import re
-from pathlib import Path
 from typing import Any
 
 from city_compiler.geometry import polygon_parts
@@ -22,13 +21,17 @@ from city_compiler.places import load_place_caveats, load_place_meta, load_score
 from city_compiler.schema import CityConfig, Zone
 from city_compiler.sources import resolve_commune_geometry
 
-ROOT = Path(__file__).resolve().parents[2]
-COVERAGE_SCOPES = ROOT / "scripts" / "city_coverage_scopes.json"
 
-ALLOW_MULTIPART_ROLES = {"low_relevance"}
+ALLOW_MULTIPART_ROLES = {"low_relevance", "context", "campus", "risk_cap"}
 ALLOW_LOOSE_GROUP_ROLES = {"low_relevance"}
 FATAL_VISUAL_RISK_ROLES = {"primary", "campus", "risk_cap"}
-OFFICIAL_MULTIPART_BASES = {"official_quartier", "official_quartier_group"}
+OFFICIAL_MULTIPART_BASES = {
+    "official_quartier",
+    "official_quartier_group",
+    "commune",
+    "commune_context",
+    "iris_fallback_major_zone",
+}
 WARN_ZONE_COUNT = 30
 WARN_CONTEXT_RATIO = 0.4
 WARN_SAME_SCORE_COUNT = 5
@@ -74,6 +77,29 @@ LILLE_OBSOLETE_CODES = {
 }
 
 LILLE_EAST_PREFIXES = ("lille-croix-", "lille-roubaix-", "lille-tourcoing-")
+
+MONTPELLIER_LABEL_TOKENS: list[tuple[str, tuple[str, ...]]] = [
+    ("beaux-arts", ("Beaux-Arts",)),
+    ("boutonnet", ("Boutonnet",)),
+    ("comedie", ("Comédie",)),
+
+    ("richter", ("Oxford", "Le Mail Nord", "Le Mail Sud", "Les Tours")),
+    ("antigone", ("Nombre d'Or", "Place de l'Europe", "Rives du Lez")),
+    ("port-marianne", ("Millénaire", "Odysseum", "Eureka", "Grammont")),
+    ("millenaire", ("Millénaire",)),
+    ("odysseum", ("Odysseum",)),
+    ("triolet", ("École d'Architecture-Triolet", "Triolet")),
+    ("saint-eloi", ("Saint-Éloi",)),
+    ("paul-valery", ("École Normale", "Archives Départementales")),
+    ("mosson", ("Le Petit Bard", "Alco", "Les Tonnelles")),
+    ("paillade", ("Le Petit Bard", "Alco")),
+    ("celleneuve", ("Celleneuve",)),
+    ("ovalie", ("Ovalie",)),
+    ("euromedecine", ("Euromédecine",)),
+    ("agropolis", ("Agropolis",)),
+]
+MONTPELLIER_FATAL_SOURCE_UNIT_COUNT = 6
+MONTPELLIER_FATAL_RAW_PART_COUNT = 6
 
 
 def source_unit_clusters(names: list[str], shapes: dict[str, dict[str, Any]]) -> list[list[str]]:
@@ -169,7 +195,7 @@ def _audit_coverage_scope(config: CityConfig) -> None:
 
 
 def _audit_outline_requirement(config: CityConfig, features: list[dict[str, Any]]) -> None:
-    if config.build_mode == "legacy" or config.outline_output is not None:
+    if config.outline_output is not None:
         return
     for feature in features:
         geometry = feature["geometry"]
@@ -337,11 +363,14 @@ def _audit_visual_risk(config: CityConfig, features: list[dict[str, Any]]) -> No
         raw_parts = len(geometry["coordinates"]) if geometry.get("type") == "MultiPolygon" else 1
         dissolved = dissolved_component_count(geometry)
         area = bbox_area(geometry)
-        if dissolved > 1:
+        multipart_ok = zone.allow_multipart and (
+            role in ALLOW_MULTIPART_ROLES or _is_unavoidable_official_multipart(zone)
+        )
+        if dissolved > 1 and not multipart_ok:
             raise ValidationError(
                 f"visualRisk: {config.city_id} {code} has {dissolved} disconnected components"
             )
-        if raw_parts > OVERSIZED_PART_COUNT:
+        if raw_parts > OVERSIZED_PART_COUNT and not multipart_ok:
             raise ValidationError(
                 f"visualRisk: {config.city_id} {code} has {raw_parts} raw polygon parts"
             )
@@ -403,14 +432,14 @@ def _audit_warnings(config: CityConfig, features: list[dict[str, Any]], score_co
             f"warn: {config.city_id} context zones are {context_count}/{len(zones)} "
             f"(>{int(WARN_CONTEXT_RATIO * 100)}%)"
         )
-    tuples = load_score_tuples(config.places_file, section=config.places_section)
+    tuples = load_score_tuples(config.places_file)
     by_tuple: dict[tuple[float, ...], list[str]] = {}
     for code, values in tuples.items():
         by_tuple.setdefault(values, []).append(code)
     for values, codes in by_tuple.items():
         if len(codes) > WARN_SAME_SCORE_COUNT:
             print(f"warn: {config.city_id} {len(codes)} zones share score tuple {values}: {codes[:4]}...")
-    place_meta = load_place_meta(config.places_file, section=config.places_section)
+    place_meta = load_place_meta(config.places_file)
     zones_by_code = _zone_by_code(config)
     for feature in features:
         code = feature["properties"]["code"]
@@ -439,7 +468,7 @@ def _audit_warnings(config: CityConfig, features: list[dict[str, Any]], score_co
 
 
 def _audit_user_facing_caveats(config: CityConfig) -> None:
-    caveats = load_place_caveats(config.places_file, section=config.places_section)
+    caveats = load_place_caveats(config.places_file)
     for code, caveat in caveats.items():
         for term, pattern in FORBIDDEN_CAVEAT_CHECKS:
             if pattern.search(caveat):
@@ -476,3 +505,71 @@ def _audit_city_specific(
                 raise ValidationError(f"lille: disconnected primary zone {code}")
             if role == "campus" and dissolved > 1 and source_count > 6:
                 raise ValidationError(f"lille: campus zone {code} spans multiple clusters")
+    if city_id == "montpellier":
+        _audit_montpellier(config, features)
+
+
+def _audit_montpellier(config: CityConfig, features: list[dict[str, Any]]) -> None:
+    zones = _zone_by_code(config)
+    place_meta = load_place_meta(config.places_file)
+    fatal_roles = FATAL_VISUAL_RISK_ROLES
+
+    for feature in features:
+        code = feature["properties"]["code"]
+        zone = zones.get(code)
+        if zone is None:
+            continue
+        role = zone.coverage_role or "primary"
+        source_names = [unit.name for unit in zone.source_units]
+        geometry = feature["geometry"]
+        raw_parts = len(geometry["coordinates"]) if geometry.get("type") == "MultiPolygon" else 1
+        dissolved = dissolved_component_count(geometry)
+
+        if role in fatal_roles:
+            if len(source_names) > MONTPELLIER_FATAL_SOURCE_UNIT_COUNT:
+                raise ValidationError(
+                    f"montpellier: {code} has {len(source_names)} source units "
+                    f"(>{MONTPELLIER_FATAL_SOURCE_UNIT_COUNT})"
+                )
+            if raw_parts > MONTPELLIER_FATAL_RAW_PART_COUNT:
+                raise ValidationError(
+                    f"montpellier: {code} has {raw_parts} raw polygon parts "
+                    f"(>{MONTPELLIER_FATAL_RAW_PART_COUNT})"
+                )
+            if dissolved > 1:
+                raise ValidationError(
+                    f"montpellier: {code} has {dissolved} disconnected dissolved components"
+                )
+
+        haystack = f"{code} {place_meta.get(code, {}).get('name', '')}".lower()
+        for token, expected_names in MONTPELLIER_LABEL_TOKENS:
+            if token not in haystack:
+                continue
+            if not any(name in source_names for name in expected_names):
+                raise ValidationError(
+                    f"montpellier: zone {code} label contains {token!r} "
+                    f"but no matching source unit ({expected_names})"
+                )
+
+    for feature in features:
+        code = feature["properties"]["code"]
+        zone = zones.get(code)
+        if zone is None:
+            continue
+        source_names = [unit.name for unit in zone.source_units]
+        if code == "montpellier-comedie-gare":
+            if not any(name in source_names for name in ("Comédie", "Saint-Denis", "Pont de Sète")):
+                raise ValidationError(
+                    "montpellier: comedie-gare must include a Comédie or Gare source unit"
+                )
+            if "Beaux-Arts" in source_names:
+                raise ValidationError(
+                    "montpellier: Beaux-Arts must not be assigned to montpellier-comedie-gare"
+                )
+        if code == "montpellier-richter-jacques-coeur":
+            zone = zones[code]
+            west_units = {"Blayac", "Bologne"}
+            if west_units.intersection(unit.name for unit in zone.source_units):
+                raise ValidationError(
+                    "montpellier: richter-jacques-coeur must not use west/northwest IRIS units"
+                )

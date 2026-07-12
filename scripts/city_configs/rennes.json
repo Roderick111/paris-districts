@@ -1,6 +1,6 @@
 {
   "cityId": "rennes",
-  "placesFile": "src/data/rennesPlaces.ts",
+  "placesFile": "src/data/places/rennes.json",
   "geojsonOutput": "public/data/rennes.geojson",
   "sources": [
     {
@@ -60,18 +60,7 @@
       "geometryBasis": "official_quartier"
     },
     {
-      "code": "rennes-maurepas-bellangerais",
-      "sourceUnits": [
-        {
-          "source": "rennes_quartiers",
-          "name": "Maurepas / Bellangerais"
-        }
-      ],
-      "coverageRole": "risk_cap",
-      "geometryBasis": "official_quartier"
-    },
-    {
-      "code": "rennes-patton-north",
+      "code": "rennes-patton-breteche",
       "sourceUnits": [
         {
           "source": "rennes_quartiers",
@@ -80,14 +69,6 @@
         {
           "source": "rennes_quartiers",
           "name": "Centre Ville"
-        },
-        {
-          "source": "rennes_quartiers",
-          "name": "Champ Daguet Nord"
-        },
-        {
-          "source": "rennes_quartiers",
-          "name": "Champ Daguet Sud"
         },
         {
           "source": "rennes_quartiers",
@@ -104,6 +85,32 @@
         {
           "source": "rennes_quartiers",
           "name": "Les Melliers"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "rennes-champ-daguet",
+      "sourceUnits": [
+        {
+          "source": "rennes_quartiers",
+          "name": "Champ Daguet Nord"
+        },
+        {
+          "source": "rennes_quartiers",
+          "name": "Champ Daguet Sud"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "official_quartier"
+    },
+    {
+      "code": "rennes-maurepas-bellangerais",
+      "sourceUnits": [
+        {
+          "source": "rennes_quartiers",
+          "name": "Maurepas / Bellangerais"
         }
       ],
       "coverageRole": "risk_cap",
@@ -136,6 +143,10 @@
       "sourceUnits": [
         {
           "source": "rennes_quartiers",
+          "name": "Bréquigny"
+        },
+        {
+          "source": "rennes_quartiers",
           "name": "Sud gare"
         }
       ],
@@ -154,14 +165,14 @@
       "geometryBasis": "official_quartier"
     },
     {
-      "code": "rennes-villejean-beauregard",
+      "code": "rennes-villejean-kennedy",
       "sourceUnits": [
         {
           "source": "rennes_quartiers",
           "name": "Villejean / Beauregard"
         }
       ],
-      "coverageRole": "campus",
+      "coverageRole": "risk_cap",
       "geometryBasis": "official_quartier"
     },
     {
@@ -191,18 +202,7 @@
       "geometryBasis": "official_quartier"
     },
     {
-      "code": "rennes-brequigny",
-      "sourceUnits": [
-        {
-          "source": "rennes_quartiers",
-          "name": "Bréquigny"
-        }
-      ],
-      "coverageRole": "context",
-      "geometryBasis": "official_quartier"
-    },
-    {
-      "code": "rennes-southwest-periphery",
+      "code": "rennes-brequigny-core",
       "sourceUnits": [
         {
           "source": "rennes_quartiers",
@@ -228,17 +228,192 @@
       "geometryBasis": "official_quartier"
     },
     {
-      "code": "rennes-secteur-rural",
+      "code": "rennes-rural-south-west",
       "sourceUnits": [
         {
           "source": "rennes_quartiers",
           "name": "Secteur Rural"
         }
       ],
-      "coverageRole": "low_relevance",
+      "coverageRole": "context",
       "geometryBasis": "official_quartier"
     }
   ],
-  "scope": {},
+  "scope": {
+    "overlapExemptions": [
+      [
+        "rennes-belle-epine-haut-trait",
+        "rennes-brequigny-core"
+      ],
+      [
+        "rennes-belle-epine-haut-trait",
+        "rennes-maison-blanche-kerfleury"
+      ],
+      [
+        "rennes-belle-epine-haut-trait",
+        "rennes-rural-south-west"
+      ],
+      [
+        "rennes-belle-epine-haut-trait",
+        "rennes-patton-breteche"
+      ],
+      [
+        "rennes-belle-epine-haut-trait",
+        "rennes-champ-daguet"
+      ],
+      [
+        "rennes-belle-epine-haut-trait",
+        "rennes-nord-saint-martin"
+      ],
+      [
+        "rennes-bourg-levesque-la-touche-moulin-du-comte",
+        "rennes-centre"
+      ],
+      [
+        "rennes-bourg-levesque-la-touche-moulin-du-comte",
+        "rennes-cleunay-arsenal-redon"
+      ],
+      [
+        "rennes-bourg-levesque-la-touche-moulin-du-comte",
+        "rennes-nord-saint-martin"
+      ],
+      [
+        "rennes-bourg-levesque-la-touche-moulin-du-comte",
+        "rennes-villejean-kennedy"
+      ],
+      [
+        "rennes-brequigny-core",
+        "rennes-patton-breteche"
+      ],
+      [
+        "rennes-brequigny-core",
+        "rennes-champ-daguet"
+      ],
+      [
+        "rennes-brequigny-core",
+        "rennes-maurepas-bellangerais"
+      ],
+      [
+        "rennes-brequigny-core",
+        "rennes-maison-blanche-kerfleury"
+      ],
+      [
+        "rennes-brequigny-core",
+        "rennes-rural-south-west"
+      ],
+      [
+        "rennes-maison-blanche-kerfleury",
+        "rennes-patton-breteche"
+      ],
+      [
+        "rennes-maison-blanche-kerfleury",
+        "rennes-champ-daguet"
+      ],
+      [
+        "rennes-maison-blanche-kerfleury",
+        "rennes-maurepas-bellangerais"
+      ],
+      [
+        "rennes-patton-breteche",
+        "rennes-rural-south-west"
+      ],
+      [
+        "rennes-champ-daguet",
+        "rennes-rural-south-west"
+      ],
+      [
+        "rennes-maurepas-bellangerais",
+        "rennes-rural-south-west"
+      ],
+      [
+        "rennes-brequigny-core",
+        "rennes-nord-saint-martin"
+      ],
+      [
+        "rennes-maison-blanche-kerfleury",
+        "rennes-nord-saint-martin"
+      ],
+      [
+        "rennes-nord-saint-martin",
+        "rennes-rural-south-west"
+      ],
+      [
+        "rennes-centre",
+        "rennes-cleunay-arsenal-redon"
+      ],
+      [
+        "rennes-centre",
+        "rennes-nord-saint-martin"
+      ],
+      [
+        "rennes-centre",
+        "rennes-sud-gare"
+      ],
+      [
+        "rennes-centre",
+        "rennes-thabor-saint-helier-alphonse-guerin"
+      ],
+      [
+        "rennes-cleunay-arsenal-redon",
+        "rennes-sud-gare"
+      ],
+      [
+        "rennes-jeanne-darc-longs-champs-beaulieu",
+        "rennes-maurepas-bellangerais"
+      ],
+      [
+        "rennes-jeanne-darc-longs-champs-beaulieu",
+        "rennes-thabor-saint-helier-alphonse-guerin"
+      ],
+      [
+        "rennes-la-pommeraie",
+        "rennes-le-blosne"
+      ],
+      [
+        "rennes-la-pommeraie",
+        "rennes-sud-gare"
+      ],
+      [
+        "rennes-la-pommeraie",
+        "rennes-thabor-saint-helier-alphonse-guerin"
+      ],
+      [
+        "rennes-le-blosne",
+        "rennes-sud-gare"
+      ],
+      [
+        "rennes-maurepas-bellangerais",
+        "rennes-nord-saint-martin"
+      ],
+      [
+        "rennes-nord-saint-martin",
+        "rennes-patton-breteche"
+      ],
+      [
+        "rennes-champ-daguet",
+        "rennes-nord-saint-martin"
+      ],
+      [
+        "rennes-champ-daguet",
+        "rennes-patton-breteche"
+      ],
+      [
+        "rennes-maurepas-bellangerais",
+        "rennes-thabor-saint-helier-alphonse-guerin"
+      ],
+      [
+        "rennes-nord-saint-martin",
+        "rennes-thabor-saint-helier-alphonse-guerin"
+      ],
+      [
+        "rennes-nord-saint-martin",
+        "rennes-villejean-kennedy"
+      ],
+      [
+        "rennes-sud-gare",
+        "rennes-thabor-saint-helier-alphonse-guerin"
+      ]
+    ]
+  },
   "outlineOutput": "public/data/rennes-outlines.geojson"
 }

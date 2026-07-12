@@ -1,7 +1,6 @@
 {
   "cityId": "lyon",
-  "placesFile": "src/data/lyonPlaces.ts",
-  "placesSection": "lyonMicroPlaces",
+  "placesFile": "src/data/places/lyon.json",
   "geojsonOutput": "public/data/lyon.geojson",
   "outlineOutput": "public/data/lyon-outlines.geojson",
   "sources": [
@@ -455,19 +454,33 @@
       "sourceUnits": [
         {
           "source": "lyon_metro_quartiers",
-          "name": "Quartier Cyprian Les Brosses"
-        },
-        {
-          "source": "lyon_metro_quartiers",
-          "name": "Quartier Saint-Jean"
-        },
-        {
-          "source": "lyon_metro_quartiers",
           "name": "Quartier Buers Croix-Luizet",
           "latSplit": {
             "keep": "south",
             "latitude": 45.7835
           }
+        }
+      ]
+    },
+    {
+      "code": "villeurbanne-saint-jean",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_metro_quartiers",
+          "name": "Quartier Saint-Jean"
+        }
+      ]
+    },
+    {
+      "code": "villeurbanne-brosses",
+      "kind": "quartier",
+      "geometryBasis": "official_quartier_group",
+      "sourceUnits": [
+        {
+          "source": "lyon_metro_quartiers",
+          "name": "Quartier Cyprian Les Brosses"
         }
       ]
     },

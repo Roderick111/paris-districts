@@ -1,6 +1,6 @@
 {
   "cityId": "paris",
-  "placesFile": "src/data/parisPlaces.ts",
+  "placesFile": "src/data/places/paris.json",
   "geojsonOutput": "public/data/districts.geojson",
   "outlineOutput": "public/data/districts-outlines.geojson",
   "sources": [

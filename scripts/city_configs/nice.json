@@ -1,6 +1,6 @@
 {
   "cityId": "nice",
-  "placesFile": "src/data/nicePlaces.ts",
+  "placesFile": "src/data/places/nice.json",
   "geojsonOutput": "public/data/nice.geojson",
   "sources": [
     {
@@ -15,15 +15,26 @@
   ],
   "zones": [
     {
-      "code": "nice-vieux-nice-port",
+      "code": "nice-vieux-nice",
       "sourceUnits": [
         {
           "source": "nice_quartiers",
           "name": "Vieille Ville"
-        },
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-port-riquier",
+      "sourceUnits": [
         {
           "source": "nice_quartiers",
           "name": "Le Port"
+        },
+        {
+          "source": "nice_quartiers",
+          "name": "Riquier"
         }
       ],
       "coverageRole": "primary",
@@ -295,7 +306,14 @@
         {
           "source": "nice_quartiers",
           "name": "Arenas"
-        },
+        }
+      ],
+      "coverageRole": "campus",
+      "geometryBasis": "official_quartier_group"
+    },
+    {
+      "code": "nice-sainte-marguerite",
+      "sourceUnits": [
         {
           "source": "nice_quartiers",
           "name": "Sainte Marguerite"
@@ -340,15 +358,13 @@
         }
       ],
       "coverageRole": "low_relevance",
-      "geometryBasis": "official_quartier_group"
+      "geometryBasis": "official_quartier_group",
+      "allowMultipart": true,
+      "multipartJustification": "Official low-relevance hill quartiers are detached in the source layer; preserve one contextual score."
     },
     {
-      "code": "nice-riquier-saint-roch",
+      "code": "nice-saint-roch-roquebilliere",
       "sourceUnits": [
-        {
-          "source": "nice_quartiers",
-          "name": "Riquier"
-        },
         {
           "source": "nice_quartiers",
           "name": "Saint Roch"
@@ -441,6 +457,292 @@
     ],
     "fullCoverageSources": [
       "nice_quartiers"
+    ],
+    "overlapExemptions": [
+      [
+        "nice-arenas-sainte-marguerite",
+        "nice-caucade"
+      ],
+      [
+        "nice-arenas-sainte-marguerite",
+        "nice-corniche-promenade"
+      ],
+      [
+        "nice-arenas-sainte-marguerite",
+        "nice-fabron-saint-antoine"
+      ],
+      [
+        "nice-arenas-sainte-marguerite",
+        "nice-gare-tzanck-valrose"
+      ],
+      [
+        "nice-arenas-sainte-marguerite",
+        "nice-jean-medecin-massena"
+      ],
+      [
+        "nice-arenas-sainte-marguerite",
+        "nice-saint-augustin-moulins"
+      ],
+      [
+        "nice-arenas-sainte-marguerite",
+        "nice-saint-isidore-lingostiere"
+      ],
+      [
+        "nice-ariane",
+        "nice-rimiez-gairaut"
+      ],
+      [
+        "nice-ariane",
+        "nice-saint-roch-roquebilliere"
+      ],
+      [
+        "nice-baumettes-magnan",
+        "nice-fabron-saint-antoine"
+      ],
+      [
+        "nice-baumettes-magnan",
+        "nice-gambetta-rue-france"
+      ],
+      [
+        "nice-baumettes-magnan",
+        "nice-madeleine-saint-pierre"
+      ],
+      [
+        "nice-baumettes-magnan",
+        "nice-saint-philippe"
+      ],
+      [
+        "nice-carabacel-garibaldi",
+        "nice-carlone-medecin"
+      ],
+      [
+        "nice-carabacel-garibaldi",
+        "nice-cimiez"
+      ],
+      [
+        "nice-carabacel-garibaldi",
+        "nice-liberation-valrose"
+      ],
+      [
+        "nice-carabacel-garibaldi",
+        "nice-port-riquier"
+      ],
+      [
+        "nice-carabacel-garibaldi",
+        "nice-vieux-nice"
+      ],
+      [
+        "nice-carlone-medecin",
+        "nice-gambetta-rue-france"
+      ],
+      [
+        "nice-carlone-medecin",
+        "nice-liberation-valrose"
+      ],
+      [
+        "nice-carlone-medecin",
+        "nice-thiers-musiciens"
+      ],
+      [
+        "nice-carlone-medecin",
+        "nice-vernier"
+      ],
+      [
+        "nice-carlone-medecin",
+        "nice-vieux-nice"
+      ],
+      [
+        "nice-caucade",
+        "nice-fabron-saint-antoine"
+      ],
+      [
+        "nice-caucade",
+        "nice-saint-augustin-moulins"
+      ],
+      [
+        "nice-cimiez",
+        "nice-liberation-valrose"
+      ],
+      [
+        "nice-cimiez",
+        "nice-pasteur"
+      ],
+      [
+        "nice-cimiez",
+        "nice-port-riquier"
+      ],
+      [
+        "nice-cimiez",
+        "nice-rimiez-gairaut"
+      ],
+      [
+        "nice-cimiez",
+        "nice-saint-roch-roquebilliere"
+      ],
+      [
+        "nice-corniche-promenade",
+        "nice-gare-tzanck-valrose"
+      ],
+      [
+        "nice-corniche-promenade",
+        "nice-jean-medecin-massena"
+      ],
+      [
+        "nice-corniche-promenade",
+        "nice-saint-isidore-lingostiere"
+      ],
+      [
+        "nice-cremat-bellet",
+        "nice-fabron-saint-antoine"
+      ],
+      [
+        "nice-cremat-bellet",
+        "nice-madeleine-saint-pierre"
+      ],
+      [
+        "nice-cremat-bellet",
+        "nice-pessicart-saint-pancrace"
+      ],
+      [
+        "nice-cremat-bellet",
+        "nice-saint-isidore-lingostiere"
+      ],
+      [
+        "nice-fabron-saint-antoine",
+        "nice-madeleine-saint-pierre"
+      ],
+      [
+        "nice-fabron-saint-antoine",
+        "nice-saint-isidore-lingostiere"
+      ],
+      [
+        "nice-gambetta-rue-france",
+        "nice-mantega-piol"
+      ],
+      [
+        "nice-gambetta-rue-france",
+        "nice-saint-philippe"
+      ],
+      [
+        "nice-gambetta-rue-france",
+        "nice-thiers-musiciens"
+      ],
+      [
+        "nice-gambetta-rue-france",
+        "nice-vernier"
+      ],
+      [
+        "nice-gare-tzanck-valrose",
+        "nice-jean-medecin-massena"
+      ],
+      [
+        "nice-gare-tzanck-valrose",
+        "nice-saint-augustin-moulins"
+      ],
+      [
+        "nice-gare-tzanck-valrose",
+        "nice-vespins-littoral"
+      ],
+      [
+        "nice-liberation-valrose",
+        "nice-mantega-piol"
+      ],
+      [
+        "nice-liberation-valrose",
+        "nice-rimiez-gairaut"
+      ],
+      [
+        "nice-liberation-valrose",
+        "nice-saint-maurice-ray"
+      ],
+      [
+        "nice-liberation-valrose",
+        "nice-saint-sylvestre"
+      ],
+      [
+        "nice-liberation-valrose",
+        "nice-vernier"
+      ],
+      [
+        "nice-madeleine-saint-pierre",
+        "nice-mantega-piol"
+      ],
+      [
+        "nice-madeleine-saint-pierre",
+        "nice-pessicart-saint-pancrace"
+      ],
+      [
+        "nice-madeleine-saint-pierre",
+        "nice-saint-philippe"
+      ],
+      [
+        "nice-mantega-piol",
+        "nice-pessicart-saint-pancrace"
+      ],
+      [
+        "nice-mantega-piol",
+        "nice-saint-philippe"
+      ],
+      [
+        "nice-mantega-piol",
+        "nice-saint-sylvestre"
+      ],
+      [
+        "nice-mantega-piol",
+        "nice-vernier"
+      ],
+      [
+        "nice-mont-boron-vinaigrier",
+        "nice-port-riquier"
+      ],
+      [
+        "nice-mont-boron-vinaigrier",
+        "nice-saint-roch-roquebilliere"
+      ],
+      [
+        "nice-pasteur",
+        "nice-rimiez-gairaut"
+      ],
+      [
+        "nice-pasteur",
+        "nice-saint-roch-roquebilliere"
+      ],
+      [
+        "nice-pessicart-saint-pancrace",
+        "nice-rimiez-gairaut"
+      ],
+      [
+        "nice-pessicart-saint-pancrace",
+        "nice-saint-maurice-ray"
+      ],
+      [
+        "nice-pessicart-saint-pancrace",
+        "nice-saint-sylvestre"
+      ],
+      [
+        "nice-port-riquier",
+        "nice-saint-roch-roquebilliere"
+      ],
+      [
+        "nice-port-riquier",
+        "nice-vieux-nice"
+      ],
+      [
+        "nice-rimiez-gairaut",
+        "nice-saint-maurice-ray"
+      ],
+      [
+        "nice-rimiez-gairaut",
+        "nice-saint-roch-roquebilliere"
+      ],
+      [
+        "nice-saint-maurice-ray",
+        "nice-saint-sylvestre"
+      ],
+      [
+        "nice-thiers-musiciens",
+        "nice-vernier"
+      ]
     ]
   },
   "outlineOutput": "public/data/nice-outlines.geojson"

@@ -1,6 +1,6 @@
 {
   "cityId": "marseille",
-  "placesFile": "src/data/marseillePlaces.ts",
+  "placesFile": "src/data/places/marseille.json",
   "geojsonOutput": "public/data/marseille.geojson",
   "sources": [
     {
@@ -79,10 +79,6 @@
         {
           "source": "marseille_quartiers",
           "name": "LA JOLIETTE"
-        },
-        {
-          "source": "marseille_quartiers",
-          "name": "ARENC"
         }
       ],
       "coverageRole": "primary",
@@ -143,7 +139,15 @@
         {
           "source": "marseille_quartiers",
           "name": "LA BLANCARDE"
-        },
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "area": "4e"
+    },
+    {
+      "code": "marseille-chutes-lavie",
+      "sourceUnits": [
         {
           "source": "marseille_quartiers",
           "name": "CHUTES LAVIE"
@@ -231,10 +235,6 @@
         {
           "source": "marseille_quartiers",
           "name": "VAUBAN"
-        },
-        {
-          "source": "marseille_quartiers",
-          "name": "ROUCAS BLANC"
         }
       ],
       "coverageRole": "primary",
@@ -242,12 +242,22 @@
       "area": "6e/7e"
     },
     {
-      "code": "marseille-pharo-bompard-coast",
+      "code": "marseille-roucas-blanc",
       "sourceUnits": [
         {
           "source": "marseille_quartiers",
-          "name": "LE PHARO"
-        },
+          "name": "ROUCAS BLANC"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "area": "6e/7e",
+      "allowMultipart": true,
+      "multipartJustification": "Official Roucas-Blanc source is multipart; preserve its authoritative components."
+    },
+    {
+      "code": "marseille-pharo-bompard-coast",
+      "sourceUnits": [
         {
           "source": "marseille_quartiers",
           "name": "SAINT VICTOR"
@@ -264,6 +274,20 @@
       "coverageRole": "primary",
       "geometryBasis": "official_quartier_group",
       "area": "7e"
+    },
+    {
+      "code": "marseille-pharo",
+      "sourceUnits": [
+        {
+          "source": "marseille_quartiers",
+          "name": "LE PHARO"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "area": "7e",
+      "allowMultipart": true,
+      "multipartJustification": "Official Le Pharo source is multipart; preserve authoritative components."
     },
     {
       "code": "marseille-endoume-context",
@@ -301,7 +325,15 @@
         {
           "source": "marseille_quartiers",
           "name": "SAINT GINIEZ"
-        },
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "official_quartier_group",
+      "area": "8e"
+    },
+    {
+      "code": "marseille-la-plage",
+      "sourceUnits": [
         {
           "source": "marseille_quartiers",
           "name": "LA PLAGE"
@@ -309,7 +341,9 @@
       ],
       "coverageRole": "primary",
       "geometryBasis": "official_quartier_group",
-      "area": "8e"
+      "area": "8e",
+      "allowMultipart": true,
+      "multipartJustification": "Official La Plage source is multipart; preserve authoritative components."
     },
     {
       "code": "marseille-bonneveine-pointe-rouge",
@@ -361,7 +395,9 @@
       ],
       "coverageRole": "context",
       "geometryBasis": "official_quartier_group",
-      "area": "8e/9e"
+      "area": "8e/9e",
+      "allowMultipart": true,
+      "multipartJustification": "Official quartier group contains detached source components; preserve the authoritative group."
     },
     {
       "code": "marseille-luminy-redon",
@@ -377,7 +413,9 @@
       ],
       "coverageRole": "campus",
       "geometryBasis": "official_quartier_group",
-      "area": "9e"
+      "area": "9e",
+      "allowMultipart": true,
+      "multipartJustification": "Official campus quartier group contains detached source components; preserve the authoritative group."
     },
     {
       "code": "marseille-carpaigne-context",
@@ -401,7 +439,9 @@
       ],
       "coverageRole": "low_relevance",
       "geometryBasis": "official_quartier_group",
-      "area": "9e"
+      "area": "9e",
+      "allowMultipart": true,
+      "multipartJustification": "Official low-relevance quartier source contains detached components; preserve contextual coverage."
     },
     {
       "code": "marseille-sormiou-low",
@@ -413,7 +453,9 @@
       ],
       "coverageRole": "low_relevance",
       "geometryBasis": "official_quartier_group",
-      "area": "9e"
+      "area": "9e",
+      "allowMultipart": true,
+      "multipartJustification": "Official low-relevance quartier source contains detached components; preserve contextual coverage."
     },
     {
       "code": "marseille-les-goudes-low",
@@ -715,7 +757,9 @@
       ],
       "coverageRole": "risk_cap",
       "geometryBasis": "official_quartier_group",
-      "area": "15e"
+      "area": "15e",
+      "allowMultipart": true,
+      "multipartJustification": "Broad official risk-cap belt intentionally spans many official quartiers; preserve risk coverage without merging unrelated scores."
     },
     {
       "code": "marseille-estaque-16e",
@@ -739,7 +783,9 @@
       ],
       "coverageRole": "low_relevance",
       "geometryBasis": "official_quartier_group",
-      "area": "16e"
+      "area": "16e",
+      "allowMultipart": true,
+      "multipartJustification": "Official low-relevance quartier group contains detached components; preserve contextual coverage."
     }
   ],
   "scope": {
@@ -750,7 +796,12 @@
     ],
     "fullCoverageSources": [
       "marseille_quartiers"
-    ]
+    ],
+    "exemptUnits": {
+      "marseille_quartiers": [
+        "ARENC"
+      ]
+    }
   },
   "outlineOutput": "public/data/marseille-outlines.geojson"
 }

@@ -1,6 +1,6 @@
 {
   "cityId": "toulouse",
-  "placesFile": "src/data/toulousePlaces.ts",
+  "placesFile": "src/data/places/toulouse.json",
   "geojsonOutput": "public/data/toulouse.geojson",
   "sources": [
     {
@@ -343,6 +343,25 @@
         "Capitole / Arnaud Bernard / Carmes",
         "Saint-Michel /  Saint-Agne / Empalot / Le Busca / Île du Ramier / Monplaisir"
       ]
+    },
+    "overlapExemptions": [
+      [
+        "toulouse-capitole-carmes",
+        "toulouse-saint-cyprien"
+      ],
+      [
+        "toulouse-empalot-ramier",
+        "toulouse-saint-cyprien"
+      ],
+      [
+        "toulouse-empalot-ramier",
+        "toulouse-croix-pierre-route-espagne"
+      ]
+    ],
+    "overlapJustifications": {
+      "toulouse-capitole-carmes|toulouse-saint-cyprien": "Official Toulouse quartier boundary overlaps legacy IRIS partition at source edges; retain IRIS detail for Capitole and official Saint-Cyprien geometry.",
+      "toulouse-empalot-ramier|toulouse-saint-cyprien": "Official Toulouse quartier boundary overlaps legacy IRIS partition at source edges; preserve both scored areas.",
+      "toulouse-empalot-ramier|toulouse-croix-pierre-route-espagne": "Official Toulouse quartier boundary overlaps legacy IRIS partition at source edges; preserve both scored areas."
     }
   },
   "outlineOutput": "public/data/toulouse-outlines.geojson"

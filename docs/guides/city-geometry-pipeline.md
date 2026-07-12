@@ -15,7 +15,6 @@ Reference implementations:
 - **Lille revised model** - official quartiers + commune context + IRIS fallback.
 - **City compiler** - `scripts/city_compiler/cli.py` + per-city configs in `scripts/city_configs/`
 - **Shared audits** - `scripts/geometry_audit.py` (imported by compiler)
-- **Legacy builders** - `scripts/legacy/` (one-off generators; deprecated)
 
 ## Good City Coverage
 
@@ -185,7 +184,7 @@ Each city has a declarative config at `scripts/city_configs/<city>.json`:
 ```json
 {
   "cityId": "lille",
-  "placesFile": "src/data/lillePlaces.ts",
+  "placesFile": "src/data/places/lille.json",
   "geojsonOutput": "public/data/lille.geojson",
   "outlineOutput": "public/data/lille-outlines.geojson",
   "sources": [
@@ -204,13 +203,7 @@ Each city has a declarative config at `scripts/city_configs/<city>.json`:
 }
 ```
 
-PlaceScore rows stay in `src/data/*Places.ts` for now. The compiler reads codes/names only.
-
-To bootstrap configs from legacy `granularity_geometry.json`:
-
-```bash
-python3 scripts/city_compiler/generate_configs.py
-```
+PlaceScore rows live in `src/data/places/<city>.json`, which is canonical for both React and the compiler.
 
 Optional zone keys: `allowMultipart`, `multipartJustification`, `area`, `communeInsee`.
 
@@ -336,9 +329,9 @@ Batch acceptance:
 - [ ] Every score has evidence at matching granularity.
 - [ ] No disconnected primary/campus/risk_cap zone.
 - [ ] Context rows are honest and not all same-score placeholders.
-- [ ] `python3 scripts/build_new_city_geojson.py <city>` passes.
+- [ ] `python3 scripts/city_compiler/cli.py build <city>` passes.
 - [ ] `~/.bun/bin/bun run geo:outlines -- <city>` passes when outlines are configured or needed.
-- [ ] `python3 scripts/validate_city_geojson.py <city>` passes.
+- [ ] `python3 scripts/city_compiler/cli.py validate <city>` passes.
 - [ ] `~/.bun/bin/bun run build` passes.
 - [ ] Browser screenshot reviewed.
 - [ ] No visible internal source seams in user-facing outlines.

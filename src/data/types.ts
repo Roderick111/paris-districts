@@ -17,9 +17,12 @@ export type PlaceKind = "arrondissement" | "quartier" | "commune";
 export type RentLevel = "lower" | "medium" | "high" | "very high";
 export type StudentFit = "excellent" | "good" | "mixed" | "weak";
 
+export type SourceKind = "official" | "human_experience";
+
 export type Source = {
   label: string;
   url: string;
+  kind?: SourceKind;
 };
 
 export type PlaceGranularity = "micro" | "macro";

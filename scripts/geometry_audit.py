@@ -9,6 +9,7 @@ from typing import Any
 
 SLIVER_MIN_AREA = 8e-6
 SLIVER_MAX_ASPECT = 12.0
+MIN_INTERIOR_OVERLAP_RATIO = 0.01
 
 
 def _public_geometry(geometry: dict[str, Any]) -> dict[str, Any]:
@@ -194,6 +195,37 @@ def geometry_contains_point(geometry: dict[str, Any], point: list[float]) -> boo
     return any(point_in_polygon(point, poly[0]) for poly in polygon_parts(geometry))
 
 
+def _point_on_geometry_boundary(geometry: dict[str, Any], point: list[float]) -> bool:
+    return any(
+        any(
+            point_on_segment(point, ring[index], ring[(index + 1) % len(ring)])
+            for index in range(len(ring))
+        )
+        for polygon in polygon_parts(geometry)
+        for ring in polygon
+    )
+
+
+def geometry_contains_interior_point(geometry: dict[str, Any], point: list[float]) -> bool:
+    return geometry_contains_point(geometry, point) and not _point_on_geometry_boundary(geometry, point)
+
+
+def geometry_area(geometry: dict[str, Any]) -> float:
+    area = 0.0
+    for polygon in polygon_parts(geometry):
+        for index, ring in enumerate(polygon):
+            ring_area = abs(
+                sum(
+                    ring[position][0] * ring[(position + 1) % len(ring)][1]
+                    - ring[(position + 1) % len(ring)][0] * ring[position][1]
+                    for position in range(len(ring))
+                )
+                / 2
+            )
+            area += ring_area if index == 0 else -ring_area
+    return max(area, 0.0)
+
+
 def geometries_overlap(
     geometry_a: dict[str, Any],
     geometry_b: dict[str, Any],
@@ -212,15 +244,6 @@ def geometries_overlap(
     if ix1 <= ix0 or iy1 <= iy0:
         return False
 
-    for poly_a in polygon_parts(geometry_a):
-        for point in poly_a[0]:
-            if geometry_contains_point(geometry_b, point):
-                return True
-    for poly_b in polygon_parts(geometry_b):
-        for point in poly_b[0]:
-            if geometry_contains_point(geometry_a, point):
-                return True
-
     overlap_samples = 0
     for row in range(steps):
         for col in range(steps):
@@ -230,9 +253,11 @@ def geometries_overlap(
                 geometry_b, [x, y]
             ):
                 overlap_samples += 1
-                if overlap_samples >= min_overlap_samples:
-                    return True
-    return False
+    if overlap_samples < min_overlap_samples:
+        return False
+    intersection_area = overlap_samples / (steps * steps) * (ix1 - ix0) * (iy1 - iy0)
+    smaller_area = min(geometry_area(geometry_a), geometry_area(geometry_b))
+    return smaller_area > 0 and intersection_area / smaller_area >= MIN_INTERIOR_OVERLAP_RATIO
 
 
 def geometry_hash(geometry: dict[str, Any]) -> str:

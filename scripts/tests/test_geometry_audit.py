@@ -6,7 +6,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from city_compiler.geometry import round_geometry_coords
-from geometry_audit import audit_geometry_quality, geometry_bbox, geometry_hash
+from geometry_audit import audit_geometry_quality, geometries_overlap, geometry_bbox, geometry_hash
 
 
 SAMPLE_POLYGON = {
@@ -59,6 +59,28 @@ class GeometryAuditTests(unittest.TestCase):
             )
 
         self.assertIn("test-zone", str(ctx.exception))
+
+    def test_adjacent_polygons_sharing_boundary_do_not_overlap(self) -> None:
+        left = {
+            "type": "Polygon",
+            "coordinates": [[ [0, 0], [1, 0], [1, 1], [0, 1], [0, 0] ]],
+        }
+        right = {
+            "type": "Polygon",
+            "coordinates": [[ [1, 0], [2, 0], [2, 1], [1, 1], [1, 0] ]],
+        }
+        self.assertFalse(geometries_overlap(left, right))
+
+    def test_contained_polygon_is_an_overlap(self) -> None:
+        outer = {
+            "type": "Polygon",
+            "coordinates": [[ [0, 0], [3, 0], [3, 3], [0, 3], [0, 0] ]],
+        }
+        inner = {
+            "type": "Polygon",
+            "coordinates": [[ [1, 1], [2, 1], [2, 2], [1, 2], [1, 1] ]],
+        }
+        self.assertTrue(geometries_overlap(outer, inner))
 
 
 if __name__ == "__main__":

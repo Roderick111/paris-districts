@@ -70,8 +70,7 @@ src/
   app/                    # Next.js pages and global styles
   components/             # DistrictQualityMap, settings drawer
   data/cities.ts          # City registry, weights, security cap
-  data/*Places.ts         # Per-city PlaceScore[] micro-areas
-  lib/geometryOutline.ts  # Map selection outline helpers
+  data/places/             # Canonical per-city PlaceScore JSON datasets
 public/data/
   *.geojson               # City micro-area boundaries
 docs/
@@ -81,7 +80,6 @@ scripts/
   city_compiler/          # Common geometry compiler
   city_configs/           # Per-city declarative build configs
   geometry_audit.py       # Shared audits
-  legacy/                 # Deprecated one-off builders
 ```
 
 ## Adding or upgrading a city
@@ -92,7 +90,7 @@ Short version:
 
 1. Research report → `docs/research/<city>-student-life.md`
 2. City config → `scripts/city_configs/<city>.json`
-3. Scores → `src/data/<city>Places.ts` + register in `src/data/cities.ts`
+3. Scores → `src/data/places/<city>.json` + register in `src/data/cities.ts`
 4. Build + validate:
 
 ```bash

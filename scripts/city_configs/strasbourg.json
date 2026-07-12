@@ -1,8 +1,7 @@
 {
   "cityId": "strasbourg",
-  "placesFile": "src/data/strasbourgPlaces.ts",
+  "placesFile": "src/data/places/strasbourg.json",
   "geojsonOutput": "public/data/strasbourg.geojson",
-  "outlineOutput": "public/data/strasbourg-outlines.geojson",
   "sources": [
     {
       "id": "strasbourg_quartiers",
@@ -34,17 +33,6 @@
       "geometryBasis": "official_quartier_group"
     },
     {
-      "code": "strasbourg-ampere",
-      "sourceUnits": [
-        {
-          "source": "strasbourg_quartiers",
-          "name": "Ampère"
-        }
-      ],
-      "coverageRole": "primary",
-      "geometryBasis": "official_quartier"
-    },
-    {
       "code": "strasbourg-centre-ville",
       "sourceUnits": [
         {
@@ -53,7 +41,7 @@
         }
       ],
       "coverageRole": "primary",
-      "geometryBasis": "official_quartier"
+      "geometryBasis": "official_quartier_group"
     },
     {
       "code": "strasbourg-cite-de-lill",
@@ -64,7 +52,7 @@
         }
       ],
       "coverageRole": "primary",
-      "geometryBasis": "official_quartier"
+      "geometryBasis": "official_quartier_group"
     },
     {
       "code": "strasbourg-gare-tribunal",
@@ -101,7 +89,7 @@
         }
       ],
       "coverageRole": "primary",
-      "geometryBasis": "official_quartier"
+      "geometryBasis": "official_quartier_group"
     },
     {
       "code": "strasbourg-wacken",
@@ -112,7 +100,7 @@
         }
       ],
       "coverageRole": "primary",
-      "geometryBasis": "official_quartier"
+      "geometryBasis": "official_quartier_group"
     },
     {
       "code": "strasbourg-cronenbourg-campus",
@@ -211,22 +199,15 @@
       "geometryBasis": "official_quartier"
     },
     {
-      "code": "strasbourg-neuhof-1",
-      "sourceUnits": [
-        {
-          "source": "strasbourg_quartiers",
-          "name": "Neuhof"
-        }
-      ],
-      "coverageRole": "risk_cap",
-      "geometryBasis": "official_quartier"
-    },
-    {
       "code": "strasbourg-neuhof-2-stockfeld-ganzau",
       "sourceUnits": [
         {
           "source": "strasbourg_quartiers",
           "name": "Vieux Neuhof"
+        },
+        {
+          "source": "strasbourg_quartiers",
+          "name": "NEUHOF2"
         }
       ],
       "coverageRole": "risk_cap",
@@ -242,8 +223,11 @@
       ],
       "coverageRole": "campus",
       "geometryBasis": "commune",
-      "communeInsee": "67447"
+      "communeInsee": "67447",
+      "allowMultipart": true,
+      "multipartJustification": "Official single commune source contains detached official components."
     }
   ],
-  "scope": {}
+  "scope": {},
+  "outlineOutput": "public/data/strasbourg-outlines.geojson"
 }

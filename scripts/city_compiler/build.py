@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from city_compiler.errors import ConfigError, GeometryError, SourceError
+from city_compiler.errors import GeometryError
 from typing import Any
 
 from city_compiler.audits import audit_build_output
@@ -88,12 +88,8 @@ def build_features(
 
 
 def build_city(config: CityConfig) -> None:
-    if config.build_mode == "legacy":
-        raise ConfigError(
-            f"{config.city_id}: legacy build mode — run {config.legacy_script} instead"
-        )
     layers = load_all_sources(config.sources)
-    meta = load_place_meta(config.places_file, section=config.places_section)
+    meta = load_place_meta(config.places_file)
     features = build_features(config, layers, meta)
     score_codes = set(meta)
     excluded = set(config.scope.get("excludedPlaceCodes", []))

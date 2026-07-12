@@ -1,6 +1,6 @@
 {
   "cityId": "toulon",
-  "placesFile": "src/data/toulonPlaces.ts",
+  "placesFile": "src/data/places/toulon.json",
   "geojsonOutput": "public/data/toulon.geojson",
   "sources": [
     {
@@ -66,19 +66,37 @@
         },
         {
           "source": "iris_83137",
-          "name": "Place d'Armes-Arsenal"
-        },
-        {
-          "source": "iris_83137",
           "name": "Port Marchand"
         },
         {
           "source": "iris_83137",
           "name": "Port Marchand-Port de Commerce"
-        },
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "iris_fallback_major_zone",
+      "allowMultipart": true,
+      "multipartJustification": "Official IRIS port risk-cap group contains disconnected source units; preserve explicit safety cap coverage."
+    },
+    {
+      "code": "toulon-place-armes",
+      "sourceUnits": [
         {
           "source": "iris_83137",
-          "name": "Saint-Louis"
+          "name": "Place d'Armes-Arsenal"
+        }
+      ],
+      "coverageRole": "risk_cap",
+      "geometryBasis": "iris_fallback_major_zone",
+      "allowMultipart": true,
+      "multipartJustification": "Single authoritative IRIS source is multipart; preserve its components."
+    },
+    {
+      "code": "toulon-saint-roch",
+      "sourceUnits": [
+        {
+          "source": "iris_83137",
+          "name": "Saint-Roch I"
         }
       ],
       "coverageRole": "risk_cap",
@@ -131,21 +149,6 @@
       "geometryBasis": "iris_fallback_major_zone"
     },
     {
-      "code": "toulon-lamalgue-la-mitre",
-      "sourceUnits": [
-        {
-          "source": "iris_83137",
-          "name": "Aguillon-Petit Bois"
-        },
-        {
-          "source": "iris_83137",
-          "name": "Lamalgue"
-        }
-      ],
-      "coverageRole": "primary",
-      "geometryBasis": "iris_fallback_major_zone"
-    },
-    {
       "code": "toulon-cap-brun-serinette",
       "sourceUnits": [
         {
@@ -182,10 +185,6 @@
         {
           "source": "iris_83137",
           "name": "Beaulieu"
-        },
-        {
-          "source": "iris_83137",
-          "name": "Brunet"
         },
         {
           "source": "iris_83137",
@@ -247,6 +246,10 @@
         },
         {
           "source": "iris_83137",
+          "name": "Bon Rencontre-Arsenal"
+        },
+        {
+          "source": "iris_83137",
           "name": "Le Temple"
         },
         {
@@ -260,10 +263,6 @@
         {
           "source": "iris_83137",
           "name": "Pont du Las II"
-        },
-        {
-          "source": "iris_83137",
-          "name": "Saint-Roch I"
         }
       ],
       "coverageRole": "risk_cap",
@@ -274,7 +273,7 @@
       "sourceUnits": [
         {
           "source": "iris_83137",
-          "name": "Bon Rencontre-Arsenal"
+          "name": "L'Escaillon"
         }
       ],
       "coverageRole": "risk_cap",
@@ -368,10 +367,6 @@
         {
           "source": "iris_83137",
           "name": "La Beaucaire"
-        },
-        {
-          "source": "iris_83137",
-          "name": "L'Escaillon"
         }
       ],
       "coverageRole": "risk_cap",
@@ -382,14 +377,36 @@
       "sourceUnits": [
         {
           "source": "iris_83137",
-          "name": "Pont Neuf"
+          "name": "Lagoubran"
         },
         {
           "source": "iris_83137",
-          "name": "Lagoubran"
+          "name": "Pont Neuf"
         }
       ],
       "coverageRole": "risk_cap",
+      "geometryBasis": "iris_fallback_major_zone"
+    },
+    {
+      "code": "toulon-lamalgue-la-mitre",
+      "sourceUnits": [
+        {
+          "source": "iris_83137",
+          "name": "Aguillon-Petit Bois"
+        }
+      ],
+      "coverageRole": "primary",
+      "geometryBasis": "iris_fallback_major_zone"
+    },
+    {
+      "code": "toulon-saint-louis",
+      "sourceUnits": [
+        {
+          "source": "iris_83137",
+          "name": "Saint-Louis"
+        }
+      ],
+      "coverageRole": "primary",
       "geometryBasis": "iris_fallback_major_zone"
     },
     {
@@ -402,7 +419,9 @@
       ],
       "coverageRole": "campus",
       "geometryBasis": "commune",
-      "communeInsee": "83062"
+      "communeInsee": "83062",
+      "allowMultipart": true,
+      "multipartJustification": "Official commune source contains detached campus components; preserve authoritative coverage."
     },
     {
       "code": "toulon-la-valette-avenue-83-la-seyne-edge",

@@ -2,7 +2,7 @@ import { randomUUID } from "crypto";
 import { mkdirSync, readFileSync, readdirSync, renameSync, unlinkSync, writeFileSync } from "fs";
 import { dirname, join } from "path";
 import type { FeatureCollection, Geometry } from "geojson";
-import { dissolveGeometry } from "../src/lib/geometryOutline";
+import { dissolveGeometry } from "./geometry_outline";
 
 type OutlineFeatureCollection = FeatureCollection<
   Geometry,

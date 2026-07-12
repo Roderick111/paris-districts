@@ -1,6 +1,6 @@
 {
   "cityId": "montpellier",
-  "placesFile": "src/data/montpellierPlaces.ts",
+  "placesFile": "src/data/places/montpellier.json",
   "geojsonOutput": "public/data/montpellier.geojson",
   "outlineOutput": "public/data/montpellier-outlines.geojson",
   "sources": [

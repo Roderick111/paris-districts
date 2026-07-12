@@ -16,7 +16,7 @@ def validate_city(config: CityConfig) -> None:
     if not config.geojson_output.exists():
         raise ValidationError(f"Missing GeoJSON: {config.geojson_output}")
     features = read_feature_collection(config.geojson_output)
-    score_codes = load_score_codes(config.places_file, section=config.places_section)
+    score_codes = load_score_codes(config.places_file)
     excluded = set(config.scope.get("excludedPlaceCodes", []))
     layers = load_all_sources(config.sources)
     audit_build_output(config, features, score_codes - excluded, layers)

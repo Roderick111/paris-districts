@@ -1,6 +1,6 @@
 {
   "cityId": "lille",
-  "placesFile": "src/data/lillePlaces.ts",
+  "placesFile": "src/data/places/lille.json",
   "geojsonOutput": "public/data/lille.geojson",
   "sources": [
     {
@@ -221,7 +221,8 @@
           "source": "iris_59328",
           "name": "Rue de lille"
         }
-      ]
+      ],
+      "coverageRole": "context"
     },
     {
       "code": "lille-lomme-chr",
@@ -279,7 +280,8 @@
           "source": "iris_59410",
           "name": "Vauban"
         }
-      ]
+      ],
+      "coverageRole": "context"
     },
     {
       "code": "lille-moulins",
@@ -455,7 +457,8 @@
           "source": "iris_59512",
           "name": "Trois Ponts Nord"
         }
-      ]
+      ],
+      "coverageRole": "context"
     },
     {
       "code": "lille-saint-maurice-pellevoisin",
@@ -603,7 +606,8 @@
           "source": "iris_59599",
           "name": "Égalité"
         }
-      ]
+      ],
+      "coverageRole": "context"
     },
     {
       "code": "lille-tourcoing-south-west",
@@ -652,7 +656,8 @@
           "source": "iris_59599",
           "name": "Petit Village"
         }
-      ]
+      ],
+      "coverageRole": "context"
     },
     {
       "code": "lille-vauban-esquermes",

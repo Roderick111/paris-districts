@@ -1,75 +1,32 @@
 import type { CityId, PlaceScore } from "@/data/types";
+import { validatePlaceDataset, type PlaceDataset } from "@/data/placeDataset";
 
 export function isMapPlace(place: PlaceScore) {
   return place.granularity !== "macro";
 }
 
-type PlaceModule = {
-  places: PlaceScore[];
-  macroPlaces?: PlaceScore[];
-};
-
-const CITY_LOADERS: Record<CityId, () => Promise<PlaceModule>> = {
-  paris: async () => {
-    const { parisPlaces } = await import("@/data/parisPlaces");
-    return { places: parisPlaces };
-  },
-  bordeaux: async () => {
-    const { bordeauxMicroPlaces, bordeauxMacroPlaces } = await import("@/data/bordeauxPlaces");
-    return { places: bordeauxMicroPlaces, macroPlaces: bordeauxMacroPlaces };
-  },
-  lyon: async () => {
-    const { lyonMicroPlaces, lyonMacroPlaces } = await import("@/data/lyonPlaces");
-    return { places: lyonMicroPlaces, macroPlaces: lyonMacroPlaces };
-  },
-  toulouse: async () => {
-    const { toulouseMicroPlaces } = await import("@/data/toulousePlaces");
-    return { places: toulouseMicroPlaces };
-  },
-  lille: async () => {
-    const { lilleMicroPlaces } = await import("@/data/lillePlaces");
-    return { places: lilleMicroPlaces };
-  },
-  marseille: async () => {
-    const { marseilleMicroPlaces } = await import("@/data/marseillePlaces");
-    return { places: marseilleMicroPlaces };
-  },
-  nice: async () => {
-    const { niceMicroPlaces } = await import("@/data/nicePlaces");
-    return { places: niceMicroPlaces };
-  },
-  nantes: async () => {
-    const { nantesMicroPlaces } = await import("@/data/nantesPlaces");
-    return { places: nantesMicroPlaces };
-  },
-  strasbourg: async () => {
-    const { strasbourgPlaces } = await import("@/data/strasbourgPlaces");
-    return { places: strasbourgPlaces };
-  },
-  montpellier: async () => {
-    const { montpellierPlaces } = await import("@/data/montpellierPlaces");
-    return { places: montpellierPlaces };
-  },
-  rennes: async () => {
-    const { rennesPlaces } = await import("@/data/rennesPlaces");
-    return { places: rennesPlaces };
-  },
-  toulon: async () => {
-    const { toulonPlaces } = await import("@/data/toulonPlaces");
-    return { places: toulonPlaces };
-  },
-  grenoble: async () => {
-    const { grenoblePlaces } = await import("@/data/grenoblePlaces");
-    return { places: grenoblePlaces };
-  }
+const CITY_LOADERS: Record<CityId, () => Promise<PlaceDataset>> = {
+  paris: async () => validatePlaceDataset((await import("@/data/places/paris.json")).default, "paris"),
+  bordeaux: async () => validatePlaceDataset((await import("@/data/places/bordeaux.json")).default, "bordeaux"),
+  lyon: async () => validatePlaceDataset((await import("@/data/places/lyon.json")).default, "lyon"),
+  toulouse: async () => validatePlaceDataset((await import("@/data/places/toulouse.json")).default, "toulouse"),
+  lille: async () => validatePlaceDataset((await import("@/data/places/lille.json")).default, "lille"),
+  marseille: async () => validatePlaceDataset((await import("@/data/places/marseille.json")).default, "marseille"),
+  nice: async () => validatePlaceDataset((await import("@/data/places/nice.json")).default, "nice"),
+  nantes: async () => validatePlaceDataset((await import("@/data/places/nantes.json")).default, "nantes"),
+  strasbourg: async () => validatePlaceDataset((await import("@/data/places/strasbourg.json")).default, "strasbourg"),
+  montpellier: async () => validatePlaceDataset((await import("@/data/places/montpellier.json")).default, "montpellier"),
+  rennes: async () => validatePlaceDataset((await import("@/data/places/rennes.json")).default, "rennes"),
+  toulon: async () => validatePlaceDataset((await import("@/data/places/toulon.json")).default, "toulon"),
+  grenoble: async () => validatePlaceDataset((await import("@/data/places/grenoble.json")).default, "grenoble")
 };
 
 export async function loadPlacesForCity(cityId: CityId): Promise<PlaceScore[]> {
-  const mod = await CITY_LOADERS[cityId]();
-  return mod.places.filter(isMapPlace);
+  const dataset = await CITY_LOADERS[cityId]();
+  return dataset.places.filter(isMapPlace);
 }
 
 export async function loadMacroPlacesForCity(cityId: CityId): Promise<PlaceScore[]> {
-  const mod = await CITY_LOADERS[cityId]();
-  return mod.macroPlaces ?? [];
+  const dataset = await CITY_LOADERS[cityId]();
+  return dataset.macroPlaces;
 }

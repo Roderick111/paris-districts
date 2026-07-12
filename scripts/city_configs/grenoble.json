@@ -1,6 +1,6 @@
 {
   "cityId": "grenoble",
-  "placesFile": "src/data/grenoblePlaces.ts",
+  "placesFile": "src/data/places/grenoble.json",
   "geojsonOutput": "public/data/grenoble.geojson",
   "sources": [
     {
@@ -51,6 +51,10 @@
         {
           "source": "grenoble_quartiers",
           "name": "Foch - Aigle - Libération"
+        },
+        {
+          "source": "grenoble_quartiers",
+          "name": "Rondeau - Libération"
         }
       ],
       "coverageRole": "primary",
@@ -68,7 +72,7 @@
       "geometryBasis": "official_quartier_group"
     },
     {
-      "code": "grenoble-chorier-berriat-saint-bruno",
+      "code": "grenoble-chorier-berriat-gare",
       "sourceUnits": [
         {
           "source": "grenoble_quartiers",
@@ -77,10 +81,6 @@
         {
           "source": "grenoble_quartiers",
           "name": "Centre Gare"
-        },
-        {
-          "source": "grenoble_quartiers",
-          "name": "Rondeau - Libération"
         }
       ],
       "coverageRole": "primary",
@@ -212,6 +212,109 @@
       "communeInsee": "38179"
     }
   ],
-  "scope": {},
+  "scope": {
+    "overlapExemptions": [
+      [
+        "grenoble-arlequin-village-olympique-vigny-musset",
+        "grenoble-beauvert-cite-abbaye"
+      ],
+      [
+        "grenoble-arlequin-village-olympique-vigny-musset",
+        "grenoble-capuche-allies-alpins"
+      ],
+      [
+        "grenoble-arlequin-village-olympique-vigny-musset",
+        "grenoble-teisseire-malherbe"
+      ],
+      [
+        "grenoble-beauvert-cite-abbaye",
+        "grenoble-teisseire-malherbe"
+      ],
+      [
+        "grenoble-capuche-allies-alpins",
+        "grenoble-championnet-aigle"
+      ],
+      [
+        "grenoble-capuche-allies-alpins",
+        "grenoble-jouhaux-exposition-bajatiere"
+      ],
+      [
+        "grenoble-capuche-allies-alpins",
+        "grenoble-teisseire-malherbe"
+      ],
+      [
+        "grenoble-championnet-aigle",
+        "grenoble-chorier-berriat-gare"
+      ],
+      [
+        "grenoble-championnet-aigle",
+        "grenoble-europole-presquile"
+      ],
+      [
+        "grenoble-championnet-aigle",
+        "grenoble-hyper-centre"
+      ],
+      [
+        "grenoble-championnet-aigle",
+        "grenoble-jouhaux-exposition-bajatiere"
+      ],
+      [
+        "grenoble-championnet-aigle",
+        "grenoble-mistral-eaux-claires"
+      ],
+      [
+        "grenoble-chorier-berriat-gare",
+        "grenoble-europole-presquile"
+      ],
+      [
+        "grenoble-chorier-berriat-gare",
+        "grenoble-hyper-centre"
+      ],
+      [
+        "grenoble-chorier-berriat-gare",
+        "grenoble-saint-laurent-ile-verte"
+      ],
+      [
+        "grenoble-europole-presquile",
+        "grenoble-mistral-eaux-claires"
+      ],
+      [
+        "grenoble-gieres-campus",
+        "grenoble-saint-martin-dheres-campus-core"
+      ],
+      [
+        "grenoble-hyper-centre",
+        "grenoble-jouhaux-exposition-bajatiere"
+      ],
+      [
+        "grenoble-hyper-centre",
+        "grenoble-notre-dame-mutualite"
+      ],
+      [
+        "grenoble-hyper-centre",
+        "grenoble-saint-laurent-ile-verte"
+      ],
+      [
+        "grenoble-jouhaux-exposition-bajatiere",
+        "grenoble-notre-dame-mutualite"
+      ],
+      [
+        "grenoble-jouhaux-exposition-bajatiere",
+        "grenoble-saint-martin-dheres-campus-core"
+      ],
+      [
+        "grenoble-jouhaux-exposition-bajatiere",
+        "grenoble-teisseire-malherbe"
+      ],
+      [
+        "grenoble-notre-dame-mutualite",
+        "grenoble-saint-laurent-ile-verte"
+      ],
+      [
+        "grenoble-saint-martin-dheres-campus-core",
+        "grenoble-teisseire-malherbe"
+      ]
+    ]
+  },
   "outlineOutput": "public/data/grenoble-outlines.geojson"
 }

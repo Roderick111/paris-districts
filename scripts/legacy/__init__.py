@@ -1,1 +1,0 @@
-"""Legacy one-off geometry builders kept for one release after compiler migration."""
