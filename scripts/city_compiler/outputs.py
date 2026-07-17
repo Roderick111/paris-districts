@@ -19,6 +19,7 @@ def write_json_atomic(path: Path, payload: Any, *, compact: bool = False) -> Non
     os.close(temp_fd)
     temp_path = Path(temp_name)
     try:
+        os.chmod(temp_path, 0o644)
         with temp_path.open("w", encoding="utf-8") as handle:
             if compact:
                 json.dump(payload, handle, separators=(",", ":"))
@@ -44,6 +45,7 @@ def write_text_atomic(path: Path, content: str) -> None:
     os.close(temp_fd)
     temp_path = Path(temp_name)
     try:
+        os.chmod(temp_path, 0o644)
         with temp_path.open("w", encoding="utf-8") as handle:
             handle.write(content)
             handle.flush()
